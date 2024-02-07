@@ -4,11 +4,11 @@
 Development of the different parts (Character, Map, Items, and Dice) for the game d20.
 
 # Technologies Used
-C++
-CppUnit
+- C++
+- CppUnit
 
 # Participants
-Kenny Phan
-Zi Hao Tan
-Tony Yang
-Muhammad Ali Sheikh
+- Kenny Phan
+- Zi Hao Tan
+- Tony Yang
+- Muhammad Ali Sheikh
