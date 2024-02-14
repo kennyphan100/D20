@@ -1,5 +1,7 @@
 #include "Dice.h"
 #include <iostream>
+#include "Character.h"
+#include "Item.h"
 using namespace std;
 
 int main() {
@@ -19,6 +21,11 @@ int main() {
                 cout << "Result of rolling " << input << ": " << result << endl;
             }
             cout << "\n";
+
+            Character fighter(1);
+            Armor leatherArmor("Leather Armor", 1);
+            fighter.equipArmor(&leatherArmor);
+            fighter.printCharacter();
         }
 
     }
