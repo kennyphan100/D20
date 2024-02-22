@@ -3,6 +3,10 @@
 #include "Character.h"
 #include "Item.h"
 #include "Map.h"
+#include <cppunit/TestRunner.h>
+#include <cppunit/CompilerOutputter.h>
+#include <cppunit/extensions/TestFactoryRegistry.h>
+#include <cppunit/ui/text/TestRunner.h>
 using namespace std;
 
 int main() {
@@ -34,10 +38,10 @@ int main() {
     }*/
 
     // Create a 10x10 map
-    Map myMap(10, 10);
+   /* Map myMap(10, 10);*/
 
     // Set some walls in the map
-    myMap.setCell(1, 0, Cell::WALL);
+  /*  myMap.setCell(1, 0, Cell::WALL);
     myMap.setCell(1, 2, Cell::WALL);
     myMap.setCell(1, 3, Cell::WALL);
     myMap.setCell(1, 4, Cell::WALL);
@@ -46,23 +50,38 @@ int main() {
     myMap.setCell(1, 7, Cell::WALL);
     myMap.setCell(1, 8, Cell::WALL);
     myMap.setCell(1, 9, Cell::WALL);
-    myMap.setCell(1, 100, Cell::WALL);
+    myMap.setCell(1, 100, Cell::WALL);*/
     // ... You can add more walls or obstacles as needed
 
     // Set the start and end points as EMPTY to ensure they are traversable
-    myMap.setCell(0, 0, Cell::EMPTY); // Start point
-    myMap.setCell(9, 9, Cell::EMPTY); // End point
+    //myMap.setCell(0, 0, Cell::EMPTY); // Start point
+    //myMap.setCell(9, 9, Cell::EMPTY); // End point
 
-    // Verify the map to see if there is a path from start to end
-    if (myMap.verifyMap()) {
-        std::cout << "A path exists from start to end." << std::endl;
-    }
-    else {
-        std::cout << "No path exists from start to end." << std::endl;
-    }
+    //// Verify the map to see if there is a path from start to end
+    //if (myMap.verifyMap()) {
+    //    std::cout << "A path exists from start to end." << std::endl;
+    //}
+    //else {
+    //    std::cout << "No path exists from start to end." << std::endl;
+    //}
 
-    std::cout << "Map after verification:" << std::endl;
-    myMap.display();
+    //std::cout << "Map after verification:" << std::endl;
+    //myMap.display();
 
-    return 0;
+    // Get the top level suite from the registry
+    CppUnit::Test* suite = CppUnit::TestFactoryRegistry::getRegistry().makeTest();
+    // Adds the test to the list of test to run
+    CppUnit::TextUi::TestRunner runner;
+    runner.addTest(suite);
+    // Change the default outputter to a compiler error format outputter
+    runner.setOutputter(new CppUnit::CompilerOutputter(&runner.result(),
+        std::cerr));
+    // Run the tests.
+    bool wasSucessful = runner.run();
+    getchar();
+
+    return wasSucessful ? 0 : 1;
+    // Return error code 1 if the 
+
+    /*return 0;*/
 }
