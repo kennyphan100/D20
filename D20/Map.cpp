@@ -23,10 +23,10 @@ bool isTraversable(const std::vector<std::vector<Cell>>& grid, int x, int y) {
 }
 
 void Map::setCell(int x, int y, Cell cellType) {
-    if (x >= 0 && x < width && y >= 0 && y < height) {
-        grid[y][x] = cellType;
+    if (x < 0 || x >= width || y < 0 || y >= height) {
+        throw std::out_of_range("Cell coordinates are out of bounds.");
     }
-    // You may want to handle errors for out-of-bounds indices
+    grid[y][x] = cellType;
 }
 
 // BFS to find a path from top-left to bottom-right
