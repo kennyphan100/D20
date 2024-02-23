@@ -30,7 +30,7 @@ public:
     Character(int level);
 
     void generateAbilityScores();
-    void calculateModifiers();
+    void calculateAbilityModifiers();
     void calculateHitPoints();
     void calculateArmorClass();
     void calculateAttackBonus();

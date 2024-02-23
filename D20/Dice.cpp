@@ -27,8 +27,8 @@ int Dice::rollDice(const std::string& input) {
 
         // Validate the dice type
         if (validDiceSides.find(y) == validDiceSides.end()) {
-            std::cerr << "Invalid dice type. Valid types are d4, d6, d8, d10, d12, d20, d100." << std::endl;
-            return -1;
+            //std::cerr << "Invalid dice type. Valid types are d4, d6, d8, d10, d12, d20, d100." << std::endl;
+            return -2;
         }
 
         int result = 0;
@@ -40,7 +40,7 @@ int Dice::rollDice(const std::string& input) {
         return result;
     }
     else {
-        std::cerr << "Invalid input format. Please use the xdy[+z] format." << std::endl;
+        //std::cerr << "Invalid input format. Please use the xdy[+z] format." << std::endl;
         return -1;
     }
 }

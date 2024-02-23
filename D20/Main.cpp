@@ -7,21 +7,39 @@
 #include <cppunit/CompilerOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TestRunner.h>
+
 using namespace std;
+
+string toLowercase(const string& str) {
+    string result = str;
+    for (char& c : result) {
+        c = tolower(c);
+    }
+    return result;
+}
 
 int main() {
     while (true) {
-        cout << "Please enter the part of the game (press 0 to exit): ";
+        cout << "==================================================================================================" << endl;
+        cout << "Please enter a part of the game to test (Character, Map, Item, Dice, or Test) - (enter Q to quit): ";
         string part;
         cin >> part;
         cout << "\n";
 
-        if (part._Equal("0"))
+        part = toLowercase(part);
+
+        if (part == "q")
         {
-            std::exit(0);
+            cout << "Terminating program." << endl;
+            exit(0);
         }
-        else if (part._Equal("character"))
+
+        if (part._Equal("character"))
         {
+            Character fighter(1);
+            Armor leatherArmor("Leather Armor", 1);
+            fighter.equipArmor(&leatherArmor);
+            fighter.printCharacter();
         }
         else if (part._Equal("map"))
         {
@@ -41,7 +59,7 @@ int main() {
 
                 while (true) {
                     string coordinatesInput;
-                    cout << "Please enter the coordinates (width, height) for the placement of walls/characters (e.g., 1 2 W or 3 4 C) - Press Q to Stop: ";
+                    cout << "Please enter the coordinates (width, height) for the placement of walls/characters (e.g., 1 2 W or 3 4 C) - enter Q to quit: ";
                     getline(cin, coordinatesInput);
 
                     if (coordinatesInput == "q") {
@@ -54,22 +72,23 @@ int main() {
                     stringstream ss(coordinatesInput);
 
                     if (!(ss >> x >> y >> obstacle)) {
-                        cerr << "Error: Input format is incorrect!" << endl;
+                        cerr << "Input format is incorrect! \n" << endl;
                         continue;
                     }
-                    cout << "width: " << width << endl;
-                    cout << "height: " << height << endl;
-                    cout << "x: " << x << endl;
-                    cout << "y: " << y << endl;
-                    cout << "obstacle: " << obstacle << endl;
+                    obstacle = toupper(obstacle);
+
+                    if (obstacle != 'W' && obstacle != 'C') {
+                        cout << "Invalid obstacle. Must be 'W' or 'C'. \n" << endl;
+                        continue;
+                    }
 
                     if (x < 0 || x >= width || y < 0 || y >= height) {
-                        cout << "Cell coordinates are out of bounds." << endl;
+                        cout << "Cell coordinates are out of bounds. \n" << endl;
                         continue;
                     }
 
                     if (!(myMap.isEmptyCell(x, y))) {
-                        cout << "Try again, this cell is occupied or has a wall." << endl;
+                        cout << "Try again, this cell is occupied or has a wall. \n" << endl;
                         continue;
                     }
 
@@ -102,27 +121,31 @@ int main() {
         else if (part._Equal("dice"))
         {
             Dice dice;
-            try {
-                string input;
+            string input;
 
-                cout << "Enter the dice roll expression (e.g., 3d6+5): ";
-                cin >> input;
+            cout << "Enter a dice roll expression (e.g., 3d6+5) : ";
+            cin >> input;
 
-                int result = dice.rollDice(input);
+            int result = dice.rollDice(input);
 
-                if (result != -1) {
-                    cout << "Result of rolling " << input << ": " << result << endl;
+            while (result < 0) {
+                if (result == -1) {
+                   cout << "Invalid input format. Please use the xdy[+z] format." << std::endl;
+                }
+                else if (result == -2) {
+                    cout << "Invalid dice type. Valid types are d4, d6, d8, d10, d12, d20, d100." << std::endl;
                 }
                 cout << "\n";
+                cout << "Enter a new dice roll expression (e.g., 3d6+5) : ";
+                cin >> input;
+                result = dice.rollDice(input);
+            }
 
-                Character fighter(1);
-                Armor leatherArmor("Leather Armor", 1);
-                fighter.equipArmor(&leatherArmor);
-                fighter.printCharacter();
+            if (result >= 0) {
+                cout << "Result of rolling " << input << ": " << result << endl;
             }
-            catch (const exception& e) {
-                cerr << e.what() << endl;
-            }
+            cout << "\n";
+
         }
         else if (part._Equal("test"))
         {
@@ -135,8 +158,13 @@ int main() {
             runner.setOutputter(new CppUnit::CompilerOutputter(&runner.result(),
                 std::cerr));
             // Run the tests.
-            bool wasSucessful = runner.run();
-            return wasSucessful;
+            bool wasSuccessful = runner.run();
+
+            if (wasSuccessful) {
+                cout << "All the tests passed!" << endl;
+            }
+
+            return wasSuccessful;
             // Return error code 1 if the 
         }
         else
