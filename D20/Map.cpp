@@ -14,12 +14,18 @@ struct Point {
 };
 
 Map::Map(int width, int height) : width(width), height(height), grid(height, std::vector<Cell>(width, Cell::EMPTY)) {
-    // The grid is initialized in the member initializer list
 }
 
 bool isTraversable(const std::vector<std::vector<Cell>>& grid, int x, int y) {
     return x >= 0 && x < grid[0].size() && y >= 0 && y < grid.size() &&
         (grid[y][x] != Cell::WALL && grid[y][x] != Cell::OCCUPIED);
+}
+
+bool Map::isEmptyCell(int x, int y) {
+    if (grid[y][x] != Cell::EMPTY) {
+        return false;
+    }
+    return true;
 }
 
 void Map::setCell(int x, int y, Cell cellType) {
@@ -84,6 +90,12 @@ void Map::display() const {
                 break;
             case Cell::OCCUPIED:
                 std::cout << 'O';
+                break;
+            case Cell::START:
+                std::cout << 'S';
+                break;
+            case Cell::FINISH:
+                std::cout << 'F';
                 break;
             }
         }

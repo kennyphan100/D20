@@ -5,7 +5,7 @@
 #include <vector>
 
 // Enum class for different types of cells in the map
-enum class Cell { EMPTY, WALL, OCCUPIED };
+enum class Cell { START, EMPTY, WALL, OCCUPIED , FINISH};
 
 // Map class definition
 class Map {
@@ -15,6 +15,8 @@ public:
 
     // Method to set the type of a cell at a specific location
     void setCell(int x, int y, Cell cellType);
+
+    bool isEmptyCell(int x, int y);
 
     // Method to verify the validity of the map
     bool verifyMap();
