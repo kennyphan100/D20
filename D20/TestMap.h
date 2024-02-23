@@ -7,6 +7,8 @@ class TestMap : public CppUnit::TestFixture {
     CPPUNIT_TEST_SUITE(TestMap);
     CPPUNIT_TEST(testSetCellInBounds);
     CPPUNIT_TEST(testSetCellOutOfBounds);
+    CPPUNIT_TEST(testIsEmptyCellReturnsTrue);
+    CPPUNIT_TEST(testIsEmptyCellReturnsFalse);
     CPPUNIT_TEST(testVerifyMapExistingPath);
     CPPUNIT_TEST(testVerifyMapNonExistingPath);
     CPPUNIT_TEST_SUITE_END();
@@ -18,6 +20,8 @@ public:
 protected:
     void testSetCellInBounds(void);
     void testSetCellOutOfBounds(void);
+    void testIsEmptyCellReturnsTrue(void);
+    void testIsEmptyCellReturnsFalse(void);
     void testVerifyMapExistingPath(void);
     void testVerifyMapNonExistingPath(void);
 private:

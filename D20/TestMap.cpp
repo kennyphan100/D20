@@ -32,6 +32,17 @@ void TestMap::testSetCellOutOfBounds(void)
 	CPPUNIT_ASSERT_THROW(MapObjectWithExistingPath->setCell(10, 10, Cell::WALL), std::out_of_range);
 }
 
+
+void TestMap::testIsEmptyCellReturnsTrue(void)
+{
+	CPPUNIT_ASSERT(MapObjectWithExistingPath->isEmptyCell(0, 5));
+}
+
+void TestMap::testIsEmptyCellReturnsFalse(void)
+{
+	CPPUNIT_ASSERT(false == MapObjectWithoutExistingPath->isEmptyCell(0, 5));
+}
+
 // Test Case: Existing path
 void TestMap::testVerifyMapExistingPath(void)
 {
