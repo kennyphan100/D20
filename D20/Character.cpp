@@ -4,7 +4,7 @@
 
 Character::Character(int level) : level(level), armor(nullptr) {
     generateAbilityScores();
-    calculateModifiers();
+    calculateAbilityModifiers();
     calculateHitPoints();
     calculateArmorClass();
     calculateAttackBonus();
@@ -17,7 +17,7 @@ void Character::generateAbilityScores() {
     }
 }
 
-void Character::calculateModifiers() {
+void Character::calculateAbilityModifiers() {
     for (int i = 0; i < 6; ++i) {
         abilityModifiers[i] = (abilityScores[i] - 10) / 2;
     }
