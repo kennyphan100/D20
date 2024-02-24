@@ -24,6 +24,7 @@ int main() {
         cout << "Please enter a part of the game to test (Character, Map, Item, Dice, or Test) - (enter Q to quit): ";
         string part;
         cin >> part;
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout << "\n";
 
         part = toLowercase(part);
@@ -44,15 +45,23 @@ int main() {
         else if (part._Equal("map"))
         {
             try {
-                cout << "Please enter the dimensions of map (e.g., 10 10): ";
                 int width;
                 int height;
-                string dummy;
-                cin >> width >> height;
-                cout << "\n";
-                getline(cin, dummy);
+                while (true) {
+                    cout << "Please enter the dimensions of map (e.g., 10 10): ";
+                    string dimensions;
+                    getline(cin, dimensions);
+                    stringstream ss(dimensions);
+
+                    if (!(ss >> width >> height)) {
+                        cerr << "Input format is incorrect! \n" << endl;
+                        continue;
+                    }
+                    break;
+                }
 
                 Map myMap(width, height);
+                cout << "\n";
 
                 myMap.setCell(0, 0, Cell::START); // Start point
                 myMap.setCell(width - 1, height - 1, Cell::FINISH); // End point
@@ -101,9 +110,10 @@ int main() {
                             break;
                     }
                     myMap.display();
+                    cout << "\n";
                 }
 
-                // Verify the map to see if there is a path from start to end
+                // Verify the map to see if there is a path from start to finish
                 if (myMap.verifyMap()) {
                     std::cout << "A path exists from start to finish." << std::endl;
                 }
@@ -165,7 +175,6 @@ int main() {
             }
 
             return wasSuccessful;
-            // Return error code 1 if the 
         }
         else
         {
