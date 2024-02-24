@@ -31,7 +31,7 @@ void Character::calculateHitPoints() {
 void Character::calculateArmorClass() {
     int dexMod = getAbilityModifier(1);
     armorClass = 10 + dexMod;
-    if (armor) armorClass += armor->armorBonus;
+    //if (armor) armorClass += armor->armorBonus;
 }
 
 void Character::calculateAttackBonus() {
