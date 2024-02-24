@@ -37,9 +37,19 @@ int main() {
 
         if (part._Equal("character"))
         {
-            Character fighter(1);
+            int level;
+            cout << "Enter the level of your desired character: ";
+            cin >> level;
+
+            while (level <= 0) {
+                cout << "You must enter a value greater than 0: ";
+                cin >> level;
+            }
+
+            Character fighter(level);
             Armor leatherArmor("Leather Armor");
             fighter.equipArmor(&leatherArmor);
+            cout << " ===== Successfully created a character with the following stats: ===== " << endl;
             fighter.printCharacter();
         }
         else if (part._Equal("map"))
@@ -136,19 +146,23 @@ int main() {
 
             cout << "Armor: " << armor.name << endl;
             auto armorEnhancement = armor.getEnhancement();
-            cout << "Enhancement: " << enhancementToString(armorEnhancement.first) << ", Enhancement Number: " << armorEnhancement.second << endl << endl;
+            cout << "Enhancement: " << enhancementToString(armorEnhancement.first) << ", Enhancement Bonus: " << armorEnhancement.second << endl << endl;
 
             cout << "Shield: " << shield.name << endl;
             auto shieldEnhancement = shield.getEnhancement();
-            cout << "Enhancement: " << enhancementToString(shieldEnhancement.first) << ", Enhancement Number: " << shieldEnhancement.second << endl << endl;
+            cout << "Enhancement: " << enhancementToString(shieldEnhancement.first) << ", Enhancement Bonus: " << shieldEnhancement.second << endl << endl;
 
             cout << "Weapon: " << weapon.name << endl;
             auto weaponEnhancement = weapon.getEnhancement();
-            cout << "Enhancement: " << enhancementToString(weaponEnhancement.first) << ", Enhancement Number: " << weaponEnhancement.second << endl << endl;
+            cout << "Enhancement: " << enhancementToString(weaponEnhancement.first) << ", Enhancement Bonus: " << weaponEnhancement.second << endl << endl;
 
             cout << "Ring: " << ring.name << endl;
             auto ringEnhancement = ring.getEnhancement();
-            cout << "Enhancement: " << enhancementToString(ringEnhancement.first) << ", Enhancement Number: " << ringEnhancement.second << endl << endl;
+            cout << "Enhancement: " << enhancementToString(ringEnhancement.first) << ", Enhancement Bonus: " << ringEnhancement.second << endl << endl;
+
+            // TODO: Implement item containers: character backpack, character worn items, and treasure chest.
+
+
 
         }
         else if (part._Equal("dice"))
