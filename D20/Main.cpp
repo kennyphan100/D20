@@ -38,7 +38,7 @@ int main() {
         if (part._Equal("character"))
         {
             Character fighter(1);
-            Armor leatherArmor("Leather Armor", 1);
+            Armor leatherArmor("Leather Armor");
             fighter.equipArmor(&leatherArmor);
             fighter.printCharacter();
         }
@@ -115,10 +115,10 @@ int main() {
 
                 // Verify the map to see if there is a path from start to finish
                 if (myMap.verifyMap()) {
-                    std::cout << "A path exists from start to finish." << std::endl;
+                    cout << "A path exists from start to finish." << endl;
                 }
                 else {
-                    std::cout << "No path exists from start to finish." << std::endl;
+                    cout << "No path exists from start to finish." << endl;
                 }
             }
             catch (const exception& e) {
@@ -127,6 +127,29 @@ int main() {
         }
         else if (part._Equal("item"))
         {
+            Armor armor("Plate Armor");
+            Shield shield("Wooden Shield");
+            Weapon weapon("Long Sword");
+            Boots boots("Leather Boots");
+            Ring ring("Diamond Ring");
+            Helmet helmet("Steel Helmet");
+
+            cout << "Armor: " << armor.name << endl;
+            auto armorEnhancement = armor.getEnhancement();
+            cout << "Enhancement: " << enhancementToString(armorEnhancement.first) << ", Enhancement Number: " << armorEnhancement.second << endl << endl;
+
+            cout << "Shield: " << shield.name << endl;
+            auto shieldEnhancement = shield.getEnhancement();
+            cout << "Enhancement: " << enhancementToString(shieldEnhancement.first) << ", Enhancement Number: " << shieldEnhancement.second << endl << endl;
+
+            cout << "Weapon: " << weapon.name << endl;
+            auto weaponEnhancement = weapon.getEnhancement();
+            cout << "Enhancement: " << enhancementToString(weaponEnhancement.first) << ", Enhancement Number: " << weaponEnhancement.second << endl << endl;
+
+            cout << "Ring: " << ring.name << endl;
+            auto ringEnhancement = ring.getEnhancement();
+            cout << "Enhancement: " << enhancementToString(ringEnhancement.first) << ", Enhancement Number: " << ringEnhancement.second << endl << endl;
+
         }
         else if (part._Equal("dice"))
         {
@@ -140,10 +163,10 @@ int main() {
 
             while (result < 0) {
                 if (result == -1) {
-                   cout << "Invalid input format. Please use the xdy[+z] format." << std::endl;
+                   cout << "Invalid input format. Please use the xdy[+z] format." << endl;
                 }
                 else if (result == -2) {
-                    cout << "Invalid dice type. Valid types are d4, d6, d8, d10, d12, d20, d100." << std::endl;
+                    cout << "Invalid dice type. Valid types are d4, d6, d8, d10, d12, d20, d100." << endl;
                 }
                 cout << "\n";
                 cout << "Enter a new dice roll expression (e.g., 3d6+5) : ";
