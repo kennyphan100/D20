@@ -2,7 +2,9 @@
 #include <iostream>
 #include <cmath>
 
-Character::Character(int level) : level(level), armor(nullptr) {
+using namespace std;
+
+Character::Character(int level, CharacterType characterType) : level(level), characterType(characterType), armor(nullptr) {
     generateAbilityScores();
     calculateAbilityModifiers();
     calculateHitPoints();
@@ -71,6 +73,14 @@ void Character::equipHelmet(Helmet* h) {
     helmet = h;
 }
 
+int Character::getLevel() const {
+    return level;
+}
+
+CharacterType Character::getCharacterType() const {
+    return characterType;
+}
+
 int Character::getAbilityScore(int index) const {
     return abilityScores[index];
 }
@@ -96,7 +106,8 @@ int Character::getDamageBonus() const {
 }
 
 void Character::printCharacter() const {
-    std::cout << "Level: " << level << "\n"
+    cout << "Class: " << characterTypeToString(getCharacterType()) << "\n"
+        << "Level: " << level << "\n"
         << "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
         << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
         << "DEX: " << abilityScores[1] << " (" << abilityModifiers[1] << "), "
@@ -104,4 +115,16 @@ void Character::printCharacter() const {
         << "INT: " << abilityScores[3] << " (" << abilityModifiers[3] << "), "
         << "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
         << "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
+}
+
+string characterTypeToString(CharacterType characterType) {
+    switch (characterType) {
+    case CharacterType::FIGHTER: return "FIGHTER";
+    case CharacterType::SORCERER: return "SORCERER";
+    case CharacterType::MONK: return "MONK";
+    case CharacterType::PALADIN: return"PALADIN";
+    case CharacterType::BARD: return "BARD";
+    case CharacterType::BARBARIAN: return "BARBARIAN";
+    default: return "Unknown CharacterType";
+    }
 }

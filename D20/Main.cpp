@@ -24,7 +24,7 @@ int main() {
         cout << "Please enter a part of the game to test (Character, Map, Item, Dice, or Test) - (enter Q to quit): ";
         string part;
         cin >> part;
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "\n";
 
         part = toLowercase(part);
@@ -37,16 +37,41 @@ int main() {
 
         if (part._Equal("character"))
         {
-            int level;
-            cout << "Enter the level of your desired character: ";
-            cin >> level;
+            string characterType;
+            cout << "Enter the class of your desired character (e.g., Fighter): ";
+            cin >> characterType;
+            characterType = toLowercase(characterType);
 
-            while (level <= 0) {
-                cout << "You must enter a value greater than 0: ";
-                cin >> level;
+            while (!characterType._Equal("fighter")) {
+                cout << "This class does not exist yet. Try another class: ";
+                cin >> characterType;
             }
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "\n";
 
-            Character fighter(level);
+            int level;
+            while (true) {
+                cout << "Enter the level of your desired character (e.g., 10): ";
+                string input;
+                getline(cin, input);
+                stringstream ss(input);
+
+                if (ss >> level && ss.eof()) {
+                    if (level > 0) {
+                        break;
+                    }
+                    else {
+                        cout << "You must enter a value greater than 0.\n" << endl;
+                    }
+                }
+                else {
+                    cerr << "Input format must be a positive integer value.\n" << endl;
+                }
+                
+            }
+            cout << "\n";
+
+            Character fighter(level, CharacterType::FIGHTER);
             Armor leatherArmor("Leather Armor");
             fighter.equipArmor(&leatherArmor);
             cout << " ===== Successfully created a character with the following stats: ===== " << endl;
@@ -202,8 +227,7 @@ int main() {
             CppUnit::TextUi::TestRunner runner;
             runner.addTest(suite);
             // Change the default outputter to a compiler error format outputter
-            runner.setOutputter(new CppUnit::CompilerOutputter(&runner.result(),
-                std::cerr));
+            runner.setOutputter(new CppUnit::CompilerOutputter(&runner.result(), cerr));
             // Run the tests.
             bool wasSuccessful = runner.run();
 

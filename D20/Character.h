@@ -8,9 +8,14 @@
 #include <array>
 #include <random>
 
+using namespace std;
+
+enum class CharacterType { FIGHTER, SORCERER, MONK, PALADIN, BARD, BARBARIAN };
+
 class Character {
 protected:
     int level;
+    CharacterType characterType;
     std::array<int, 6> abilityScores; // STR, DEX, CON, INT, WIS, CHA
     std::array<int, 6> abilityModifiers;
     int hitPoints;
@@ -27,7 +32,7 @@ protected:
     Helmet* helmet;
 
 public:
-    Character(int level);
+    Character(int level, CharacterType characterType);
 
     void generateAbilityScores();
     void calculateAbilityModifiers();
@@ -43,6 +48,8 @@ public:
     void equipRing(Ring* r);
     void equipHelmet(Helmet* h);
 
+    int getLevel() const;
+    CharacterType getCharacterType() const;
     int getAbilityScore(int index) const;
     int getAbilityModifier(int index) const;
     int getHitPoints() const;
@@ -51,6 +58,9 @@ public:
     int getDamageBonus() const;
 
     void printCharacter() const;
+
 };
+
+string characterTypeToString(CharacterType characterType);
 
 #endif

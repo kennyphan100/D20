@@ -5,6 +5,8 @@
 #include <string>
 #include <random>
 
+using namespace std;
+
 /** 
  * @class Dice
  * @brief This class is used for simulating dice rolls.
@@ -40,7 +42,7 @@ public:
      * @param input The dice roll expression to interpret and roll.
      * @return The result of the dice roll.
      */
-    int rollDice(const std::string& input);
+    int rollDice(const string& input);
 
 private:
     /**
@@ -51,7 +53,7 @@ private:
      */
     int rollSingleDice(int sides);
 
-    std::mt19937 rng; ///< The random number generator used for rolling dice.
+    mt19937 rng; ///< The random number generator used for rolling dice.
 };
 
 #endif
