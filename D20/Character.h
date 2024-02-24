@@ -31,6 +31,8 @@ protected:
     Ring* ring;
     Helmet* helmet;
 
+    Backpack* backpack;
+
 public:
     Character(int level, CharacterType characterType);
 

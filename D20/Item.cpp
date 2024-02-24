@@ -1,45 +1,88 @@
 #include "Item.h"
 #include <iostream>
 
+using namespace std;
 
-Item::Item(std::string name): name(std::move(name)) {}
+Item::Item(string name): name(move(name)) {}
 
-Armor::Armor(std::string name): Item(std::move(name)) {
+ItemContainer::ItemContainer(string name): name(move(name)) {}
+
+Backpack::Backpack(string name): ItemContainer(name) {}
+
+Helmet::Helmet(string name) : Item(move(name)) {
 }
 
-std::pair<Enhancements, int> Armor::getEnhancement() const {
-    int armorBonus = rand() %5+1;
-    return {Enhancements::armorClass, armorBonus};
-}
-
-Shield::Shield(std::string name): Item(std::move(name)) {
-}
-
-std::pair<Enhancements, int> Shield::getEnhancement() const {
-    int armorBonus = rand() %5+1;
-    return {Enhancements::armorClass, armorBonus};
-}
-
-Weapon::Weapon(std::string name): Item(std::move(name)) {
-}
-
-std::pair<Enhancements, int> Weapon::getEnhancement() const {
-    int bonus = rand() %5+1;
+pair<Enhancements, int> Helmet::getEnhancement() const {
+    int bonus = rand() % 5 + 1;
     Enhancements enhance;
-    
-    if (rand() % 2 == 0)
-        enhance = Enhancements::attackBonus;
+
+    if (rand() % 3 == 0)
+        enhance = Enhancements::wisdom;
+    else if (rand() % 3 == 1)
+        enhance = Enhancements::intelligence;
     else
-        enhance = Enhancements::damageBonus;
+        enhance = Enhancements::armorClass;
 
-    return {enhance, bonus};
+    return { enhance, bonus };
 }
 
-Boots::Boots(std::string name): Item(std::move(name)) {
+Armor::Armor(string name): Item(move(name)) {
 }
 
-std::pair<Enhancements, int> Boots::getEnhancement() const {
-    int dexBonus = rand() %5+1;
+pair<Enhancements, int> Armor::getEnhancement() const {
+    int armorBonus = rand() %5+1;
+    return {Enhancements::armorClass, armorBonus};
+}
+
+Shield::Shield(string name): Item(move(name)) {
+}
+
+pair<Enhancements, int> Shield::getEnhancement() const {
+    int armorBonus = rand() %5+1;
+    return {Enhancements::armorClass, armorBonus};
+}
+
+Ring::Ring(string name) : Item(move(name)) {
+}
+
+pair<Enhancements, int> Ring::getEnhancement() const {
+    int bonus = rand() % 5 + 1;
+    Enhancements enhance;
+
+    if (rand() % 5 == 0)
+        enhance = Enhancements::strength;
+    else if (rand() % 5 == 1)
+        enhance = Enhancements::constitution;
+    else if (rand() % 5 == 2)
+        enhance = Enhancements::armorClass;
+    else if (rand() % 5 == 3)
+        enhance = Enhancements::wisdom;
+    else
+        enhance = Enhancements::charisma;
+
+    return { enhance, bonus };
+}
+
+Belt::Belt(string name) : Item(move(name)) {
+}
+
+pair<Enhancements, int> Belt::getEnhancement() const {
+    int bonus = rand() % 5 + 1;
+    Enhancements enhance;
+
+    if (rand() % 2 == 0)
+        enhance = Enhancements::constitution;
+    else
+        enhance = Enhancements::strength;
+
+    return { enhance, bonus };
+}
+
+Boots::Boots(string name): Item(move(name)) {
+}
+
+pair<Enhancements, int> Boots::getEnhancement() const {
+    int bonus = rand() %5+1;
     Enhancements enhance;
     
     if (rand() % 2 == 0)
@@ -47,48 +90,25 @@ std::pair<Enhancements, int> Boots::getEnhancement() const {
     else
         enhance = Enhancements::armorClass;
 
-    return {enhance, dexBonus};
+    return { enhance, bonus };
 }
 
-Ring::Ring(std::string name): Item(std::move(name)){
+Weapon::Weapon(string name) : Item(move(name)) {
 }
 
-std::pair<Enhancements, int> Ring::getEnhancement() const {
-    int bonus = rand() %5+1;
+pair<Enhancements, int> Weapon::getEnhancement() const {
+    int bonus = rand() % 5 + 1;
     Enhancements enhance;
 
-      if (rand() % 5 == 0)
-         enhance = Enhancements::strength;
-      else if (rand() % 5 == 1)
-         enhance = Enhancements::constitution;
-      else if (rand() % 5 == 2)
-         enhance = Enhancements::armorClass;
-      else if (rand() % 5 == 3)
-         enhance = Enhancements::wisdom;
-      else
-         enhance = Enhancements::charisma;
-        
-    return {enhance, bonus};
+    if (rand() % 2 == 0)
+        enhance = Enhancements::attackBonus;
+    else
+        enhance = Enhancements::damageBonus;
+
+    return { enhance, bonus };
 }
 
-Helmet::Helmet(std::string name): Item(std::move(name)) {
-}
-
-std::pair<Enhancements, int> Helmet::getEnhancement() const {
-   int bonus = rand() %5+1;
-   Enhancements enhance;
-
-      if (rand() % 3 == 0)
-         enhance = Enhancements::wisdom;
-      else if (rand() % 3 == 1)
-         enhance = Enhancements::intelligence;
-      else
-          enhance = Enhancements::armorClass;
-
-    return {enhance, bonus};
-    }
-
-std::string enhancementToString(Enhancements enhancement) {
+string enhancementToString(Enhancements enhancement) {
     switch (enhancement) {
         case Enhancements::damageBonus:
             return "Damage Bonus";
@@ -113,12 +133,11 @@ std::string enhancementToString(Enhancements enhancement) {
     }
 }
 
-
 void ItemContainer::addItem(Item* item){
     items.push_back(item);
 }
 
-void ItemContainer::removeItem(const std::string& label){
+void ItemContainer::removeItem(const string& label){
 
     for(auto element = items.begin(); element != items.end(); ++element){
         if ((*element)->name == label){
@@ -129,7 +148,7 @@ void ItemContainer::removeItem(const std::string& label){
     }
 }
 
-Item* ItemContainer::getItemByName(const std::string& itemName) const {
+Item* ItemContainer::getItemByName(const string& itemName) const {
     for (const auto& item : items) {
         if (item->name == itemName) {
             return item;
@@ -138,5 +157,15 @@ Item* ItemContainer::getItemByName(const std::string& itemName) const {
     return nullptr; 
 }
 
+void Item::displayItem() const {
+    cout << name << endl;
+    cout << "Enhancement: " << enhancementToString(getEnhancement().first) << ", Enhancement Bonus: " << getEnhancement().second << endl << endl;
 
- 
+}
+
+void ItemContainer::displayItems() const {
+    cout << " ===== Items in " << name << ": =====" << endl;
+    for (const auto& item : items) {
+        item->displayItem();
+    }
+}

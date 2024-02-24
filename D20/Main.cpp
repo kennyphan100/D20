@@ -162,12 +162,13 @@ int main() {
         }
         else if (part._Equal("item"))
         {
-            Armor armor("Plate Armor");
-            Shield shield("Wooden Shield");
-            Weapon weapon("Long Sword");
-            Boots boots("Leather Boots");
-            Ring ring("Diamond Ring");
-            Helmet helmet("Steel Helmet");
+            Helmet helmet("Helmet");
+            Armor armor("Armor");
+            Shield shield("Shield");
+            Ring ring("Ring");
+            Belt belt("Belt");
+            Boots boots("Boots");
+            Weapon weapon("Weapon");
 
             cout << "Armor: " << armor.name << endl;
             auto armorEnhancement = armor.getEnhancement();
@@ -185,10 +186,16 @@ int main() {
             auto ringEnhancement = ring.getEnhancement();
             cout << "Enhancement: " << enhancementToString(ringEnhancement.first) << ", Enhancement Bonus: " << ringEnhancement.second << endl << endl;
 
-            // TODO: Implement item containers: character backpack, character worn items, and treasure chest.
+            Backpack backpack("MyBackpack");
+            backpack.addItem(&helmet);
+            backpack.addItem(&armor);
+            backpack.addItem(&shield);
+            backpack.addItem(&ring);
+            backpack.addItem(&belt);
+            backpack.addItem(&boots);
+            backpack.addItem(&weapon);
 
-
-
+            backpack.displayItems();
         }
         else if (part._Equal("dice"))
         {
