@@ -1,0 +1,58 @@
+\doxysection{D\+:/concordia/comp345/\+D20/\+D20/\+Character.h File Reference}
+\label{_character_8h}\index{D:/concordia/comp345/D20/D20/Character.h@{D:/concordia/comp345/D20/D20/Character.h}}
+
+
+Header file for \doxyref{Character.\+cpp}{p.}{_character_8cpp}.  
+
+
+{\ttfamily \#include "{}Dice.\+h"{}}\newline
+{\ttfamily \#include "{}Item.\+h"{}}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ Character}
+\begin{DoxyCompactList}\small\item\em Class for generating player characters in a d20 system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\label{_character_8h_ad0cd52c7c9b13be13f9aafebd2e1c860} 
+enum class {\bfseries Character\+Type} \{ \newline
+{\bfseries FIGHTER}
+, {\bfseries SORCERER}
+, {\bfseries MONK}
+, {\bfseries PALADIN}
+, \newline
+{\bfseries BARD}
+, {\bfseries BARBARIAN}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ character\+Type\+To\+String} (Character\+Type character\+Type)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for \doxyref{Character.\+cpp}{p.}{_character_8cpp}. 
+
+
+
+\doxysubsection{Function Documentation}
+\label{_character_8h_a525abf57a78afad29919a823996ec3cc} 
+\index{Character.h@{Character.h}!characterTypeToString@{characterTypeToString}}
+\index{characterTypeToString@{characterTypeToString}!Character.h@{Character.h}}
+\doxysubsubsection{characterTypeToString()}
+{\footnotesize\ttfamily string character\+Type\+To\+String (\begin{DoxyParamCaption}\item[{Character\+Type}]{character\+Type }\end{DoxyParamCaption})}
+
+Converts a character type enum value to its string representation. 
+\begin{DoxyParams}{Parameters}
+{\em character\+Type} & The character type enum value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the character type. 
+\end{DoxyReturn}

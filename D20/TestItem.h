@@ -8,7 +8,7 @@
 #include "Item.h"
 
 /**
- * @class Testitem
+ * @class TestItem
  * @brief Test class for Item, utilizing the CppUnit framework.
  *
  * This class is designed to implement test cases for testing the functionality of the Item class. It aims to verify the correctness

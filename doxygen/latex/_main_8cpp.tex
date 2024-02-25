@@ -1,0 +1,59 @@
+\doxysection{D\+:/concordia/comp345/\+D20/\+D20/\+Main.cpp File Reference}
+\label{_main_8cpp}\index{D:/concordia/comp345/D20/D20/Main.cpp@{D:/concordia/comp345/D20/D20/Main.cpp}}
+
+
+Main driver file to create and execute the different parts (\doxyref{Character}{p.}{class_character}, \doxyref{Map}{p.}{class_map}, \doxyref{Item}{p.}{class_item}, and \doxyref{Dice}{p.}{class_dice}) and the test suite.  
+
+
+{\ttfamily \#include "{}Dice.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include "{}Character.\+h"{}}\newline
+{\ttfamily \#include "{}Item.\+h"{}}\newline
+{\ttfamily \#include "{}Map.\+h"{}}\newline
+{\ttfamily \#include $<$cppunit/\+Test\+Runner.\+h$>$}\newline
+{\ttfamily \#include $<$cppunit/\+Compiler\+Outputter.\+h$>$}\newline
+{\ttfamily \#include $<$cppunit/extensions/\+Test\+Factory\+Registry.\+h$>$}\newline
+{\ttfamily \#include $<$cppunit/ui/text/\+Test\+Runner.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ to\+Lowercase} (const string \&str)
+\item 
+int \textbf{ main} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main driver file to create and execute the different parts (\doxyref{Character}{p.}{class_character}, \doxyref{Map}{p.}{class_map}, \doxyref{Item}{p.}{class_item}, and \doxyref{Dice}{p.}{class_dice}) and the test suite. 
+
+
+
+\doxysubsection{Function Documentation}
+\label{_main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{Main.cpp@{Main.cpp}!main@{main}}
+\index{main@{main}!Main.cpp@{Main.cpp}}
+\doxysubsubsection{main()}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\doxyref{main()}{p.}{_main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} function. Entry point of the program It does the following\+:
+\begin{DoxyEnumerate}
+\item Create a character given the user\textquotesingle{}s input for the desired level and class type
+\item Create a map given the user\textquotesingle{}s input for the size and allow the placement of walls and other objects
+\item Create an item and an item container that can hold multiple items
+\item Roll a dice using the form xdy[+z]
+\item Run the test cases. ~\newline
+ 
+\end{DoxyEnumerate}\label{_main_8cpp_a78c6e27f0a80fb57896349a5e3c68045} 
+\index{Main.cpp@{Main.cpp}!toLowercase@{toLowercase}}
+\index{toLowercase@{toLowercase}!Main.cpp@{Main.cpp}}
+\doxysubsubsection{toLowercase()}
+{\footnotesize\ttfamily string to\+Lowercase (\begin{DoxyParamCaption}\item[{const string \&}]{str }\end{DoxyParamCaption})}
+
+A free helper function for converting a string to lowercase. 
+\begin{DoxyParams}{Parameters}
+{\em str} & \+: text string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+text string converted to lowercase 
+\end{DoxyReturn}

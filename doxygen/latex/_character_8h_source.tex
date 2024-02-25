@@ -1,0 +1,76 @@
+\doxysection{Character.\+h}
+\label{_character_8h_source}\index{D:/concordia/comp345/D20/D20/Character.h@{D:/concordia/comp345/D20/D20/Character.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ CHARACTER\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ CHARACTER\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Dice.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Item.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{enum\ class}\ CharacterType\ \{\ FIGHTER,\ SORCERER,\ MONK,\ PALADIN,\ BARD,\ BARBARIAN\ \};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }Character\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{int}\ level;}
+\DoxyCodeLine{00044\ \ \ \ \ CharacterType\ characterType;}
+\DoxyCodeLine{00045\ \ \ \ \ std::array<int,\ 6>\ abilityScores;\ \textcolor{comment}{//\ STR,\ DEX,\ CON,\ INT,\ WIS,\ CHA}}
+\DoxyCodeLine{00046\ \ \ \ \ std::array<int,\ 6>\ abilityModifiers;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ hitPoints;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{int}\ armorClass;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{int}\ attackBonus;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{int}\ damageBonus;}
+\DoxyCodeLine{00051\ \ \ \ \ Dice\ dice;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ Armor*\ armor;}
+\DoxyCodeLine{00054\ \ \ \ \ Shield*\ shield;}
+\DoxyCodeLine{00055\ \ \ \ \ Weapon*\ weapon;}
+\DoxyCodeLine{00056\ \ \ \ \ Boots*\ boots;}
+\DoxyCodeLine{00057\ \ \ \ \ Ring*\ ring;}
+\DoxyCodeLine{00058\ \ \ \ \ Helmet*\ helmet;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ Backpack*\ backpack;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \ \ \ \ Character(\textcolor{keywordtype}{int}\ level,\ CharacterType\ characterType);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ generateAbilityScores();}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ calculateAbilityModifiers();}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ calculateHitPoints();}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ calculateArmorClass();}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ calculateAttackBonus();}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ calculateDamageBonus();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ equipArmor(Armor*\ a);}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ equipShield(Shield*\ s);}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ equipWeapon(Weapon*\ w);}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ equipBoots(Boots*\ b);}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ equipRing(Ring*\ r);}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ equipHelmet(Helmet*\ h);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{int}\ getLevel()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00080\ \ \ \ \ CharacterType\ getCharacterType()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{int}\ getAbilityScore(\textcolor{keywordtype}{int}\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ getAbilityModifier(\textcolor{keywordtype}{int}\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{int}\ getHitPoints()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{int}\ getArmorClass()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{int}\ getAttackBonus()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{int}\ getDamageBonus()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ printCharacter()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{string}\ characterTypeToString(CharacterType\ characterType);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

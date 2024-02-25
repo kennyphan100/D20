@@ -1,0 +1,312 @@
+\doxysection{Character Class Reference}
+\label{class_character}\index{Character@{Character}}
+
+
+Class for generating player characters in a d20 system.  
+
+
+
+
+{\ttfamily \#include $<$Character.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Character} (int level, Character\+Type character\+Type)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Character}{p.}{class_character} with a specified level and character type. \end{DoxyCompactList}\item 
+\label{class_character_a61c38f189478ee3809f6490ede100e4d} 
+void {\bfseries generate\+Ability\+Scores} ()
+\begin{DoxyCompactList}\small\item\em Generates ability scores for the character by rolling 3d6 for each score. \end{DoxyCompactList}\item 
+\label{class_character_a41e037769916b418a44f14ff915e0d89} 
+void {\bfseries calculate\+Ability\+Modifiers} ()
+\begin{DoxyCompactList}\small\item\em Calculates ability modifiers based on the ability scores. \end{DoxyCompactList}\item 
+\label{class_character_aff6a269756cd44124e1953a6f8b490f2} 
+void {\bfseries calculate\+Hit\+Points} ()
+\begin{DoxyCompactList}\small\item\em Calculates hit points for the character based on level and constitution modifier. \end{DoxyCompactList}\item 
+\label{class_character_aa6e0ef88faa7fe7c20fb7099f218eb07} 
+void {\bfseries calculate\+Armor\+Class} ()
+\begin{DoxyCompactList}\small\item\em Calculates armor class for the character based on dexterity modifier. \end{DoxyCompactList}\item 
+\label{class_character_a0e1b4fd4668c28239a6d6501b0d2c12b} 
+void {\bfseries calculate\+Attack\+Bonus} ()
+\begin{DoxyCompactList}\small\item\em Calculates attack bonus for the character based on level and strength modifier. \end{DoxyCompactList}\item 
+\label{class_character_a4de08e60c84b1856b205b9a485c89ac1} 
+void {\bfseries calculate\+Damage\+Bonus} ()
+\begin{DoxyCompactList}\small\item\em Calculates damage bonus for the character based on strength modifier. \end{DoxyCompactList}\item 
+void \textbf{ equip\+Armor} (\textbf{ Armor} $\ast$a)
+\item 
+void \textbf{ equip\+Shield} (\textbf{ Shield} $\ast$s)
+\item 
+void \textbf{ equip\+Weapon} (\textbf{ Weapon} $\ast$w)
+\item 
+void \textbf{ equip\+Boots} (\textbf{ Boots} $\ast$b)
+\item 
+void \textbf{ equip\+Ring} (\textbf{ Ring} $\ast$r)
+\item 
+void \textbf{ equip\+Helmet} (\textbf{ Helmet} $\ast$h)
+\item 
+int \textbf{ get\+Level} () const
+\item 
+Character\+Type \textbf{ get\+Character\+Type} () const
+\item 
+int \textbf{ get\+Ability\+Score} (int index) const
+\item 
+int \textbf{ get\+Ability\+Modifier} (int index) const
+\item 
+int \textbf{ get\+Hit\+Points} () const
+\item 
+int \textbf{ get\+Armor\+Class} () const
+\item 
+int \textbf{ get\+Attack\+Bonus} () const
+\item 
+int \textbf{ get\+Damage\+Bonus} () const
+\item 
+\label{class_character_aa92bc39814a725d810d9791e9a63f8aa} 
+void {\bfseries print\+Character} () const
+\begin{DoxyCompactList}\small\item\em Prints information about the character. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_character_af15a478fe650b87f59cbe5d071697307} 
+int {\bfseries level}
+\item 
+\label{class_character_aaad36a8a4e320d9759a4cce57e211408} 
+Character\+Type {\bfseries character\+Type}
+\item 
+\label{class_character_a9c6468df56887e0ac2152a6ff7b9f528} 
+std\+::array$<$ int, 6 $>$ {\bfseries ability\+Scores}
+\item 
+\label{class_character_afa6498337b4bad335d6d5b6183365264} 
+std\+::array$<$ int, 6 $>$ {\bfseries ability\+Modifiers}
+\item 
+\label{class_character_aa461f22794fff5df85d5715f8654af9e} 
+int {\bfseries hit\+Points}
+\item 
+\label{class_character_ac41230fc7770d66c3176c59fc2d7b920} 
+int {\bfseries armor\+Class}
+\item 
+\label{class_character_a5eaa3f836d68257a67390a25726c4aba} 
+int {\bfseries attack\+Bonus}
+\item 
+\label{class_character_a576933c7dfea905a1608b9d438796d78} 
+int {\bfseries damage\+Bonus}
+\item 
+\label{class_character_a4aab86d45d8228f83b9d8ad4f0982720} 
+\textbf{ Dice} {\bfseries dice}
+\item 
+\label{class_character_aa285db63eb90bea11f1e77f5c1bc555b} 
+\textbf{ Armor} $\ast$ {\bfseries armor}
+\item 
+\label{class_character_a3811c7b46b9dbd6f47b95d95148c9fe4} 
+\textbf{ Shield} $\ast$ {\bfseries shield}
+\item 
+\label{class_character_aaf1c0a0d3c422994914327baa3c2bea2} 
+\textbf{ Weapon} $\ast$ {\bfseries weapon}
+\item 
+\label{class_character_a92e703cb57458ecf7e92e5a297051302} 
+\textbf{ Boots} $\ast$ {\bfseries boots}
+\item 
+\label{class_character_aa94b8de107c8af917a77f38916339a9f} 
+\textbf{ Ring} $\ast$ {\bfseries ring}
+\item 
+\label{class_character_a93a512ed1930a04704aba64b96b445d3} 
+\textbf{ Helmet} $\ast$ {\bfseries helmet}
+\item 
+\label{class_character_a0e0a3016888abd871ae9eb9e3f0ba780} 
+\textbf{ Backpack} $\ast$ {\bfseries backpack}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for generating player characters in a d20 system. 
+
+Game rules\+: d20 system focusing on fighter characters.
+\begin{DoxyItemize}
+\item Ability scores are generated randomly.
+\item Hit points are based on constitution modifier and character level.
+\item \doxyref{Armor}{p.}{class_armor} class is influenced by the dexterity modifier.
+\item Attack bonus is derived from level and strength/dexterity modifiers.
+\item Damage bonus is based on the strength modifier.
+\end{DoxyItemize}
+
+Design\+: This implementation is designed to create characters specifically for the fighter class, following d20 game rules. The character\textquotesingle{}s abilities and combat statistics are generated based on their level and class, incorporating randomness for ability scores and derived attributes such as hit points, armor class, attack bonus, and damage bonus. The design allows for a character to be equipped with specific items, including armor, shields, weapons, boots, rings, and helmets, to influence their combat statistics.
+
+Libraries\+: $<$array$>$ is chosen for its performance benefits over dynamic containers for fixed-\/size data. $<$random$>$ provides a robust solution for randomness, essential for role-\/playing game mechanics. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_character_a1a0973513250851bf6a55c2dec14b4ee} 
+\index{Character@{Character}!Character@{Character}}
+\index{Character@{Character}!Character@{Character}}
+\doxysubsubsection{Character()}
+{\footnotesize\ttfamily Character\+::\+Character (\begin{DoxyParamCaption}\item[{int}]{level,  }\item[{Character\+Type}]{character\+Type }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Character}{p.}{class_character} with a specified level and character type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The starting level of the character. \\
+\hline
+{\em character\+Type} & The class type of the character.$\ast$ / "{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_character_a0a088ee108ff330c29f6dc9b3d408dc9} 
+\index{Character@{Character}!equipArmor@{equipArmor}}
+\index{equipArmor@{equipArmor}!Character@{Character}}
+\doxysubsubsection{equipArmor()}
+{\footnotesize\ttfamily void Character\+::equip\+Armor (\begin{DoxyParamCaption}\item[{\textbf{ Armor} $\ast$}]{a }\end{DoxyParamCaption})}
+
+Equips armor to the character. 
+\begin{DoxyParams}{Parameters}
+{\em a} & Pointer to the armor object to be equipped. \\
+\hline
+\end{DoxyParams}
+\label{class_character_aeb98801166043f32cf8c2763dadfd868} 
+\index{Character@{Character}!equipBoots@{equipBoots}}
+\index{equipBoots@{equipBoots}!Character@{Character}}
+\doxysubsubsection{equipBoots()}
+{\footnotesize\ttfamily void Character\+::equip\+Boots (\begin{DoxyParamCaption}\item[{\textbf{ Boots} $\ast$}]{b }\end{DoxyParamCaption})}
+
+Equips boots to the character. 
+\begin{DoxyParams}{Parameters}
+{\em b} & Pointer to the boots object to be equipped. \\
+\hline
+\end{DoxyParams}
+\label{class_character_ab0775ba19be7c054b4134065ed2704e6} 
+\index{Character@{Character}!equipHelmet@{equipHelmet}}
+\index{equipHelmet@{equipHelmet}!Character@{Character}}
+\doxysubsubsection{equipHelmet()}
+{\footnotesize\ttfamily void Character\+::equip\+Helmet (\begin{DoxyParamCaption}\item[{\textbf{ Helmet} $\ast$}]{h }\end{DoxyParamCaption})}
+
+Equips a helmet to the character. 
+\begin{DoxyParams}{Parameters}
+{\em h} & Pointer to the helmet object to be equipped. \\
+\hline
+\end{DoxyParams}
+\label{class_character_aa5ffa81c5254c03d19005f57abe3e355} 
+\index{Character@{Character}!equipRing@{equipRing}}
+\index{equipRing@{equipRing}!Character@{Character}}
+\doxysubsubsection{equipRing()}
+{\footnotesize\ttfamily void Character\+::equip\+Ring (\begin{DoxyParamCaption}\item[{\textbf{ Ring} $\ast$}]{r }\end{DoxyParamCaption})}
+
+Equips a ring to the character. 
+\begin{DoxyParams}{Parameters}
+{\em r} & Pointer to the ring object to be equipped. \\
+\hline
+\end{DoxyParams}
+\label{class_character_a8da17ce57a034425e55e6e97290205db} 
+\index{Character@{Character}!equipShield@{equipShield}}
+\index{equipShield@{equipShield}!Character@{Character}}
+\doxysubsubsection{equipShield()}
+{\footnotesize\ttfamily void Character\+::equip\+Shield (\begin{DoxyParamCaption}\item[{\textbf{ Shield} $\ast$}]{s }\end{DoxyParamCaption})}
+
+Equips a shield to the character. 
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointer to the shield object to be equipped. \\
+\hline
+\end{DoxyParams}
+\label{class_character_a8625b8c1b2175ff67c66be141b5f7a1b} 
+\index{Character@{Character}!equipWeapon@{equipWeapon}}
+\index{equipWeapon@{equipWeapon}!Character@{Character}}
+\doxysubsubsection{equipWeapon()}
+{\footnotesize\ttfamily void Character\+::equip\+Weapon (\begin{DoxyParamCaption}\item[{\textbf{ Weapon} $\ast$}]{w }\end{DoxyParamCaption})}
+
+Equips a weapon to the character. 
+\begin{DoxyParams}{Parameters}
+{\em w} & Pointer to the weapon object to be equipped. \\
+\hline
+\end{DoxyParams}
+\label{class_character_a0d1dd365ded4ab693734418e354a4440} 
+\index{Character@{Character}!getAbilityModifier@{getAbilityModifier}}
+\index{getAbilityModifier@{getAbilityModifier}!Character@{Character}}
+\doxysubsubsection{getAbilityModifier()}
+{\footnotesize\ttfamily int Character\+::get\+Ability\+Modifier (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const}
+
+Retrieves the ability modifier at the specified index. 
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the ability modifier to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ability modifier at the specified index. 
+\end{DoxyReturn}
+\label{class_character_aa2bd22f6bdb0265063ad4032a4a5b2ad} 
+\index{Character@{Character}!getAbilityScore@{getAbilityScore}}
+\index{getAbilityScore@{getAbilityScore}!Character@{Character}}
+\doxysubsubsection{getAbilityScore()}
+{\footnotesize\ttfamily int Character\+::get\+Ability\+Score (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const}
+
+Retrieves the ability score at the specified index. 
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the ability score to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ability score at the specified index. 
+\end{DoxyReturn}
+\label{class_character_a6674dec79e4677370162aeb5674084bf} 
+\index{Character@{Character}!getArmorClass@{getArmorClass}}
+\index{getArmorClass@{getArmorClass}!Character@{Character}}
+\doxysubsubsection{getArmorClass()}
+{\footnotesize\ttfamily int Character\+::get\+Armor\+Class (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Retrieves the armor class of the character. \begin{DoxyReturn}{Returns}
+The armor class of the character. 
+\end{DoxyReturn}
+\label{class_character_a5d31d79ef0bc5d92cf61076a33a67858} 
+\index{Character@{Character}!getAttackBonus@{getAttackBonus}}
+\index{getAttackBonus@{getAttackBonus}!Character@{Character}}
+\doxysubsubsection{getAttackBonus()}
+{\footnotesize\ttfamily int Character\+::get\+Attack\+Bonus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Retrieves the attack bonus of the character. \begin{DoxyReturn}{Returns}
+The attack bonus of the character. 
+\end{DoxyReturn}
+\label{class_character_a42a4399a59cea6554a9856991a98fec1} 
+\index{Character@{Character}!getCharacterType@{getCharacterType}}
+\index{getCharacterType@{getCharacterType}!Character@{Character}}
+\doxysubsubsection{getCharacterType()}
+{\footnotesize\ttfamily Character\+Type Character\+::get\+Character\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Retrieves the character type of the character. \begin{DoxyReturn}{Returns}
+The character type of the character. 
+\end{DoxyReturn}
+\label{class_character_af644db086012065530259e6ba7da2f65} 
+\index{Character@{Character}!getDamageBonus@{getDamageBonus}}
+\index{getDamageBonus@{getDamageBonus}!Character@{Character}}
+\doxysubsubsection{getDamageBonus()}
+{\footnotesize\ttfamily int Character\+::get\+Damage\+Bonus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Retrieves the damage bonus of the character. \begin{DoxyReturn}{Returns}
+The damage bonus of the character. 
+\end{DoxyReturn}
+\label{class_character_ae8cdb23b41026ef3788e19993b1ea469} 
+\index{Character@{Character}!getHitPoints@{getHitPoints}}
+\index{getHitPoints@{getHitPoints}!Character@{Character}}
+\doxysubsubsection{getHitPoints()}
+{\footnotesize\ttfamily int Character\+::get\+Hit\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Retrieves the hit points of the character. \begin{DoxyReturn}{Returns}
+The hit points of the character. 
+\end{DoxyReturn}
+\label{class_character_a06713215a5850ec92194a1a711fb8cd7} 
+\index{Character@{Character}!getLevel@{getLevel}}
+\index{getLevel@{getLevel}!Character@{Character}}
+\doxysubsubsection{getLevel()}
+{\footnotesize\ttfamily int Character\+::get\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Retrieves the level of the character. \begin{DoxyReturn}{Returns}
+The level of the character. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Character.\+h}\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Character.\+cpp}\end{DoxyCompactItemize}

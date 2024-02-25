@@ -1,0 +1,107 @@
+\doxysection{Item.\+h}
+\label{_item_8h_source}\index{D:/concordia/comp345/D20/D20/Item.h@{D:/concordia/comp345/D20/D20/Item.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ ITEM\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ ITEM\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{enum\ class}\ Enhancements\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ damageBonus,\ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ attackBonus,\ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ armorClass,\ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ strength,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ dexterity,\ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ wisdom,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ intelligence,\ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ constitution,\ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ charisma\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }Item\ \{}
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{string}\ name;}
+\DoxyCodeLine{00048\ \ \ \ \ Item(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~Item()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ pair<Enhancements,\ int>\ getEnhancement()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ displayItem()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{class\ }Helmet\ :\ \textcolor{keyword}{public}\ Item\ \{}
+\DoxyCodeLine{00056\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ Helmet(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00063\ \ \ \ \ pair<Enhancements,\ int>\ getEnhancement()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{class\ }Armor\ :\ \textcolor{keyword}{public}\ Item\ \{}
+\DoxyCodeLine{00068\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00069\ \ \ \ \ Armor(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00070\ \ \ \ \ pair<Enhancements,\ int>\ getEnhancement()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{class\ }Shield\ :\ \textcolor{keyword}{public}\ Item\ \{}
+\DoxyCodeLine{00075\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00076\ \ \ \ \ Shield(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00077\ \ \ \ \ pair<Enhancements,\ int>\ getEnhancement()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{class\ }Ring\ :\ \textcolor{keyword}{public}\ Item\ \{}
+\DoxyCodeLine{00082\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00083\ \ \ \ \ Ring(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00084\ \ \ \ \ pair<Enhancements,\ int>\ getEnhancement()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00085\ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{class\ }Belt\ :\ \textcolor{keyword}{public}\ Item\ \{}
+\DoxyCodeLine{00089\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00090\ \ \ \ \ Belt(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00091\ \ \ \ \ pair<Enhancements,\ int>\ getEnhancement()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{class\ }Boots\ :\ \textcolor{keyword}{public}\ Item\ \{}
+\DoxyCodeLine{00096\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00097\ \ \ \ \ Boots(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00098\ \ \ \ \ pair<Enhancements,\ int>\ getEnhancement()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{class\ }Weapon\ :\ \textcolor{keyword}{public}\ Item\ \{}
+\DoxyCodeLine{00103\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00104\ \ \ \ \ Weapon(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00105\ \ \ \ \ pair<Enhancements,\ int>\ getEnhancement()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00106\ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{class\ }ItemContainer\ \{}
+\DoxyCodeLine{00110\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00111\ \ \ \ \ vector<Item*>\ items;\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{string}\ name;\ }
+\DoxyCodeLine{00113\ \ \ \ \ ItemContainer(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~ItemContainer()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ addItem(Item*\ item);}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ removeItem(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ label);}
+\DoxyCodeLine{00117\ \ \ \ \ Item*\ getItemByName(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ itemName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ displayItems()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{int}\ getSize()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00120\ \};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{class\ }Backpack\ :\ \textcolor{keyword}{public}\ ItemContainer\ \{}
+\DoxyCodeLine{00124\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00125\ \ \ \ \ Backpack(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00126\ \};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{class\ }WornItems\ :\ \textcolor{keyword}{public}\ ItemContainer\ \{}
+\DoxyCodeLine{00130\ \};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{class\ }TreasureChest\ :\ \textcolor{keyword}{public}\ ItemContainer\ \{}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00139\ \textcolor{keywordtype}{string}\ enhancementToString(Enhancements\ enhancement);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

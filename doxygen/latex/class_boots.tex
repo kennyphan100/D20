@@ -1,0 +1,79 @@
+\doxysection{Boots Class Reference}
+\label{class_boots}\index{Boots@{Boots}}
+
+
+Class representing a boots item.  
+
+
+
+
+{\ttfamily \#include $<$Item.\+h$>$}
+
+Inheritance diagram for Boots\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_boots}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Boots} (string name)
+\item 
+pair$<$ \textbf{ Enhancements}, int $>$ \textbf{ get\+Enhancement} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \textbf{ Item}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Item} (string name)
+\item 
+void {\bfseries display\+Item} () const
+\begin{DoxyCompactList}\small\item\em Displays name and enhancement and bonus information about an item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \textbf{ Item}}
+\begin{DoxyCompactItemize}
+\item 
+string {\bfseries name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing a boots item. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_boots_a0eb8aaf6ad9d942853c0e4b1c91415a4} 
+\index{Boots@{Boots}!Boots@{Boots}}
+\index{Boots@{Boots}!Boots@{Boots}}
+\doxysubsubsection{Boots()}
+{\footnotesize\ttfamily Boots\+::\+Boots (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+Constructor for \doxyref{Boots}{p.}{class_boots} class. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the boots. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new \doxyref{Boots}{p.}{class_boots} object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_boots_ab807f62c8688130e91637d95d2d82289} 
+\index{Boots@{Boots}!getEnhancement@{getEnhancement}}
+\index{getEnhancement@{getEnhancement}!Boots@{Boots}}
+\doxysubsubsection{getEnhancement()}
+{\footnotesize\ttfamily pair$<$ \textbf{ Enhancements}, int $>$ Boots\+::get\+Enhancement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Retrieves a random enhancement and its bonus for the boots. \begin{DoxyReturn}{Returns}
+A pair containing the enhancement and its bonus. 
+\end{DoxyReturn}
+
+
+Implements \textbf{ Item} \doxyref{}{p.}{class_item}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+h}\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+cpp}\end{DoxyCompactItemize}

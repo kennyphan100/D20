@@ -1,0 +1,79 @@
+\doxysection{Ring Class Reference}
+\label{class_ring}\index{Ring@{Ring}}
+
+
+Class representing a ring item.  
+
+
+
+
+{\ttfamily \#include $<$Item.\+h$>$}
+
+Inheritance diagram for Ring\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ring}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Ring} (string name)
+\item 
+pair$<$ \textbf{ Enhancements}, int $>$ \textbf{ get\+Enhancement} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \textbf{ Item}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Item} (string name)
+\item 
+void {\bfseries display\+Item} () const
+\begin{DoxyCompactList}\small\item\em Displays name and enhancement and bonus information about an item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \textbf{ Item}}
+\begin{DoxyCompactItemize}
+\item 
+string {\bfseries name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing a ring item. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_ring_a7e05b8dd7f0defe98b39bf92d23170d8} 
+\index{Ring@{Ring}!Ring@{Ring}}
+\index{Ring@{Ring}!Ring@{Ring}}
+\doxysubsubsection{Ring()}
+{\footnotesize\ttfamily Ring\+::\+Ring (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+Constructor for \doxyref{Ring}{p.}{class_ring} class. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the ring. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new \doxyref{Ring}{p.}{class_ring} object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_ring_a33e70df0fea00cb1f1cd25d437ef64a6} 
+\index{Ring@{Ring}!getEnhancement@{getEnhancement}}
+\index{getEnhancement@{getEnhancement}!Ring@{Ring}}
+\doxysubsubsection{getEnhancement()}
+{\footnotesize\ttfamily pair$<$ \textbf{ Enhancements}, int $>$ Ring\+::get\+Enhancement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Retrieves a random enhancement and its bonus for the ring. \begin{DoxyReturn}{Returns}
+A pair containing the enhancement and its bonus. 
+\end{DoxyReturn}
+
+
+Implements \textbf{ Item} \doxyref{}{p.}{class_item}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+h}\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+cpp}\end{DoxyCompactItemize}

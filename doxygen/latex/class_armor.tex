@@ -1,0 +1,79 @@
+\doxysection{Armor Class Reference}
+\label{class_armor}\index{Armor@{Armor}}
+
+
+Class representing an armor item.  
+
+
+
+
+{\ttfamily \#include $<$Item.\+h$>$}
+
+Inheritance diagram for Armor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_armor}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Armor} (string name)
+\item 
+pair$<$ \textbf{ Enhancements}, int $>$ \textbf{ get\+Enhancement} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \textbf{ Item}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Item} (string name)
+\item 
+void {\bfseries display\+Item} () const
+\begin{DoxyCompactList}\small\item\em Displays name and enhancement and bonus information about an item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \textbf{ Item}}
+\begin{DoxyCompactItemize}
+\item 
+string {\bfseries name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing an armor item. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_armor_a5c487138da75cc21791dbab5e2fa3e75} 
+\index{Armor@{Armor}!Armor@{Armor}}
+\index{Armor@{Armor}!Armor@{Armor}}
+\doxysubsubsection{Armor()}
+{\footnotesize\ttfamily Armor\+::\+Armor (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+Constructor for \doxyref{Armor}{p.}{class_armor} class. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the armor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new \doxyref{Armor}{p.}{class_armor} object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_armor_a784e59027eb12528f00a8bc65d6cadb9} 
+\index{Armor@{Armor}!getEnhancement@{getEnhancement}}
+\index{getEnhancement@{getEnhancement}!Armor@{Armor}}
+\doxysubsubsection{getEnhancement()}
+{\footnotesize\ttfamily pair$<$ \textbf{ Enhancements}, int $>$ Armor\+::get\+Enhancement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Retrieves the enhancement and its bonus for the armor. \begin{DoxyReturn}{Returns}
+A pair containing the enhancement and its bonus. 
+\end{DoxyReturn}
+
+
+Implements \textbf{ Item} \doxyref{}{p.}{class_item}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+h}\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+cpp}\end{DoxyCompactItemize}

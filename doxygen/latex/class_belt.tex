@@ -1,0 +1,79 @@
+\doxysection{Belt Class Reference}
+\label{class_belt}\index{Belt@{Belt}}
+
+
+Class representing a belt item.  
+
+
+
+
+{\ttfamily \#include $<$Item.\+h$>$}
+
+Inheritance diagram for Belt\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_belt}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Belt} (string name)
+\item 
+pair$<$ \textbf{ Enhancements}, int $>$ \textbf{ get\+Enhancement} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \textbf{ Item}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Item} (string name)
+\item 
+void {\bfseries display\+Item} () const
+\begin{DoxyCompactList}\small\item\em Displays name and enhancement and bonus information about an item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \textbf{ Item}}
+\begin{DoxyCompactItemize}
+\item 
+string {\bfseries name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing a belt item. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_belt_a497fbe2cb2318de7a17cfafcd7fff256} 
+\index{Belt@{Belt}!Belt@{Belt}}
+\index{Belt@{Belt}!Belt@{Belt}}
+\doxysubsubsection{Belt()}
+{\footnotesize\ttfamily Belt\+::\+Belt (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+Constructor for \doxyref{Belt}{p.}{class_belt} class. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the belt. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new \doxyref{Belt}{p.}{class_belt} object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_belt_af0e6dbb66166a7145664f8f3c28d6b09} 
+\index{Belt@{Belt}!getEnhancement@{getEnhancement}}
+\index{getEnhancement@{getEnhancement}!Belt@{Belt}}
+\doxysubsubsection{getEnhancement()}
+{\footnotesize\ttfamily pair$<$ \textbf{ Enhancements}, int $>$ Belt\+::get\+Enhancement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Retrieves a random enhancement and its bonus for the belt. \begin{DoxyReturn}{Returns}
+A pair containing the enhancement and its bonus. 
+\end{DoxyReturn}
+
+
+Implements \textbf{ Item} \doxyref{}{p.}{class_item}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+h}\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+cpp}\end{DoxyCompactItemize}

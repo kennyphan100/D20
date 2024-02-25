@@ -18,7 +18,7 @@ enum class CharacterType { FIGHTER, SORCERER, MONK, PALADIN, BARD, BARBARIAN };
 
 /**
  * @class Character
- * @brief Character class for generating player characters in a d20 system.
+ * @brief Class for generating player characters in a d20 system.
  *
  * Game rules: d20 system focusing on fighter characters.
  * - Ability scores are generated randomly.

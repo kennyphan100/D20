@@ -24,7 +24,7 @@ enum class Enhancements {
 
 /**
  * @class Item
- * @brief This class represents an item that can be worn by a character.
+ * @brief Class represents an item that can be worn by a character.
  *
  * Game Rules:
  * Each item can have one or more enhancements associated with it, such as damage bonus, attack bonus, or increased attributes.

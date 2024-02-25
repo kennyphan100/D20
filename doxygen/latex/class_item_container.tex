@@ -1,0 +1,108 @@
+\doxysection{Item\+Container Class Reference}
+\label{class_item_container}\index{ItemContainer@{ItemContainer}}
+
+
+Class representing a container for items.  
+
+
+
+
+{\ttfamily \#include $<$Item.\+h$>$}
+
+Inheritance diagram for Item\+Container\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_item_container}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Item\+Container} (string \textbf{ name})
+\item 
+virtual void \textbf{ add\+Item} (\textbf{ Item} $\ast$item)
+\item 
+virtual void \textbf{ remove\+Item} (const string \&label)
+\item 
+\textbf{ Item} $\ast$ \textbf{ get\+Item\+By\+Name} (const string \&item\+Name) const
+\item 
+\label{class_item_container_a66228df6bc17c9ee03f584e9240f10d4} 
+void {\bfseries display\+Items} () const
+\begin{DoxyCompactList}\small\item\em Displays all items\textquotesingle{} information from the item container. \end{DoxyCompactList}\item 
+\label{class_item_container_a2a90050c812ac3d9803287048a157084} 
+int {\bfseries get\+Size} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_item_container_a2131e540d9195305c96931e375c07764} 
+vector$<$ \textbf{ Item} $\ast$ $>$ {\bfseries items}
+\begin{DoxyCompactList}\small\item\em Vector containing pointers to items in the container. \end{DoxyCompactList}\item 
+\label{class_item_container_aafad81bb4c71ec7f80271d3b8ba9b26d} 
+string {\bfseries name}
+\begin{DoxyCompactList}\small\item\em The name of the container. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing a container for items. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_item_container_a76bb6c23033660f5c9843320ed059b3c} 
+\index{ItemContainer@{ItemContainer}!ItemContainer@{ItemContainer}}
+\index{ItemContainer@{ItemContainer}!ItemContainer@{ItemContainer}}
+\doxysubsubsection{ItemContainer()}
+{\footnotesize\ttfamily Item\+Container\+::\+Item\+Container (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+Constructor for \doxyref{Item\+Container}{p.}{class_item_container} class. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the item container. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new \doxyref{Item\+Container}{p.}{class_item_container} object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_item_container_a23e6a64362c8fa4b0555458814d07be6} 
+\index{ItemContainer@{ItemContainer}!addItem@{addItem}}
+\index{addItem@{addItem}!ItemContainer@{ItemContainer}}
+\doxysubsubsection{addItem()}
+{\footnotesize\ttfamily void Item\+Container\+::add\+Item (\begin{DoxyParamCaption}\item[{\textbf{ Item} $\ast$}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Adds an item to the item container. 
+\begin{DoxyParams}{Parameters}
+{\em item} & Pointer to the item to be added. \\
+\hline
+\end{DoxyParams}
+\label{class_item_container_ac3adfa999b6bc2d6c7d4714b34244e57} 
+\index{ItemContainer@{ItemContainer}!getItemByName@{getItemByName}}
+\index{getItemByName@{getItemByName}!ItemContainer@{ItemContainer}}
+\doxysubsubsection{getItemByName()}
+{\footnotesize\ttfamily \textbf{ Item} $\ast$ Item\+Container\+::get\+Item\+By\+Name (\begin{DoxyParamCaption}\item[{const string \&}]{item\+Name }\end{DoxyParamCaption}) const}
+
+Retrieves an item from the item container by name. 
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item to be retrieved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the item if found, nullptr otherwise. 
+\end{DoxyReturn}
+\label{class_item_container_adf41ca2c22c431b8cfbc3be8d8757af4} 
+\index{ItemContainer@{ItemContainer}!removeItem@{removeItem}}
+\index{removeItem@{removeItem}!ItemContainer@{ItemContainer}}
+\doxysubsubsection{removeItem()}
+{\footnotesize\ttfamily void Item\+Container\+::remove\+Item (\begin{DoxyParamCaption}\item[{const string \&}]{label }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Removes an item from the item container. 
+\begin{DoxyParams}{Parameters}
+{\em label} & The name of the item to be removed. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+h}\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+cpp}\end{DoxyCompactItemize}

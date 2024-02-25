@@ -1,0 +1,48 @@
+\doxysection{Worn\+Items Class Reference}
+\label{class_worn_items}\index{WornItems@{WornItems}}
+
+
+Class representing worn items container.  
+
+
+
+
+{\ttfamily \#include $<$Item.\+h$>$}
+
+Inheritance diagram for Worn\+Items\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_worn_items}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \textbf{ Item\+Container}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Item\+Container} (string \textbf{ name})
+\item 
+virtual void \textbf{ add\+Item} (\textbf{ Item} $\ast$item)
+\item 
+virtual void \textbf{ remove\+Item} (const string \&label)
+\item 
+\textbf{ Item} $\ast$ \textbf{ get\+Item\+By\+Name} (const string \&item\+Name) const
+\item 
+void {\bfseries display\+Items} () const
+\begin{DoxyCompactList}\small\item\em Displays all items\textquotesingle{} information from the item container. \end{DoxyCompactList}\item 
+int {\bfseries get\+Size} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \textbf{ Item\+Container}}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \textbf{ Item} $\ast$ $>$ {\bfseries items}
+\begin{DoxyCompactList}\small\item\em Vector containing pointers to items in the container. \end{DoxyCompactList}\item 
+string {\bfseries name}
+\begin{DoxyCompactList}\small\item\em The name of the container. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing worn items container. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+h}\end{DoxyCompactItemize}

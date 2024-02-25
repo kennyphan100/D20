@@ -1,0 +1,50 @@
+\doxysection{Test\+Item.\+h}
+\label{_test_item_8h_source}\index{D:/concordia/comp345/D20/D20/TestItem.h@{D:/concordia/comp345/D20/D20/TestItem.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cppunit/TestFixture.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cppunit/extensions/HelperMacros.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Item.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }TestItem\ :\ \textcolor{keyword}{public}\ CppUnit::TestFixture\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ CPPUNIT\_TEST\_SUITE(TestItem);}
+\DoxyCodeLine{00019\ \ \ \ \ CPPUNIT\_TEST(testShieldEnhancement);}
+\DoxyCodeLine{00020\ \ \ \ \ CPPUNIT\_TEST(testArmorEnhancement);}
+\DoxyCodeLine{00021\ \ \ \ \ CPPUNIT\_TEST(testHelmetEnhancement);}
+\DoxyCodeLine{00022\ \ \ \ \ CPPUNIT\_TEST(testRingEnhancement);}
+\DoxyCodeLine{00023\ \ \ \ \ CPPUNIT\_TEST(testWeaponEnhancement);}
+\DoxyCodeLine{00024\ \ \ \ \ CPPUNIT\_TEST(testBootsEnhancement);}
+\DoxyCodeLine{00025\ \ \ \ \ CPPUNIT\_TEST(testAddItemInContainer);}
+\DoxyCodeLine{00026\ \ \ \ \ CPPUNIT\_TEST(testRemoveItemFromContainer);}
+\DoxyCodeLine{00027\ \ \ \ \ CPPUNIT\_TEST\_SUITE\_END();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ setUp(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ tearDown(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ testShieldEnhancement();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ testArmorEnhancement();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ testHelmetEnhancement();}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ testRingEnhancement();}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ testWeaponEnhancement();}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ testBootsEnhancement();}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ testAddItemInContainer();}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ testRemoveItemFromContainer();}
+\DoxyCodeLine{00052\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \ \ Item*\ HelmetObject;\ }
+\DoxyCodeLine{00054\ \ \ \ \ Item*\ ArmorObject;\ }
+\DoxyCodeLine{00055\ \ \ \ \ Item*\ ShieldObject;\ }
+\DoxyCodeLine{00056\ \ \ \ \ Item*\ RingObject;\ }
+\DoxyCodeLine{00057\ \ \ \ \ Item*\ BeltObject;\ }
+\DoxyCodeLine{00058\ \ \ \ \ Item*\ BootsObject;\ }
+\DoxyCodeLine{00059\ \ \ \ \ Item*\ WeaponObject;\ }
+\DoxyCodeLine{00060\ \ \ \ \ ItemContainer*\ ContainerObject;\ }
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ CPPUNIT\_TEST\_SUITE\_REGISTRATION(TestItem);}
+
+\end{DoxyCode}
