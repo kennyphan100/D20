@@ -228,3 +228,7 @@ void ItemContainer::displayItems() const {
         item->displayItem();
     }
 }
+
+int ItemContainer::getSize() const {
+    return items.size();
+}

@@ -77,4 +77,5 @@ private:
     Map* MapObjectWithoutExistingPath; ///< Pointer to a Map instance where no path exists from start to finish.
 };
 
+//! @brief Register the test suite.
 CPPUNIT_TEST_SUITE_REGISTRATION(TestMap);

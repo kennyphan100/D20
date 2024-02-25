@@ -33,7 +33,6 @@ public:
     void tearDown(void);
 
 protected:
-
     /**
      * @brief Tests the Dice class with invalid format strings.
      */
@@ -48,8 +47,10 @@ protected:
      * @brief Tests the Dice class with valid roll expressions.
      */
     void testRollDiceValid(void);
+
 private:
     Dice* DiceObject; ///< Pointer to the Dice instance used for testing.
 };
 
+//! @brief Register the test suite.
 CPPUNIT_TEST_SUITE_REGISTRATION(TestDice);
