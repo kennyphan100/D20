@@ -8,9 +8,6 @@
 #include <iostream>
 #include <cassert>
 
-// Registers the fixture into the 'registry'
-CPPUNIT_TEST_SUITE_REGISTRATION(TestCharacter);
-
 //! setUp() method that is executed before each test case.
 void TestCharacter::setUp() {
     // Example setup: Initialize a Level 1 Fighter for testing

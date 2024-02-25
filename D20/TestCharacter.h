@@ -73,4 +73,6 @@ private:
     Character* character; ///< Pointer to a Character object used for testing.
 };
 
+CPPUNIT_TEST_SUITE_REGISTRATION(TestCharacter);
+
 #endif // TESTCHARACTER_H
