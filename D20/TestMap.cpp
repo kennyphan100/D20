@@ -1,5 +1,8 @@
-#include "TestMap.h"
+//! @file 
+//! @brief File containing the implementation of the Test Methods for Map
+//!
 
+#include "TestMap.h"
 
 // setUp() method that is executed before all the test cases
 void TestMap::setUp(void)
@@ -32,12 +35,13 @@ void TestMap::testSetCellOutOfBounds(void)
 	CPPUNIT_ASSERT_THROW(MapObjectWithExistingPath->setCell(10, 10, Cell::WALL), std::out_of_range);
 }
 
-
+// Test Case: Cell coordinate is empty
 void TestMap::testIsEmptyCellReturnsTrue(void)
 {
 	CPPUNIT_ASSERT(MapObjectWithExistingPath->isEmptyCell(0, 5));
 }
 
+// Test Case: Cell coordinate is not empty
 void TestMap::testIsEmptyCellReturnsFalse(void)
 {
 	CPPUNIT_ASSERT(false == MapObjectWithoutExistingPath->isEmptyCell(0, 5));

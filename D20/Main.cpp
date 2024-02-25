@@ -1,3 +1,7 @@
+//! @file 
+//! @brief Main driver file to create and execute the different parts (Character, Map, Item, and Dice) and the test suite.
+//!
+
 #include "Dice.h"
 #include <iostream>
 #include "Character.h"
@@ -10,6 +14,9 @@
 
 using namespace std;
 
+//!  A free helper function for converting a string to lowercase.
+//! @param str : text string
+//! @return text string converted to lowercase
 string toLowercase(const string& str) {
     string result = str;
     for (char& c : result) {
@@ -18,6 +25,13 @@ string toLowercase(const string& str) {
     return result;
 }
 
+//! main() function. Entry point of the program
+//! It does the following: 
+//! 1. Create a character given the user's input for the desired level and class type
+//! 2. Create a map given the user's input for the size and allow the placement of walls and other objects
+//! 3. Create an item and an item container that can hold multiple items
+//! 4. Roll a dice using the form xdy[+z]
+//! 5. Run the test cases. 
 int main() {
     while (true) {
         cout << "==================================================================================================" << endl;

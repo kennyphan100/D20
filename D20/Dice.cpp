@@ -1,3 +1,7 @@
+//! @file 
+//! @brief Implementation file for Dice.h
+//!
+
 #include "Dice.h"
 #include <regex>
 #include <random>
@@ -5,15 +9,25 @@
 #include <iostream>
 #include <set>
 
+//! Constructor for Dice class.
+//! @return new Dice object
 Dice::Dice() {
     rng.seed(time(nullptr));
 }
 
+//! Rolls a single dice with the specified number of sides.
+//! @param sides The number of sides of the dice.
+//! @return The result of the dice roll.
 int Dice::rollSingleDice(int sides) {
     std::uniform_int_distribution<int> dist(1, sides);
     return dist(rng);
 }
 
+//! Rolls a set of dice based on the input string.
+//! The input string should be in the format "xdy+z", where x is the number of dice,
+//! y is the type of dice (number of sides), and z (optional) is an additional modifier.
+//! @param input The input string specifying the dice roll.
+//! @return The total result of the dice roll.
 int Dice::rollDice(const std::string& input) {
     std::regex dicePattern(R"((\d+)d(\d+)(\+\d+)?)");
     std::smatch matches;

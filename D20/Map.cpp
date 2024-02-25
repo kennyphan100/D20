@@ -1,7 +1,12 @@
+//! @file 
+//! @brief Implementation file for Map.h
+//!
+
 #include "Map.h"
 #include <queue>
 #include <iostream>
 
+//! Represents a point in 2D space.
 struct Point {
     int x;
     int y;
@@ -13,14 +18,28 @@ struct Point {
     }
 };
 
+//! Constructor of Map class
+//! @param width : The width of the Map to be created
+//! @param height : The height of the Map to be created
+//! @return new Map object
 Map::Map(int width, int height) : width(width), height(height), grid(height, std::vector<Cell>(width, Cell::EMPTY)) {
 }
 
+//! Checks if the map is traversable from the starting point to the ending point
+//! A map is traversable if it's within the bounds of the grid and not a WALL or OCCUPIED cell blocks the passage.
+//! @param grid The grid representing the map.
+//! @param x The x-coordinate of the cell.
+//! @param y The y-coordinate of the cell.
+//! @return True if the cell is traversable, false otherwise.
 bool isTraversable(const std::vector<std::vector<Cell>>& grid, int x, int y) {
     return x >= 0 && x < grid[0].size() && y >= 0 && y < grid.size() &&
         (grid[y][x] != Cell::WALL && grid[y][x] != Cell::OCCUPIED);
 }
 
+//! Checks if the given coordinates represent an empty cell in the map.
+//! @param x The x-coordinate of the cell.
+//! @param y The y-coordinate of the cell.
+//! @return True if the cell is empty, false otherwise.
 bool Map::isEmptyCell(int x, int y) {
     if (grid[y][x] != Cell::EMPTY) {
         return false;
@@ -28,6 +47,11 @@ bool Map::isEmptyCell(int x, int y) {
     return true;
 }
 
+//! Sets the type of a cell at the specified coordinates.
+//! @param x The x-coordinate of the cell.
+//! @param y The y-coordinate of the cell.
+//! @param cellType The type of the cell to be set.
+//! @throw std::out_of_range If the coordinates are out of bounds.
 void Map::setCell(int x, int y, Cell cellType) {
     if (x < 0 || x >= width || y < 0 || y >= height) {
         throw std::out_of_range("Cell coordinates are out of bounds.");
@@ -35,7 +59,9 @@ void Map::setCell(int x, int y, Cell cellType) {
     grid[y][x] = cellType;
 }
 
-// BFS to find a path from top-left to bottom-right
+//! Verifies if there exists a path from the top-left corner to the bottom-right corner of the map.
+//! Uses Breadth First Search (BFS) algorithm to find the path.
+//! @return True if a path exists, false otherwise.
 bool Map::verifyMap() {
     std::queue<Point> q;
     std::vector<std::vector<bool>> visited(height, std::vector<bool>(width, false));
@@ -78,6 +104,8 @@ bool Map::verifyMap() {
     return false;
 }
 
+//! Displays the map on the console.
+//! Uses characters to represent different types of cells.
 void Map::display() const {
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {

@@ -1,3 +1,7 @@
+//! @file 
+//! @brief Header file for Dice.cpp
+//!
+
 #pragma once
 #ifndef DICE_H
 #define DICE_H

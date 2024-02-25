@@ -1,3 +1,7 @@
+//! @file
+//! @brief File containing the Test Class declaration for Dice
+//!
+
 #pragma once
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>

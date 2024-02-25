@@ -1,3 +1,7 @@
+//! @file 
+//! @brief File containing the implementation of the Test Methods for Dice
+//!
+
 #include "TestDice.h"
 
 // setUp() method that is executed before all the test cases

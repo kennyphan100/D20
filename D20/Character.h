@@ -1,3 +1,7 @@
+//! @file 
+//! @brief Header file for Character.cpp
+//!
+
 #pragma once
 #ifndef CHARACTER_H
 #define CHARACTER_H
@@ -12,6 +16,28 @@ using namespace std;
 
 enum class CharacterType { FIGHTER, SORCERER, MONK, PALADIN, BARD, BARBARIAN };
 
+/**
+ * @class Character
+ * @brief Character class for generating player characters in a d20 system.
+ *
+ * Game rules: d20 system focusing on fighter characters.
+ * - Ability scores are generated randomly.
+ * - Hit points are based on constitution modifier and character level.
+ * - Armor class is influenced by the dexterity modifier.
+ * - Attack bonus is derived from level and strength/dexterity modifiers.
+ * - Damage bonus is based on the strength modifier.
+ *
+ * Design:
+ * This implementation is designed to create characters specifically for the fighter class,
+ * following d20 game rules. The character's abilities and combat statistics are generated based on their level
+ * and class, incorporating randomness for ability scores and derived attributes such as hit points, armor class,
+ * attack bonus, and damage bonus. The design allows for a character to be equipped with specific items,
+ * including armor, shields, weapons, boots, rings, and helmets, to influence their combat statistics.
+ *
+ * Libraries:
+ * <array> is chosen for its performance benefits over dynamic containers for fixed-size data.
+ * <random> provides a robust solution for randomness, essential for role-playing game mechanics.
+ */ 
 class Character {
 protected:
     int level;
