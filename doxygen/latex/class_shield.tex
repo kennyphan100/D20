@@ -1,0 +1,79 @@
+\doxysection{Shield Class Reference}
+\label{class_shield}\index{Shield@{Shield}}
+
+
+Class representing a shield item.  
+
+
+
+
+{\ttfamily \#include $<$Item.\+h$>$}
+
+Inheritance diagram for Shield\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_shield}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Shield} (string name)
+\item 
+pair$<$ \textbf{ Enhancements}, int $>$ \textbf{ get\+Enhancement} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \textbf{ Item}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Item} (string name)
+\item 
+void {\bfseries display\+Item} () const
+\begin{DoxyCompactList}\small\item\em Displays name and enhancement and bonus information about an item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \textbf{ Item}}
+\begin{DoxyCompactItemize}
+\item 
+string {\bfseries name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing a shield item. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_shield_a7598bd3797a275c5e7951ff652d2790a} 
+\index{Shield@{Shield}!Shield@{Shield}}
+\index{Shield@{Shield}!Shield@{Shield}}
+\doxysubsubsection{Shield()}
+{\footnotesize\ttfamily Shield\+::\+Shield (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+Constructor for \doxyref{Shield}{p.}{class_shield} class. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the shield. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new \doxyref{Shield}{p.}{class_shield} object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_shield_a59d3958ab7fa5562c25e679958aa92f0} 
+\index{Shield@{Shield}!getEnhancement@{getEnhancement}}
+\index{getEnhancement@{getEnhancement}!Shield@{Shield}}
+\doxysubsubsection{getEnhancement()}
+{\footnotesize\ttfamily pair$<$ \textbf{ Enhancements}, int $>$ Shield\+::get\+Enhancement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Retrieves the enhancement and its bonus for the shield. \begin{DoxyReturn}{Returns}
+A pair containing the enhancement and its bonus. 
+\end{DoxyReturn}
+
+
+Implements \textbf{ Item} \doxyref{}{p.}{class_item}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+h}\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,37 @@
+\doxysection{Test\+Dice.\+h}
+\label{_test_dice_8h_source}\index{D:/concordia/comp345/D20/D20/TestDice.h@{D:/concordia/comp345/D20/D20/TestDice.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cppunit/TestFixture.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cppunit/extensions/HelperMacros.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Dice.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }TestDice\ :\ \textcolor{keyword}{public}\ CppUnit::TestFixture\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ CPPUNIT\_TEST\_SUITE(TestDice);}
+\DoxyCodeLine{00019\ \ \ \ \ CPPUNIT\_TEST(testRollDiceInvalidFormat);}
+\DoxyCodeLine{00020\ \ \ \ \ CPPUNIT\_TEST(testRollDiceInvalidDiceType);}
+\DoxyCodeLine{00021\ \ \ \ \ CPPUNIT\_TEST(testRollDiceValid);}
+\DoxyCodeLine{00022\ \ \ \ \ CPPUNIT\_TEST\_SUITE\_END();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ setUp(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ tearDown(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ testRollDiceInvalidFormat(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ testRollDiceInvalidDiceType(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ testRollDiceValid(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ Dice*\ DiceObject;\ }
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ CPPUNIT\_TEST\_SUITE\_REGISTRATION(TestDice);}
+
+\end{DoxyCode}

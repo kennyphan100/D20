@@ -13,7 +13,7 @@ using namespace std;
 
 /** 
  * @class Dice
- * @brief This class is used for simulating dice rolls.
+ * @brief Class is used for simulating dice rolls.
  * 
  * Game Rules:
  * This class adheres to tabletop gaming conventions using dice types d4, d6, d8, d10, d12, d20, and d100.

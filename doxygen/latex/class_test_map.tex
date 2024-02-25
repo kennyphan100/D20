@@ -1,0 +1,58 @@
+\doxysection{Test\+Map Class Reference}
+\label{class_test_map}\index{TestMap@{TestMap}}
+
+
+Test suite for the \doxyref{Map}{p.}{class_map} class.  
+
+
+
+
+{\ttfamily \#include $<$Test\+Map.\+h$>$}
+
+Inheritance diagram for Test\+Map\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_test_map}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_test_map_add9768c91c269a040d6d3946078d9aa7} 
+void {\bfseries set\+Up} (void)
+\begin{DoxyCompactList}\small\item\em Sets up test cases before each test method. Initializes map objects with and without predefined paths. \end{DoxyCompactList}\item 
+\label{class_test_map_a6cfaefb6c113f8c5104fff6e30d6998b} 
+void {\bfseries tear\+Down} (void)
+\begin{DoxyCompactList}\small\item\em Cleans up after each test method. Deallocates memory used by map objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_test_map_a2eafe28d1921d45bb268f8ceb2b59606} 
+void {\bfseries test\+Set\+Cell\+In\+Bounds} (void)
+\begin{DoxyCompactList}\small\item\em Tests whether cells within bounds can be correctly set and retrieved. \end{DoxyCompactList}\item 
+\label{class_test_map_a882e53cc9aabcad5023da56e630fd319} 
+void {\bfseries test\+Set\+Cell\+Out\+Of\+Bounds} (void)
+\begin{DoxyCompactList}\small\item\em Tests if setting a cell outside the map boundaries is handled correctly. Expects to catch an exception or receive an error flag indicating out-\/of-\/bounds. \end{DoxyCompactList}\item 
+\label{class_test_map_a80056466ff301eb9371422fdbb3c2b88} 
+void {\bfseries test\+Is\+Empty\+Cell\+Returns\+True} (void)
+\begin{DoxyCompactList}\small\item\em Tests the is\+Empty\+Cell function to return true for an unoccupied cell. Validates whether empty cells are correctly identified within the map. \end{DoxyCompactList}\item 
+\label{class_test_map_a18ac85e3ab83126a011c6e68fe11a05a} 
+void {\bfseries test\+Is\+Empty\+Cell\+Returns\+False} (void)
+\begin{DoxyCompactList}\small\item\em Tests the is\+Empty\+Cell function to return false for a non-\/empty cell. Ensures that walls or occupied cells are properly recognized as non-\/empty. \end{DoxyCompactList}\item 
+\label{class_test_map_ab42c37d29a3c33f8b1b35b5322178de6} 
+void {\bfseries test\+Verify\+Map\+Existing\+Path} (void)
+\begin{DoxyCompactList}\small\item\em Tests verify\+Map to confirm it correctly identifies a valid path from start to end. A map with a clear path should result in verify\+Map returning true. \end{DoxyCompactList}\item 
+\label{class_test_map_a15a6cf6bcfe91a7699adfc7387d04830} 
+void {\bfseries test\+Verify\+Map\+Non\+Existing\+Path} (void)
+\begin{DoxyCompactList}\small\item\em Tests verify\+Map to ensure it accurately detects when no valid path exists. A map without a clear path from start to end, verify\+Map should return false. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Test suite for the \doxyref{Map}{p.}{class_map} class. 
+
+This set of unit tests is designed to validate both basic and complex functionalities of the \doxyref{Map}{p.}{class_map} class, including cell manipulation and path verification capabilities. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Test\+Map.\+h}\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Test\+Map.\+cpp}\end{DoxyCompactItemize}

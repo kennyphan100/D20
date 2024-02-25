@@ -1,0 +1,46 @@
+\doxysection{Test\+Map.\+h}
+\label{_test_map_8h_source}\index{D:/concordia/comp345/D20/D20/TestMap.h@{D:/concordia/comp345/D20/D20/TestMap.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cppunit/TestFixture.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cppunit/extensions/HelperMacros.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Map.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }TestMap\ :\ \textcolor{keyword}{public}\ CppUnit::TestFixture\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ CPPUNIT\_TEST\_SUITE(TestMap);}
+\DoxyCodeLine{00019\ \ \ \ \ CPPUNIT\_TEST(testSetCellInBounds);}
+\DoxyCodeLine{00020\ \ \ \ \ CPPUNIT\_TEST(testSetCellOutOfBounds);}
+\DoxyCodeLine{00021\ \ \ \ \ CPPUNIT\_TEST(testIsEmptyCellReturnsTrue);}
+\DoxyCodeLine{00022\ \ \ \ \ CPPUNIT\_TEST(testIsEmptyCellReturnsFalse);}
+\DoxyCodeLine{00023\ \ \ \ \ CPPUNIT\_TEST(testVerifyMapExistingPath);}
+\DoxyCodeLine{00024\ \ \ \ \ CPPUNIT\_TEST(testVerifyMapNonExistingPath);}
+\DoxyCodeLine{00025\ \ \ \ \ CPPUNIT\_TEST\_SUITE\_END();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ setUp(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ tearDown(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ testSetCellInBounds(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ testSetCellOutOfBounds(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ testIsEmptyCellReturnsTrue(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ testIsEmptyCellReturnsFalse(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ testVerifyMapExistingPath(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ testVerifyMapNonExistingPath(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00075\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00076\ \ \ \ \ Map*\ MapObjectWithExistingPath;\ }
+\DoxyCodeLine{00077\ \ \ \ \ Map*\ MapObjectWithoutExistingPath;\ }
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00081\ CPPUNIT\_TEST\_SUITE\_REGISTRATION(TestMap);}
+
+\end{DoxyCode}

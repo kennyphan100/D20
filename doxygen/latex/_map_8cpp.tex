@@ -1,0 +1,46 @@
+\doxysection{D\+:/concordia/comp345/\+D20/\+D20/\+Map.cpp File Reference}
+\label{_map_8cpp}\index{D:/concordia/comp345/D20/D20/Map.cpp@{D:/concordia/comp345/D20/D20/Map.cpp}}
+
+
+Implementation file for \doxyref{Map.\+h}{p.}{_map_8h}.  
+
+
+{\ttfamily \#include "{}Map.\+h"{}}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ Point}
+\begin{DoxyCompactList}\small\item\em Represents a point in 2D space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ is\+Traversable} (const std\+::vector$<$ std\+::vector$<$ \textbf{ Cell} $>$ $>$ \&grid, int x, int y)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation file for \doxyref{Map.\+h}{p.}{_map_8h}. 
+
+
+
+\doxysubsection{Function Documentation}
+\label{_map_8cpp_ac1edb62cf329f96f47b9244395beed2b} 
+\index{Map.cpp@{Map.cpp}!isTraversable@{isTraversable}}
+\index{isTraversable@{isTraversable}!Map.cpp@{Map.cpp}}
+\doxysubsubsection{isTraversable()}
+{\footnotesize\ttfamily bool is\+Traversable (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ \textbf{ Cell} $>$ $>$ \&}]{grid,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+Checks if the map is traversable from the starting point to the ending point A map is traversable if it\textquotesingle{}s within the bounds of the grid and not a WALL or OCCUPIED cell blocks the passage. 
+\begin{DoxyParams}{Parameters}
+{\em grid} & The grid representing the map. \\
+\hline
+{\em x} & The x-\/coordinate of the cell. \\
+\hline
+{\em y} & The y-\/coordinate of the cell. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the cell is traversable, false otherwise. 
+\end{DoxyReturn}

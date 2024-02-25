@@ -1,0 +1,78 @@
+\doxysection{Item Class Reference}
+\label{class_item}\index{Item@{Item}}
+
+
+Class represents an item that can be worn by a character.  
+
+
+
+
+{\ttfamily \#include $<$Item.\+h$>$}
+
+Inheritance diagram for Item\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_item}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Item} (string name)
+\item 
+virtual pair$<$ \textbf{ Enhancements}, int $>$ \textbf{ get\+Enhancement} () const =0
+\item 
+\label{class_item_a854cb03f97de4d0ba5e594583a551ffd} 
+void {\bfseries display\+Item} () const
+\begin{DoxyCompactList}\small\item\em Displays name and enhancement and bonus information about an item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_item_a406cde7962a6b42a66b4a53c9a26db2c} 
+string {\bfseries name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class represents an item that can be worn by a character. 
+
+Game Rules\+: Each item can have one or more enhancements associated with it, such as damage bonus, attack bonus, or increased attributes. Different types of items (\doxyref{Helmet}{p.}{class_helmet}, \doxyref{Armor}{p.}{class_armor}, \doxyref{Shield}{p.}{class_shield}, etc.) provide different sets of enhancements. \doxyref{Item}{p.}{class_item} containers (\doxyref{Backpack}{p.}{class_backpack}, \doxyref{Worn\+Items}{p.}{class_worn_items}, \doxyref{Treasure\+Chest}{p.}{class_treasure_chest}) allow players to manage and store their items.
+
+Design\+: The design follows a hierarchical structure with base class \doxyref{Item}{p.}{class_item} representing all items in the game. Derived classes like \doxyref{Helmet}{p.}{class_helmet}, \doxyref{Armor}{p.}{class_armor}, \doxyref{Shield}{p.}{class_shield}, etc., represent specific types of items with specialized functionalities. \doxyref{Item\+Container}{p.}{class_item_container} is a base class representing containers for items, allowing addition, removal, and display of items. Derived classes like \doxyref{Backpack}{p.}{class_backpack}, \doxyref{Worn\+Items}{p.}{class_worn_items}, etc., specialize the container behavior. The code uses polymorphism to handle different item types uniformly through base class pointers. Utility function enhancement\+To\+String converts enhancement enum values to their string representations.
+
+Libraries\+: $<$vector$>$ for storing the map grid due to its flexibility in handling dynamic 2D arrays. $<$string$>$ from the C++ Standard Library for managing and manipulating string data 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_item_aad33eaa7360e0a10671cf9f106d3c15e} 
+\index{Item@{Item}!Item@{Item}}
+\index{Item@{Item}!Item@{Item}}
+\doxysubsubsection{Item()}
+{\footnotesize\ttfamily Item\+::\+Item (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+Constructor for \doxyref{Item}{p.}{class_item} class. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the item. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new \doxyref{Item}{p.}{class_item} object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_item_ad22f34de43a0c5b5dec20f22162148f7} 
+\index{Item@{Item}!getEnhancement@{getEnhancement}}
+\index{getEnhancement@{getEnhancement}!Item@{Item}}
+\doxysubsubsection{getEnhancement()}
+{\footnotesize\ttfamily virtual pair$<$ \textbf{ Enhancements}, int $>$ Item\+::get\+Enhancement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ Helmet} \doxyref{}{p.}{class_helmet_ad22fc6e78ea5041a9a6002c39da1beff}, \textbf{ Armor} \doxyref{}{p.}{class_armor_a784e59027eb12528f00a8bc65d6cadb9}, \textbf{ Shield} \doxyref{}{p.}{class_shield_a59d3958ab7fa5562c25e679958aa92f0}, \textbf{ Ring} \doxyref{}{p.}{class_ring_a33e70df0fea00cb1f1cd25d437ef64a6}, \textbf{ Belt} \doxyref{}{p.}{class_belt_af0e6dbb66166a7145664f8f3c28d6b09}, \textbf{ Boots} \doxyref{}{p.}{class_boots_ab807f62c8688130e91637d95d2d82289}, and \textbf{ Weapon} \doxyref{}{p.}{class_weapon_a298b2d88930a28de98e8905e08bb6188}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+h}\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Item.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,146 @@
+\doxysection{Test\+Character Class Reference}
+\label{class_test_character}\index{TestCharacter@{TestCharacter}}
+
+
+Test class for \doxyref{Character}{p.}{class_character}, utilizing the Cpp\+Unit framework.  
+
+
+
+
+{\ttfamily \#include $<$Test\+Character.\+h$>$}
+
+Inheritance diagram for Test\+Character\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_test_character}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ set\+Up} ()
+\begin{DoxyCompactList}\small\item\em Set up the test fixtures. \end{DoxyCompactList}\item 
+void \textbf{ tear\+Down} ()
+\begin{DoxyCompactList}\small\item\em Tear down the test fixtures. \end{DoxyCompactList}\item 
+void \textbf{ test\+Constructor} ()
+\begin{DoxyCompactList}\small\item\em Tests the \doxyref{Character}{p.}{class_character} constructor for correct initialization of attributes. \end{DoxyCompactList}\item 
+void \textbf{ test\+Generate\+Ability\+Scores} ()
+\begin{DoxyCompactList}\small\item\em Tests the generate\+Ability\+Scores method for generating ability scores within the expected range. \end{DoxyCompactList}\item 
+void \textbf{ test\+Calculate\+Ability\+Modifiers} ()
+\begin{DoxyCompactList}\small\item\em Tests the calculate\+Ability\+Modifiers method for correct calculation of ability modifiers based on ability scores. \end{DoxyCompactList}\item 
+void \textbf{ test\+Calculate\+Hit\+Points} ()
+\begin{DoxyCompactList}\small\item\em Tests the calculate\+Hit\+Points method for correct calculation of hit points based on level and constitution modifier. \end{DoxyCompactList}\item 
+void \textbf{ test\+Calculate\+Armor\+Class} ()
+\begin{DoxyCompactList}\small\item\em Tests the calculate\+Armor\+Class method for correct calculation of armor class based on dexterity modifier and equipped armor. \end{DoxyCompactList}\item 
+void \textbf{ test\+Calculate\+Attack\+Bonus} ()
+\begin{DoxyCompactList}\small\item\em Tests the calculate\+Attack\+Bonus method for correct calculation of attack bonus based on level and strength/dexterity modifiers. \end{DoxyCompactList}\item 
+void \textbf{ test\+Calculate\+Damage\+Bonus} ()
+\begin{DoxyCompactList}\small\item\em Tests the calculate\+Damage\+Bonus method for correct calculation of damage bonus based on strength modifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Test class for \doxyref{Character}{p.}{class_character}, utilizing the Cpp\+Unit framework. 
+
+This class is designed to implement test cases for testing the functionality of the \doxyref{Character}{p.}{class_character} class. It aims to verify the correctness of the character initialization, ability score generation, ability modifiers calculation, hit points calculation, armor class calculation, attack bonus calculation, damage bonus calculation, and the equipment functionality. 
+
+\doxysubsection{Member Function Documentation}
+\label{class_test_character_a89575ad6ed6f848525696656fca8fe5a} 
+\index{TestCharacter@{TestCharacter}!setUp@{setUp}}
+\index{setUp@{setUp}!TestCharacter@{TestCharacter}}
+\doxysubsubsection{setUp()}
+{\footnotesize\ttfamily void Test\+Character\+::set\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set up the test fixtures. 
+
+\doxyref{set\+Up()}{p.}{class_test_character_a89575ad6ed6f848525696656fca8fe5a} method that is executed before each test case.
+
+This method is called before each test case method is executed. It is used to initialize the objects and data structures required for the tests. \label{class_test_character_a4d2bec7bef90b9ae474a900b6e78b52a} 
+\index{TestCharacter@{TestCharacter}!tearDown@{tearDown}}
+\index{tearDown@{tearDown}!TestCharacter@{TestCharacter}}
+\doxysubsubsection{tearDown()}
+{\footnotesize\ttfamily void Test\+Character\+::tear\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tear down the test fixtures. 
+
+\doxyref{tear\+Down()}{p.}{class_test_character_a4d2bec7bef90b9ae474a900b6e78b52a} method that is executed after each test case. Typically used for deallocation.
+
+This method is called after each test case method has been executed. It is used to perform any necessary cleanup operations, such as deallocating resources used during the test. \label{class_test_character_a1a3346fdc858b07279b75fd3c0628aed} 
+\index{TestCharacter@{TestCharacter}!testCalculateAbilityModifiers@{testCalculateAbilityModifiers}}
+\index{testCalculateAbilityModifiers@{testCalculateAbilityModifiers}!TestCharacter@{TestCharacter}}
+\doxysubsubsection{testCalculateAbilityModifiers()}
+{\footnotesize\ttfamily void Test\+Character\+::test\+Calculate\+Ability\+Modifiers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tests the calculate\+Ability\+Modifiers method for correct calculation of ability modifiers based on ability scores. 
+
+Test Case\+: Testing calculation of ability modifiers based on ability scores. \label{class_test_character_aceaa432f941f53e71d6568091d302add} 
+\index{TestCharacter@{TestCharacter}!testCalculateArmorClass@{testCalculateArmorClass}}
+\index{testCalculateArmorClass@{testCalculateArmorClass}!TestCharacter@{TestCharacter}}
+\doxysubsubsection{testCalculateArmorClass()}
+{\footnotesize\ttfamily void Test\+Character\+::test\+Calculate\+Armor\+Class (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tests the calculate\+Armor\+Class method for correct calculation of armor class based on dexterity modifier and equipped armor. 
+
+Test Case\+: Testing calculation of armor class based on dexterity modifier and equipped armor. \label{class_test_character_a8665478dfbb9c3e1cda7ab945e5a55ed} 
+\index{TestCharacter@{TestCharacter}!testCalculateAttackBonus@{testCalculateAttackBonus}}
+\index{testCalculateAttackBonus@{testCalculateAttackBonus}!TestCharacter@{TestCharacter}}
+\doxysubsubsection{testCalculateAttackBonus()}
+{\footnotesize\ttfamily void Test\+Character\+::test\+Calculate\+Attack\+Bonus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tests the calculate\+Attack\+Bonus method for correct calculation of attack bonus based on level and strength/dexterity modifiers. 
+
+Test Case\+: Testing calculation of attack bonus based on level and strength/dexterity modifiers. \label{class_test_character_a99d77f2e65395fcb681a5fdddefbc685} 
+\index{TestCharacter@{TestCharacter}!testCalculateDamageBonus@{testCalculateDamageBonus}}
+\index{testCalculateDamageBonus@{testCalculateDamageBonus}!TestCharacter@{TestCharacter}}
+\doxysubsubsection{testCalculateDamageBonus()}
+{\footnotesize\ttfamily void Test\+Character\+::test\+Calculate\+Damage\+Bonus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tests the calculate\+Damage\+Bonus method for correct calculation of damage bonus based on strength modifier. 
+
+Test Case\+: Testing calculation of damage bonus based on strength modifier. \label{class_test_character_ab21a8ae151dba18745a5eba8a5a762ee} 
+\index{TestCharacter@{TestCharacter}!testCalculateHitPoints@{testCalculateHitPoints}}
+\index{testCalculateHitPoints@{testCalculateHitPoints}!TestCharacter@{TestCharacter}}
+\doxysubsubsection{testCalculateHitPoints()}
+{\footnotesize\ttfamily void Test\+Character\+::test\+Calculate\+Hit\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tests the calculate\+Hit\+Points method for correct calculation of hit points based on level and constitution modifier. 
+
+Test Case\+: Testing calculation of hit points based on level and constitution modifier. \label{class_test_character_a18f8fff24e66eb9cc0edc6e9ebe5ca87} 
+\index{TestCharacter@{TestCharacter}!testConstructor@{testConstructor}}
+\index{testConstructor@{testConstructor}!TestCharacter@{TestCharacter}}
+\doxysubsubsection{testConstructor()}
+{\footnotesize\ttfamily void Test\+Character\+::test\+Constructor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tests the \doxyref{Character}{p.}{class_character} constructor for correct initialization of attributes. 
+
+Test Case\+: Testing constructor for correct initialization of attributes. \label{class_test_character_af0962f6124ae80b9583cc51bc390735f} 
+\index{TestCharacter@{TestCharacter}!testGenerateAbilityScores@{testGenerateAbilityScores}}
+\index{testGenerateAbilityScores@{testGenerateAbilityScores}!TestCharacter@{TestCharacter}}
+\doxysubsubsection{testGenerateAbilityScores()}
+{\footnotesize\ttfamily void Test\+Character\+::test\+Generate\+Ability\+Scores (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tests the generate\+Ability\+Scores method for generating ability scores within the expected range. 
+
+Test Case\+: Testing ability score generation within expected range. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Test\+Character.\+h}\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Test\+Character.\+cpp}\end{DoxyCompactItemize}

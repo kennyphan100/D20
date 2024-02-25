@@ -1,0 +1,161 @@
+\doxysection{Map Class Reference}
+\label{class_map}\index{Map@{Map}}
+
+
+Class represents a customizable game map for strategic or adventure games.  
+
+
+
+
+{\ttfamily \#include $<$Map.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Map} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Constructor that creates a map with specified dimensions. \end{DoxyCompactList}\item 
+void \textbf{ set\+Cell} (int x, int y, \textbf{ Cell} cell\+Type)
+\begin{DoxyCompactList}\small\item\em Sets the type of a specific cell in the map. \end{DoxyCompactList}\item 
+bool \textbf{ is\+Empty\+Cell} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Checks if the specified cell is empty. \end{DoxyCompactList}\item 
+bool \textbf{ verify\+Map} ()
+\begin{DoxyCompactList}\small\item\em Verifies the validity of the map, ensuring there is a path from start to finish. \end{DoxyCompactList}\item 
+void \textbf{ display} () const
+\begin{DoxyCompactList}\small\item\em Displays the map to the console. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class represents a customizable game map for strategic or adventure games. 
+
+Game Rules\+: The map is divided into cells which can be empty, walls, or occupied (by characters, opponents, or items). Players can move through empty cells but not through walls or occupied cells. Players can only go up, down, left or right. The map must have a clear path between designated start and end points to be valid.
+
+Design\+: Implemented as a 2D grid using a vector of vectors, facilitating dynamic map sizes and easy access to each cell. Provides functionality to set the status of each cell and check the existence of a valid path.
+
+Libraries\+: $<$vector$>$ for storing the map grid due to its flexibility in handling dynamic 2D arrays. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_map_a8497952fd6e1f0584d868e6ceb97d42d} 
+\index{Map@{Map}!Map@{Map}}
+\index{Map@{Map}!Map@{Map}}
+\doxysubsubsection{Map()}
+{\footnotesize\ttfamily Map\+::\+Map (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+
+
+Constructor that creates a map with specified dimensions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Width of the map. \\
+\hline
+{\em height} & Height of the map.\\
+\hline
+\end{DoxyParams}
+Constructor of \doxyref{Map}{p.}{class_map} class 
+\begin{DoxyParams}{Parameters}
+{\em width} & \+: The width of the \doxyref{Map}{p.}{class_map} to be created \\
+\hline
+{\em height} & \+: The height of the \doxyref{Map}{p.}{class_map} to be created \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new \doxyref{Map}{p.}{class_map} object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_map_ad403ec91823460fea4c91228c440138e} 
+\index{Map@{Map}!display@{display}}
+\index{display@{display}!Map@{Map}}
+\doxysubsubsection{display()}
+{\footnotesize\ttfamily void Map\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Displays the map to the console. 
+
+Displays the map on the console. Uses characters to represent different types of cells. \label{class_map_a5a8917745627ad9fe897b5be65841cd3} 
+\index{Map@{Map}!isEmptyCell@{isEmptyCell}}
+\index{isEmptyCell@{isEmptyCell}!Map@{Map}}
+\doxysubsubsection{isEmptyCell()}
+{\footnotesize\ttfamily bool Map\+::is\+Empty\+Cell (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Checks if the specified cell is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X-\/coordinate of the cell. \\
+\hline
+{\em y} & Y-\/coordinate of the cell. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the cell is empty, false otherwise.
+\end{DoxyReturn}
+Checks if the given coordinates represent an empty cell in the map. 
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate of the cell. \\
+\hline
+{\em y} & The y-\/coordinate of the cell. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the cell is empty, false otherwise. 
+\end{DoxyReturn}
+\label{class_map_a63c72fc671ee62a6e3441b56aa0dbcdd} 
+\index{Map@{Map}!setCell@{setCell}}
+\index{setCell@{setCell}!Map@{Map}}
+\doxysubsubsection{setCell()}
+{\footnotesize\ttfamily void Map\+::set\+Cell (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{\textbf{ Cell}}]{cell\+Type }\end{DoxyParamCaption})}
+
+
+
+Sets the type of a specific cell in the map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X-\/coordinate of the cell. \\
+\hline
+{\em y} & Y-\/coordinate of the cell. \\
+\hline
+{\em cell\+Type} & The type of cell to set (START, EMPTY, etc.).\\
+\hline
+\end{DoxyParams}
+Sets the type of a cell at the specified coordinates. 
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate of the cell. \\
+\hline
+{\em y} & The y-\/coordinate of the cell. \\
+\hline
+{\em cell\+Type} & The type of the cell to be set. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::out\+\_\+of\+\_\+range} & If the coordinates are out of bounds. \\
+\hline
+\end{DoxyExceptions}
+\label{class_map_af7a7eb23a27e2c789e74a26192842e5e} 
+\index{Map@{Map}!verifyMap@{verifyMap}}
+\index{verifyMap@{verifyMap}!Map@{Map}}
+\doxysubsubsection{verifyMap()}
+{\footnotesize\ttfamily bool Map\+::verify\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Verifies the validity of the map, ensuring there is a path from start to finish. 
+
+\begin{DoxyReturn}{Returns}
+True if the map is valid, false otherwise.
+\end{DoxyReturn}
+Verifies if there exists a path from the top-\/left corner to the bottom-\/right corner of the map. Uses Breadth First Search (BFS) algorithm to find the path. \begin{DoxyReturn}{Returns}
+True if a path exists, false otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Map.\+h}\item 
+D\+:/concordia/comp345/\+D20/\+D20/\textbf{ Map.\+cpp}\end{DoxyCompactItemize}

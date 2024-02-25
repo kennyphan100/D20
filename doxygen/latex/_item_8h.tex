@@ -1,0 +1,135 @@
+\doxysection{D\+:/concordia/comp345/\+D20/\+D20/\+Item.h File Reference}
+\label{_item_8h}\index{D:/concordia/comp345/D20/D20/Item.h@{D:/concordia/comp345/D20/D20/Item.h}}
+
+
+Header file for \doxyref{Item.\+cpp}{p.}{_item_8cpp}.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ Item}
+\begin{DoxyCompactList}\small\item\em Class represents an item that can be worn by a character. \end{DoxyCompactList}\item 
+class \textbf{ Helmet}
+\begin{DoxyCompactList}\small\item\em Class representing a helmet item. \end{DoxyCompactList}\item 
+class \textbf{ Armor}
+\begin{DoxyCompactList}\small\item\em Class representing an armor item. \end{DoxyCompactList}\item 
+class \textbf{ Shield}
+\begin{DoxyCompactList}\small\item\em Class representing a shield item. \end{DoxyCompactList}\item 
+class \textbf{ Ring}
+\begin{DoxyCompactList}\small\item\em Class representing a ring item. \end{DoxyCompactList}\item 
+class \textbf{ Belt}
+\begin{DoxyCompactList}\small\item\em Class representing a belt item. \end{DoxyCompactList}\item 
+class \textbf{ Boots}
+\begin{DoxyCompactList}\small\item\em Class representing a boots item. \end{DoxyCompactList}\item 
+class \textbf{ Weapon}
+\begin{DoxyCompactList}\small\item\em Class representing a weapon item. \end{DoxyCompactList}\item 
+class \textbf{ Item\+Container}
+\begin{DoxyCompactList}\small\item\em Class representing a container for items. \end{DoxyCompactList}\item 
+class \textbf{ Backpack}
+\begin{DoxyCompactList}\small\item\em Class representing a backpack item container. \end{DoxyCompactList}\item 
+class \textbf{ Worn\+Items}
+\begin{DoxyCompactList}\small\item\em Class representing worn items container. \end{DoxyCompactList}\item 
+class \textbf{ Treasure\+Chest}
+\begin{DoxyCompactList}\small\item\em Class representing a treasure chest item container. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \textbf{ Enhancements} \{ \newline
+\textbf{ damage\+Bonus}
+, \textbf{ attack\+Bonus}
+, \textbf{ armor\+Class}
+, \textbf{ strength}
+, \newline
+\textbf{ dexterity}
+, \textbf{ wisdom}
+, \textbf{ intelligence}
+, \textbf{ constitution}
+, \newline
+\textbf{ charisma}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ enhancement\+To\+String} (\textbf{ Enhancements} enhancement)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for \doxyref{Item.\+cpp}{p.}{_item_8cpp}. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\label{_item_8h_aff303b265a69bcdd3b8c9c7e4546135a} 
+\index{Item.h@{Item.h}!Enhancements@{Enhancements}}
+\index{Enhancements@{Enhancements}!Item.h@{Item.h}}
+\doxysubsubsection{Enhancements}
+{\footnotesize\ttfamily enum class \textbf{ Enhancements}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{damageBonus@{damageBonus}!Item.h@{Item.h}}\index{Item.h@{Item.h}!damageBonus@{damageBonus}}}\label{_item_8h_aff303b265a69bcdd3b8c9c7e4546135aa6c3163b887b496a16c8dd0a8fbbc2679} 
+damage\+Bonus&Additional damage bonus. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{attackBonus@{attackBonus}!Item.h@{Item.h}}\index{Item.h@{Item.h}!attackBonus@{attackBonus}}}\label{_item_8h_aff303b265a69bcdd3b8c9c7e4546135aa9e9ae0d86991cb584f5af76db4887bac} 
+attack\+Bonus&Additional attack bonus. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{armorClass@{armorClass}!Item.h@{Item.h}}\index{Item.h@{Item.h}!armorClass@{armorClass}}}\label{_item_8h_aff303b265a69bcdd3b8c9c7e4546135aa914efce229e2e81a651a2a53458e7b79} 
+armor\+Class&Bonus to armor class. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{strength@{strength}!Item.h@{Item.h}}\index{Item.h@{Item.h}!strength@{strength}}}\label{_item_8h_aff303b265a69bcdd3b8c9c7e4546135aa5177790ad6df0ea98db41b37b602367c} 
+strength&Increase in strength. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dexterity@{dexterity}!Item.h@{Item.h}}\index{Item.h@{Item.h}!dexterity@{dexterity}}}\label{_item_8h_aff303b265a69bcdd3b8c9c7e4546135aa3fab1c70aa9068f9d4a7781764b226a1} 
+dexterity&Increase in dexterity. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{wisdom@{wisdom}!Item.h@{Item.h}}\index{Item.h@{Item.h}!wisdom@{wisdom}}}\label{_item_8h_aff303b265a69bcdd3b8c9c7e4546135aaa541714a17804ac281e6ddda5b707952} 
+wisdom&Increase in wisdom. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{intelligence@{intelligence}!Item.h@{Item.h}}\index{Item.h@{Item.h}!intelligence@{intelligence}}}\label{_item_8h_aff303b265a69bcdd3b8c9c7e4546135aa90b884933d23c4d57ca01dbe2898d405} 
+intelligence&Increase in intelligence. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{constitution@{constitution}!Item.h@{Item.h}}\index{Item.h@{Item.h}!constitution@{constitution}}}\label{_item_8h_aff303b265a69bcdd3b8c9c7e4546135aa448b62646e4daf34e38cfced0eaa1a0f} 
+constitution&Increase in constitution. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{charisma@{charisma}!Item.h@{Item.h}}\index{Item.h@{Item.h}!charisma@{charisma}}}\label{_item_8h_aff303b265a69bcdd3b8c9c7e4546135aaf7c32acaab92de9ae346d2527c86b048} 
+charisma&Increase in charisma. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\label{_item_8h_a8b84fc0f2589e92978499c69b0be1ed4} 
+\index{Item.h@{Item.h}!enhancementToString@{enhancementToString}}
+\index{enhancementToString@{enhancementToString}!Item.h@{Item.h}}
+\doxysubsubsection{enhancementToString()}
+{\footnotesize\ttfamily string enhancement\+To\+String (\begin{DoxyParamCaption}\item[{\textbf{ Enhancements}}]{enhancement }\end{DoxyParamCaption})}
+
+Function to convert an enhancement type enum value to its string representation. 
+\begin{DoxyParams}{Parameters}
+{\em enhancement} & The enhancement type enum value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the enhancement type.
+\end{DoxyReturn}
+Converts an enhancement enum value to its string representation. 
+\begin{DoxyParams}{Parameters}
+{\em enhancement} & The enhancement enum value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the enhancement. 
+\end{DoxyReturn}

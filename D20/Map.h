@@ -18,7 +18,7 @@ enum class Cell { START, EMPTY, WALL, OCCUPIED , FINISH};
 
 /**
  * @class Map
- * @brief This class represents a customizable game map for strategic or adventure games.
+ * @brief Class represents a customizable game map for strategic or adventure games.
  *
  * Game Rules:
  * The map is divided into cells which can be empty, walls, or occupied (by characters, opponents, or items).
