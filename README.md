@@ -14,6 +14,8 @@ Development of the different parts (Character, Map, Items, and Dice) for the gam
 4. Build the project
 5. Open the Main.cpp and run the program
 
+*The Doxygen documentation can be found in the Doxygen folder.*
+
 # Participants
 - Kenny Phan
 - Zi Hao Tan
