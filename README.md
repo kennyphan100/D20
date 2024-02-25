@@ -7,6 +7,12 @@ Development of the different parts (Character, Map, Items, and Dice) for the gam
 - C++
 - CppUnit
 
+# Usage Instruction
+1. Open the project in Visual Studio
+2. Open the solution by double clicking on D20.sln via the Solution Explorer
+3. Build the project
+4. Open the Main.cpp and run the program
+
 # Participants
 - Kenny Phan
 - Zi Hao Tan
