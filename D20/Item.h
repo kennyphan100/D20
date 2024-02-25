@@ -116,6 +116,7 @@ public:
     virtual void removeItem(const string& label);
     Item* getItemByName(const string& itemName) const;
     void displayItems() const;
+    int getSize() const;
 };
 
 //! Class representing a backpack item container
