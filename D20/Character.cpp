@@ -67,12 +67,14 @@ void Character::calculateDamageBonus() {
 void Character::equipArmor(Armor* a) {
     armor = armor;
     calculateArmorClass();
+    notify();
 }
 
 //! Equips a shield to the character.
 //! @param s Pointer to the shield object to be equipped.
 void Character::equipShield(Shield* s) {
     shield = s;
+    notify();
 }
 
 //! Equips a weapon to the character.
@@ -81,24 +83,28 @@ void Character::equipWeapon(Weapon* w) {
     weapon = w;
     calculateAttackBonus();
     calculateDamageBonus();
+    notify();
 }
 
 //! Equips boots to the character.
 //! @param b Pointer to the boots object to be equipped.
 void Character::equipBoots(Boots* b) {
     boots = b;
+    notify();
 }
 
 //! Equips a ring to the character.
 //! @param r Pointer to the ring object to be equipped.
 void Character::equipRing(Ring* r) {
     ring = r;
+    notify();
 }
 
 //! Equips a helmet to the character.
 //! @param h Pointer to the helmet object to be equipped.
 void Character::equipHelmet(Helmet* h) {
     helmet = h;
+    notify();
 }
 
 //! Retrieves the level of the character.
