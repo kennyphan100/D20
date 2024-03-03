@@ -2,26 +2,25 @@
 
 #include <iostream>
 
-CharacterObserver::CharacterObserver(Character& c)
-{
-	_subject = &c;
-	_subject->attach(this);
-	name = "View " + std::to_string(serial);
-	++serial;
-}
-
-
 CharacterObserver::~CharacterObserver()
 {
 	_subject->detach(this);
 	_subject = NULL;
 }
 
+CharacterObserver::CharacterObserver(Character* c)
+{
+	_subject = c;
+	_subject->attach(this);
+	name = "View " + to_string(serial);
+	++serial;
+}
+
 void CharacterObserver::update(Observable* o)
 {
 	if (_subject == o)
 	{
-		std::cout << "****************Update " + name + "****************" << std::endl;
+		cout << "====================Update " + name + "====================" << endl;
 		_subject->printCharacter();
 	}
 }

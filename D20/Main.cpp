@@ -92,7 +92,9 @@ int main() {
             cout << " ===== Successfully created a character with the following stats: ===== " << endl;
             fighter.printCharacter();
 
-            CharacterObserver o1(fighter);
+            //CharacterObserver o1(&fighter);
+
+            CharacterObserver* co = new CharacterObserver(&fighter);
 
 
         }

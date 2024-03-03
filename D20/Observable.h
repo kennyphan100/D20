@@ -20,5 +20,5 @@ protected:
 	Observable();
 
 private:
-	list<Observer*> _observers;
+	list<Observer*> *_observers;
 };
