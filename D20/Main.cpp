@@ -11,6 +11,7 @@
 #include <cppunit/CompilerOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TestRunner.h>
+#include "CharacterObserver.h"
 
 using namespace std;
 
@@ -90,6 +91,10 @@ int main() {
             fighter.equipArmor(&leatherArmor);
             cout << " ===== Successfully created a character with the following stats: ===== " << endl;
             fighter.printCharacter();
+
+            CharacterObserver o1(fighter);
+
+
         }
         else if (part._Equal("map"))
         {
