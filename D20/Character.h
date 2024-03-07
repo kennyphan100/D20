@@ -11,6 +11,7 @@
 #include <memory>
 #include <array>
 #include <random>
+#include "Observable.h"
 
 using namespace std;
 
@@ -38,7 +39,7 @@ enum class CharacterType { FIGHTER, SORCERER, MONK, PALADIN, BARD, BARBARIAN };
  * <array> is chosen for its performance benefits over dynamic containers for fixed-size data.
  * <random> provides a robust solution for randomness, essential for role-playing game mechanics.
  */ 
-class Character {
+class Character : public Observable {
 protected:
     int level;
     CharacterType characterType;
@@ -75,6 +76,13 @@ public:
     void equipBoots(Boots* b);
     void equipRing(Ring* r);
     void equipHelmet(Helmet* h);
+
+    Armor* getArmor() const;
+    Shield* getShield() const;
+    Weapon* getWeapon() const;
+    Boots* getBoots() const;
+    Ring* getRing() const;
+    Helmet* getHelmet() const;
 
     int getLevel() const;
     CharacterType getCharacterType() const;

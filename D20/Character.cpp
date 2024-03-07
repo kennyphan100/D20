@@ -65,14 +65,16 @@ void Character::calculateDamageBonus() {
 //! Equips armor to the character.
 //! @param a Pointer to the armor object to be equipped.
 void Character::equipArmor(Armor* a) {
-    armor = armor;
+    armor = a;
     calculateArmorClass();
+    notify();
 }
 
 //! Equips a shield to the character.
 //! @param s Pointer to the shield object to be equipped.
 void Character::equipShield(Shield* s) {
     shield = s;
+    notify();
 }
 
 //! Equips a weapon to the character.
@@ -81,24 +83,88 @@ void Character::equipWeapon(Weapon* w) {
     weapon = w;
     calculateAttackBonus();
     calculateDamageBonus();
+    notify();
 }
 
 //! Equips boots to the character.
 //! @param b Pointer to the boots object to be equipped.
 void Character::equipBoots(Boots* b) {
     boots = b;
+    notify();
 }
 
 //! Equips a ring to the character.
 //! @param r Pointer to the ring object to be equipped.
 void Character::equipRing(Ring* r) {
     ring = r;
+    notify();
 }
 
 //! Equips a helmet to the character.
 //! @param h Pointer to the helmet object to be equipped.
 void Character::equipHelmet(Helmet* h) {
     helmet = h;
+    notify();
+}
+
+Armor* Character::getArmor() const
+{
+    if (armor != nullptr) {
+        return armor; 
+    }
+    else {
+        return NULL;
+    }
+}
+
+Shield* Character::getShield() const
+{
+    if (shield != nullptr) {
+        return shield;
+    }
+    else {
+        return NULL;
+    }
+}
+
+Weapon* Character::getWeapon() const
+{
+    if (weapon != nullptr) {
+        return weapon;
+    }
+    else {
+        return NULL;
+    }
+}
+
+Boots* Character::getBoots() const
+{
+    if (boots != nullptr) {
+        return boots;
+    }
+    else {
+        return NULL;
+    }
+}
+
+Ring* Character::getRing() const
+{
+    if (ring != nullptr) {
+        return ring;
+    }
+    else {
+        return NULL;
+    }
+}
+
+Helmet* Character::getHelmet() const
+{
+    if (helmet != nullptr) {
+        return helmet;
+    }
+    else {
+        return NULL;
+    }
 }
 
 //! Retrieves the level of the character.
@@ -162,6 +228,14 @@ void Character::printCharacter() const {
         << "INT: " << abilityScores[3] << " (" << abilityModifiers[3] << "), "
         << "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
         << "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
+
+    cout << "Equipped Armor: " << (getArmor() ? getArmor()->name : "---") << endl;
+    cout << "Equipped Shield: " << (getShield() ? getShield()->name : "---") << endl;
+    cout << "Equipped Weapon: " << (getWeapon() ? getWeapon()->name : "---") << endl;
+    cout << "Equipped Boots: " << (getBoots() ? getBoots()->name : "---") << endl;
+    cout << "Equipped Ring: " << (getRing() ? getRing()->name : "---") << endl;
+    cout << "Equipped Helmet: " << (getHelmet() ? getHelmet()->name : "---") << endl;
+
 }
 
 //! Converts a character type enum value to its string representation.
