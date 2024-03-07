@@ -77,6 +77,13 @@ public:
     void equipRing(Ring* r);
     void equipHelmet(Helmet* h);
 
+    Armor* getArmor() const;
+    Shield* getShield() const;
+    Weapon* getWeapon() const;
+    Boots* getBoots() const;
+    Ring* getRing() const;
+    Helmet* getHelmet() const;
+
     int getLevel() const;
     CharacterType getCharacterType() const;
     int getAbilityScore(int index) const;

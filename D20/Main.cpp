@@ -89,12 +89,23 @@ int main() {
             Character fighter(level, CharacterType::FIGHTER);
             Armor leatherArmor("Leather Armor");
             fighter.equipArmor(&leatherArmor);
+
             cout << " ===== Successfully created a character with the following stats: ===== " << endl;
             fighter.printCharacter();
 
-            //CharacterObserver o1(&fighter);
+            cout << "\n" << endl;
 
-            CharacterObserver* co = new CharacterObserver(&fighter);
+            Character *c = new Character(5, CharacterType::FIGHTER);
+
+            CharacterObserver *co = new CharacterObserver(c);
+
+            Armor diamondArmor("Diamond Armor");
+            Shield ironShield("Iron Shield");
+            Boots leatherBoots("Leather Boots");
+
+            c->equipArmor(&diamondArmor);
+            c->equipShield(&ironShield);
+            c->equipBoots(&leatherBoots);
 
 
         }
