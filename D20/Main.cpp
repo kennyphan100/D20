@@ -113,8 +113,14 @@ int main() {
         {
             Editor *editor = new Editor();
 
-            editor->runEditor();
+            while (true) {
+                bool continueEditing = editor->runEditor();
+                if (!continueEditing) {
+                    break;
+                }
+            }
 
+            delete editor;
             //try {
             //    int width;
             //    int height;

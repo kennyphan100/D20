@@ -5,6 +5,7 @@
 #include "Map.h"
 #include <queue>
 #include <iostream>
+#include <fstream> 
 
 //! Represents a point in 2D space.
 struct Point {
@@ -116,10 +117,10 @@ void Map::display() const {
         for (int x = 0; x < width; ++x) {
             switch (grid[y][x]) {
             case Cell::EMPTY:
-                std::cout << '_';
+                std::cout << 'E';
                 break;
             case Cell::WALL:
-                std::cout << '!';
+                std::cout << 'W';
                 break;
             case Cell::OCCUPIED:
                 std::cout << 'O';
@@ -129,6 +130,15 @@ void Map::display() const {
                 break;
             case Cell::FINISH:
                 std::cout << 'F';
+                break;
+            case Cell::DOOR:
+                std::cout << 'D';
+                break;
+            case Cell::CHEST:
+                std::cout << 'C';
+                break;
+            case Cell::PLAYER:
+                std::cout << 'P';
                 break;
             }
         }
@@ -142,4 +152,59 @@ int Map::getWidth() const {
 
 int Map::getHeight() const {
     return height;
+}
+
+string Map::getName() const {
+    return name;
+}
+
+bool Map::saveToFile(const std::string& filename) {
+    std::ofstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file '" << filename << "' for writing.\n";
+        return false;
+    }
+
+    // Write the map dimensions first (optional but useful for loading)
+    file << width << " " << height << std::endl;
+
+    // Loop through each cell of the map and write its type to the file
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            // Assuming Cell is an enum and grid is a 2D vector of Cells
+            // Convert each cell type to an integer or a character
+            switch (grid[y][x]) {
+            case Cell::START:
+                file << "S ";  // Start
+                break;
+            case Cell::FINISH:
+                file << "F ";  // Finish
+                break;
+            case Cell::EMPTY:
+                file << "E ";  // Empty
+                break;
+            case Cell::WALL:
+                file << "W ";  // Wall
+                break;
+            case Cell::OCCUPIED:
+                file << "O ";  // Occupied
+                break;
+            case Cell::PLAYER:
+                file << "P ";  // Player
+                break;
+            case Cell::DOOR:
+                file << "D ";  // Door
+                break;
+            case Cell::CHEST:
+                file << "C ";  // Chest
+                break;
+            default:
+                file << "X ";  // Unknown or other types
+            }
+        }
+        file << std::endl;  // Newline after each row
+    }
+
+    file.close();
+    return true;  // Return true to indicate successful saving
 }

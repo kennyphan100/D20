@@ -11,7 +11,7 @@ using namespace std;
 class Editor {
 	public:
 		Editor();
-		void runEditor();
+		bool runEditor();
 	private:
 		map<string, Map> maps; ///< Maps included in the campaign, keyed by their names
 
@@ -22,6 +22,7 @@ class Editor {
 		void createCampaign();
 		void editCampaign();
 		void displayAllMaps();
+		void saveToFile();
 		void saveMapToFile();
 		void saveCampaignToFile();
 		void loadMapFromFile();

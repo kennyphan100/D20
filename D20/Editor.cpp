@@ -13,42 +13,45 @@ using namespace std;
 Editor::Editor() {
 }
 
-void Editor::runEditor() {
-    int choice = 0;
-    do {
-        std::cout << "\n===== Map Editor =====\n";
-        std::cout << "1. Create New Map\n";
-        std::cout << "2. Edit Current Map\n";
-        std::cout << "3. Display Current Map\n";
-        std::cout << "4. Create Campaign\n";
-        std::cout << "5. Edit Campaign\n";
-        std::cout << "9. Exit\n";
-        std::cout << "Select an option: ";
-        std::cin >> choice;
+bool Editor::runEditor() {
+    string choice;
+    while(true) {
+        cout << "===== Map Editor =====\n";
+        cout << "1. Create New Map\n";
+        cout << "2. Edit Current Map\n";
+        cout << "3. Display Current Map\n";
+        cout << "4. Create Campaign\n";
+        cout << "5. Edit Campaign\n";
+        cout << "9. Exit\n";
+        cout << "Select an option: ";
 
-        switch (choice) {
-        case 1:
+        getline(cin, choice);
+        stringstream ss(choice);
+
+        if (choice._Equal("1")) {
             createMap();
-            break;
-        case 2:
-            editMap();
-            break;
-        case 3:
-            displayCurrentMap();
-            break;
-        case 4:
-            createCampaign();
-            break;
-        case 5:
-            editCampaign();
-            break;
-        case 9:
-            std::cout << "Exiting editor...\n";
-            break;
-        default:
-            std::cout << "Invalid option. Please try again.\n";
         }
-    } while (choice != 9);
+        else if (choice._Equal("2")) {
+            editMap();
+        }
+        else if (choice._Equal("3")) {
+            createMap();
+        }
+        else if (choice._Equal("4")) {
+            createCampaign();
+        }
+        else if (choice._Equal("5")) {
+            editCampaign();
+        }
+        else if (choice._Equal("9")) {
+            return false;
+        }
+        else {
+            cerr << "Invalid input. Please enter a valid option.\n" << endl;
+            continue;
+        }
+        return true;
+    }
 }
 
 void Editor::createMap() {
@@ -59,18 +62,15 @@ void Editor::createMap() {
 
         while (true) {
             cout << "Please enter the name of the map: ";
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             getline(cin, name);
             stringstream ss(name);
-
-            if (!(ss >> name)) {
-                cerr << "Input format is incorrect! \n" << endl;
-                continue;
+            if (maps.find(name) != maps.end()) {
+                cerr << "A map with the name \"" << name << "\" already exists. Please choose a different name.\n";
             }
-            break;
+            else {
+                break;
+            }
         }
-
-         //Check if name exists here
 
         while (true) {
             cout << "Please enter the dimensions of map (e.g., 10 10): ";
@@ -147,13 +147,23 @@ void Editor::createMap() {
         // Verify the map to see if there is a path from start to finish
         if (myMap.verifyMap()) {
             cout << "\nA path exists from start to finish." << endl;
-            //maps.insert({ name, myMap }); // THIS CRASHES THE PROGRAM
+            maps.insert(make_pair(name, myMap)); // THIS CRASHES THE PROGRAM
+            cout << "The number of created maps is now: " << maps.size() << endl;
+
+            // Construct the filename for the map, based on its name
+            string filename = "./data/" + name + ".txt"; // You can change the extension or naming convention as needed
+
+            // Attempt to save the map to the specified file
+            if (myMap.saveToFile(filename)) {
+                cout << "Map '" << name << "' has been successfully saved to '" << filename << "'.\n" << endl;
+            }
+            else {
+                cerr << "Failed to save the map '" << name << "' to a file.\n" << endl;
+            }
         }
         else {
             cout << "\nNo path exists from start to finish. Map not saved." << endl;
         }
-
-
     }
     catch (const exception& e) {
         cerr << e.what() << endl;
@@ -219,9 +229,17 @@ void Editor::editMap() {
             selectedMap->display();
             cout << "\n";
         }
+        string filename = "./data/" + selectedMap->getName() + ".txt";
+
+        if (selectedMap->saveToFile(filename)) {
+            cout << "Map '" << selectedMap->getName() << "' has been successfully saved to '" << filename << "'.\n" << endl;
+        }
+        else {
+            cerr << "Failed to save the map '" << selectedMap->getName() << "' to a file.\n" << endl;
+        }
     }
     else {
-        std::cout << "Map selection cancelled or invalid.\n";
+        std::cout << "Map selection cancelled or invalid.\n" << "\n";
     }
 }
 
