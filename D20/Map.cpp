@@ -22,7 +22,7 @@ struct Point {
 //! @param width : The width of the Map to be created
 //! @param height : The height of the Map to be created
 //! @return new Map object
-Map::Map(int width, int height) : width(width), height(height), grid(height, std::vector<Cell>(width, Cell::EMPTY)) {
+Map::Map(int width, int height, string name) : width(width), height(height), name(name), grid(height, std::vector<Cell>(width, Cell::EMPTY)) {
 }
 
 //! Checks if the map is traversable from the starting point to the ending point
@@ -57,7 +57,6 @@ void Map::setCell(int x, int y, Cell cellType) {
         throw std::out_of_range("Cell coordinates are out of bounds.");
     }
     grid[y][x] = cellType;
-    notify();
 }
 
 //! Verifies if there exists a path from the top-left corner to the bottom-right corner of the map.
@@ -126,17 +125,16 @@ void Map::display() const {
             case Cell::FINISH:
                 std::cout << 'F';
                 break;
-            case Cell::PLAYER:
-                std::cout << 'P';
-                break;
-            case Cell::DOOR:
-                std::cout << 'D';
-                break;
-            case Cell::CHEST:
-                std::cout << 'C';
-                break;
             }
         }
         std::cout << std::endl;
     }
+}
+
+int Map::getWidth() const {
+    return width;
+}
+
+int Map::getHeight() const {
+    return height;
 }

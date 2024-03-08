@@ -126,7 +126,7 @@ int main() {
                     break;
                 }
 
-                Map myMap(width, height);
+                Map myMap(width, height, "");
                 cout << "\n";
 
                 myMap.setCell(0, 0, Cell::START); // Start point

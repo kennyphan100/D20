@@ -7,6 +7,7 @@
 #define MAP_H
 
 #include <vector>
+#include <iostream>
 #include "Observable.h"
 
 /**
@@ -41,7 +42,7 @@ public:
      * @param width Width of the map.
      * @param height Height of the map.
      */
-    Map(int width, int height);
+    Map(int width, int height, string name);
 
     /**
      * @brief Sets the type of a specific cell in the map.
@@ -70,9 +71,14 @@ public:
      */
     void display() const;
 
+    int getWidth() const;
+
+    int getHeight() const;
+
 private:
     int width; ///< Width of the map.
     int height; ///< Height of the map.
+    string name;
     vector<vector<Cell>> grid; ///< 2D grid representing the map, containing cells of type Cell.
 };
 
