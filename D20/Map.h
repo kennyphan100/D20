@@ -7,6 +7,7 @@
 #define MAP_H
 
 #include <vector>
+#include "Observable.h"
 
 /**
  * @enum Cell
@@ -14,7 +15,7 @@
  *
  * This enumeration covers all possible types of cells within the map, each representing a different state or object.
  */
-enum class Cell { START, EMPTY, WALL, OCCUPIED , FINISH};
+enum class Cell { START, FINISH, EMPTY, WALL, OCCUPIED, PLAYER, DOOR, CHEST };
 
 /**
  * @class Map
@@ -33,7 +34,7 @@ enum class Cell { START, EMPTY, WALL, OCCUPIED , FINISH};
  * Libraries:
  * <vector> for storing the map grid due to its flexibility in handling dynamic 2D arrays.
  */
-class Map {
+class Map : public Observable {
 public:
     /**
      * @brief Constructor that creates a map with specified dimensions.
@@ -72,7 +73,7 @@ public:
 private:
     int width; ///< Width of the map.
     int height; ///< Height of the map.
-    std::vector<std::vector<Cell>> grid; ///< 2D grid representing the map, containing cells of type Cell.
+    vector<vector<Cell>> grid; ///< 2D grid representing the map, containing cells of type Cell.
 };
 
 #endif
