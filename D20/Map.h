@@ -37,6 +37,8 @@ enum class Cell { START, FINISH, EMPTY, WALL, OCCUPIED, PLAYER, DOOR, CHEST };
  */
 class Map : public Observable {
 public:
+    Map();
+
     /**
      * @brief Constructor that creates a map with specified dimensions.
      * @param width Width of the map.

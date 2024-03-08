@@ -16,7 +16,7 @@ Editor::Editor() {
 void Editor::runEditor() {
     int choice = 0;
     do {
-        std::cout << "\nMap Editor\n";
+        std::cout << "\n===== Map Editor =====\n";
         std::cout << "1. Create New Map\n";
         std::cout << "2. Edit Current Map\n";
         std::cout << "3. Display Current Map\n";
@@ -59,6 +59,7 @@ void Editor::createMap() {
 
         while (true) {
             cout << "Please enter the name of the map: ";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             getline(cin, name);
             stringstream ss(name);
 
@@ -66,9 +67,12 @@ void Editor::createMap() {
                 cerr << "Input format is incorrect! \n" << endl;
                 continue;
             }
+            break;
+        }
 
-            //Check if name exists here
+         //Check if name exists here
 
+        while (true) {
             cout << "Please enter the dimensions of map (e.g., 10 10): ";
             string dimensions;
             getline(cin, dimensions);
@@ -138,8 +142,18 @@ void Editor::createMap() {
             }
             myMap.display();
             cout << "\n";
+
         }
-        maps.insert({ name, myMap });
+        // Verify the map to see if there is a path from start to finish
+        if (myMap.verifyMap()) {
+            cout << "\nA path exists from start to finish." << endl;
+            //maps.insert({ name, myMap }); // THIS CRASHES THE PROGRAM
+        }
+        else {
+            cout << "\nNo path exists from start to finish. Map not saved." << endl;
+        }
+
+
     }
     catch (const exception& e) {
         cerr << e.what() << endl;
@@ -221,9 +235,10 @@ void Editor::editCampaign() {
     std::cout << "Campaign editing not implemented yet.\n";
 }
 
-//void Editor::displayCurrentMap() {
-//    currentMap.display();
-//}
+void Editor::displayCurrentMap() {
+    //currentMap.display();
+    std::cout << "Display map not implemented yet.\n";
+}
 
 void Editor::displayAllMaps() {
     int index = 1; // Start index from 1 for user-friendly numbering

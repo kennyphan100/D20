@@ -18,11 +18,16 @@ struct Point {
     }
 };
 
+Map::Map() : width(0), height(0), name(" "), grid(0, std::vector<Cell>(0, Cell::EMPTY))
+{
+}
+
 //! Constructor of Map class
 //! @param width : The width of the Map to be created
 //! @param height : The height of the Map to be created
 //! @return new Map object
-Map::Map(int width, int height, string name) : width(width), height(height), name(name), grid(height, std::vector<Cell>(width, Cell::EMPTY)) {
+Map::Map(int width, int height, string name) : width(width), height(height), name(name), grid(height, std::vector<Cell>(width, Cell::EMPTY))
+{
 }
 
 //! Checks if the map is traversable from the starting point to the ending point

@@ -13,6 +13,7 @@
 #include <cppunit/ui/text/TestRunner.h>
 #include "CharacterObserver.h"
 #include "MapObserver.h"
+#include "Editor.h"
 
 using namespace std;
 
@@ -110,99 +111,103 @@ int main() {
         }
         else if (part._Equal("map"))
         {
-            try {
-                int width;
-                int height;
-                while (true) {
-                    cout << "Please enter the dimensions of map (e.g., 10 10): ";
-                    string dimensions;
-                    getline(cin, dimensions);
-                    stringstream ss(dimensions);
+            Editor *editor = new Editor();
 
-                    if (!(ss >> width >> height)) {
-                        cerr << "Input format is incorrect! \n" << endl;
-                        continue;
-                    }
-                    break;
-                }
+            editor->runEditor();
 
-                Map myMap(width, height, "");
-                cout << "\n";
+            //try {
+            //    int width;
+            //    int height;
+            //    while (true) {
+            //        cout << "Please enter the dimensions of map (e.g., 10 10): ";
+            //        string dimensions;
+            //        getline(cin, dimensions);
+            //        stringstream ss(dimensions);
 
-                myMap.setCell(0, 0, Cell::START); // Start point
-                myMap.setCell(width - 1, height - 1, Cell::FINISH); // End point
+            //        if (!(ss >> width >> height)) {
+            //            cerr << "Input format is incorrect! \n" << endl;
+            //            continue;
+            //        }
+            //        break;
+            //    }
 
-                while (true) {
-                    string coordinatesInput;
-                    cout << "Please enter the coordinates (width, height) for the placement of walls/players/chests (e.g., 1 2 W or 3 4 P or 1 2 C) - enter Q when done: ";
-                    getline(cin, coordinatesInput);
+            //    Map myMap(width, height, "");
+            //    cout << "\n";
 
-                    if (coordinatesInput == "q") {
-                        myMap.display();
-                        break;
-                    }
+            //    myMap.setCell(0, 0, Cell::START); // Start point
+            //    myMap.setCell(width - 1, height - 1, Cell::FINISH); // End point
 
-                    int x, y;
-                    char obstacle;
-                    stringstream ss(coordinatesInput);
+            //    while (true) {
+            //        string coordinatesInput;
+            //        cout << "Please enter the coordinates (width, height) for the placement of walls/players/chests (e.g., 1 2 W or 3 4 P or 1 2 C) - enter Q when done: ";
+            //        getline(cin, coordinatesInput);
 
-                    if (!(ss >> x >> y >> obstacle)) {
-                        cerr << "Input format is incorrect! \n" << endl;
-                        continue;
-                    }
-                    obstacle = toupper(obstacle);
+            //        if (coordinatesInput == "q") {
+            //            myMap.display();
+            //            break;
+            //        }
 
-                    if (obstacle != 'W' && obstacle != 'C' && obstacle != 'P' && obstacle != 'D' ) {
-                        cout << "Invalid obstacle. Must be 'W', 'C', 'P', or 'D'. \n" << endl;
-                        continue;
-                    }
+            //        int x, y;
+            //        char obstacle;
+            //        stringstream ss(coordinatesInput);
 
-                    if (x < 0 || x >= width || y < 0 || y >= height) {
-                        cout << "Cell coordinates are out of bounds. \n" << endl;
-                        continue;
-                    }
+            //        if (!(ss >> x >> y >> obstacle)) {
+            //            cerr << "Input format is incorrect! \n" << endl;
+            //            continue;
+            //        }
+            //        obstacle = toupper(obstacle);
 
-                    if (!(myMap.isEmptyCell(x, y))) {
-                        cout << "Try again, this cell is occupied or has a wall. \n" << endl;
-                        continue;
-                    }
+            //        if (obstacle != 'W' && obstacle != 'C' && obstacle != 'P' && obstacle != 'D' ) {
+            //            cout << "Invalid obstacle. Must be 'W', 'C', 'P', or 'D'. \n" << endl;
+            //            continue;
+            //        }
 
-                    switch (obstacle) {
-                        case 'W':
-                            myMap.setCell(x, y, Cell::WALL);
-                            break;
-                        case 'P':
-                            myMap.setCell(x, y, Cell::PLAYER);
-                            break;
-                        case 'C':
-                            myMap.setCell(x, y, Cell::CHEST);
-                            break;
-                        case 'D':
-                            myMap.setCell(x, y, Cell::DOOR);
-                            break;
-                    }
-                    myMap.display();
-                    cout << "\n";
-                }
+            //        if (x < 0 || x >= width || y < 0 || y >= height) {
+            //            cout << "Cell coordinates are out of bounds. \n" << endl;
+            //            continue;
+            //        }
 
-                cout << "\n===== Testing Map Observer: =====\n" << endl;
+            //        if (!(myMap.isEmptyCell(x, y))) {
+            //            cout << "Try again, this cell is occupied or has a wall. \n" << endl;
+            //            continue;
+            //        }
 
-                MapObserver* mo = new MapObserver(&myMap);
+            //        switch (obstacle) {
+            //            case 'W':
+            //                myMap.setCell(x, y, Cell::WALL);
+            //                break;
+            //            case 'P':
+            //                myMap.setCell(x, y, Cell::PLAYER);
+            //                break;
+            //            case 'C':
+            //                myMap.setCell(x, y, Cell::CHEST);
+            //                break;
+            //            case 'D':
+            //                myMap.setCell(x, y, Cell::DOOR);
+            //                break;
+            //        }
+            //        myMap.display();
+            //        cout << "\n";
+            //    }
 
-                myMap.setCell(0, width - 1, Cell::CHEST); // Place a chest
-                myMap.setCell(0, width - 2, Cell::WALL); // Place a wall
+            //    cout << "\n===== Testing Map Observer: =====\n" << endl;
 
-                // Verify the map to see if there is a path from start to finish
-                if (myMap.verifyMap()) {
-                    cout << "A path exists from start to finish." << endl;
-                }
-                else {
-                    cout << "No path exists from start to finish." << endl;
-                }
-            }
-            catch (const exception& e) {
-                cerr << e.what() << endl;
-            }
+            //    MapObserver* mo = new MapObserver(&myMap);
+
+            //    myMap.setCell(0, width - 1, Cell::CHEST); // Place a chest
+            //    myMap.setCell(0, width - 2, Cell::WALL); // Place a wall
+
+            //    // Verify the map to see if there is a path from start to finish
+            //    if (myMap.verifyMap()) {
+            //        cout << "A path exists from start to finish." << endl;
+            //    }
+            //    else {
+            //        cout << "No path exists from start to finish." << endl;
+            //    }
+            //}
+            //catch (const exception& e) {
+            //    cerr << e.what() << endl;
+            //}
         }
         else if (part._Equal("item"))
         {
