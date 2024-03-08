@@ -12,6 +12,7 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TestRunner.h>
 #include "CharacterObserver.h"
+#include "MapObserver.h"
 
 using namespace std;
 
@@ -34,6 +35,8 @@ string toLowercase(const string& str) {
 //! 4. Roll a dice using the form xdy[+z]
 //! 5. Run the test cases. 
 int main() {
+    Character* myCharacter;
+
     while (true) {
         cout << "==================================================================================================" << endl;
         cout << "Please enter a part of the game to test (Character, Map, Item, Dice, or Test) - (enter Q to quit): ";
@@ -86,27 +89,23 @@ int main() {
             }
             cout << "\n";
 
-            Character fighter(level, CharacterType::FIGHTER);
-            Armor leatherArmor("Leather Armor");
-            fighter.equipArmor(&leatherArmor);
+            myCharacter = new Character(level, CharacterType::FIGHTER);
 
             cout << " ===== Successfully created a character with the following stats: ===== " << endl;
-            fighter.printCharacter();
-
+            myCharacter->printCharacter();
             cout << "\n" << endl;
 
-            Character *c = new Character(5, CharacterType::FIGHTER);
+            cout << "\n===== Testing Character Observer: =====\n" << endl;
 
-            CharacterObserver *co = new CharacterObserver(c);
+            CharacterObserver *co = new CharacterObserver(myCharacter);
 
             Armor diamondArmor("Diamond Armor");
             Shield ironShield("Iron Shield");
             Boots leatherBoots("Leather Boots");
 
-            c->equipArmor(&diamondArmor);
-            c->equipShield(&ironShield);
-            c->equipBoots(&leatherBoots);
-
+            myCharacter->equipArmor(&diamondArmor);
+            myCharacter->equipShield(&ironShield);
+            myCharacter->equipBoots(&leatherBoots);
 
         }
         else if (part._Equal("map"))
@@ -135,7 +134,7 @@ int main() {
 
                 while (true) {
                     string coordinatesInput;
-                    cout << "Please enter the coordinates (width, height) for the placement of walls/characters (e.g., 1 2 W or 3 4 C) - enter Q to quit: ";
+                    cout << "Please enter the coordinates (width, height) for the placement of walls/players/chests (e.g., 1 2 W or 3 4 P or 1 2 C) - enter Q when done: ";
                     getline(cin, coordinatesInput);
 
                     if (coordinatesInput == "q") {
@@ -153,8 +152,8 @@ int main() {
                     }
                     obstacle = toupper(obstacle);
 
-                    if (obstacle != 'W' && obstacle != 'C') {
-                        cout << "Invalid obstacle. Must be 'W' or 'C'. \n" << endl;
+                    if (obstacle != 'W' && obstacle != 'C' && obstacle != 'P' && obstacle != 'D' ) {
+                        cout << "Invalid obstacle. Must be 'W', 'C', 'P', or 'D'. \n" << endl;
                         continue;
                     }
 
@@ -172,13 +171,26 @@ int main() {
                         case 'W':
                             myMap.setCell(x, y, Cell::WALL);
                             break;
+                        case 'P':
+                            myMap.setCell(x, y, Cell::PLAYER);
+                            break;
                         case 'C':
-                            myMap.setCell(x, y, Cell::OCCUPIED);
+                            myMap.setCell(x, y, Cell::CHEST);
+                            break;
+                        case 'D':
+                            myMap.setCell(x, y, Cell::DOOR);
                             break;
                     }
                     myMap.display();
                     cout << "\n";
                 }
+
+                cout << "\n===== Testing Map Observer: =====\n" << endl;
+
+                MapObserver* mo = new MapObserver(&myMap);
+
+                myMap.setCell(0, width - 1, Cell::CHEST); // Place a chest
+                myMap.setCell(0, width - 2, Cell::WALL); // Place a wall
 
                 // Verify the map to see if there is a path from start to finish
                 if (myMap.verifyMap()) {

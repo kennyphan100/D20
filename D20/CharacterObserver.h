@@ -11,8 +11,6 @@ public:
 
 	virtual void update(Observable* o);
 
-	static int serial;
-
 private:
 	string name;
 	Character* _subject;
