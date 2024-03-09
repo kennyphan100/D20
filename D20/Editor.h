@@ -13,7 +13,7 @@ class Editor {
 		Editor();
 		bool runEditor();
 	private:
-		map<string, Map> maps; ///< Maps included in the campaign, keyed by their names
+		vector<Map> maps; ///< Maps included in the campaign
 
 		void createMap();
 		Map* selectMap();
@@ -22,6 +22,7 @@ class Editor {
 		void createCampaign();
 		void editCampaign();
 		void displayAllMaps();
+		int countMapFiles(const string& directoryPath);
 		void saveToFile();
 		void saveMapToFile();
 		void saveCampaignToFile();

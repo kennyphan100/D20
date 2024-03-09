@@ -48,7 +48,7 @@ public:
 
 private:
     string name; ///< Name of the campaign.
-    map<string, Map> maps; ///< Maps included in the campaign, keyed by their names.
+    vector<Map> maps; ///< Maps included in the campaign, keyed by their names.
     vector<MapConnection> connections; ///< Connections between maps in the campaign.
 };
 

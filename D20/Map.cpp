@@ -6,6 +6,10 @@
 #include <queue>
 #include <iostream>
 #include <fstream> 
+#include <sstream>
+#include <string>
+#include <vector>
+#include <filesystem>
 
 //! Represents a point in 2D space.
 struct Point {
@@ -117,28 +121,28 @@ void Map::display() const {
         for (int x = 0; x < width; ++x) {
             switch (grid[y][x]) {
             case Cell::EMPTY:
-                std::cout << 'E';
+                std::cout << "_ ";
                 break;
             case Cell::WALL:
-                std::cout << 'W';
+                std::cout << "W ";
                 break;
             case Cell::OCCUPIED:
-                std::cout << 'O';
+                std::cout << "O ";
                 break;
             case Cell::START:
-                std::cout << 'S';
+                std::cout << "S ";
                 break;
             case Cell::FINISH:
-                std::cout << 'F';
+                std::cout << "F ";
                 break;
             case Cell::DOOR:
-                std::cout << 'D';
+                std::cout << "D ";
                 break;
             case Cell::CHEST:
-                std::cout << 'C';
+                std::cout << "C ";
                 break;
             case Cell::PLAYER:
-                std::cout << 'P';
+                std::cout << "P ";
                 break;
             }
         }
@@ -181,7 +185,7 @@ bool Map::saveToFile(const std::string& filename) {
                 file << "F ";  // Finish
                 break;
             case Cell::EMPTY:
-                file << "E ";  // Empty
+                file << "_ ";  // Empty
                 break;
             case Cell::WALL:
                 file << "W ";  // Wall
@@ -207,4 +211,68 @@ bool Map::saveToFile(const std::string& filename) {
 
     file.close();
     return true;  // Return true to indicate successful saving
+}
+
+bool Map::loadFromFile(const std::string& filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file: " << filename << std::endl;
+        return false;
+    }
+
+    std::filesystem::path filePath(filename);
+    setName(filePath.stem().string());
+
+    int width, height;
+    file >> width >> height;
+    file.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Skip to the next line
+
+    // Optional: Check if width and height read successfully
+    if (file.fail()) {
+        std::cerr << "Error reading map dimensions." << std::endl;
+        return false;
+    }
+
+    std::vector<std::vector<Cell>> tempGrid(height, std::vector<Cell>(width, Cell::EMPTY)); // Create a temporary grid
+
+    std::string line;
+    for (int y = 0; y < height && getline(file, line); ++y) {
+        std::istringstream lineStream(line);
+        for (int x = 0; x < width; ++x) {
+            char cellTypeChar;
+            if (!(lineStream >> cellTypeChar)) {
+                std::cerr << "Error reading map at (" << x << ", " << y << ")." << std::endl;
+                return false; // Error handling
+            }
+
+            // Convert the character to a Cell enum value
+            // This assumes you have a method or logic to translate characters to Cell values
+            Cell cellType = charToCellType(cellTypeChar);
+            tempGrid[y][x] = cellType;
+        }
+    }
+
+    this->width = width; // Update the map's dimensions
+    this->height = height;
+    this->grid = tempGrid; // Update the map's grid
+
+    return true;
+}
+
+Cell Map::charToCellType(char c) {
+    switch (c) {
+    case 'S': return Cell::START;
+    case 'F': return Cell::FINISH;
+    case 'E': return Cell::EMPTY;
+    case 'W': return Cell::WALL;
+    case 'O': return Cell::OCCUPIED; // Assuming 'O' represents an occupied cell
+    case 'P': return Cell::PLAYER;   // Assuming 'P' represents a player
+    case 'D': return Cell::DOOR;     // Assuming 'D' represents a door
+    case 'C': return Cell::CHEST;    // Assuming 'C' represents a chest
+    default:  return Cell::EMPTY;    // Default case if character does not match
+    }
+}
+
+void Map::setName(string newName) {
+    name = newName;
 }

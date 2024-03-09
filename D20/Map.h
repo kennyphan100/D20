@@ -35,7 +35,7 @@ enum class Cell { START, FINISH, EMPTY, WALL, OCCUPIED, PLAYER, DOOR, CHEST };
  * Libraries:
  * <vector> for storing the map grid due to its flexibility in handling dynamic 2D arrays.
  */
-class Map {
+class Map : public Observable{
 public:
     Map();
 
@@ -79,7 +79,13 @@ public:
 
     string getName() const;
 
+    void setName(string newName);
+
     bool saveToFile(const string& filename);
+
+    bool loadFromFile(const std::string& filename);
+
+    Cell charToCellType(char c);
 
 private:
     int width; ///< Width of the map.

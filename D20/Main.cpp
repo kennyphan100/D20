@@ -120,7 +120,7 @@ int main() {
                 }
             }
 
-            delete editor;
+            //delete editor;
             //try {
             //    int width;
             //    int height;

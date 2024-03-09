@@ -6,7 +6,7 @@
 #include "Map.h"
 #include <cppunit/CompilerOutputter.h>
 #include "CharacterObserver.h"
-
+#include <filesystem>
 
 using namespace std;
 
@@ -19,9 +19,8 @@ bool Editor::runEditor() {
         cout << "===== Map Editor =====\n";
         cout << "1. Create New Map\n";
         cout << "2. Edit Current Map\n";
-        cout << "3. Display Current Map\n";
-        cout << "4. Create Campaign\n";
-        cout << "5. Edit Campaign\n";
+        cout << "3. Create Campaign\n";
+        cout << "4. Edit Campaign\n";
         cout << "9. Exit\n";
         cout << "Select an option: ";
 
@@ -35,12 +34,9 @@ bool Editor::runEditor() {
             editMap();
         }
         else if (choice._Equal("3")) {
-            createMap();
-        }
-        else if (choice._Equal("4")) {
             createCampaign();
         }
-        else if (choice._Equal("5")) {
+        else if (choice._Equal("4")) {
             editCampaign();
         }
         else if (choice._Equal("9")) {
@@ -58,19 +54,24 @@ void Editor::createMap() {
     try {
         int width;
         int height;
-        string name;
+        string name, filePath;
+        const string directoryPath = "./data/maps/";
 
+        // User input name and check if duplicate exists in directory
         while (true) {
             cout << "Please enter the name of the map: ";
             getline(cin, name);
-            stringstream ss(name);
-            if (maps.find(name) != maps.end()) {
-                cerr << "A map with the name \"" << name << "\" already exists. Please choose a different name.\n";
+            filePath = directoryPath + name + ".txt";
+
+            // Check if a file with the same name already exists
+            if (filesystem::exists(filePath)) {
+                cerr << "A map with this name already exists. Please choose a different name.\n";
             }
             else {
-                break;
+                break; // No duplicate found, proceed
             }
         }
+
 
         while (true) {
             cout << "Please enter the dimensions of map (e.g., 10 10): ";
@@ -147,15 +148,16 @@ void Editor::createMap() {
         // Verify the map to see if there is a path from start to finish
         if (myMap.verifyMap()) {
             cout << "\nA path exists from start to finish." << endl;
-            maps.insert(make_pair(name, myMap)); // THIS CRASHES THE PROGRAM
-            cout << "The number of created maps is now: " << maps.size() << endl;
+            maps.push_back(myMap);
 
             // Construct the filename for the map, based on its name
-            string filename = "./data/" + name + ".txt"; // You can change the extension or naming convention as needed
+            string filename = "./data/maps/" + name + ".txt"; // You can change the extension or naming convention as needed
 
             // Attempt to save the map to the specified file
             if (myMap.saveToFile(filename)) {
-                cout << "Map '" << name << "' has been successfully saved to '" << filename << "'.\n" << endl;
+                cout << "Map '" << name << "' has been successfully saved to '" << filename << "'." << endl;
+                int mapCount = countMapFiles("./data/maps/");
+                cout << "The number of created maps is now: " << mapCount << "\n" << endl;
             }
             else {
                 cerr << "Failed to save the map '" << name << "' to a file.\n" << endl;
@@ -177,6 +179,8 @@ void Editor::editMap() {
         // For example, changing its name, updating specific cells, etc.
         int width = selectedMap->getWidth();
         int height = selectedMap->getHeight();
+        string name = selectedMap->getName();
+        cout << name << endl;
         while (true) {
             string coordinatesInput;
             cout << "Please enter the coordinates (width, height) for the placement of walls/players/chests (e.g., 1 2 W or 3 4 P or 1 2 C) - enter Q when done: ";
@@ -229,13 +233,13 @@ void Editor::editMap() {
             selectedMap->display();
             cout << "\n";
         }
-        string filename = "./data/" + selectedMap->getName() + ".txt";
+        string filename = "./data/maps/" + selectedMap->getName() + ".txt";
 
         if (selectedMap->saveToFile(filename)) {
-            cout << "Map '" << selectedMap->getName() << "' has been successfully saved to '" << filename << "'.\n" << endl;
+            cout << "Map '" << selectedMap->getName() << "' has been successfully edited to '" << filename << "'.\n" << endl;
         }
         else {
-            cerr << "Failed to save the map '" << selectedMap->getName() << "' to a file.\n" << endl;
+            cerr << "Failed to edit the map '" << selectedMap->getName() << "' to a file.\n" << endl;
         }
     }
     else {
@@ -259,36 +263,98 @@ void Editor::displayCurrentMap() {
 }
 
 void Editor::displayAllMaps() {
+    string directoryPath = "./data/maps"; // The path to your maps directory
     int index = 1; // Start index from 1 for user-friendly numbering
-    std::cout << "Available Maps:\n";
-    for (const auto& pair : maps) {
-        std::cout << index++ << ": " << pair.first << " (Width: " << pair.second.getWidth() << ", Height: " << pair.second.getHeight() << ")\n";
+
+    cout << "Available Maps:\n";
+
+    try {
+        // Iterate over the directory contents using std::filesystem directly
+        for (const auto& entry : filesystem::directory_iterator(directoryPath)) {
+            if (entry.is_regular_file()) { // Check if it's a file
+                auto filePath = entry.path();
+                auto extension = filePath.extension().string();
+
+                // Check for .txt file extension
+                if (extension == ".txt") {
+                    // Print the file name without the extension, and file path if needed
+                    cout << index++ << ": " << filePath.stem() << " (" << filePath << ")\n";
+                }
+            }
+        }
+
+        if (index == 1) { // If no .txt files were found
+            cout << "No map files found in the directory.\n";
+        }
+    }
+    catch (const filesystem::filesystem_error& e) {
+        cerr << "Filesystem error: " << e.what() << '\n';
+    }
+    catch (const exception& e) {
+        cerr << "General error: " << e.what() << '\n';
     }
 }
 
 Map* Editor::selectMap() {
-    if (maps.empty()) {
-        std::cout << "No maps available.\n";
-        return nullptr; // No maps to select
+    std::string directoryPath = "./data/maps"; // Adjust this path to your maps directory
+    std::vector<std::string> mapFiles;
+
+    // Read the directory and collect .txt files
+    for (const auto& entry : std::filesystem::directory_iterator(directoryPath)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".txt") {
+            mapFiles.push_back(entry.path().string());
+        }
     }
 
-    displayAllMaps(); // Display all maps for the user to choose
-
-    int choice;
-    std::cout << "Enter the number of the map you want to select: ";
-    std::cin >> choice;
-    std::cin.ignore(); // Clear the newline character after the number
-
-    // Check if the choice is valid
-    if (choice > 0 && choice <= maps.size()) {
-        auto it = maps.begin();
-        std::advance(it, choice - 1); // Move iterator to the chosen map
-        return &(it->second); // Return a pointer to the chosen map
+    if (mapFiles.empty()) {
+        std::cout << "No map files available.\n";
+        return nullptr;
     }
-    else {
-        std::cout << "Invalid selection.\n";
-        return nullptr; // Invalid selection
+    
+    while (true) {
+        displayAllMaps(); // Assuming displayAllMaps now takes mapFiles as a parameter
+        int choice;
+        std::cout << "\nEnter the number of the map you want to select: ";
+        std::cin >> choice;
+        // Clear the newline character after the number, and handle invalid input
+        if (std::cin.fail()) {
+            std::cin.clear(); // Clear error flags
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard the line
+            std::cout << "Invalid input. Please enter a number.\n";
+            continue; // Skip the rest of the loop and prompt again
+        }
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Always clear the newline character
+
+        if (choice > 0 && static_cast<size_t>(choice) <= mapFiles.size()) {
+            // Assuming you have a way to load a map from a filename in your Map class
+            // and that you manage memory for dynamically created maps (consider using smart pointers)
+            Map* selectedMap = new Map();
+            if (selectedMap->loadFromFile(mapFiles[choice - 1])) { // loadFromFile method to be implemented in Map
+                selectedMap->display();
+                return selectedMap;
+            }
+            else {
+                delete selectedMap;
+                std::cout << "Failed to load the selected map.\n";
+                return nullptr;
+            }
+        }
+        else {
+            std::cout << "Invalid selection.\n";
+            return nullptr;
+        }
     }
+}
+
+int Editor::countMapFiles(const std::string& directoryPath) {
+    using namespace std::filesystem;
+    int fileCount = 0;
+    for (const auto& entry : directory_iterator(directoryPath)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".txt") {
+            ++fileCount;
+        }
+    }
+    return fileCount;
 }
 
 // Implement other methods as needed
