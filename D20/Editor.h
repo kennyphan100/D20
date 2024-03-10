@@ -18,16 +18,14 @@ class Editor {
 		void createMap();
 		Map* selectMap();
 		void editMap();
-		void displayCurrentMap();
 		void createCampaign();
+		Campaign* selectCampaign();
 		void editCampaign();
+		Map* selectMapInCampaign(const string& campaignName);
 		void displayAllMaps();
+		void displayAllCampaigns();
+		void displayAllMapsInCampaign(const string& campaignName);
 		int countMapFiles(const string& directoryPath);
-		void saveToFile();
-		void saveMapToFile();
-		void saveCampaignToFile();
-		void loadMapFromFile();
-		void loadCampaignFromFile();
 		//void verifytAndSave();
 };
 

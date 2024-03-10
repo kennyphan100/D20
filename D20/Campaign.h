@@ -6,50 +6,39 @@
 #include "MapConnection.h"
 #include <string>
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 using namespace std;
 
 class Campaign {
-public:
-    Campaign(const string name);
-
-    /**
-     * @brief Adds a map to the campaign.
-     * @param mapName The name of the map to add.
-     * @param map The map object to add.
-     */
-    void addMap(const string mapName, const Map map);
-
-    /**
-     * @brief Connects two maps within the campaign.
-     * @param fromMapName The name of the starting map.
-     * @param toMapName The name of the destination map.
-     * @param via A description of the connection point or condition.
-     */
-    void connectMaps(const string fromMapName, const string toMapName, const string via);
-
-    /**
-     * @brief Checks if the campaign is valid based on certain criteria.
-     * @return True if the campaign is valid, false otherwise.
-     */
-    bool verifyCampaign() const;
-
-    /**
-     * @brief Gets the campaign name.
-     * @return The name of the campaign.
-     */
-    std::string getName() const;
-
-    /**
-     * @brief Displays the campaign information, including maps and connections.
-     */
-    void displayCampaignInfo() const;
-
 private:
-    string name; ///< Name of the campaign.
-    vector<Map> maps; ///< Maps included in the campaign, keyed by their names.
-    vector<MapConnection> connections; ///< Connections between maps in the campaign.
+    string name;
+    vector<string> maps; // List of maps in the campaign
+    unordered_map<string, vector<string>> connections; // Store connections between maps
+
+public:
+    Campaign();
+
+    Campaign(const string& name);
+
+    // Map management
+    void addMap(const string& mapName, const string& campaignDir);
+    void removeMap(const string& mapName, const string& campaignDir);
+    //vector<Map> getMaps() const;
+
+    // Map connections
+    void connectMaps(const string& fromMap, const string& toMap);
+    vector<string> getConnections(const string& mapName) const;
+
+    // Getters and setters
+    string getName() const;
+    //void setName(const string& newName);
+
+    bool saveToFile(const string& filePath);
+    bool loadFromFile(const std::string& filePath);
+
+    void display() const;
+    // Additional functionalities might include saving/loading campaigns, listing maps, etc.
 };
 
-#endif
+#endif // CAMPAIGN_H
