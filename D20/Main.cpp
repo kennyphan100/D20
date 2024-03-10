@@ -39,12 +39,12 @@ int main() {
     Character* myCharacter;
 
     while (true) {
-        cout << "==================================================================================================" << endl;
+        cout << "============== D20 Game - Menu ==============" << endl;
         cout << "1. Character" << endl;
         cout << "2. Map" << endl;
         cout << "3. Item" << endl;
         cout << "4. Dice" << endl;
-        cout << "5. Run Unit Tests" << endl;
+        cout << "5. Run Unit Tests\n" << endl;
         cout << "Please enter one of the number above to test (enter Q to quit): ";
 
         string part;
