@@ -39,7 +39,13 @@ int main() {
 
     while (true) {
         cout << "==================================================================================================" << endl;
-        cout << "Please enter a part of the game to test (Character, Map, Item, Dice, or Test) - (enter Q to quit): ";
+        cout << "1. Character" << endl;
+        cout << "2. Map" << endl;
+        cout << "3. Item" << endl;
+        cout << "4. Dice" << endl;
+        cout << "5. Run Unit Tests" << endl;
+        cout << "Please enter one of the number above to test (enter Q to quit): ";
+
         string part;
         cin >> part;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -53,7 +59,7 @@ int main() {
             exit(0);
         }
 
-        if (part._Equal("character"))
+        if (part._Equal("1"))
         {
             string characterType;
             cout << "Enter the class of your desired character (e.g., Fighter): ";
@@ -108,7 +114,7 @@ int main() {
             myCharacter->equipBoots(&leatherBoots);
 
         }
-        else if (part._Equal("map"))
+        else if (part._Equal("2"))
         {
             try {
                 int width;
@@ -204,7 +210,7 @@ int main() {
                 cerr << e.what() << endl;
             }
         }
-        else if (part._Equal("item"))
+        else if (part._Equal("3"))
         {
             Helmet helmet("Helmet");
             Armor armor("Armor");
@@ -241,7 +247,7 @@ int main() {
 
             backpack.displayItems();
         }
-        else if (part._Equal("dice"))
+        else if (part._Equal("4"))
         {
             Dice dice;
             string input;
@@ -270,7 +276,7 @@ int main() {
             cout << "\n";
 
         }
-        else if (part._Equal("test"))
+        else if (part._Equal("5"))
         {
             // Get the top level suite from the registry
             CppUnit::Test* suite = CppUnit::TestFactoryRegistry::getRegistry().makeTest();
@@ -290,7 +296,7 @@ int main() {
         }
         else
         {
-            cout << "Please enter a valid part.";
+            cout << "Please enter a valid number.";
             cout << "\n";
         }
         cout << "\n";
