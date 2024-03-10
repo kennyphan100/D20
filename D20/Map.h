@@ -7,6 +7,7 @@
 #define MAP_H
 
 #include <vector>
+#include <iostream>
 #include "Observable.h"
 
 /**
@@ -34,14 +35,15 @@ enum class Cell { START, FINISH, EMPTY, WALL, OCCUPIED, PLAYER, DOOR, CHEST };
  * Libraries:
  * <vector> for storing the map grid due to its flexibility in handling dynamic 2D arrays.
  */
-class Map : public Observable {
+class Map : public Observable{
 public:
+    Map();
     /**
      * @brief Constructor that creates a map with specified dimensions.
      * @param width Width of the map.
      * @param height Height of the map.
      */
-    Map(int width, int height);
+    Map(int width, int height, string name);
 
     /**
      * @brief Sets the type of a specific cell in the map.
@@ -70,9 +72,24 @@ public:
      */
     void display() const;
 
+    int getWidth() const;
+
+    int getHeight() const;
+
+    string getName() const;
+
+    void setName(string newName);
+
+    bool saveToFile(const string& filename);
+
+    bool loadFromFile(const std::string& filename);
+
+    Cell charToCellType(char c);
+
 private:
     int width; ///< Width of the map.
     int height; ///< Height of the map.
+    string name;
     vector<vector<Cell>> grid; ///< 2D grid representing the map, containing cells of type Cell.
 };
 

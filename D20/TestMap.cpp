@@ -7,8 +7,8 @@
 // setUp() method that is executed before all the test cases
 void TestMap::setUp(void)
 {
-	MapObjectWithExistingPath = new Map(10, 10);
-	MapObjectWithoutExistingPath = new Map(10, 10);
+	MapObjectWithExistingPath = new Map(10, 10, "test");
+	MapObjectWithoutExistingPath = new Map(10, 10, "test");
 
 	for (int x = 0; x < 10; x++) {
 		MapObjectWithoutExistingPath->setCell(x, 5, Cell::WALL);
