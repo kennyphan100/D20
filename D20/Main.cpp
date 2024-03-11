@@ -35,6 +35,7 @@ string toLowercase(const string& str) {
 //! 3. Create an item and an item container that can hold multiple items
 //! 4. Roll a dice using the form xdy[+z]
 //! 5. Run the test cases. 
+//! 9. Exit the program.
 int main() {
     Character* myCharacter;
 
