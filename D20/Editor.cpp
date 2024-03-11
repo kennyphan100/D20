@@ -22,7 +22,7 @@ bool Editor::runEditor() {
         cout << "2. Edit Current Map\n";
         cout << "3. Create Campaign\n";
         cout << "4. Edit Campaign\n";
-        cout << "9. Exit\n";
+        cout << "9. Exit\n\n";
         cout << "Select an option: ";
 
         getline(cin, choice);
@@ -61,7 +61,7 @@ void Editor::createMap() {
 
         // User input name and check if duplicate exists in directory
         while (true) {
-            cout << "Please enter the name of the map: ";
+            cout << "\nPlease enter the name of the map: ";
             getline(cin, name);
             filePath = directoryPath + name + ".txt";
 
@@ -333,7 +333,7 @@ void Editor::editCampaign() {
             break;
         }
         case 2: {
-            Map* mapToRemove = selectMapInCampaign(selectedCampaign->getName()); // Let the user select a map to remove
+            Map* mapToRemove = selectMapInCampaign(selectedCampaign->getName(), ""); // Let the user select a map to remove
             if (mapToRemove) {
                 selectedCampaign->removeMap(mapToRemove->getName(), "./data/campaigns/" + campaignName); // Assuming removeMap takes the map name
                 //std::cout << "Map \"" << mapToRemove->getName() << "\" removed.\n";
@@ -345,14 +345,14 @@ void Editor::editCampaign() {
         }
         case 3: {
             // Let the user select the "from" map
-            Map* fromMap = selectMapInCampaign(selectedCampaign->getName());
+            Map* fromMap = selectMapInCampaign(selectedCampaign->getName(), "from");
             if (!fromMap) {
                 std::cout << "Invalid selection for the 'from' map.\n";
                 break;
             }
 
             // Let the user select the "to" map
-            Map* toMap = selectMapInCampaign(selectedCampaign->getName());
+            Map* toMap = selectMapInCampaign(selectedCampaign->getName(), "to");
             if (!toMap) {
                 std::cout << "Invalid selection for the 'to' map.\n";
                 break;
@@ -464,28 +464,28 @@ void Editor::displayAllCampaigns() {
     std::string directoryPath = "./data/campaigns/";  // Adjust the path to your campaigns directory
     int index = 1;  // Start index from 1 for user-friendly numbering
 
-    std::cout << "Available Campaigns:\n";
+std::cout << "Available Campaigns:\n";
 
-    try {
-        // Iterate over the directory contents using std::filesystem directly
-        for (const auto& entry : std::filesystem::directory_iterator(directoryPath)) {
-            if (entry.is_directory()) {  // Check if it's a directory
-                auto dirPath = entry.path();
-                // Print the directory name, which represents the campaign name
-                std::cout << index++ << ": " << dirPath.filename() << "\n";
-            }
-        }
-
-        if (index == 1) {  // If no directories were found
-            std::cout << "No campaign directories found in the directory.\n";
+try {
+    // Iterate over the directory contents using std::filesystem directly
+    for (const auto& entry : std::filesystem::directory_iterator(directoryPath)) {
+        if (entry.is_directory()) {  // Check if it's a directory
+            auto dirPath = entry.path();
+            // Print the directory name, which represents the campaign name
+            std::cout << index++ << ": " << dirPath.filename() << "\n";
         }
     }
-    catch (const std::filesystem::filesystem_error& e) {
-        std::cerr << "Filesystem error: " << e.what() << '\n';
+
+    if (index == 1) {  // If no directories were found
+        std::cout << "No campaign directories found in the directory.\n";
     }
-    catch (const std::exception& e) {
-        std::cerr << "General error: " << e.what() << '\n';
-    }
+}
+catch (const std::filesystem::filesystem_error& e) {
+    std::cerr << "Filesystem error: " << e.what() << '\n';
+}
+catch (const std::exception& e) {
+    std::cerr << "General error: " << e.what() << '\n';
+}
 }
 
 Map* Editor::selectMap() {
@@ -503,7 +503,7 @@ Map* Editor::selectMap() {
         cout << "No map files available.\n";
         return nullptr;
     }
-    
+
     while (true) {
         displayAllMaps(); // Assuming displayAllMaps now takes mapFiles as a parameter
         int choice;
@@ -539,7 +539,7 @@ Map* Editor::selectMap() {
     }
 }
 
-Map* Editor::selectMapInCampaign(const string& campaignName) {
+Map* Editor::selectMapInCampaign(const string& campaignName, const string& call) {
     string directoryPath = "./data/campaigns/" + campaignName + "/maps"; // Adjust this path to your maps directory
     vector<string> mapFiles;
 
@@ -558,7 +558,15 @@ Map* Editor::selectMapInCampaign(const string& campaignName) {
     while (true) {
         displayAllMapsInCampaign(campaignName); // Assuming displayAllMaps now takes mapFiles as a parameter
         int choice;
-        cout << "\nEnter the number of the map you want to select: ";
+        if (call._Equal("from")) {
+            cout << "\nEnter the number of the first map you want to connect: ";
+        }
+        else if (call._Equal("to")) {
+            cout << "\nEnter the number of the second map you want to connect: ";
+        }
+        else if (call.empty()) {
+            cout << "\nEnter the number of the map you want to select: ";
+        }
         cin >> choice;
         // Clear the newline character after the number, and handle invalid input
         if (cin.fail()) {

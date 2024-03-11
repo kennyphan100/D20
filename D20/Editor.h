@@ -21,7 +21,7 @@ class Editor {
 		void createCampaign();
 		Campaign* selectCampaign();
 		void editCampaign();
-		Map* selectMapInCampaign(const string& campaignName);
+		Map* selectMapInCampaign(const string& campaignName, const string& call);
 		void displayAllMaps();
 		void displayAllCampaigns();
 		void displayAllMapsInCampaign(const string& campaignName);
