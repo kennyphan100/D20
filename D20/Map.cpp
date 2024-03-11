@@ -140,3 +140,26 @@ void Map::display() const {
         std::cout << std::endl;
     }
 }
+
+//! Gets the width of the map.
+//! @return The width of the map.
+int Map::getWidth() const {
+    return width;
+}
+
+//! Gets the height of the map.
+//! @return The height of the map.
+int Map::getHeight() const {
+    return height;
+}
+
+//! Gets the cell type.
+//! @return The type of the cell.
+Cell Map::getCell(int x, int y) const {
+    if (x >= 0 && x < width && y >= 0 && y < height) {
+        return grid[y][x];
+    }
+    else {
+        throw std::out_of_range("Cell coordinates are out of bounds.");
+    }
+}
