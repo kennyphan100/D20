@@ -44,19 +44,18 @@ int main() {
         cout << "2. Map" << endl;
         cout << "3. Item" << endl;
         cout << "4. Dice" << endl;
-        cout << "5. Run Unit Tests\n" << endl;
-        cout << "Please enter one of the number above to test (enter Q to quit): ";
+        cout << "5. Run Unit Tests" << endl;
+        cout << "9. Exit \n" << endl;
+        cout << "Please enter one of the number part: ";
 
         string part;
         cin >> part;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "\n";
 
-        part = toLowercase(part);
-
-        if (part == "q")
+        if (part == "9")
         {
-            cout << "Terminating program." << endl;
+            cout << "Terminating program. Bye bye!" << endl;
             exit(0);
         }
 
@@ -303,7 +302,6 @@ int main() {
                 cout << "All the tests passed!" << endl;
             }
 
-            return wasSuccessful;
         }
         else
         {
