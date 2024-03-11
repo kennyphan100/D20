@@ -39,7 +39,7 @@ void MapGameBuilder::readMapFromFile(const std::string& newFilename) {
 
     file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    map = new Map(width, height);
+    map = new Map(width, height, filename);
 
     std::string line;
     int y = 0;
