@@ -1,7 +1,7 @@
 # D20
 
 # Description
-Development of the different parts (Character, Map, Items, and Dice) for the game d20.
+This project is about writing a C++ program that allows the user to play a simplistic version of a Dungeons and Dragons role-playing game. The game follows the d20 gaming rules.
 
 # Technologies Used
 - C++
