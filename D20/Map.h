@@ -97,14 +97,14 @@ public:
 
     bool saveToFile(const string& filename);
 
-    bool loadFromFile(const std::string& filename);
+    bool loadFromFile(const string& filename);
 
     Cell charToCellType(char c);
 
 private:
     int width; ///< Width of the map.
     int height; ///< Height of the map.
-    string name;
+    string name; ///< Name of the map.
     vector<vector<Cell>> grid; ///< 2D grid representing the map, containing cells of type Cell.
 };
 

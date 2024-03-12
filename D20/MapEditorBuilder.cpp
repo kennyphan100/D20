@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 
-MapEditorBuilder::MapEditorBuilder(const std::string& filename) : filename(filename), map(nullptr) {
+MapEditorBuilder::MapEditorBuilder(const string& filename) : filename(filename), map(nullptr) {
     readMapFromFile(this->filename);
 }
 
@@ -20,26 +20,26 @@ Map* MapEditorBuilder::getMap() const {
     return map;
 }
 
-void MapEditorBuilder::readMapFromFile(const std::string& newFilename) {
+void MapEditorBuilder::readMapFromFile(const string& newFilename) {
     filename = newFilename;
     reset();
 
-    std::ifstream file(filename);
+    ifstream file(filename);
     if (!file.is_open()) {
-        throw std::runtime_error("Could not open map file.");
+        throw runtime_error("Could not open map file.");
     }
 
     int width, height;
     file >> width >> height;
     if (!file || width <= 0 || height <= 0) {
-        throw std::runtime_error("Invalid map size in file: " + filename);
+        throw runtime_error("Invalid map size in file: " + filename);
     }
 
-    file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    file.ignore(numeric_limits<streamsize>::max(), '\n');
 
     map = new Map(width, height, filename);
 
-    std::string line;
+    string line;
     int y = 0;
     while (getline(file, line)) {
         for (int x = 0; x < line.length(); ++x) {
@@ -69,7 +69,7 @@ void MapEditorBuilder::readMapFromFile(const std::string& newFilename) {
                 map->setCell(x, y, Cell::CHEST);
                 break;
             default:
-                throw std::runtime_error("Unrecognized map symbol: " + std::string(1, line[x]));
+                throw runtime_error("Unrecognized map symbol: " + string(1, line[x]));
             }
         }
         y++;

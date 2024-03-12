@@ -7,16 +7,16 @@
 class MapGameBuilder : public MapBuilder {
 private:
     Map* map;
-    std::string filename;
+    string filename;
     int gameLevel;
 
 public:
-    MapGameBuilder(const std::string& filename, int level);
+    MapGameBuilder(const string& filename, int level);
     virtual ~MapGameBuilder();
     virtual void reset() override;
     virtual Map* getMap() const override;
-    virtual void readMapFromFile(const std::string& filename) override;
+    virtual void readMapFromFile(const string& filename) override;
     void adaptContentsToLevel();
 };
 
-#endif // MAPGAMEBUILDER_H
+#endif
