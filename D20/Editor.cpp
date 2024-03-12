@@ -8,6 +8,7 @@
 #include <string>
 #include <cppunit/CompilerOutputter.h>
 #include <filesystem>
+#include "MapObserver.h"
 
 using namespace std;
 
@@ -91,6 +92,8 @@ void Editor::createMap() {
         Map myMap(width, height, name);
         cout << "\n";
 
+        MapObserver* mo = new MapObserver(&myMap);
+
         myMap.setCell(0, 0, Cell::START); // Start point
         myMap.setCell(width - 1, height - 1, Cell::FINISH); // End point
 
@@ -143,7 +146,7 @@ void Editor::createMap() {
                 myMap.setCell(x, y, Cell::DOOR);
                 break;
             }
-            myMap.display();
+            //myMap.display(); // TO BE REMOVED SINCE THE OBSERVER PATTERN CALLS THIS FUNCTION BY DEFAULT (in the setCell function above)
             cout << "\n";
 
         }
@@ -159,7 +162,7 @@ void Editor::createMap() {
             if (myMap.saveToFile(filename)) {
                 cout << "Map '" << name << "' has been successfully saved to '" << filename << "'." << endl;
                 int mapCount = countMapFiles("./data/maps/");
-                cout << "The number of created maps is now: " << mapCount << "\n" << endl;
+                cout << "The number of created maps is now: " << mapCount << endl;
             }
             else {
                 cerr << "Failed to save the map '" << name << "' to a file.\n" << endl;

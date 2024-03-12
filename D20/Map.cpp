@@ -67,6 +67,7 @@ void Map::setCell(int x, int y, Cell cellType) {
         throw std::out_of_range("Cell coordinates are out of bounds.");
     }
     grid[y][x] = cellType;
+    notify();
 }
 
 //! Verifies if there exists a path from the top-left corner to the bottom-right corner of the map.
