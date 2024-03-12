@@ -72,9 +72,24 @@ public:
      */
     void display() const;
 
+    /**
+     * @brief Getter for the map's width.
+     * @return The width of the map.
+     */
     int getWidth() const;
 
+    /**
+     * @brief Getter for the map's height.
+     * @return The height of the map.
+     */
     int getHeight() const;
+
+    /**
+     * @brief Getter for the cell's type.
+     * @param x The x position.
+     * @param y The y position.
+     */
+    Cell getCell(int x, int y) const;
 
     string getName() const;
 
