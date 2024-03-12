@@ -14,7 +14,7 @@ This project is about writing a C++ program that allows the user to play a simpl
 4. Ensure that you have installed CppUnit (the following tutorial was used to install CppUnit: [video](https://www.youtube.com/watch?v=UjwBHaUH14o) <br>
   4.1 (Place the installed CppUnit folder into your C:\Program Files)
 6. Ensure that you are using C++ 17 version. (Right click on the solution project > Properties > Configuration Properties > General > C++ Language Standard (make sure it is usin ISO C++ 17 Standard)
-7. Build the project
+7. ReBuild the project
 8. Open the Main.cpp and run the program
 
 *The Doxygen documentation can be found in the Doxygen folder
