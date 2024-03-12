@@ -70,6 +70,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Program Files\CppUnit\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\CppUnit\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -104,10 +108,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);cppunitd.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -127,11 +133,50 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Dice.h" />
+    <ClInclude Include="Character\Character.h" />
+    <ClInclude Include="Character\CharacterObserver.h" />
+    <ClInclude Include="Dice\Dice.h" />
+    <ClInclude Include="Item\Item.h" />
+    <ClInclude Include="Map\Campaign.h" />
+    <ClInclude Include="Map\Editor.h" />
+    <ClInclude Include="Map\Map.h" />
+    <ClInclude Include="Map\MapBuilder.h" />
+    <ClInclude Include="Map\MapConnection.h" />
+    <ClInclude Include="Map\MapEditorBuilder.h" />
+    <ClInclude Include="Map\MapGameBuilder.h" />
+    <ClInclude Include="Map\MapObserver.h" />
+    <ClInclude Include="Observable.h" />
+    <ClInclude Include="Observer.h" />
+    <ClInclude Include="Test\TestCharacter.h" />
+    <ClInclude Include="Test\TestDice.h" />
+    <ClInclude Include="Test\TestItem.h" />
+    <ClInclude Include="Test\TestMap.h" />
+    <ClInclude Include="Test\TestMapEditorBuilder.h" />
+    <ClInclude Include="Test\TestMapGameBuilder.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Dice.cpp" />
+    <ClCompile Include="Character\Character.cpp" />
+    <ClCompile Include="Character\CharacterObserver.cpp" />
+    <ClCompile Include="Dice\Dice.cpp" />
+    <ClCompile Include="Item\Item.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Map\Campaign.cpp" />
+    <ClCompile Include="Map\Editor.cpp" />
+    <ClCompile Include="Map\Map.cpp" />
+    <ClCompile Include="Map\MapEditorBuilder.cpp" />
+    <ClCompile Include="Map\MapGameBuilder.cpp" />
+    <ClCompile Include="Map\MapObserver.cpp" />
+    <ClCompile Include="Observable.cpp" />
+    <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="Test\TestCharacter.cpp" />
+    <ClCompile Include="Test\TestDice.cpp" />
+    <ClCompile Include="Test\TestItem.cpp" />
+    <ClCompile Include="Test\TestMap.cpp" />
+    <ClCompile Include="Test\TestMapEditorBuilder.cpp" />
+    <ClCompile Include="Test\TestMapGameBuilder.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Test\test_map.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
