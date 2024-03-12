@@ -223,7 +223,7 @@ void Item::displayItem() const {
 
 //! Displays all items' information from the item container.
 void ItemContainer::displayItems() const {
-    cout << " ===== Items in " << name << ": =====" << endl;
+    cout << " ====== Items in " << name << ": ======" << endl;
     for (const auto& item : items) {
         item->displayItem();
     }

@@ -1,3 +1,7 @@
+//! @file 
+//! @brief Header file for Campaign.cpp
+//!
+
 #pragma once
 #ifndef CAMPAIGN_H
 #define CAMPAIGN_H
@@ -9,6 +13,25 @@
 
 using namespace std;
 
+/**
+ * @class Campaign
+ * @brief Class for managing a campaign consisting of multiple maps.
+ *
+ * This class provides functionality to organize and manage a campaign, which is composed of multiple maps
+ * interconnected through various connections. It allows users to add and remove maps from the campaign,
+ * establish connections between maps, save the campaign data to a file, load campaign data from a file,
+ * and display information about the campaign.
+ *
+ * Design:
+ * The Campaign class utilizes a vector to store the names of maps within the campaign and an unordered_map
+ * to represent connections between maps. Each map is identified by a unique name, and connections are
+ * represented as pairs of map names. The design facilitates efficient management of map data and connections,
+ * enabling seamless navigation within the campaign.
+ *
+ * Libraries:
+ * <vector> is utilized for dynamic storage of map names within the campaign.
+ * <unordered_map> is employed to efficiently store and manage map connections using map names as keys.
+ */
 class Campaign {
 private:
     string name;

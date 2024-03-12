@@ -1,3 +1,7 @@
+//! @file 
+//! @brief Implementation file for Campaign.h
+//!
+
 #include "Campaign.h"
 #include "Map.h"
 #include <iostream>
@@ -10,14 +14,23 @@
 
 using namespace std;
 
+//! Constructor for Campaign class.
+//! Initializes the campaign with the default name "Unnamed Campaign"
 Campaign::Campaign() : name("Unnamed Campaign") {}
 
+//! Constructor for Campaign class with a specified name.
+//! @param newName The name of the campaign.
 Campaign::Campaign(const string& newName) : name(newName) {}
 
+//! Retrieves the name of the campaign.
+//! @return The name of the campaign.
 string Campaign::getName() const {
     return name;
 }
 
+//! Adds a map to the campaign.
+//! @param mapName The name of the map to be added.
+//! @param campaignDir The directory path of the campaign.
 void Campaign::addMap(const string& mapName, const string& campaignDir) {
     filesystem::path dirPath(campaignDir);
     filesystem::path mapCopyFilePath = dirPath / "maps" / (mapName + ".txt");
@@ -46,6 +59,9 @@ void Campaign::addMap(const string& mapName, const string& campaignDir) {
     }
 }
 
+//! Removes a map from the campaign.
+//! @param mapName The name of the map to be removed.
+//! @param campaignDir The directory path of the campaign.
 void Campaign::removeMap(const string& mapName, const string& campaignDir) {
     filesystem::path dirPath(campaignDir);
     filesystem::path mapFilePath = dirPath / "maps" / (mapName + ".txt");
@@ -72,6 +88,9 @@ void Campaign::removeMap(const string& mapName, const string& campaignDir) {
     }
 }
 
+//! Connects two maps within the campaign.
+//! @param fromMapName The name of the map from which the connection starts.
+//! @param toMapName The name of the map to which the connection points.
 void Campaign::connectMaps(const string& fromMapName, const string& toMapName) {
     if (find(maps.begin(), maps.end(), fromMapName) != maps.end() &&
         find(maps.begin(), maps.end(), toMapName) != maps.end()) {
@@ -83,6 +102,9 @@ void Campaign::connectMaps(const string& fromMapName, const string& toMapName) {
     }
 }
 
+//! Saves the campaign data to a file.
+//! @param filename The name of the file to save the campaign data.
+//! @return True if the save operation was successful, false otherwise.
 bool Campaign::saveToFile(const string& filename) {
     ofstream file(filename);
     if (!file.is_open()) {
@@ -109,6 +131,9 @@ bool Campaign::saveToFile(const string& filename) {
     return true;
 }
 
+//! Loads campaign data from a file.
+//! @param filename The name of the file containing campaign data.
+//! @return True if the load operation was successful, false otherwise.
 bool Campaign::loadFromFile(const string& filename) {
     ifstream file(filename);
     if (!file.is_open()) {
@@ -146,6 +171,7 @@ bool Campaign::loadFromFile(const string& filename) {
     return true;
 }
 
+//! Displays information about the campaign, including maps and connections.
 void Campaign::display() const {
     cout << name << "\nMaps:\n";
     for (const auto& mapName : maps) {

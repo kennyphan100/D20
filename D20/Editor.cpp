@@ -1,3 +1,7 @@
+//! @file 
+//! @brief Implementation file for Editor.h
+//!
+
 #include "Editor.h"
 #include "Character.h"
 #include "Campaign.h"
@@ -12,9 +16,15 @@
 
 using namespace std;
 
+//! Constructor for Editor class.
 Editor::Editor() {
 }
 
+//! @brief Run the map editor.
+//! 
+//! This function provides a menu-driven interface for creating, editing maps, creating and editing campaigns, and exiting the editor.
+//! 
+//! @return False if the user chooses to exit the editor, true otherwise.
 bool Editor::runEditor() {
     string choice;
     while(true) {
@@ -53,6 +63,9 @@ bool Editor::runEditor() {
     }
 }
 
+//! @brief Creates a new map.
+//! 
+//! This function guides the user through the process of creating a new map, setting
 void Editor::createMap() {
     try {
         int width;
@@ -173,6 +186,9 @@ void Editor::createMap() {
     }
 }
 
+//! @brief Edits an existing map.
+//! 
+//! This function allows the user to select an existing map and edit its contents by 
 void Editor::editMap() {
     Map* selectedMap = selectMap();
     if (selectedMap) {
@@ -246,6 +262,10 @@ void Editor::editMap() {
     }
 }
 
+//! @brief Create a new campaign.
+//! 
+//! This function prompts the user to enter the name of a new campaign, creates the necessary directories,
+//! and saves campaign information to a file.
 void Editor::createCampaign() {
     string campaignName;
     filesystem::path dirPathCampaign, dirPathMapsInCampaign, infoFilePath;
@@ -288,6 +308,10 @@ void Editor::createCampaign() {
     }
 }
 
+//! @brief Edit an existing campaign.
+//! 
+//! This function allows the user to edit an existing campaign by adding or removing maps, connecting maps,
+//! and saving the changes.
 void Editor::editCampaign() {
     Campaign* selectedCampaign = selectCampaign();
 
@@ -375,6 +399,9 @@ void Editor::editCampaign() {
     delete selectedCampaign;
 }
 
+//! @brief Display all available maps.
+//! 
+//! This function lists all map files present in the maps directory.
 void Editor::displayAllMaps() {
     string directoryPath = "./data/maps";
     int index = 1;
@@ -405,6 +432,11 @@ void Editor::displayAllMaps() {
     }
 }
 
+//! @brief Display all maps in a specific campaign.
+//! 
+//! This function lists all map files present in the specified campaign's maps directory.
+//! 
+//! @param campaignName The name of the campaign.
 void Editor::displayAllMapsInCampaign(const string& campaignName) {
     string directoryPath = "./data/campaigns/" + campaignName + "/maps"; 
     int index = 1; 
@@ -435,6 +467,9 @@ void Editor::displayAllMapsInCampaign(const string& campaignName) {
     }
 }
 
+//! @brief Display all available campaigns.
+//! 
+//! This function lists all campaign directories present in the campaigns directory
 void Editor::displayAllCampaigns() {
     string directoryPath = "./data/campaigns/";  
     int index = 1; 
@@ -461,6 +496,11 @@ catch (const exception& e) {
 }
 }
 
+//! @brief Select a map from the available maps.
+//! 
+//! This function prompts the user to select a map from the available maps and loads the selected map.
+//! 
+//! @return A pointer to the selected map.
 Map* Editor::selectMap() {
     string directoryPath = "./data/maps";
     vector<string> mapFiles;
@@ -508,6 +548,14 @@ Map* Editor::selectMap() {
     }
 }
 
+//! @brief Select a map from a specific campaign.
+//! 
+//! This function prompts the user to select a map from the maps directory of the specified campaign
+//! and loads the selected map.
+//! 
+//! @param campaignName The name of the campaign.
+//! @param call A string indicating whether the selection is for 'from' or 'to' map in case of connecting maps.
+//! @return A pointer to the selected map.
 Map* Editor::selectMapInCampaign(const string& campaignName, const string& call) {
     string directoryPath = "./data/campaigns/" + campaignName + "/maps";
     vector<string> mapFiles;
@@ -564,6 +612,11 @@ Map* Editor::selectMapInCampaign(const string& campaignName, const string& call)
     }
 }
 
+//! @brief Select a campaign to edit.
+//! 
+//! This function prompts the user to select a campaign from the available campaigns and loads the selected campaign.
+//! 
+//! @return A pointer to the selected campaign
 Campaign* Editor::selectCampaign() {
     string directoryPath = "./data/campaigns/";
     vector<filesystem::path> campaignDirectories;
@@ -607,6 +660,12 @@ Campaign* Editor::selectCampaign() {
     return selectedCampaign;
 }
 
+//! @brief Count the number of map files in a directory.
+//! 
+//! This function counts the number of map files present in the specified directory.
+//! 
+//! @param directoryPath The path to the directory containing map files.
+//! @return The count of map files.
 int Editor::countMapFiles(const string& directoryPath) {
     using namespace filesystem;
     int fileCount = 0;

@@ -1,27 +1,46 @@
+//! @file 
+//! @brief Implementation file for MapGameBuilder.h
+//!
+
 #include "MapGameBuilder.h"
 #include <fstream>
 #include <limits>
 #include <stdexcept>
 
+//! @file MapGameBuilder.h
+//! @brief Constructor for MapGameBuilder.
+//! Initializes a MapGameBuilder object with the specified filename and level, and reads the map from the file.
+//! @param filename The name of the file containing the map.
+//! @param level The game level.
 MapGameBuilder::MapGameBuilder(const string& filename, int level)
     : filename(filename), gameLevel(level), map(nullptr) {
     readMapFromFile(filename);
     adaptContentsToLevel();
 }
 
+//! @brief Destructor for MapGameBuilder.
+//! Deallocates memory for the map
 MapGameBuilder::~MapGameBuilder() {
     delete map;
 }
 
+//! @brief Reset the MapGameBuilder.
+//! Deallocates memory for the current map and sets it to nullptr.
 void MapGameBuilder::reset() {
     delete map;
     map = nullptr;
 }
 
+//! @brief Get the map.
+//! Returns a pointer to the map.
+//! @return A pointer to the map.
 Map* MapGameBuilder::getMap() const {
     return map;
 }
 
+//! @brief Read a map from file.
+//! Reads a map from the specified file, parses it, and creates a map object.
+//! @param newFilename The name of the file containing the map.
 void MapGameBuilder::readMapFromFile(const string& newFilename) {
     filename = newFilename;
     reset();
@@ -78,6 +97,8 @@ void MapGameBuilder::readMapFromFile(const string& newFilename) {
     }
 }
 
+//! @brief Adapt the contents of the map based on the game level.
+//! Placeholder function for adapting map contents based on the game level.
 void MapGameBuilder::adaptContentsToLevel() {
     /* Placeholder logic 
     for (Character& character : map->getCharacters()) {

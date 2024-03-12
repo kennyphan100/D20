@@ -109,8 +109,13 @@ int main() {
             Shield ironShield("Iron Shield");
             Boots leatherBoots("Leather Boots");
 
+            cout << "Equipping a piece of armor..." << endl;
             myCharacter->equipArmor(&diamondArmor);
+
+            cout << "Equipping a piece of shield..." << endl;
             myCharacter->equipShield(&ironShield);
+
+            cout << "Equipping a piece of boots..." << endl;
             myCharacter->equipBoots(&leatherBoots);
 
         }
