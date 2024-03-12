@@ -26,7 +26,6 @@ class Editor {
 		void displayAllCampaigns();
 		void displayAllMapsInCampaign(const string& campaignName);
 		int countMapFiles(const string& directoryPath);
-		//void verifytAndSave();
 };
 
 #endif

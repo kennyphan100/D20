@@ -43,8 +43,8 @@ class Character : public Observable {
 protected:
     int level;
     CharacterType characterType;
-    std::array<int, 6> abilityScores; // STR, DEX, CON, INT, WIS, CHA
-    std::array<int, 6> abilityModifiers;
+    array<int, 6> abilityScores; // STR, DEX, CON, INT, WIS, CHA
+    array<int, 6> abilityModifiers;
     int hitPoints;
     int armorClass;
     int attackBonus;

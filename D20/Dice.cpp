@@ -9,6 +9,8 @@
 #include <iostream>
 #include <set>
 
+using namespace std;
+
 //! Constructor for Dice class.
 //! @return new Dice object
 Dice::Dice() {
@@ -19,7 +21,7 @@ Dice::Dice() {
 //! @param sides The number of sides of the dice.
 //! @return The result of the dice roll.
 int Dice::rollSingleDice(int sides) {
-    std::uniform_int_distribution<int> dist(1, sides);
+    uniform_int_distribution<int> dist(1, sides);
     return dist(rng);
 }
 
@@ -28,16 +30,16 @@ int Dice::rollSingleDice(int sides) {
 //! y is the type of dice (number of sides), and z (optional) is an additional modifier.
 //! @param input The input string specifying the dice roll.
 //! @return The total result of the dice roll.
-int Dice::rollDice(const std::string& input) {
-    std::regex dicePattern(R"((\d+)d(\d+)(\+\d+)?)");
-    std::smatch matches;
+int Dice::rollDice(const string& input) {
+    regex dicePattern(R"((\d+)d(\d+)(\+\d+)?)");
+    smatch matches;
 
-    const std::set<int> validDiceSides = { 4, 6, 8, 10, 12, 20, 100 }; // Set of valid dice types
+    const set<int> validDiceSides = { 4, 6, 8, 10, 12, 20, 100 }; // Set of valid dice types
 
-    if (std::regex_match(input, matches, dicePattern)) {
-        int x = std::stoi(matches[1].str()); // Number of dice
-        int y = std::stoi(matches[2].str()); // Type of dice
-        int z = (matches[3].matched) ? std::stoi(matches[3].str().substr(1)) : 0; // Optional addition, default to 0
+    if (regex_match(input, matches, dicePattern)) {
+        int x = stoi(matches[1].str()); // Number of dice
+        int y = stoi(matches[2].str()); // Type of dice
+        int z = (matches[3].matched) ? stoi(matches[3].str().substr(1)) : 0; // Optional addition, default to 0
 
         // Validate the dice type
         if (validDiceSides.find(y) == validDiceSides.end()) {

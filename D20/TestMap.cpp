@@ -32,7 +32,7 @@ void TestMap::testSetCellInBounds(void)
 // Test Case: Cell coordinates are out of bounds.
 void TestMap::testSetCellOutOfBounds(void)
 {
-	CPPUNIT_ASSERT_THROW(MapObjectWithExistingPath->setCell(10, 10, Cell::WALL), std::out_of_range);
+	CPPUNIT_ASSERT_THROW(MapObjectWithExistingPath->setCell(10, 10, Cell::WALL), out_of_range);
 }
 
 // Test Case: Cell coordinate is empty

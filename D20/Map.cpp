@@ -11,6 +11,8 @@
 #include <vector>
 #include <filesystem>
 
+using namespace std;
+
 //! Represents a point in 2D space.
 struct Point {
     int x;
@@ -23,7 +25,7 @@ struct Point {
     }
 };
 
-Map::Map() : width(0), height(0), name(" "), grid(0, std::vector<Cell>(0, Cell::EMPTY))
+Map::Map() : width(0), height(0), name(" "), grid(0, vector<Cell>(0, Cell::EMPTY))
 {
 }
 
@@ -31,7 +33,7 @@ Map::Map() : width(0), height(0), name(" "), grid(0, std::vector<Cell>(0, Cell::
 //! @param width : The width of the Map to be created
 //! @param height : The height of the Map to be created
 //! @return new Map object
-Map::Map(int width, int height, string name) : width(width), height(height), name(name), grid(height, std::vector<Cell>(width, Cell::EMPTY))
+Map::Map(int width, int height, string name) : width(width), height(height), name(name), grid(height, vector<Cell>(width, Cell::EMPTY))
 {
 }
 
@@ -41,7 +43,7 @@ Map::Map(int width, int height, string name) : width(width), height(height), nam
 //! @param x The x-coordinate of the cell.
 //! @param y The y-coordinate of the cell.
 //! @return True if the cell is traversable, false otherwise.
-bool isTraversable(const std::vector<std::vector<Cell>>& grid, int x, int y) {
+bool isTraversable(const vector<vector<Cell>>& grid, int x, int y) {
     return x >= 0 && x < grid[0].size() && y >= 0 && y < grid.size() &&
         (grid[y][x] != Cell::WALL && grid[y][x] != Cell::OCCUPIED);
 }
@@ -61,10 +63,10 @@ bool Map::isEmptyCell(int x, int y) {
 //! @param x The x-coordinate of the cell.
 //! @param y The y-coordinate of the cell.
 //! @param cellType The type of the cell to be set.
-//! @throw std::out_of_range If the coordinates are out of bounds.
+//! @throw out_of_range If the coordinates are out of bounds.
 void Map::setCell(int x, int y, Cell cellType) {
     if (x < 0 || x >= width || y < 0 || y >= height) {
-        throw std::out_of_range("Cell coordinates are out of bounds.");
+        throw out_of_range("Cell coordinates are out of bounds.");
     }
     grid[y][x] = cellType;
     notify();
@@ -74,8 +76,8 @@ void Map::setCell(int x, int y, Cell cellType) {
 //! Uses Breadth First Search (BFS) algorithm to find the path.
 //! @return True if a path exists, false otherwise.
 bool Map::verifyMap() {
-    std::queue<Point> q;
-    std::vector<std::vector<bool>> visited(height, std::vector<bool>(width, false));
+    queue<Point> q;
+    vector<vector<bool>> visited(height, vector<bool>(width, false));
 
     // Starting point
     Point start(0, 0);
@@ -83,7 +85,7 @@ bool Map::verifyMap() {
     Point end(width - 1, height - 1);
 
     // Directions to move in the grid (up, down, left, right)
-    std::vector<Point> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
+    vector<Point> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
 
     // Initialize BFS from the starting point
     q.push(start);
@@ -122,32 +124,32 @@ void Map::display() const {
         for (int x = 0; x < width; ++x) {
             switch (grid[y][x]) {
             case Cell::EMPTY:
-                std::cout << "_ ";
+                cout << "_ ";
                 break;
             case Cell::WALL:
-                std::cout << "W ";
+                cout << "W ";
                 break;
             case Cell::OCCUPIED:
-                std::cout << "O ";
+                cout << "O ";
                 break;
             case Cell::START:
-                std::cout << "S ";
+                cout << "S ";
                 break;
             case Cell::FINISH:
-                std::cout << "F ";
+                cout << "F ";
                 break;
             case Cell::DOOR:
-                std::cout << "D ";
+                cout << "D ";
                 break;
             case Cell::CHEST:
-                std::cout << "C ";
+                cout << "C ";
                 break;
             case Cell::PLAYER:
-                std::cout << "P ";
+                cout << "P ";
                 break;
             }
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 }
 
@@ -170,7 +172,7 @@ Cell Map::getCell(int x, int y) const {
         return grid[y][x];
     }
     else {
-        throw std::out_of_range("Cell coordinates are out of bounds.");
+        throw out_of_range("Cell coordinates are out of bounds.");
     }
 }
 
@@ -178,15 +180,15 @@ string Map::getName() const {
     return name;
 }
 
-bool Map::saveToFile(const std::string& filename) {
-    std::ofstream file(filename);
+bool Map::saveToFile(const string& filename) {
+    ofstream file(filename);
     if (!file.is_open()) {
-        std::cerr << "Failed to open file '" << filename << "' for writing.\n";
+        cerr << "Failed to open file '" << filename << "' for writing.\n";
         return false;
     }
 
     // Write the map dimensions first (optional but useful for loading)
-    file << width << " " << height << std::endl;
+    file << width << " " << height << endl;
 
     // Loop through each cell of the map and write its type to the file
     for (int y = 0; y < height; ++y) {
@@ -222,42 +224,42 @@ bool Map::saveToFile(const std::string& filename) {
                 file << "X ";  // Unknown or other types
             }
         }
-        file << std::endl;  // Newline after each row
+        file << endl;  // Newline after each row
     }
 
     file.close();
     return true;  // Return true to indicate successful saving
 }
 
-bool Map::loadFromFile(const std::string& filename) {
-    std::ifstream file(filename);
+bool Map::loadFromFile(const string& filename) {
+    ifstream file(filename);
     if (!file.is_open()) {
-        std::cerr << "Failed to open file: " << filename << std::endl;
+        cerr << "Failed to open file: " << filename << endl;
         return false;
     }
 
-    std::filesystem::path filePath(filename);
+    filesystem::path filePath(filename);
     setName(filePath.stem().string());
 
     int width, height;
     file >> width >> height;
-    file.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Skip to the next line
+    file.ignore(numeric_limits<streamsize>::max(), '\n'); // Skip to the next line
 
     // Optional: Check if width and height read successfully
     if (file.fail()) {
-        std::cerr << "Error reading map dimensions." << std::endl;
+        cerr << "Error reading map dimensions." << endl;
         return false;
     }
 
-    std::vector<std::vector<Cell>> tempGrid(height, std::vector<Cell>(width, Cell::EMPTY)); // Create a temporary grid
+    vector<vector<Cell>> tempGrid(height, vector<Cell>(width, Cell::EMPTY)); // Create a temporary grid
 
-    std::string line;
+    string line;
     for (int y = 0; y < height && getline(file, line); ++y) {
-        std::istringstream lineStream(line);
+        istringstream lineStream(line);
         for (int x = 0; x < width; ++x) {
             char cellTypeChar;
             if (!(lineStream >> cellTypeChar)) {
-                std::cerr << "Error reading map at (" << x << ", " << y << ")." << std::endl;
+                cerr << "Error reading map at (" << x << ", " << y << ")." << endl;
                 return false; // Error handling
             }
 

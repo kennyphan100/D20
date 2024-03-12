@@ -7,14 +7,14 @@
 class MapEditorBuilder : public MapBuilder {
 private:
     Map* map;
-    std::string filename;
+    string filename;
 
 public:
-    MapEditorBuilder(const std::string& filename);
+    MapEditorBuilder(const string& filename);
     ~MapEditorBuilder();
     void reset() override;
     Map* getMap() const override;
-    void readMapFromFile(const std::string& filename) override;
+    void readMapFromFile(const string& filename) override;
 };
 
 #endif // MAPEDITORBUILDER_H
