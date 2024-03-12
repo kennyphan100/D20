@@ -6,12 +6,12 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "Dice.h"
-#include "Item.h"
+#include "../Dice/Dice.h"
+#include "../Item/Item.h"
 #include <memory>
 #include <array>
 #include <random>
-#include "Observable.h"
+#include "../Observable.h"
 
 using namespace std;
 

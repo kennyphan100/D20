@@ -5,7 +5,7 @@
 #pragma once
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include "Dice.h"
+#include "../Dice/Dice.h"
 
 /**
  * @class TestDice

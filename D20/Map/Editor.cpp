@@ -3,11 +3,11 @@
 //!
 
 #include "Editor.h"
-#include "Character.h"
+#include "../Character/Character.h"
 #include "Campaign.h"
-#include "Item.h"
+#include "../Item/Item.h"
 #include "Map.h"
-#include "CharacterObserver.h"
+#include "../Character/CharacterObserver.h"
 #include <iostream>
 #include <string>
 #include <cppunit/CompilerOutputter.h>

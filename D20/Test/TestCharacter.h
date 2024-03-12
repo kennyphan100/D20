@@ -8,7 +8,7 @@
 #pragma once
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include "Character.h"
+#include "../Character/Character.h"
 
 /**
  * @class TestCharacter

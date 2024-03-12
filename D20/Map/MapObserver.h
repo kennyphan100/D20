@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Observer.h"
+#include "../Observer.h"
 #include "Map.h"
 #include <string>
 

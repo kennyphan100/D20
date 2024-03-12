@@ -8,7 +8,7 @@
 
 #include <vector>
 #include <iostream>
-#include "Observable.h"
+#include "../Observable.h"
 
 /**
  * @enum Cell

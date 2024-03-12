@@ -5,7 +5,7 @@
 #pragma once
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include "Item.h"
+#include "../Item/Item.h"
 
 /**
  * @class TestItem

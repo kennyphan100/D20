@@ -2,18 +2,18 @@
 //! @brief Main driver file to create and execute the different parts (Character, Map, Item, and Dice) and the test suite.
 //!
 
-#include "Dice.h"
+#include "Dice/Dice.h"
 #include <iostream>
-#include "Character.h"
-#include "Item.h"
-#include "Map.h"
+#include "Character/Character.h"
+#include "Item/Item.h"
+#include "Map/Map.h"
 #include <cppunit/TestRunner.h>
 #include <cppunit/CompilerOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TestRunner.h>
-#include "CharacterObserver.h"
-#include "MapObserver.h"
-#include "Editor.h"
+#include "Character/CharacterObserver.h"
+#include "Map/MapObserver.h"
+#include "Map/Editor.h"
 
 using namespace std;
 

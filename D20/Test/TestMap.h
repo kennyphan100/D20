@@ -5,7 +5,7 @@
 #pragma once
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include "Map.h"
+#include "../Map/Map.h"
 
 /**
  * @class TestMap

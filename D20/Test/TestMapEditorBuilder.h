@@ -1,22 +1,22 @@
 //! @file
-//! @brief File containing the Test Class declaration for MapGameBuilder
+//! @brief File containing the Test Class declaration for MapEditorBuilder
 
-#ifndef TESTMAPGAMEBUILDER_H
-#define TESTMAPGAMEBUILDER_H
+#ifndef TESTMAPEDITORBUILDER_H
+#define TESTMAPEDITORBUILDER_H
 
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include "MapGameBuilder.h"
+#include "../Map/MapEditorBuilder.h"
 
 /**
- * @class TestMapGameBuilder
- * @brief Test suite for the MapGameBuilder class.
+ * @class TestMapEditorBuilder
+ * @brief Test suite for the MapEditorBuilder class.
  *
- * This set of unit tests is designed to validate the functionalities of the MapGameBuilder class,
+ * This set of unit tests is designed to validate the functionalities of the MapEditorBuilder class,
  * including map dimensions, start and finish positions, as well as walls and occupied cells configuration.
  */
-class TestMapGameBuilder : public CppUnit::TestFixture {
-    CPPUNIT_TEST_SUITE(TestMapGameBuilder);
+class TestMapEditorBuilder : public CppUnit::TestFixture {
+    CPPUNIT_TEST_SUITE(TestMapEditorBuilder);
     CPPUNIT_TEST(testMapDimensions);
     CPPUNIT_TEST(testStartAndFinishPositions);
     CPPUNIT_TEST(testWallsAndOccupiedCells);
@@ -31,7 +31,7 @@ public:
     void testWallsAndOccupiedCells();
 
 private:
-    MapGameBuilder* builder;
+    MapEditorBuilder* builder;
 };
 
-#endif // TESTMAPGAMEBUILDER_H
+#endif // TESTMAPEDITORBUILDER_H

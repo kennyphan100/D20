@@ -1,25 +1,42 @@
-// MapEditorBuilder.cpp
+//! @file 
+//! @brief Implementation file for MapEditorBuilder.h
+//!
+
 #include "MapEditorBuilder.h"
 #include <fstream>
 #include <sstream>
 
+//! @file MapEditorBuilder.h
+//! @brief Constructor for MapEditorBuilder.
+//! Initializes a MapEditorBuilder object with the specified filename and reads the map from the file.
+//! @param filename The name of the file containing the map.
 MapEditorBuilder::MapEditorBuilder(const string& filename) : filename(filename), map(nullptr) {
     readMapFromFile(this->filename);
 }
 
+//! @brief Destructor for MapEditorBuilder.
+//! Deallocates memory for the map.
 MapEditorBuilder::~MapEditorBuilder() {
     delete map;
 }
 
+//! @brief Reset the MapEditorBuilder.
+//! Deallocates memory for the current map and sets it to nullptr.
 void MapEditorBuilder::reset() {
     delete map;
     map = nullptr;
 }
 
+//! @brief Get the map.
+//! Returns a pointer to the map.
+//! @return A pointer to the map.
 Map* MapEditorBuilder::getMap() const {
     return map;
 }
 
+//! @brief Read a map from file.
+//! Reads a map from the specified file, parses it, and creates a map object.
+//! @param newFilename The name of the file containing the map.
 void MapEditorBuilder::readMapFromFile(const string& newFilename) {
     filename = newFilename;
     reset();

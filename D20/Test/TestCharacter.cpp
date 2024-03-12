@@ -4,7 +4,7 @@
 
 #include "TestCharacter.h"
 #include <cppunit/config/SourcePrefix.h>
-#include "Character.h"
+#include "../Character/Character.h"
 #include <iostream>
 #include <cassert>
 
