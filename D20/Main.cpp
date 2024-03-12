@@ -28,7 +28,7 @@ string toLowercase(const string& str) {
     return result;
 }
 
-//! main() function. Entry point of the program
+//! main() function. Entry point of the program.
 //! It does the following: 
 //! 1. Create a character given the user's input for the desired level and class type
 //! 2. Create a map given the user's input for the size and allow the placement of walls and other objects
