@@ -11,7 +11,7 @@
 //! setUp() method that is executed before each test case.
 void TestCharacter::setUp() {
     // Example setup: Initialize a Level 1 Fighter for testing
-    character = new Character(1, CharacterType::FIGHTER);
+    character = new Character(1, FighterType::TANK);
 }
 
 //! tearDown() method that is executed after each test case. Typically used for deallocation.
@@ -24,7 +24,7 @@ void TestCharacter::tearDown() {
 void TestCharacter::testConstructor() {
     CPPUNIT_ASSERT(character != nullptr);
     CPPUNIT_ASSERT_EQUAL(1, character->getLevel());
-    CPPUNIT_ASSERT_EQUAL(CharacterType::FIGHTER, character->getCharacterType());
+    CPPUNIT_ASSERT_EQUAL(FighterType::TANK, character->getFighterType());
 }
 
 //! Test Case: Testing ability score generation within expected range.
