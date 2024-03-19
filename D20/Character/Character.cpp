@@ -11,10 +11,10 @@ using namespace std;
 /**
  * @brief Constructs a new Character with a specified level and character type.
  * @param level The starting level of the character.
- * @param characterType The class type of the character.* / "
+ * @param fighterType The class type of the character.* / "
  * @return character object
  */
-Character::Character(int level, CharacterType characterType) : level(level), characterType(characterType), armor(nullptr) {
+Character::Character(int level, FighterType fighterType) : level(level), fighterType(fighterType), armor(nullptr) {
     generateAbilityScores();
     calculateAbilityModifiers();
     calculateHitPoints();
@@ -175,8 +175,8 @@ int Character::getLevel() const {
 
 //! Retrieves the character type of the character.
 //! @return The character type of the character.
-CharacterType Character::getCharacterType() const {
-    return characterType;
+FighterType Character::getFighterType() const {
+    return fighterType;
 }
 
 //! Retrieves the ability score at the specified index.
@@ -217,9 +217,26 @@ int Character::getDamageBonus() const {
     return damageBonus;
 }
 
+void Character::levelUp()
+{
+    this->level += 1;
+
+    int diceValue = dice.rollDice("1d10");
+    this->hitPoints += diceValue;
+
+    int constitutionModifier = abilityScores[2];
+    this->hitPoints += constitutionModifier;
+
+    this->attackBonus += 1;
+
+    int numberOfAttacksPerRound = floor(getLevel() / 5);
+
+    this->nbOfAttacksPerRound = numberOfAttacksPerRound;
+}
+
 //! Prints information about the character.
 void Character::printCharacter() const {
-    cout << "Class: " << characterTypeToString(getCharacterType()) << "\n"
+    cout << "Class: " << fighterTypeToString(getFighterType()) << "\n"
         << "Level: " << level << "\n"
         << "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
         << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
@@ -250,5 +267,17 @@ string characterTypeToString(CharacterType characterType) {
     case CharacterType::BARD: return "BARD";
     case CharacterType::BARBARIAN: return "BARBARIAN";
     default: return "Unknown CharacterType";
+    }
+}
+
+//! Converts a fighter type enum value to its string representation.
+//! @param fighterType The character type enum value.
+//! @return The string representation of the fighter type.
+string fighterTypeToString(FighterType fighterType) {
+    switch (fighterType) {
+    case FighterType::BULLY: return "BULLY";
+    case FighterType::NIMBLE: return "NIMBLE";
+    case FighterType::TANK: return "TANK";
+    default: return "Unknown FighterType";
     }
 }

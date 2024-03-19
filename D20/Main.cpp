@@ -14,6 +14,7 @@
 #include "Character/CharacterObserver.h"
 #include "Map/MapObserver.h"
 #include "Map/Editor.h"
+#include "Character/CharacterDirector.h"
 
 using namespace std;
 
@@ -62,21 +63,21 @@ int main() {
 
         if (part._Equal("1"))
         {
-            string characterType;
-            cout << "Enter the class of your desired character (e.g., Fighter): ";
-            cin >> characterType;
-            characterType = toLowercase(characterType);
+            string fighterType;
+            cout << "Enter the desired type of fighter for your character (Bully/Nimble/Tank): ";
+            cin >> fighterType;
+            fighterType = toLowercase(fighterType);
 
-            while (!characterType._Equal("fighter")) {
+            while (!fighterType._Equal("bully") && !fighterType._Equal("nimble") && !fighterType._Equal("tank")) {
                 cout << "This class does not exist yet. Try another class: ";
-                cin >> characterType;
+                cin >> fighterType;
             }
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "\n";
 
             int level;
             while (true) {
-                cout << "Enter the level of your desired character (e.g., 10): ";
+                cout << "Enter the level of your desired character (e.g., 1): ";
                 string input;
                 getline(cin, input);
                 stringstream ss(input);
@@ -92,31 +93,47 @@ int main() {
                 else {
                     cerr << "Input format must be a positive integer value.\n" << endl;
                 }
-                
             }
             cout << "\n";
 
-            myCharacter = new Character(level, CharacterType::FIGHTER);
+            CharacterDirector director;
+            Character* newCharacter;
+            CharacterBuilder* characterBuilder;
 
-            cout << " ===== Successfully created a character with the following stats: ===== " << endl;
-            myCharacter->printCharacter();
+            if (fighterType._Equal("bully")) {
+                characterBuilder = new BullyFighterBuilder;
+            }
+            else if (fighterType._Equal("nimble")) {
+                characterBuilder = new NimbleFighterBuilder;
+            }
+            else {
+                characterBuilder = new TankFighterBuilder;
+            }
 
-            cout << "\n===== TESTING CHARACTER OBSERVER: =====\n" << endl;
+            director.setBuilder(characterBuilder);
+            newCharacter = director.buildCharacter(level);
+            
+            cout << " ===== Successfully created a new character with the following stats: ===== " << endl;
+            newCharacter->printCharacter();
+            
+            //myCharacter->printCharacter();
 
-            CharacterObserver *co = new CharacterObserver(myCharacter);
+            //cout << "\n===== TESTING CHARACTER OBSERVER: =====\n" << endl;
 
-            Armor diamondArmor("Diamond Armor");
-            Shield ironShield("Iron Shield");
-            Boots leatherBoots("Leather Boots");
+            //CharacterObserver *co = new CharacterObserver(myCharacter);
 
-            cout << "Equipping a piece of armor..." << endl;
-            myCharacter->equipArmor(&diamondArmor);
+            //Armor diamondArmor("Diamond Armor");
+            //Shield ironShield("Iron Shield");
+            //Boots leatherBoots("Leather Boots");
 
-            cout << "Equipping a piece of shield..." << endl;
-            myCharacter->equipShield(&ironShield);
+            //cout << "Equipping a piece of armor..." << endl;
+            //myCharacter->equipArmor(&diamondArmor);
 
-            cout << "Equipping a piece of boots..." << endl;
-            myCharacter->equipBoots(&leatherBoots);
+            //cout << "Equipping a piece of shield..." << endl;
+            //myCharacter->equipShield(&ironShield);
+
+            //cout << "Equipping a piece of boots..." << endl;
+            //myCharacter->equipBoots(&leatherBoots);
 
         }
         else if (part._Equal("2"))

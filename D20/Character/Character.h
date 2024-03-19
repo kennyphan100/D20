@@ -17,6 +17,8 @@ using namespace std;
 
 enum class CharacterType { FIGHTER, SORCERER, MONK, PALADIN, BARD, BARBARIAN };
 
+enum class FighterType { BULLY, NIMBLE, TANK };
+
 /**
  * @class Character
  * @brief Class for generating player characters in a d20 system.
@@ -40,15 +42,16 @@ enum class CharacterType { FIGHTER, SORCERER, MONK, PALADIN, BARD, BARBARIAN };
  * <random> provides a robust solution for randomness, essential for role-playing game mechanics.
  */ 
 class Character : public Observable {
-protected:
+public:
     int level;
-    CharacterType characterType;
+    FighterType fighterType;
     array<int, 6> abilityScores; // STR, DEX, CON, INT, WIS, CHA
     array<int, 6> abilityModifiers;
     int hitPoints;
     int armorClass;
     int attackBonus;
     int damageBonus;
+    int nbOfAttacksPerRound;
     Dice dice;
 
     Armor* armor;
@@ -60,8 +63,7 @@ protected:
 
     Backpack* backpack;
 
-public:
-    Character(int level, CharacterType characterType);
+    Character(int level, FighterType fighterType);
 
     void generateAbilityScores();
     void calculateAbilityModifiers();
@@ -85,7 +87,8 @@ public:
     Helmet* getHelmet() const;
 
     int getLevel() const;
-    CharacterType getCharacterType() const;
+    //CharacterType getCharacterType() const;
+    FighterType getFighterType() const;
     int getAbilityScore(int index) const;
     int getAbilityModifier(int index) const;
     int getHitPoints() const;
@@ -93,10 +96,11 @@ public:
     int getAttackBonus() const;
     int getDamageBonus() const;
 
+    void levelUp();
     void printCharacter() const;
 
 };
 
-string characterTypeToString(CharacterType characterType);
+string fighterTypeToString(FighterType fighterType);
 
 #endif

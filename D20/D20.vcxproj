@@ -134,6 +134,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Character\Character.h" />
+    <ClInclude Include="Character\CharacterBuilder.h" />
+    <ClInclude Include="Character\CharacterDirector.h" />
     <ClInclude Include="Character\CharacterObserver.h" />
     <ClInclude Include="Dice\Dice.h" />
     <ClInclude Include="Item\Item.h" />
@@ -156,6 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Character\Character.cpp" />
+    <ClCompile Include="Character\CharacterBuilder.cpp" />
+    <ClCompile Include="Character\CharacterDirector.cpp" />
     <ClCompile Include="Character\CharacterObserver.cpp" />
     <ClCompile Include="Dice\Dice.cpp" />
     <ClCompile Include="Item\Item.cpp" />
