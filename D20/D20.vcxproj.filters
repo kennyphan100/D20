@@ -75,10 +75,13 @@
     <ClInclude Include="Test\TestMapGameBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Character\CharacterBuilder.h">
+    <ClInclude Include="Character\CharacterStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Character\CharacterDirector.h">
+    <ClInclude Include="Character\HumanPlayerStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Character\FriendlyStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -138,12 +141,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Test\TestMapGameBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\CharacterBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\CharacterDirector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
