@@ -199,6 +199,16 @@ int Character::getLevel() const {
     return level;
 }
 
+string Character::getName() const
+{
+    return name;
+}
+
+void Character::setName(string newName)
+{
+    name = newName;
+}
+
 //! Retrieves the character type of the character.
 //! @return The character type of the character.
 FighterType Character::getFighterType() const {
@@ -262,7 +272,8 @@ void Character::levelUp()
 
 //! Prints information about the character.
 void Character::printCharacter() const {
-    cout << "Class: " << fighterTypeToString(getFighterType()) << "\n"
+    cout << "Name: " << name << "\n"
+        << "Class: " << fighterTypeToString(getFighterType()) << "\n"
         << "Level: " << level << "\n"
         << "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
         << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
@@ -279,6 +290,26 @@ void Character::printCharacter() const {
     cout << "Equipped Ring: " << (getRing() ? getRing()->name : "---") << endl;
     cout << "Equipped Helmet: " << (getHelmet() ? getHelmet()->name : "---") << endl;
 
+}
+
+void Character::logCharacter(ostream& out) const {
+    out << "Name: " << name << "\n"
+        << "Class: " << fighterTypeToString(getFighterType()) << "\n"
+        << "Level: " << level << "\n"
+        << "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
+        << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
+        << "DEX: " << abilityScores[1] << " (" << abilityModifiers[1] << "), "
+        << "CON: " << abilityScores[2] << " (" << abilityModifiers[2] << "), "
+        << "INT: " << abilityScores[3] << " (" << abilityModifiers[3] << "), "
+        << "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
+        << "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
+
+    out << "Equipped Armor: " << (getArmor() ? getArmor()->name : "---") << std::endl
+        << "Equipped Shield: " << (getShield() ? getShield()->name : "---") << std::endl
+        << "Equipped Weapon: " << (getWeapon() ? getWeapon()->name : "---") << std::endl
+        << "Equipped Boots: " << (getBoots() ? getBoots()->name : "---") << std::endl
+        << "Equipped Ring: " << (getRing() ? getRing()->name : "---") << std::endl
+        << "Equipped Helmet: " << (getHelmet() ? getHelmet()->name : "---") << std::endl;
 }
 
 //! Converts a character type enum value to its string representation.

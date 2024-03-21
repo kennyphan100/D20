@@ -4,6 +4,7 @@
 
 #include "Dice/Dice.h"
 #include <iostream>
+#include <filesystem>
 #include "Character/Character.h"
 #include "Item/Item.h"
 #include "Map/Map.h"
@@ -79,6 +80,21 @@ int main() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "\n";
 
+            string name, filePath;
+            const string directoryPath = "./data/characters/";
+            while (true) {
+                cout << "Please enter the name of the character: ";
+                getline(cin, name);
+                filePath = directoryPath + name + ".txt";
+
+                if (filesystem::exists(filePath)) {
+                    cerr << "A character with this name already exists. Please choose a different name.\n" << endl;
+                }
+                else {
+                    break;
+                }
+            }
+
             int level;
             while (true) {
                 cout << "Enter the level of your desired character (e.g., 1): ";
@@ -114,24 +130,27 @@ int main() {
                 characterBuilder = new TankFighterBuilder;
             }
 
+            CharacterObserver* co = new CharacterObserver(characterBuilder);
+
             director.setBuilder(characterBuilder);
-            newCharacter = director.buildCharacter(level);
+            newCharacter = director.buildCharacter(level, name);
+            /*CharacterObserver* co = new CharacterObserver(newCharacter);*/
             
             cout << " ===== Successfully created a new character with the following stats: ===== " << endl;
             newCharacter->printCharacter();
             
             //myCharacter->printCharacter();
 
-            //cout << "\n===== TESTING CHARACTER OBSERVER: =====\n" << endl;
+            cout << "\n===== TESTING CHARACTER OBSERVER: =====\n" << endl;
 
-            //CharacterObserver *co = new CharacterObserver(myCharacter);
+            CharacterObserver *co1 = new CharacterObserver(newCharacter);
 
-            //Armor diamondArmor("Diamond Armor");
-            //Shield ironShield("Iron Shield");
-            //Boots leatherBoots("Leather Boots");
+            Armor diamondArmor("Diamond Armor");
+            Shield ironShield("Iron Shield");
+            Boots leatherBoots("Leather Boots");
 
-            //cout << "Equipping a piece of armor..." << endl;
-            //myCharacter->equipArmor(&diamondArmor);
+            cout << "Equipping a piece of armor..." << endl;
+            newCharacter->equipArmor(&diamondArmor);
 
             //cout << "Equipping a piece of shield..." << endl;
             //myCharacter->equipShield(&ironShield);

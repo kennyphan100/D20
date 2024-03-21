@@ -274,6 +274,48 @@ bool Map::loadFromFile(const string& filename) {
     this->height = height;
     this->grid = tempGrid; // Update the map's grid
 
+    ofstream logFile("./game_log.txt", ios::app);
+    if (logFile.is_open()) {
+        logFile << "============ Loaded Map ============" << endl;
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x) {
+                // Assuming Cell is an enum and grid is a 2D vector of Cells
+                // Convert each cell type to an integer or a character
+                switch (grid[y][x]) {
+                case Cell::START:
+                    logFile << "S ";  // Start
+                    break;
+                case Cell::FINISH:
+                    logFile << "F ";  // Finish
+                    break;
+                case Cell::EMPTY:
+                    logFile << "_ ";  // Empty
+                    break;
+                case Cell::WALL:
+                    logFile << "W ";  // Wall
+                    break;
+                case Cell::OCCUPIED:
+                    logFile << "O ";  // Occupied
+                    break;
+                case Cell::PLAYER:
+                    logFile << "P ";  // Player
+                    break;
+                case Cell::DOOR:
+                    logFile << "D ";  // Door
+                    break;
+                case Cell::CHEST:
+                    logFile << "C ";  // Chest
+                    break;
+                default:
+                    logFile << "X ";  // Unknown or other types
+                }
+            }
+            logFile << endl;  // Newline after each row
+        }
+        logFile << "\n";
+        logFile.close();
+    }
+
     return true;
 }
 

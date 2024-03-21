@@ -1,0 +1,375 @@
+============ Dice Roll ============
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Character Creation ============
+Name: kobe
+Class: NIMBLE
+Level: 1
+HP: 10, AC: 12, Attack Bonus: 1, Damage Bonus: 0
+STR: 10 (0), DEX: 15 (2), CON: 11 (0), INT: 5 (-2), WIS: 11 (0), CHA: 12 (1)
+Equipped Armor: ---
+Equipped Shield: ---
+Equipped Weapon: ---
+Equipped Boots: ---
+Equipped Ring: ---
+Equipped Helmet: ---
+
+============ Dice Roll ============
+Roll dice of type 1d6: 3
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 4
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 3
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 3
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 4
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Character Update ============
+Name: kobe
+Class: NIMBLE
+Level: 1
+HP: 10, AC: 12, Attack Bonus: 1, Damage Bonus: 0
+STR: 14 (0), DEX: 15 (2), CON: 15 (0), INT: 13 (-2), WIS: 8 (0), CHA: 9 (1)
+Equipped Armor: Diamond Armor
+Equipped Shield: ---
+Equipped Weapon: ---
+Equipped Boots: ---
+Equipped Ring: ---
+Equipped Helmet: ---
+
+============ Dice Roll ============
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 9
+
+============ Character Creation ============
+Name: gg
+Class: TANK
+Level: 1
+HP: 11, AC: 8, Attack Bonus: 1, Damage Bonus: 0
+STR: 10 (0), DEX: 5 (-2), CON: 12 (1), INT: 8 (-1), WIS: 8 (-1), CHA: 9 (0)
+Equipped Armor: ---
+Equipped Shield: ---
+Equipped Weapon: ---
+Equipped Boots: ---
+Equipped Ring: ---
+Equipped Helmet: ---
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Dice Roll ============
+Roll dice of type 1d6: 3
+
+============ Dice Roll ============
+Roll dice of type 1d6: 4
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Character Update ============
+Name: gg
+Class: TANK
+Level: 1
+HP: 11, AC: 8, Attack Bonus: 1, Damage Bonus: 0
+STR: 12 (0), DEX: 13 (-2), CON: 14 (1), INT: 10 (-1), WIS: 9 (-1), CHA: 9 (0)
+Equipped Armor: Diamond Armor
+Equipped Shield: ---
+Equipped Weapon: ---
+Equipped Boots: ---
+Equipped Ring: ---
+Equipped Helmet: ---
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 1d10: 7
+
+============ Dice Roll ============
+Roll dice of type 1d10: 9
+
+============ Dice Roll ============
+Roll dice of type 1d10: 3
+
+============ Dice Roll ============
+Roll dice of type 1d10: 2
+
+============ Dice Roll ============
+Roll dice of type 1d10: 3
+
+============ Dice Roll ============
+Roll dice of type 1d10: 10
+
+============ Dice Roll ============
+Roll dice of type 1d10: 4
+
+============ Dice Roll ============
+Roll dice of type 1d10: 1
+
+============ Dice Roll ============
+Roll dice of type 1d10: 8
+
+============ Character Creation ============
+Name: test1
+Class: TANK
+Level: 10
+HP: 156, AC: 10, Attack Bonus: 9, Damage Bonus: -1
+STR: 8 (-1), DEX: 11 (0), CON: 11 (0), INT: 9 (0), WIS: 11 (0), CHA: 8 (-1)
+Equipped Armor: ---
+Equipped Shield: ---
+Equipped Weapon: ---
+Equipped Boots: ---
+Equipped Ring: ---
+Equipped Helmet: ---
+
+============ Dice Roll ============
+Roll dice of type 1d6: 4
+
+============ Dice Roll ============
+Roll dice of type 1d6: 3
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Dice Roll ============
+Roll dice of type 1d6: 4
+
+============ Dice Roll ============
+Roll dice of type 1d6: 3
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 3
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 3
+
+============ Dice Roll ============
+Roll dice of type 1d6: 4
+
+============ Dice Roll ============
+Roll dice of type 1d6: 3
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 1
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 5
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 2
+
+============ Dice Roll ============
+Roll dice of type 1d6: 6
+
+============ Character Update ============
+Name: test1
+Class: TANK
+Level: 10
+HP: 156, AC: 10, Attack Bonus: 9, Damage Bonus: -1
+STR: 11 (-1), DEX: 15 (0), CON: 15 (0), INT: 10 (0), WIS: 8 (0), CHA: 10 (-1)
+Equipped Armor: Diamond Armor
+Equipped Shield: ---
+Equipped Weapon: ---
+Equipped Boots: ---
+Equipped Ring: ---
+Equipped Helmet: ---
+

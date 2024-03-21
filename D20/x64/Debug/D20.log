@@ -1,3 +1,35 @@
-﻿  Main.cpp
-C:\devroot\D20\D20\Main.cpp(44,16): warning C4101: 'myCharacter': unreferenced local variable
-  D20.vcxproj -> C:\devroot\D20\x64\Debug\D20.exe
+﻿  AggressorStrategy.cpp
+  Character.cpp
+D:\concordia\comp345\D20\D20\Character\Character.cpp(268,33): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  CharacterBuilder.cpp
+  CharacterDirector.cpp
+  CharacterObserver.cpp
+  FriendlyStrategy.cpp
+  HumanPlayerStrategy.cpp
+  Dice.cpp
+D:\concordia\comp345\D20\D20\Dice\Dice.cpp(18,18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Item.cpp
+D:\concordia\comp345\D20\D20\Item\Item.cpp(233,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Main.cpp
+D:\concordia\comp345\D20\D20\Main.cpp(45,16): warning C4101: 'myCharacter': unreferenced local variable
+  Campaign.cpp
+  Editor.cpp
+  LoggerObserver.cpp
+  Map.cpp
+  MapEditorBuilder.cpp
+  MapGameBuilder.cpp
+  MapObserver.cpp
+  LoggerObservable.cpp
+  Observable.cpp
+  Observer.cpp
+  Generating Code...
+  Compiling...
+  TestCharacter.cpp
+  TestDice.cpp
+D:\concordia\comp345\D20\D20\Test\TestDice.cpp(29,2): warning C4002: too many arguments for function-like macro invocation 'CPPUNIT_ASSERT_NO_THROW'
+  TestItem.cpp
+  TestMap.cpp
+  TestMapEditorBuilder.cpp
+  TestMapGameBuilder.cpp
+  Generating Code...
+  D20.vcxproj -> D:\concordia\comp345\D20\x64\Debug\D20.exe

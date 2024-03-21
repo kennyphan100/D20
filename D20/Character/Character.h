@@ -44,6 +44,7 @@ enum class FighterType { BULLY, NIMBLE, TANK };
  */ 
 class Character : public Observable {
 public:
+    string name;
     int level;
     FighterType fighterType;
     array<int, 6> abilityScores; // STR, DEX, CON, INT, WIS, CHA
@@ -94,6 +95,8 @@ public:
     Helmet* getHelmet() const;
 
     int getLevel() const;
+    string getName() const;
+    void setName(string newName);
     //CharacterType getCharacterType() const;
     FighterType getFighterType() const;
     int getAbilityScore(int index) const;
@@ -105,6 +108,9 @@ public:
 
     void levelUp();
     void printCharacter() const;
+    void logCharacter(ostream& out) const;
+    bool saveToFile(const string& filename);
+    bool loadFromFile(const string& filename);
 
 private:
     CharacterStrategy* actionStrategy;

@@ -33,6 +33,7 @@ public:
 	MapObserver(Map* c);
 
 	virtual void update(Observable* o);
+	virtual void log(Observable* o);
 
 private:
 	string name;

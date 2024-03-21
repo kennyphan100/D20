@@ -8,6 +8,7 @@
 
 #include <string>
 #include <random>
+#include "../Observable.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ using namespace std;
  * Utilizes <random> from the C++ Standard Library for generating dice outcomes, chosen for its efficiency and standardization.
  * The class utilizes <string> from the C++ Standard Library for managing and manipulating string data, crucial for parsing dice roll expressions and handling text-based commands.
  */
-class Dice {
+class Dice : public Observable {
 public:
     /**
      * @brief Constructs a new Dice object.

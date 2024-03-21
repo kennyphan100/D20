@@ -44,5 +44,6 @@ void Observable::notify()
 	for (i = _observers->begin(); i != _observers->end(); ++i)
 	{
 		(*i)->update(this);
+		(*i)->log(this);
 	}
 }

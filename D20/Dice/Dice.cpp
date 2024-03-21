@@ -8,6 +8,7 @@
 #include <ctime>
 #include <iostream>
 #include <set>
+#include <fstream>
 
 using namespace std;
 
@@ -53,6 +54,14 @@ int Dice::rollDice(const string& input) {
         }
 
         result += z;
+        ofstream logFile("./game_log.txt", ios::app);
+        if (logFile.is_open()) {
+            logFile << "============ Dice Roll ============" << endl;
+            logFile << "Roll dice of type " << input << ": " << result << "\n";
+            logFile << "\n";
+            logFile.close();
+        }
+
         return result;
     }
     else {

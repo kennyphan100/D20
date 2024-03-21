@@ -30,6 +30,7 @@ class Observer
 public:
 	virtual ~Observer();
 	virtual void update(Observable* theChangeObservable) = 0;
+	virtual void log(Observable* theChangeObservable) = 0;
 
 protected:
 	Observer();
