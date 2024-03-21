@@ -5,6 +5,7 @@
 
 class FriendlyStrategy : public CharacterStrategy {
 public:
+    FriendlyStrategy();
     void move(Character& character) override;
     void attack(Character& character) override;
     void freeAction(Character& character) override;

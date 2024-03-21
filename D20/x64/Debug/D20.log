@@ -1,2 +1,3 @@
 ﻿  Main.cpp
-  D20.vcxproj -> C:\Users\kenny\source\repos\D20\x64\Debug\D20.exe
+C:\devroot\D20\D20\Main.cpp(44,16): warning C4101: 'myCharacter': unreferenced local variable
+  D20.vcxproj -> C:\devroot\D20\x64\Debug\D20.exe

@@ -3,7 +3,13 @@
 #include "AggressorStrategy.h"
 #include <iostream>
 
-// Assuming Character has methods to get/set its position and to check for attacks
+FriendlyStrategy::FriendlyStrategy() {
+    static bool seeded = false;
+    if (!seeded) {
+        std::srand(static_cast<unsigned int>(std::time(nullptr)));
+        seeded = true;
+    }
+}
 
 void FriendlyStrategy::move(Character& character) {
     std::cout << "Friendly character is moving towards the player..." << std::endl;

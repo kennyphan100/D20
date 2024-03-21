@@ -5,9 +5,10 @@
 
 class AggressorStrategy : public CharacterStrategy {
 public:
-    void move(Character& character) override;
-    void attack(Character& character) override;
-    void freeAction(Character& character) override;
+    AggressorStrategy();
+    virtual void move(Character& character) override;
+    virtual void attack(Character& character) override;
+    virtual void freeAction(Character& character) override;
 };
 
 #endif // AGGRESSORSTRATEGY_H
