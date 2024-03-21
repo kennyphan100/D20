@@ -135,6 +135,9 @@
   <ItemGroup>
     <ClInclude Include="Character\Character.h" />
     <ClInclude Include="Character\CharacterObserver.h" />
+    <ClInclude Include="Character\CharacterStrategy.h" />
+    <ClInclude Include="Character\FriendlyStrategy.h" />
+    <ClInclude Include="Character\HumanPlayerStrategy.h" />
     <ClInclude Include="Dice\Dice.h" />
     <ClInclude Include="Item\Item.h" />
     <ClInclude Include="Map\Campaign.h" />

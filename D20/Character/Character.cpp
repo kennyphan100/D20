@@ -23,6 +23,32 @@ Character::Character(int level, CharacterType characterType) : level(level), cha
     calculateDamageBonus();
 }
 
+Character::Character(int level, CharacterType characterType, CharacterStrategy* strategy) : level(level), characterType(characterType), actionStrategy(strategy), armor(nullptr)
+{
+    generateAbilityScores();
+    calculateAbilityModifiers();
+    calculateHitPoints();
+    calculateArmorClass();
+    calculateAttackBonus();
+    calculateDamageBonus();
+}
+
+void Character::setStrategy(CharacterStrategy* strategy) {
+    actionStrategy = strategy;
+}
+
+void Character::performMove() {
+    actionStrategy->move(*this);
+}
+
+void Character::performAttack() {
+    actionStrategy->attack(*this);
+}
+
+void Character::performFreeActions() {
+    actionStrategy->freeAction(*this);
+}
+
 //! Generates ability scores for the character by rolling 3d6 for each score.
 void Character::generateAbilityScores() {
     for (int& score : abilityScores) {
@@ -252,3 +278,5 @@ string characterTypeToString(CharacterType characterType) {
     default: return "Unknown CharacterType";
     }
 }
+
+//
