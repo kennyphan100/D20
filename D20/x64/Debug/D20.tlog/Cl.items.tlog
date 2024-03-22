@@ -3,10 +3,13 @@ D:\concordia\comp345\D20\D20\Character\Character.cpp;D:\concordia\comp345\D20\D2
 D:\concordia\comp345\D20\D20\Character\CharacterBuilder.cpp;D:\concordia\comp345\D20\D20\x64\Debug\CharacterBuilder.obj
 D:\concordia\comp345\D20\D20\Character\CharacterDirector.cpp;D:\concordia\comp345\D20\D20\x64\Debug\CharacterDirector.obj
 D:\concordia\comp345\D20\D20\Character\CharacterObserver.cpp;D:\concordia\comp345\D20\D20\x64\Debug\CharacterObserver.obj
+D:\concordia\comp345\D20\D20\Character\CharacterUtils.cpp;D:\concordia\comp345\D20\D20\x64\Debug\CharacterUtils.obj
+D:\concordia\comp345\D20\D20\Character\FighterCharacter.cpp;D:\concordia\comp345\D20\D20\x64\Debug\FighterCharacter.obj
 D:\concordia\comp345\D20\D20\Character\FriendlyStrategy.cpp;D:\concordia\comp345\D20\D20\x64\Debug\FriendlyStrategy.obj
 D:\concordia\comp345\D20\D20\Character\HumanPlayerStrategy.cpp;D:\concordia\comp345\D20\D20\x64\Debug\HumanPlayerStrategy.obj
 D:\concordia\comp345\D20\D20\Dice\Dice.cpp;D:\concordia\comp345\D20\D20\x64\Debug\Dice.obj
 D:\concordia\comp345\D20\D20\Item\Item.cpp;D:\concordia\comp345\D20\D20\x64\Debug\Item.obj
+D:\concordia\comp345\D20\D20\Item\Item2.cpp;D:\concordia\comp345\D20\D20\x64\Debug\Item2.obj
 D:\concordia\comp345\D20\D20\Main.cpp;D:\concordia\comp345\D20\D20\x64\Debug\Main.obj
 D:\concordia\comp345\D20\D20\Map\Campaign.cpp;D:\concordia\comp345\D20\D20\x64\Debug\Campaign.obj
 D:\concordia\comp345\D20\D20\Map\Editor.cpp;D:\concordia\comp345\D20\D20\x64\Debug\Editor.obj

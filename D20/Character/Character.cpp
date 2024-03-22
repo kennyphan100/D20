@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cmath>
 #include "CharacterUtils.h"
+#include <fstream>
 
 using namespace std;
 
@@ -360,6 +361,20 @@ void Character::display() {
     cout << "Equipped Belt: " << (CharacterUtils::getBelt(this) ? CharacterUtils::getBelt(this)->getName() : "---") << endl;
     cout << "Equipped Boots: " << (CharacterUtils::getBoots(this) ? CharacterUtils::getBoots(this)->getName() : "---") << endl;
     cout << "Equipped Weapon: " << (CharacterUtils::getWeapon(this) ? CharacterUtils::getWeapon(this)->getName() : "---") << endl;
+
+    ofstream logFile("./game_log.txt", ios::app);
+    if (logFile.is_open()) {
+        logFile << "============ Equipping Item ============" << endl;
+        logFile << "Equipped Helmet: " << (CharacterUtils::getHelmet(this) ? CharacterUtils::getHelmet(this)->getName() : "---") << endl;
+        logFile << "Equipped Armor: " << (CharacterUtils::getArmor(this) ? CharacterUtils::getArmor(this)->getName() : "---") << endl;
+        logFile << "Equipped Shield: " << (CharacterUtils::getShield(this) ? CharacterUtils::getShield(this)->getName() : "---") << endl;
+        logFile << "Equipped Ring: " << (CharacterUtils::getRing(this) ? CharacterUtils::getRing(this)->getName() : "---") << endl;
+        logFile << "Equipped Belt: " << (CharacterUtils::getBelt(this) ? CharacterUtils::getBelt(this)->getName() : "---") << endl;
+        logFile << "Equipped Boots: " << (CharacterUtils::getBoots(this) ? CharacterUtils::getBoots(this)->getName() : "---") << endl;
+        logFile << "Equipped Weapon: " << (CharacterUtils::getWeapon(this) ? CharacterUtils::getWeapon(this)->getName() : "---") << endl;
+        logFile << "\n";
+        logFile.close();
+    }
 }
 
 void Character::applyEnhancement(CharacterStat stat, int bonus) {
@@ -367,8 +382,6 @@ void Character::applyEnhancement(CharacterStat stat, int bonus) {
 
 }
 
-
->>>>>>> main
 //! Converts a character type enum value to its string representation.
 //! @param characterType The character type enum value.
 //! @return The string representation of the character type.

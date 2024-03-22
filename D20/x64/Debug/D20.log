@@ -1,5 +1,3 @@
-﻿  AggressorStrategy.cpp
-  FriendlyStrategy.cpp
-  HumanPlayerStrategy.cpp
-  Generating Code...
+﻿  Character.cpp
+D:\concordia\comp345\D20\D20\Character\Character.cpp(300,33): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   D20.vcxproj -> D:\concordia\comp345\D20\x64\Debug\D20.exe
