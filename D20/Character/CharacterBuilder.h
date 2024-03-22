@@ -4,6 +4,7 @@
 #define CHARACTER_BUILDER_H
 
 #include "Character.h"
+#include "FighterCharacter.h"
 
 class CharacterBuilder {
 protected:

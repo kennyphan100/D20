@@ -5,8 +5,13 @@
 #include "Character.h"
 #include <iostream>
 #include <cmath>
+#include "CharacterUtils.h"
 
 using namespace std;
+
+Character::Character() : level(1), fighterType(FighterType::TANK), armor(nullptr)
+{
+}
 
 /**
  * @brief Constructs a new Character with a specified level and character type.
@@ -22,6 +27,32 @@ Character::Character(int level, FighterType fighterType) : level(level), fighter
     calculateAttackBonus();
     calculateDamageBonus();
 }
+
+Character::Character(Character& other) {
+    // Copy primitive member variables
+    this->level = other.level;
+    this->fighterType = other.fighterType;
+    this->abilityScores = other.abilityScores;
+    this->abilityModifiers = other.abilityModifiers;
+    this->hitPoints = other.hitPoints;
+    this->armorClass = other.armorClass;
+    this->attackBonus = other.attackBonus;
+    this->damageBonus = other.damageBonus;
+    this->nbOfAttacksPerRound = other.nbOfAttacksPerRound;
+    this->dice = other.dice;
+
+    // Deep copy of equipped items
+    this->armor = (other.armor != nullptr) ? new Armor(*other.armor) : nullptr;
+    this->shield = (other.shield != nullptr) ? new Shield(*other.shield) : nullptr;
+    this->weapon = (other.weapon != nullptr) ? new Weapon(*other.weapon) : nullptr;
+    this->boots = (other.boots != nullptr) ? new Boots(*other.boots) : nullptr;
+    this->ring = (other.ring != nullptr) ? new Ring(*other.ring) : nullptr;
+    this->helmet = (other.helmet != nullptr) ? new Helmet(*other.helmet) : nullptr;
+
+    // Deep copy of backpack items
+    this->backpack = (other.backpack != nullptr) ? new Backpack(*other.backpack) : nullptr;
+}
+
 
 //! Generates ability scores for the character by rolling 3d6 for each score.
 void Character::generateAbilityScores() {
@@ -254,6 +285,32 @@ void Character::printCharacter() const {
     cout << "Equipped Helmet: " << (getHelmet() ? getHelmet()->name : "---") << endl;
 
 }
+
+void Character::display() {
+    cout << "Class: " << fighterTypeToString(getFighterType()) << "\n"
+        << "Level: " << level << "\n"
+        << "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
+        << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
+        << "DEX: " << abilityScores[1] << " (" << abilityModifiers[1] << "), "
+        << "CON: " << abilityScores[2] << " (" << abilityModifiers[2] << "), "
+        << "INT: " << abilityScores[3] << " (" << abilityModifiers[3] << "), "
+        << "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
+        << "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
+
+    cout << "Equipped Helmet: " << (CharacterUtils::getHelmet(this) ? CharacterUtils::getHelmet(this)->getName() : "---") << endl;
+    cout << "Equipped Armor: " << (CharacterUtils::getArmor(this) ? CharacterUtils::getArmor(this)->getName() : "---") << endl;
+    cout << "Equipped Shield: " << (CharacterUtils::getShield(this) ? CharacterUtils::getShield(this)->getName() : "---") << endl;
+    cout << "Equipped Ring: " << (CharacterUtils::getRing(this) ? CharacterUtils::getRing(this)->getName() : "---") << endl;
+    cout << "Equipped Belt: " << (CharacterUtils::getBelt(this) ? CharacterUtils::getBelt(this)->getName() : "---") << endl;
+    cout << "Equipped Boots: " << (CharacterUtils::getBoots(this) ? CharacterUtils::getBoots(this)->getName() : "---") << endl;
+    cout << "Equipped Weapon: " << (CharacterUtils::getWeapon(this) ? CharacterUtils::getWeapon(this)->getName() : "---") << endl;
+}
+
+void Character::applyEnhancement(CharacterStat stat, int bonus) {
+    // Implementation of applyEnhancement method goes here
+
+}
+
 
 //! Converts a character type enum value to its string representation.
 //! @param characterType The character type enum value.
