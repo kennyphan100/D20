@@ -167,7 +167,7 @@ int main() {
             cout << "\n";
             cout << "========================\n" << endl;
 
-            cout << "=== List of items that you can equip ===\n"
+            cout << "=== List of items that you can equip (write the negative to unequip) ===\n"
                 << "1. Helmet - Name: Iron Helmet, Enchantment: Intelligence, Bonus: +1\n"
                 << "2. Armor - Name: Diamond Helmet, Enchantment: Armor class, Bonus: +5\n"
                 << "3. Shield - Name: Diamond Shield, Enchantment: Armor class, Bonus: +5\n"
@@ -181,39 +181,56 @@ int main() {
 
             int itemOption;
             while (true) {
-                cout << "Choose an option to equip (enter -1 to exit): ";
+                cout << "Choose an option to equip (enter 0 to exit): ";
                 string input;
                 getline(cin, input);
                 stringstream ss(input);
 
                 if (ss >> itemOption && ss.eof()) {
-                    if (itemOption > 0) {
+                    if ((-8 < itemOption < 8 && itemOption != 0)) {
                         if (itemOption == 1) {
                             fighterCharacter = new Helmet2(fighterCharacter, "Iron Helmet", CharacterStat::Intelligence, 1);
                         }
                         else if (itemOption == 2) {
                             fighterCharacter = new Armor2(fighterCharacter, "Diamond Helmet", CharacterStat::ArmorClass, 5);
-
                         }
                         else if (itemOption == 3) {
                             fighterCharacter = new Shield2(fighterCharacter, "Diamond Shield", CharacterStat::ArmorClass, 5);
-
                         }
                         else if (itemOption == 4) {
                             fighterCharacter = new Ring2(fighterCharacter, "Silver Ring", CharacterStat::Strength, 3);
-
                         }
                         else if (itemOption == 5) {
                             fighterCharacter = new Belt2(fighterCharacter, "Iron Belt", CharacterStat::Constitution, 2);
-
                         }
                         else if (itemOption == 6) {
                             fighterCharacter = new Boots2(fighterCharacter, "Leather Boots", CharacterStat::Dexterity, 1);
-
                         }
                         else if (itemOption == 7) {
                             fighterCharacter = new Weapon2(fighterCharacter, "Gold Sword", CharacterStat::Strength, 4);
                         }
+                        else if (itemOption == -1) {
+                            fighterCharacter = new Helmet2(fighterCharacter, "---", CharacterStat::Intelligence, 1);
+                        }
+                        else if (itemOption == -2) {
+                            fighterCharacter = new Armor2(fighterCharacter, "---", CharacterStat::ArmorClass, 5);
+                        }
+                        else if (itemOption == -3) {
+                            fighterCharacter = new Shield2(fighterCharacter, "---", CharacterStat::ArmorClass, 5);
+                        }
+                        else if (itemOption == -4) {
+                            fighterCharacter = new Ring2(fighterCharacter, "---", CharacterStat::Strength, 3);
+                        }
+                        else if (itemOption == -5) {
+                            fighterCharacter = new Belt2(fighterCharacter, "---", CharacterStat::Constitution, 2);
+                        }
+                        else if (itemOption == -6) {
+                            fighterCharacter = new Boots2(fighterCharacter, "---", CharacterStat::Dexterity, 1);
+                        }
+                        else if (itemOption == -7) {
+                            fighterCharacter = new Weapon2(fighterCharacter, "---", CharacterStat::Strength, 4);
+                        }
+
                         cout << "\n" << endl;
                         fighterCharacter->display();
                         cout << "\n" << endl;
