@@ -1,6 +1,6 @@
 #include "CharacterBuilder.h"
 
-CharacterBuilder::CharacterBuilder() : character(new Character(1, FighterType::TANK)) {}
+CharacterBuilder::CharacterBuilder() : character(new FighterCharacter(1, FighterType::TANK)) {}
 
 CharacterBuilder::~CharacterBuilder() {
     delete character;
