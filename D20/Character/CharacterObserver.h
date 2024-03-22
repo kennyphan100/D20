@@ -6,6 +6,8 @@
 
 #include "../Observer.h"
 #include "Character.h"
+#include "CharacterBuilder.h"
+#include "CharacterDirector.h"
 
 /**
  * @class CharacterObserver
@@ -30,10 +32,15 @@ class CharacterObserver : public Observer
 public:
 	virtual ~CharacterObserver();
 	CharacterObserver(Character* c);
+	CharacterObserver(CharacterBuilder* c);
+	CharacterObserver(CharacterDirector* c);
 
 	virtual void update(Observable* o);
+	virtual void log(Observable* o);
 
 private:
 	string name;
 	Character* _subject;
+	CharacterBuilder* _subject2;
+	CharacterDirector* _subject3;
 };

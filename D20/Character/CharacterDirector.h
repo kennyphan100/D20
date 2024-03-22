@@ -4,14 +4,14 @@
 
 #include "CharacterBuilder.h"
 
-class CharacterDirector {
+class CharacterDirector : public Observable {
     CharacterBuilder* builder;
 
 public:
     CharacterDirector();
     ~CharacterDirector();
     void setBuilder(CharacterBuilder* newBuilder);
-    Character* buildCharacter(int level);
+    Character* buildCharacter(int level, string name);
 };
 
 #endif

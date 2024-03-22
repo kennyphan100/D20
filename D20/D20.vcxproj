@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Program Files\CppUnit\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files\CppUnit\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\429\Downloads\CppUnit\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\429\Downloads\CppUnit\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -145,9 +145,11 @@
     <ClInclude Include="Character\HumanPlayerStrategy.h" />
     <ClInclude Include="Dice\Dice.h" />
     <ClInclude Include="Item\Item.h" />
+    <ClInclude Include="LoggerObserver.h" />
     <ClInclude Include="Item\Item2.h" />
     <ClInclude Include="Map\Campaign.h" />
     <ClInclude Include="Map\Editor.h" />
+    <ClInclude Include="LoggerObservable.h" />
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Map\MapBuilder.h" />
     <ClInclude Include="Map\MapConnection.h" />
@@ -179,10 +181,12 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map\Campaign.cpp" />
     <ClCompile Include="Map\Editor.cpp" />
+    <ClCompile Include="LoggerObserver.cpp" />
     <ClCompile Include="Map\Map.cpp" />
     <ClCompile Include="Map\MapEditorBuilder.cpp" />
     <ClCompile Include="Map\MapGameBuilder.cpp" />
     <ClCompile Include="Map\MapObserver.cpp" />
+    <ClCompile Include="LoggerObservable.cpp" />
     <ClCompile Include="Observable.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Test\TestCharacter.cpp" />
@@ -193,6 +197,7 @@
     <ClCompile Include="Test\TestMapGameBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="game_log.txt" />
     <Text Include="Test\test_map.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

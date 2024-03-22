@@ -1,0 +1,11 @@
+Name: test
+Class: NIMBLE
+Level: 1
+HP: 13, AC: 10, Attack Bonus: 4, Damage Bonus: 3
+STR: 15 (3), DEX: 18 (0), CON: 17 (3), INT: 14 (0), WIS: 9 (1), CHA: 10 (0)
+Equipped Armor: ---
+Equipped Shield: ---
+Equipped Weapon: ---
+Equipped Boots: ---
+Equipped Ring: ---
+Equipped Helmet: ---

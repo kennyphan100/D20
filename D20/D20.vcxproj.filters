@@ -84,6 +84,18 @@
     <ClInclude Include="Character\FriendlyStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LoggerObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerObservable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerObservable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -143,8 +155,27 @@
     <ClCompile Include="Test\TestMapGameBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="Character\CharacterBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Character\CharacterDirector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggerObserver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggerObservable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Text Include="Test\test_map.txt" />
+    <Text Include="game_log.txt" />
   </ItemGroup>
 </Project>

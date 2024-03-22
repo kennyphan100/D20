@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cmath>
 #include "CharacterUtils.h"
+#include <fstream>
 
 using namespace std;
 
@@ -230,6 +231,16 @@ int Character::getLevel() const {
     return level;
 }
 
+string Character::getName() const
+{
+    return name;
+}
+
+void Character::setName(string newName)
+{
+    name = newName;
+}
+
 //! Retrieves the character type of the character.
 //! @return The character type of the character.
 FighterType Character::getFighterType() const {
@@ -293,7 +304,8 @@ void Character::levelUp()
 
 //! Prints information about the character.
 void Character::printCharacter() const {
-    cout << "Class: " << fighterTypeToString(getFighterType()) << "\n"
+    cout << "Name: " << name << "\n"
+        << "Class: " << fighterTypeToString(getFighterType()) << "\n"
         << "Level: " << level << "\n"
         << "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
         << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
@@ -312,6 +324,25 @@ void Character::printCharacter() const {
 
 }
 
+void Character::logCharacter(ostream& out) const {
+    out << "Name: " << name << "\n"
+        << "Class: " << fighterTypeToString(getFighterType()) << "\n"
+        << "Level: " << level << "\n"
+        << "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
+        << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
+        << "DEX: " << abilityScores[1] << " (" << abilityModifiers[1] << "), "
+        << "CON: " << abilityScores[2] << " (" << abilityModifiers[2] << "), "
+        << "INT: " << abilityScores[3] << " (" << abilityModifiers[3] << "), "
+        << "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
+        << "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
+
+    out << "Equipped Armor: " << (getArmor() ? getArmor()->name : "---") << std::endl
+        << "Equipped Shield: " << (getShield() ? getShield()->name : "---") << std::endl
+        << "Equipped Weapon: " << (getWeapon() ? getWeapon()->name : "---") << std::endl
+        << "Equipped Boots: " << (getBoots() ? getBoots()->name : "---") << std::endl
+        << "Equipped Ring: " << (getRing() ? getRing()->name : "---") << std::endl
+        << "Equipped Helmet: " << (getHelmet() ? getHelmet()->name : "---") << std::endl;
+}
 void Character::display() {
     cout << "Class: " << fighterTypeToString(getFighterType()) << "\n"
         << "Level: " << level << "\n"
@@ -322,7 +353,7 @@ void Character::display() {
         << "INT: " << abilityScores[3] << " (" << abilityModifiers[3] << "), "
         << "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
         << "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
-
+        
     cout << "Equipped Helmet: " << (CharacterUtils::getHelmet(this) ? CharacterUtils::getHelmet(this)->getName() : "---") << endl;
     cout << "Equipped Armor: " << (CharacterUtils::getArmor(this) ? CharacterUtils::getArmor(this)->getName() : "---") << endl;
     cout << "Equipped Shield: " << (CharacterUtils::getShield(this) ? CharacterUtils::getShield(this)->getName() : "---") << endl;
@@ -330,13 +361,26 @@ void Character::display() {
     cout << "Equipped Belt: " << (CharacterUtils::getBelt(this) ? CharacterUtils::getBelt(this)->getName() : "---") << endl;
     cout << "Equipped Boots: " << (CharacterUtils::getBoots(this) ? CharacterUtils::getBoots(this)->getName() : "---") << endl;
     cout << "Equipped Weapon: " << (CharacterUtils::getWeapon(this) ? CharacterUtils::getWeapon(this)->getName() : "---") << endl;
+
+    ofstream logFile("./game_log.txt", ios::app);
+    if (logFile.is_open()) {
+        logFile << "============ Equipping Item ============" << endl;
+        logFile << "Equipped Helmet: " << (CharacterUtils::getHelmet(this) ? CharacterUtils::getHelmet(this)->getName() : "---") << endl;
+        logFile << "Equipped Armor: " << (CharacterUtils::getArmor(this) ? CharacterUtils::getArmor(this)->getName() : "---") << endl;
+        logFile << "Equipped Shield: " << (CharacterUtils::getShield(this) ? CharacterUtils::getShield(this)->getName() : "---") << endl;
+        logFile << "Equipped Ring: " << (CharacterUtils::getRing(this) ? CharacterUtils::getRing(this)->getName() : "---") << endl;
+        logFile << "Equipped Belt: " << (CharacterUtils::getBelt(this) ? CharacterUtils::getBelt(this)->getName() : "---") << endl;
+        logFile << "Equipped Boots: " << (CharacterUtils::getBoots(this) ? CharacterUtils::getBoots(this)->getName() : "---") << endl;
+        logFile << "Equipped Weapon: " << (CharacterUtils::getWeapon(this) ? CharacterUtils::getWeapon(this)->getName() : "---") << endl;
+        logFile << "\n";
+        logFile.close();
+    }
 }
 
 void Character::applyEnhancement(CharacterStat stat, int bonus) {
     // Implementation of applyEnhancement method goes here
 
 }
-
 
 //! Converts a character type enum value to its string representation.
 //! @param characterType The character type enum value.

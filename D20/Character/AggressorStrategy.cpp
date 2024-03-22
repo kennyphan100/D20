@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 
 AggressorStrategy::AggressorStrategy() {
     static bool seeded = false;
@@ -14,25 +15,58 @@ AggressorStrategy::AggressorStrategy() {
 
 void AggressorStrategy::move(Character& character) {
     std::cout << "Aggressor moves towards the player..." << std::endl;
+    ofstream logFile("./game_log.txt", ios::app);
+    if (logFile.is_open()) {
+        logFile << "============ Character Move ============" << endl;
+        logFile << "Aggressor " << character.getName() << " moved." << "\n";
+        logFile << "\n";
+        logFile.close();
+    }
 }
 
 void AggressorStrategy::attack(Character& character) {
     // Attack logic...
     std::cout << "Aggressor attacks the player!" << std::endl;
+    ofstream logFile("./game_log.txt", ios::app);
+    if (logFile.is_open()) {
+        logFile << "============ Character Attack ============" << endl;
+        logFile << "Aggressor " << character.getName() << " attacked." << "\n";
+        logFile << "\n";
+        logFile.close();
+    }
 }
 
 void AggressorStrategy::freeAction(Character& character) {
     int action = std::rand() % 3;
+    ofstream logFile("./game_log.txt", ios::app);
 
     switch (action) {
     case 0:
         std::cout << "Aggressor sharpens its weapons, increasing attack power." << std::endl;
+        if (logFile.is_open()) {
+            logFile << "============ Character Free Action ============" << endl;
+            logFile << "Aggressor " << character.getName() << " sharpens its weapons, increasing attack power." << "\n";
+            logFile << "\n";
+            logFile.close();
+        }
         break;
     case 1:
         std::cout << "Aggressor taunts the player, potentially affecting player's decisions." << std::endl;
+        if (logFile.is_open()) {
+            logFile << "============ Character Free Action ============" << endl;
+            logFile << "Aggressor " << character.getName() << " taunts the player, potentially affecting player's decisions." << "\n";
+            logFile << "\n";
+            logFile.close();
+        }
         break;
     case 2:
         std::cout << "Aggressor scouts for vulnerabilities, increasing its next attack's accuracy." << std::endl;
+        if (logFile.is_open()) {
+            logFile << "============ Character Free Action ============" << endl;
+            logFile << "Aggressor " << character.getName() << " scouts for vulnerabilities, increasing its next attack's accuracy." << "\n";
+            logFile << "\n";
+            logFile.close();
+        }
         break;
     default:
         std::cerr << "Invalid action selected." << std::endl;

@@ -31,7 +31,7 @@ using namespace std;
  * Dependencies:
  * The class depends on the Map and Campaign classes for map and campaign management.
  */
-class Editor {
+class Editor : public Observable {
 	public:
 		Editor();
 		bool runEditor();
