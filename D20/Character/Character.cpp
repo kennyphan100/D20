@@ -54,6 +54,32 @@ Character::Character(Character& other) {
 }
 
 
+Character::Character(int level, FighterType fighterType, CharacterStrategy* strategy) : level(level), fighterType(fighterType), actionStrategy(strategy), armor(nullptr)
+{
+    generateAbilityScores();
+    calculateAbilityModifiers();
+    calculateHitPoints();
+    calculateArmorClass();
+    calculateAttackBonus();
+    calculateDamageBonus();
+}
+
+void Character::setStrategy(CharacterStrategy* strategy) {
+    actionStrategy = strategy;
+}
+
+void Character::performMove() {
+    actionStrategy->move(*this);
+}
+
+void Character::performAttack() {
+    actionStrategy->attack(*this);
+}
+
+void Character::performFreeActions() {
+    actionStrategy->freeAction(*this);
+}
+
 //! Generates ability scores for the character by rolling 3d6 for each score.
 void Character::generateAbilityScores() {
     for (int& score : abilityScores) {

@@ -17,6 +17,9 @@
 #include "Map/Editor.h"
 #include "Character/CharacterDirector.h"
 #include "Character/CharacterUtils.h"
+#include "Character/FriendlyStrategy.h"
+#include "Character/HumanPlayerStrategy.h"
+#include "Character/AggressorStrategy.h"
 
 using namespace std;
 
@@ -52,6 +55,7 @@ int main() {
         cout << "3. Item" << endl;
         cout << "4. Dice" << endl;
         cout << "5. Run Unit Tests" << endl;
+        cout << "6. Character Strategy" << endl;
         cout << "9. Exit \n" << endl;
         cout << "Please enter one of the number part: ";
 
@@ -312,6 +316,19 @@ int main() {
             if (wasSuccessful) {
                 cout << "All the tests passed!" << endl;
             }
+
+        }
+        else if (part._Equal("6"))
+        {
+            FriendlyStrategy fs;
+            AggressorStrategy as;
+            HumanPlayerStrategy hps;
+
+            FighterCharacter myCharacter(5, FighterType::BULLY, &hps);
+
+            myCharacter.performMove();
+            myCharacter.performAttack();
+            myCharacter.performFreeActions();
 
         }
         else

@@ -12,6 +12,7 @@
 #include <array>
 #include <random>
 #include "../Observable.h"
+#include "CharacterStrategy.h"
 
 using namespace std;
 
@@ -66,6 +67,11 @@ public:
     int nbOfAttacksPerRound;
     Dice dice;
 
+    void setStrategy(CharacterStrategy* strategy);
+    void performMove();
+    void performAttack();
+    void performFreeActions();
+
     Armor* armor;
     Shield* shield;
     Weapon* weapon;
@@ -78,6 +84,7 @@ public:
     Character();
     Character(int level, FighterType fighterType);
     Character(Character& other);
+    Character(int level, FighterType fighterType, CharacterStrategy* strategy);
 
     void generateAbilityScores();
     void calculateAbilityModifiers();
@@ -113,8 +120,13 @@ public:
     void levelUp();
     void printCharacter() const;
 
+
     virtual void display();
     virtual void applyEnhancement(CharacterStat stat, int bonus) = 0;
+
+private:
+    CharacterStrategy* actionStrategy;
+
 
 };
 

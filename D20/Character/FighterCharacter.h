@@ -8,6 +8,7 @@ class FighterCharacter : public Character {
 public:
     FighterCharacter();
     FighterCharacter(int level, FighterType fighterType);
+    FighterCharacter(int level, FighterType fighterType, CharacterStrategy* strategy);
     //void display() override;
     void applyEnhancement(CharacterStat stat, int bonus) override;
 };

@@ -21,6 +21,15 @@ FighterCharacter::FighterCharacter(int level, FighterType fighterType) : Charact
     calculateDamageBonus();
 }
 
+FighterCharacter::FighterCharacter(int level, FighterType fighterType, CharacterStrategy* strategy) : Character(level, fighterType, strategy) {
+    generateAbilityScores();
+    calculateAbilityModifiers();
+    calculateHitPoints();
+    calculateArmorClass();
+    calculateAttackBonus();
+    calculateDamageBonus();
+}
+
 //void FighterCharacter::display() {
 //    std::cout << "Basic Character\n";
 //}
