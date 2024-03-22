@@ -20,6 +20,18 @@ enum class CharacterType { FIGHTER, SORCERER, MONK, PALADIN, BARD, BARBARIAN };
 
 enum class FighterType { BULLY, NIMBLE, TANK };
 
+enum class CharacterStat {
+    Strength,
+    Dexterity,
+    Constitution,
+    Intelligence,
+    Wisdom,
+    Charisma,
+    ArmorClass,
+    AttackBonus,
+
+};
+
 /**
  * @class Character
  * @brief Class for generating player characters in a d20 system.
@@ -70,7 +82,9 @@ public:
 
     Backpack* backpack;
 
+    Character();
     Character(int level, FighterType fighterType);
+    Character(Character& other);
     Character(int level, FighterType fighterType, CharacterStrategy* strategy);
 
     void generateAbilityScores();
@@ -112,8 +126,13 @@ public:
     bool saveToFile(const string& filename);
     bool loadFromFile(const string& filename);
 
+
+    virtual void display();
+    virtual void applyEnhancement(CharacterStat stat, int bonus) = 0;
+
 private:
     CharacterStrategy* actionStrategy;
+
 
 };
 

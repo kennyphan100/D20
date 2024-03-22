@@ -5,13 +5,14 @@
 #include "TestCharacter.h"
 #include <cppunit/config/SourcePrefix.h>
 #include "../Character/Character.h"
+#include "../Character/FighterCharacter.h"
 #include <iostream>
 #include <cassert>
 
 //! setUp() method that is executed before each test case.
 void TestCharacter::setUp() {
     // Example setup: Initialize a Level 1 Fighter for testing
-    character = new Character(1, FighterType::TANK);
+    character = new FighterCharacter(1, FighterType::TANK);
 }
 
 //! tearDown() method that is executed after each test case. Typically used for deallocation.

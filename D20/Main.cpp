@@ -7,6 +7,7 @@
 #include <filesystem>
 #include "Character/Character.h"
 #include "Item/Item.h"
+#include "Item/Item2.h"
 #include "Map/Map.h"
 #include <cppunit/TestRunner.h>
 #include <cppunit/CompilerOutputter.h>
@@ -16,6 +17,7 @@
 #include "Map/MapObserver.h"
 #include "Map/Editor.h"
 #include "Character/CharacterDirector.h"
+#include "Character/CharacterUtils.h"
 #include "Character/FriendlyStrategy.h"
 #include "Character/HumanPlayerStrategy.h"
 #include "Character/AggressorStrategy.h"
@@ -43,6 +45,9 @@ string toLowercase(const string& str) {
 //! 9. Exit the program.
 int main() {
     Character* myCharacter;
+    CharacterDirector director;
+    Character* newCharacter;
+    CharacterBuilder* characterBuilder;
 
     while (true) {
         cout << "============== D20 Game - Menu ==============" << endl;
@@ -116,10 +121,6 @@ int main() {
             }
             cout << "\n";
 
-            CharacterDirector director;
-            Character* newCharacter;
-            CharacterBuilder* characterBuilder;
-
             if (fighterType._Equal("bully")) {
                 characterBuilder = new BullyFighterBuilder;
             }
@@ -173,40 +174,122 @@ int main() {
         }
         else if (part._Equal("3"))
         {
-            Helmet helmet("Helmet");
-            Armor armor("Armor");
-            Shield shield("Shield");
-            Ring ring("Ring");
-            Belt belt("Belt");
-            Boots boots("Boots");
-            Weapon weapon("Weapon");
+            //characterBuilder = new BullyFighterBuilder;
+            //director.setBuilder(characterBuilder);
+            //newCharacter = director.buildCharacter(10);
 
-            cout << "Armor: " << armor.name << endl;
-            auto armorEnhancement = armor.getEnhancement();
-            cout << "Enhancement: " << enhancementToString(armorEnhancement.first) << ", Enhancement Bonus: " << armorEnhancement.second << endl << endl;
+            //newCharacter->printCharacter();
 
-            cout << "Shield: " << shield.name << endl;
-            auto shieldEnhancement = shield.getEnhancement();
-            cout << "Enhancement: " << enhancementToString(shieldEnhancement.first) << ", Enhancement Bonus: " << shieldEnhancement.second << endl << endl;
+            Character* fighterCharacter = new FighterCharacter(5, FighterType::TANK);
+            fighterCharacter->display();
 
-            cout << "Weapon: " << weapon.name << endl;
-            auto weaponEnhancement = weapon.getEnhancement();
-            cout << "Enhancement: " << enhancementToString(weaponEnhancement.first) << ", Enhancement Bonus: " << weaponEnhancement.second << endl << endl;
+            cout << "\n";
+            cout << "========================\n" << endl;
 
-            cout << "Ring: " << ring.name << endl;
-            auto ringEnhancement = ring.getEnhancement();
-            cout << "Enhancement: " << enhancementToString(ringEnhancement.first) << ", Enhancement Bonus: " << ringEnhancement.second << endl << endl;
+            cout << "=== List of items that you can equip ===\n"
+                << "1. Helmet - Name: Iron Helmet, Enchantment: Intelligence, Bonus: +1\n"
+                << "2. Armor - Name: Diamond Helmet, Enchantment: Armor class, Bonus: +5\n"
+                << "3. Shield - Name: Diamond Shield, Enchantment: Armor class, Bonus: +5\n"
+                << "4. Ring - Name: Silver Ring, Enchantment: Strength, Bonus: +3\n"
+                << "5. Belt - Name: Iron Belt, Enchantment: Constitution, Bonus: +2\n"
+                << "6. Boots - Name: Leather Boots, Enchantment: Dexterity, Bonus: +1\n"
+                << "7. Weapon - Name: Gold Sword, Enchantment: Attack bonus, Bonus: +4\n";
 
-            Backpack backpack("MyBackpack");
-            backpack.addItem(&helmet);
-            backpack.addItem(&armor);
-            backpack.addItem(&shield);
-            backpack.addItem(&ring);
-            backpack.addItem(&belt);
-            backpack.addItem(&boots);
-            backpack.addItem(&weapon);
+            cout << "\n";
+            cout << "========================\n" << endl;
 
-            backpack.displayItems();
+            int itemOption;
+            while (true) {
+                cout << "Choose an option to equip (enter -1 to exit): ";
+                string input;
+                getline(cin, input);
+                stringstream ss(input);
+
+                if (ss >> itemOption && ss.eof()) {
+                    if (itemOption > 0) {
+                        if (itemOption == 1) {
+                            fighterCharacter = new Helmet2(fighterCharacter, "Iron Helmet", CharacterStat::Intelligence, 1);
+                        }
+                        else if (itemOption == 2) {
+                            fighterCharacter = new Armor2(fighterCharacter, "Diamond Helmet", CharacterStat::ArmorClass, 5);
+
+                        }
+                        else if (itemOption == 3) {
+                            fighterCharacter = new Shield2(fighterCharacter, "Diamond Shield", CharacterStat::ArmorClass, 5);
+
+                        }
+                        else if (itemOption == 4) {
+                            fighterCharacter = new Ring2(fighterCharacter, "Silver Ring", CharacterStat::Strength, 3);
+
+                        }
+                        else if (itemOption == 5) {
+                            fighterCharacter = new Belt2(fighterCharacter, "Iron Belt", CharacterStat::Constitution, 2);
+
+                        }
+                        else if (itemOption == 6) {
+                            fighterCharacter = new Boots2(fighterCharacter, "Leather Boots", CharacterStat::Dexterity, 1);
+
+                        }
+                        else if (itemOption == 7) {
+                            fighterCharacter = new Weapon2(fighterCharacter, "Gold Sword", CharacterStat::Strength, 4);
+                        }
+                        cout << "\n" << endl;
+                        fighterCharacter->display();
+                        cout << "\n" << endl;
+
+                    }
+                    else {
+                        break;
+                        cout << "Terminating.\n" << endl;
+                    }
+                }
+                else {
+                    cerr << "Input format must be a positive integer value.\n" << endl;
+                }
+            }
+
+
+            //fighterCharacter = new Helmet2(fighterCharacter, "Iron Helmet", CharacterStat::Strength, 2);
+            //fighterCharacter->display();
+
+
+            //Helmet2* helmet = CharacterUtils::findHelmet(fighterCharacter);
+            //cout << helmet->getEnhancementBonus() << endl;
+
+            //Helmet helmet("Helmet");
+            //Armor armor("Armor");
+            //Shield shield("Shield");
+            //Ring ring("Ring");
+            //Belt belt("Belt");
+            //Boots boots("Boots");
+            //Weapon weapon("Weapon");
+
+            //cout << "Armor: " << armor.name << endl;
+            //auto armorEnhancement = armor.getEnhancement();
+            //cout << "Enhancement: " << enhancementToString(armorEnhancement.first) << ", Enhancement Bonus: " << armorEnhancement.second << endl << endl;
+
+            //cout << "Shield: " << shield.name << endl;
+            //auto shieldEnhancement = shield.getEnhancement();
+            //cout << "Enhancement: " << enhancementToString(shieldEnhancement.first) << ", Enhancement Bonus: " << shieldEnhancement.second << endl << endl;
+
+            //cout << "Weapon: " << weapon.name << endl;
+            //auto weaponEnhancement = weapon.getEnhancement();
+            //cout << "Enhancement: " << enhancementToString(weaponEnhancement.first) << ", Enhancement Bonus: " << weaponEnhancement.second << endl << endl;
+
+            //cout << "Ring: " << ring.name << endl;
+            //auto ringEnhancement = ring.getEnhancement();
+            //cout << "Enhancement: " << enhancementToString(ringEnhancement.first) << ", Enhancement Bonus: " << ringEnhancement.second << endl << endl;
+
+            //Backpack backpack("MyBackpack");
+            //backpack.addItem(&helmet);
+            //backpack.addItem(&armor);
+            //backpack.addItem(&shield);
+            //backpack.addItem(&ring);
+            //backpack.addItem(&belt);
+            //backpack.addItem(&boots);
+            //backpack.addItem(&weapon);
+
+            //backpack.displayItems();
         }
         else if (part._Equal("4"))
         {
@@ -260,7 +343,7 @@ int main() {
             AggressorStrategy as;
             HumanPlayerStrategy hps;
 
-            Character myCharacter(5, FighterType::BULLY, &hps);
+            FighterCharacter myCharacter(5, FighterType::BULLY, &hps);
 
             myCharacter.performMove();
             myCharacter.performAttack();
