@@ -19,7 +19,7 @@ void HumanPlayerStrategy::move(Character& character) {
 }
 
 void HumanPlayerStrategy::attack(Character& character) {
-    std::cout << "Select target to attack (input target ID): ";
+    std::cout << "\nSelect target to attack (input target ID): ";
     int targetId;
     std::cin >> targetId;
     std::cout << "Attacking target ID " << targetId << std::endl;
@@ -33,7 +33,7 @@ void HumanPlayerStrategy::attack(Character& character) {
 }
 
 void HumanPlayerStrategy::freeAction(Character& character) {
-    std::cout << "Choose a free action: \n1. Rest (recover health)\n2. Look around\n3. Speak\nEnter choice: ";
+    std::cout << "\nChoose a free action: \n1. Rest (recover health)\n2. Look around\n3. Speak\nEnter choice: ";
     int choice;
     std::cin >> choice;
     ofstream logFile("./game_log.txt", ios::app);

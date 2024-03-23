@@ -4,9 +4,17 @@
 
 //CharacterDecorator::CharacterDecorator(Character* character) : Character(*character) {}
 
-CharacterDecorator::CharacterDecorator(Character* character) {
-    this->character = character;
+CharacterDecorator::CharacterDecorator(Character* newCharacter) : Character(newCharacter->level, newCharacter->fighterType, newCharacter->name) {
+    this->character = newCharacter;
 }
+
+//CharacterDecorator::CharacterDecorator(Character* newCharacter) {
+//    this->character = newCharacter;
+//}
+
+//CharacterDecorator::CharacterDecorator(Character* character) {
+//    this->character = character;
+//}
 
 CharacterDecorator::~CharacterDecorator() {
     delete character;

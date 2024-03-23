@@ -12,6 +12,7 @@ using namespace std;
 
 Character::Character() : level(1), fighterType(FighterType::TANK), armor(nullptr)
 {
+
 }
 
 /**
@@ -21,6 +22,16 @@ Character::Character() : level(1), fighterType(FighterType::TANK), armor(nullptr
  * @return character object
  */
 Character::Character(int level, FighterType fighterType) : level(level), fighterType(fighterType), armor(nullptr) {
+    generateAbilityScores();
+    calculateAbilityModifiers();
+    calculateHitPoints();
+    calculateArmorClass();
+    calculateAttackBonus();
+    calculateDamageBonus();
+}
+
+Character::Character(int level, FighterType fighterType, string name) : level(level), fighterType(fighterType), name(name), armor(nullptr)
+{
     generateAbilityScores();
     calculateAbilityModifiers();
     calculateHitPoints();
@@ -42,16 +53,16 @@ Character::Character(Character& other) {
     this->nbOfAttacksPerRound = other.nbOfAttacksPerRound;
     this->dice = other.dice;
 
-    // Deep copy of equipped items
-    this->armor = (other.armor != nullptr) ? new Armor(*other.armor) : nullptr;
-    this->shield = (other.shield != nullptr) ? new Shield(*other.shield) : nullptr;
-    this->weapon = (other.weapon != nullptr) ? new Weapon(*other.weapon) : nullptr;
-    this->boots = (other.boots != nullptr) ? new Boots(*other.boots) : nullptr;
-    this->ring = (other.ring != nullptr) ? new Ring(*other.ring) : nullptr;
-    this->helmet = (other.helmet != nullptr) ? new Helmet(*other.helmet) : nullptr;
+    //// Deep copy of equipped items
+    //this->armor = (other.armor != nullptr) ? new Armor(*other.armor) : nullptr;
+    //this->shield = (other.shield != nullptr) ? new Shield(*other.shield) : nullptr;
+    //this->weapon = (other.weapon != nullptr) ? new Weapon(*other.weapon) : nullptr;
+    //this->boots = (other.boots != nullptr) ? new Boots(*other.boots) : nullptr;
+    //this->ring = (other.ring != nullptr) ? new Ring(*other.ring) : nullptr;
+    //this->helmet = (other.helmet != nullptr) ? new Helmet(*other.helmet) : nullptr;
 
-    // Deep copy of backpack items
-    this->backpack = (other.backpack != nullptr) ? new Backpack(*other.backpack) : nullptr;
+    //// Deep copy of backpack items
+    //this->backpack = (other.backpack != nullptr) ? new Backpack(*other.backpack) : nullptr;
 }
 
 
@@ -344,15 +355,16 @@ void Character::logCharacter(ostream& out) const {
         << "Equipped Helmet: " << (getHelmet() ? getHelmet()->name : "---") << std::endl;
 }
 void Character::display() {
-    cout << "Class: " << fighterTypeToString(getFighterType()) << "\n"
-        << "Level: " << level << "\n"
-        << "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
-        << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
-        << "DEX: " << abilityScores[1] << " (" << abilityModifiers[1] << "), "
-        << "CON: " << abilityScores[2] << " (" << abilityModifiers[2] << "), "
-        << "INT: " << abilityScores[3] << " (" << abilityModifiers[3] << "), "
-        << "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
-        << "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
+    cout << "Name: " << name << "\n"
+        << "Class: " << fighterTypeToString(getFighterType()) << "\n"
+        << "Level: " << level << "\n";
+        //<< "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
+        //<< "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
+        //<< "DEX: " << abilityScores[1] << " (" << abilityModifiers[1] << "), "
+        //<< "CON: " << abilityScores[2] << " (" << abilityModifiers[2] << "), "
+        //<< "INT: " << abilityScores[3] << " (" << abilityModifiers[3] << "), "
+        //<< "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
+        //<< "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
         
     cout << "Equipped Helmet: " << (CharacterUtils::getHelmet(this) ? CharacterUtils::getHelmet(this)->getName() : "---") << endl;
     cout << "Equipped Armor: " << (CharacterUtils::getArmor(this) ? CharacterUtils::getArmor(this)->getName() : "---") << endl;

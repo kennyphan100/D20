@@ -29,7 +29,7 @@ enum class CharacterStat {
     Charisma,
     ArmorClass,
     AttackBonus,
-
+    NoEffect
 };
 
 /**
@@ -84,6 +84,7 @@ public:
 
     Character();
     Character(int level, FighterType fighterType);
+    Character(int level, FighterType fighterType, string name);
     Character(Character& other);
     Character(int level, FighterType fighterType, CharacterStrategy* strategy);
 
@@ -126,6 +127,7 @@ public:
     bool saveToFile(const string& filename);
     bool loadFromFile(const string& filename);
 
+    void removeItem(const string& item);
 
     virtual void display();
     virtual void applyEnhancement(CharacterStat stat, int bonus) = 0;

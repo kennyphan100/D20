@@ -142,16 +142,16 @@ int main() {
             
             //myCharacter->printCharacter();
 
-            cout << "\n===== TESTING CHARACTER OBSERVER: =====\n" << endl;
+            //cout << "\n===== TESTING CHARACTER OBSERVER: =====\n" << endl;
 
-            CharacterObserver *co1 = new CharacterObserver(newCharacter);
+            //CharacterObserver *co1 = new CharacterObserver(newCharacter);
 
-            Armor diamondArmor("Diamond Armor");
-            Shield ironShield("Iron Shield");
-            Boots leatherBoots("Leather Boots");
+            //Armor diamondArmor("Diamond Armor");
+            //Shield ironShield("Iron Shield");
+            //Boots leatherBoots("Leather Boots");
 
-            cout << "Equipping a piece of armor..." << endl;
-            newCharacter->equipArmor(&diamondArmor);
+            //cout << "Equipping a piece of armor..." << endl;
+            //newCharacter->equipArmor(&diamondArmor);
 
             //cout << "Equipping a piece of shield..." << endl;
             //myCharacter->equipShield(&ironShield);
@@ -174,13 +174,8 @@ int main() {
         }
         else if (part._Equal("3"))
         {
-            //characterBuilder = new BullyFighterBuilder;
-            //director.setBuilder(characterBuilder);
-            //newCharacter = director.buildCharacter(10);
-
-            //newCharacter->printCharacter();
-
-            Character* fighterCharacter = new FighterCharacter(5, FighterType::TANK);
+            Character* fighterCharacter = new FighterCharacter(10, FighterType::TANK);
+            fighterCharacter->setName("TestCharacter");
             fighterCharacter->display();
 
             cout << "\n";
@@ -229,25 +224,25 @@ int main() {
                             fighterCharacter = new Weapon2(fighterCharacter, "Gold Sword", CharacterStat::Strength, 4);
                         }
                         else if (itemOption == -1) {
-                            fighterCharacter = new Helmet2(fighterCharacter, "---", CharacterStat::Intelligence, 1);
+                            fighterCharacter = new Helmet2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
                         }
                         else if (itemOption == -2) {
-                            fighterCharacter = new Armor2(fighterCharacter, "---", CharacterStat::ArmorClass, 5);
+                            fighterCharacter = new Armor2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
                         }
                         else if (itemOption == -3) {
-                            fighterCharacter = new Shield2(fighterCharacter, "---", CharacterStat::ArmorClass, 5);
+                            fighterCharacter = new Shield2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
                         }
                         else if (itemOption == -4) {
-                            fighterCharacter = new Ring2(fighterCharacter, "---", CharacterStat::Strength, 3);
+                            fighterCharacter = new Ring2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
                         }
                         else if (itemOption == -5) {
-                            fighterCharacter = new Belt2(fighterCharacter, "---", CharacterStat::Constitution, 2);
+                            fighterCharacter = new Belt2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
                         }
                         else if (itemOption == -6) {
-                            fighterCharacter = new Boots2(fighterCharacter, "---", CharacterStat::Dexterity, 1);
+                            fighterCharacter = new Boots2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
                         }
                         else if (itemOption == -7) {
-                            fighterCharacter = new Weapon2(fighterCharacter, "---", CharacterStat::Strength, 4);
+                            fighterCharacter = new Weapon2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
                         }
 
                         cout << "\n" << endl;
