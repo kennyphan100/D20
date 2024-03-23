@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\429\Downloads\CppUnit\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\429\Downloads\CppUnit\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files\CppUnit\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\CppUnit\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
