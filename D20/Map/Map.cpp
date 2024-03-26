@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include <filesystem>
+#include "../Character/Character.h"
 
 using namespace std;
 
@@ -335,4 +336,89 @@ Cell Map::charToCellType(char c) {
 
 void Map::setName(string newName) {
     name = newName;
+}
+
+void Map::placeCharacter(int x, int y, Character* character) {
+    if (x < 0 || x >= width || y < 0 || y >= height) {
+        throw std::out_of_range("Character coordinates are out of bounds.");
+    }
+    if (grid[y][x] != Cell::EMPTY) {
+        throw std::logic_error("Cannot place a character on a non-empty cell.");
+    }
+    grid[y][x] = Cell::OCCUPIED;
+    characters[{x, y}] = character;
+}
+
+Character* Map::getCharacter(int x, int y) const {
+    auto it = characters.find({ x, y });
+    if (it != characters.end()) {
+        return it->second;
+    }
+    return nullptr;
+}
+
+void Map::removeCharacter(int x, int y) {
+    grid[y][x] = Cell::EMPTY;
+    characters.erase({ x, y });
+}
+
+bool Map::moveCharacter(int fromX, int fromY, int toX, int toY) {
+    auto it = characters.find({ fromX, fromY });
+    if (it == characters.end()) {
+        std::cerr << "No character at the starting position." << std::endl;
+        return false;
+    }
+
+    if (toX < 0 || toX >= width || toY < 0 || toY >= height) {
+        std::cerr << "Target position is out of bounds." << std::endl;
+        return false;
+    }
+
+    if (grid[toY][toX] != Cell::EMPTY) {
+        std::cerr << "Target cell is not empty." << std::endl;
+        return false;
+    }
+
+    Character* character = it->second;
+    characters.erase(it);
+    characters[{toX, toY}] = character;
+
+    setCell(fromX, fromY, Cell::EMPTY);
+    setCell(toX, toY, Cell::OCCUPIED);
+
+    return true;
+}
+
+int Map::findShortestPath(int startX, int startY, int endX, int endY) {
+    if (startX == endX && startY == endY) return 0;
+    if (!isTraversable(grid, startX, startY) || !isTraversable(grid, endX, endY)) return -1;
+
+    std::vector<std::vector<int>> distances(height, std::vector<int>(width, std::numeric_limits<int>::max()));
+    distances[startY][startX] = 0;
+
+    std::queue<Point> q;
+    q.push({ startX, startY });
+
+    std::vector<Point> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
+
+    while (!q.empty()) {
+        Point current = q.front();
+        q.pop();
+
+        for (const auto& dir : directions) {
+            int nextX = current.x + dir.x;
+            int nextY = current.y + dir.y;
+
+            if (nextX >= 0 && nextX < width && nextY >= 0 && nextY < height && grid[nextY][nextX] == Cell::EMPTY && distances[nextY][nextX] == std::numeric_limits<int>::max()) {
+                distances[nextY][nextX] = distances[current.y][current.x] + 1;
+                q.push({ nextX, nextY });
+
+                if (nextX == endX && nextY == endY) {
+                    return distances[nextY][nextX];
+                }
+            }
+        }
+    }
+
+    return -1;
 }
