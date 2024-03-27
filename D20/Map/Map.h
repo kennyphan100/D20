@@ -8,7 +8,9 @@
 
 #include <vector>
 #include <iostream>
+#include <map>
 #include "../Observable.h"
+#include "../Character/Character.h"
 
 /**
  * @enum Cell
@@ -101,11 +103,30 @@ public:
 
     Cell charToCellType(char c);
 
+    void placeCharacter(int x, int y, Character* character);
+
+    Character* getCharacter(int x, int y) const;
+
+    void removeCharacter(int x, int y);
+
+    bool moveCharacter(int fromX, int fromY, int toX, int toY);
+
+    /**
+     * @brief BFS Pathfinding function
+     * @param startX The starting x position.
+     * @param startY The starting y position.
+     * @param endX The ending x position.
+     * @param endY The ending y position.
+     * @return The travel distance. -1 If no path found.
+     */
+    int findShortestPath(int startX, int startY, int endX, int endY);
+
 private:
     int width; ///< Width of the map.
     int height; ///< Height of the map.
     string name; ///< Name of the map.
     vector<vector<Cell>> grid; ///< 2D grid representing the map, containing cells of type Cell.
+    map<pair<int, int>, Character*> characters; ///< 2D map containing the pointers to the Characters on the map.
 };
 
 #endif
