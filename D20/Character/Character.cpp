@@ -7,6 +7,7 @@
 #include <cmath>
 #include "CharacterUtils.h"
 #include <fstream>
+#include <ctime>
 
 using namespace std;
 
@@ -376,7 +377,14 @@ void Character::display() {
 
     ofstream logFile("./game_log.txt", ios::app);
     if (logFile.is_open()) {
+        time_t t = time(nullptr);
+        tm tm;
+        localtime_s(&tm, &t);
+        char buffer[80];
+        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
+        string timestamp(buffer);
         logFile << "============ Equipping Item ============" << endl;
+        logFile << "Timestamp: " << timestamp << endl;
         logFile << "Equipped Helmet: " << (CharacterUtils::getHelmet(this) ? CharacterUtils::getHelmet(this)->getName() : "---") << endl;
         logFile << "Equipped Armor: " << (CharacterUtils::getArmor(this) ? CharacterUtils::getArmor(this)->getName() : "---") << endl;
         logFile << "Equipped Shield: " << (CharacterUtils::getShield(this) ? CharacterUtils::getShield(this)->getName() : "---") << endl;

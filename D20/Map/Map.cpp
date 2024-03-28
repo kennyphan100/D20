@@ -11,6 +11,7 @@
 #include <vector>
 #include <filesystem>
 #include "../Character/Character.h"
+#include <ctime>
 
 using namespace std;
 
@@ -277,7 +278,14 @@ bool Map::loadFromFile(const string& filename) {
 
     ofstream logFile("./game_log.txt", ios::app);
     if (logFile.is_open()) {
+        time_t t = time(nullptr);
+        tm tm;
+        localtime_s(&tm, &t);
+        char buffer[80];
+        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
+        string timestamp(buffer);
         logFile << "============ Loaded Map ============" << endl;
+        logFile << "Timestamp: " << timestamp << endl;
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
                 // Assuming Cell is an enum and grid is a 2D vector of Cells
