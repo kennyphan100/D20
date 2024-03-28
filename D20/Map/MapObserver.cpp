@@ -42,10 +42,7 @@ void MapObserver::log(Observable* o) {
 
     if (_subject == o) {
         if (logFile.is_open()) {
-            logFile << "============ Character Update ============" << endl;
-            // Assuming _subject->printCharacter() returns a string to log. Adjust if needed.
-            // For example, if printCharacter() writes directly to a stream, you might need to adjust its implementation
-            // to support writing to different output streams or return a string instead.
+            logFile << "============ Map Update ============" << endl;
             _subject->display(); // This needs to be adjusted based on how printCharacter is implemented
             logFile << "\n";
             logFile.close(); // Close the file
