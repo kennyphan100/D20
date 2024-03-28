@@ -1,5 +1,36 @@
-﻿  Gui.cpp
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(168,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+﻿  CharacterCreation.cpp
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(99,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(99,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(104,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(104,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(111,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(111,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Gui.cpp
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(86,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -8,7 +39,7 @@ C:\Users\kenny\source\repos\D20\D20\Gui.cpp(168,95): warning C4244: 'argument': 
           [
               T=float
           ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(168,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(86,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -17,64 +48,6 @@ C:\Users\kenny\source\repos\D20\D20\Gui.cpp(168,83): warning C4244: 'argument': 
           [
               T=float
           ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(180,91): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(180,79): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(185,98): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(185,86): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(192,98): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(192,86): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(138,16): warning C4101: 'playerCharacter': unreferenced local variable
-sfml-graphics-s-d.lib(RenderTarget.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(RenderTarget.obj)' or at ''; linking object as if no debug info
-sfml-graphics-s-d.lib(View.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(View.obj)' or at ''; linking object as if no debug info
-sfml-graphics-s-d.lib(Shape.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(Shape.obj)' or at ''; linking object as if no debug info
-sfml-graphics-s-d.lib(Text.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(Text.obj)' or at ''; linking object as if no debug info
-sfml-window-s-d.lib(JoystickImpl.obj) : warning LNK4099: PDB '' was not found with 'sfml-window-s-d.lib(JoystickImpl.obj)' or at ''; linking object as if no debug info
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(62,16): warning C4101: 'playerCharacter': unreferenced local variable
+  Generating Code...
   D20.vcxproj -> C:\Users\kenny\source\repos\D20\x64\Debug\D20.exe
