@@ -1,36 +1,5 @@
-﻿  CharacterCreation.cpp
-C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(99,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(99,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(104,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(104,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(111,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(111,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-  Gui.cpp
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(86,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+﻿  Gui.cpp
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(80,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -39,7 +8,7 @@ C:\Users\kenny\source\repos\D20\D20\Gui.cpp(86,95): warning C4244: 'argument': c
           [
               T=float
           ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(86,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(80,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -48,6 +17,4 @@ C:\Users\kenny\source\repos\D20\D20\Gui.cpp(86,83): warning C4244: 'argument': c
           [
               T=float
           ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(62,16): warning C4101: 'playerCharacter': unreferenced local variable
-  Generating Code...
   D20.vcxproj -> C:\Users\kenny\source\repos\D20\x64\Debug\D20.exe

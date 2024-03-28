@@ -10,7 +10,6 @@ public:
     CharacterCreation(sf::RenderWindow& window);
 
     void handleMainMenuClick(int mouseX, int mouseY);
-    //void handleCharacterCreationClick(int mouseX, int mouseY);
     void handleCharacterCreationClick(int mouseX, int mouseY);
     void handleTextInput(sf::Uint32 unicode);
     void drawMainMenu(sf::RenderWindow& window);
@@ -21,6 +20,8 @@ public:
     sf::Text nameValue;
 
     sf::RectangleShape nameInputBackground; // Background for name input
+
+    sf::Text titleLabel;
 
     sf::Text levelLabel;
 
@@ -43,8 +44,8 @@ public:
 private:
     sf::RenderWindow& window;
     sf::Font font;
-    //sf::Texture worldBackgroundTex;
-    //sf::Sprite worldBackground;
+    sf::Texture worldBackgroundTex;
+    sf::Sprite worldBackground;
     sf::Text backButton;
 
     bool dropdownOpen;

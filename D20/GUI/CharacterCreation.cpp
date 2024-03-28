@@ -7,87 +7,102 @@ CharacterCreation::CharacterCreation(sf::RenderWindow& window) : window(window),
         std::cerr << "Failed to load font" << std::endl;
     }
 
+    if (!worldBackgroundTex.loadFromFile("./Images/background1.jpg")) {
+        cout << "ERROR: Game could not load background image" << "\n";
+    }
+    worldBackground.setScale(static_cast<float>(window.getSize().x) / worldBackgroundTex.getSize().x,
+        static_cast<float>(window.getSize().y) / worldBackgroundTex.getSize().y);
+
+    worldBackground.setTexture(worldBackgroundTex);
+
     backButton.setFont(font);
     backButton.setString("Go Back");
     backButton.setCharacterSize(24);
     backButton.setFillColor(sf::Color::Black);
     backButton.setPosition(25, 25);
 
-    nameLabel.setFont(font);
-    nameLabel.setString("Name:");
-    nameLabel.setCharacterSize(24);
-    nameLabel.setFillColor(sf::Color::Black);
-    nameLabel.setPosition(100, 350);
-
-    nameValue.setFont(font);
-    nameValue.setString("");
-    nameValue.setCharacterSize(24);
-    nameValue.setFillColor(sf::Color::Black);
-    nameValue.setPosition(210, 350);
-
-    nameInputBackground.setSize(sf::Vector2f(200, 40));
-    nameInputBackground.setFillColor(sf::Color::White);
-    nameInputBackground.setPosition(200, 345);
+    titleLabel.setFont(font);
+    titleLabel.setString("Character Creation: ");
+    titleLabel.setCharacterSize(40);
+    titleLabel.setFillColor(sf::Color::Black);
+    titleLabel.setStyle(sf::Text::Bold | sf::Text::Underlined);
+    titleLabel.setPosition((window.getSize().x / 2 - levelLabel.getLocalBounds().width / 2) - 200, 25);
 
     levelLabel.setFont(font);
     levelLabel.setString("Level: ");
     levelLabel.setCharacterSize(24);
     levelLabel.setFillColor(sf::Color::Black);
-    levelLabel.setPosition(115, 70);
+    levelLabel.setPosition((window.getSize().x / 2 - levelLabel.getLocalBounds().width / 2) - 200, 125);
 
     levelValue.setFont(font);
     levelValue.setString("");
     levelValue.setCharacterSize(24);
     levelValue.setFillColor(sf::Color::Black);
-    levelValue.setPosition(210, 75);
+    levelValue.setPosition((window.getSize().x / 2 - levelValue.getLocalBounds().width / 2) - 140, 125);
 
     levelInputBackground.setSize(sf::Vector2f(150, 40));
     levelInputBackground.setFillColor(sf::Color::White);
-    levelInputBackground.setPosition(200, 70);
+    levelInputBackground.setPosition((window.getSize().x / 2 - levelInputBackground.getLocalBounds().width / 2) - 80, 120);
 
-    createCharacterButton.setSize(sf::Vector2f(250, 50));
-    createCharacterButton.setFillColor(sf::Color::Green);
-    createCharacterButton.setPosition(100, 500);
+    nameLabel.setFont(font);
+    nameLabel.setString("Name:");
+    nameLabel.setCharacterSize(24);
+    nameLabel.setFillColor(sf::Color::Black);
+    nameLabel.setPosition((window.getSize().x / 2 - nameLabel.getLocalBounds().width / 2) - 200, 200);
 
-    createCharacterButtonText.setFont(font);
-    createCharacterButtonText.setString("Create Character");
-    createCharacterButtonText.setCharacterSize(24);
-    createCharacterButtonText.setFillColor(sf::Color::White);
-    createCharacterButtonText.setPosition(115, 510);
+    nameValue.setFont(font);
+    nameValue.setString("");
+    nameValue.setCharacterSize(24);
+    nameValue.setFillColor(sf::Color::Black);
+    nameValue.setPosition((window.getSize().x / 2 - nameValue.getLocalBounds().width / 2) - 140, 205);
+
+    nameInputBackground.setSize(sf::Vector2f(200, 40));
+    nameInputBackground.setFillColor(sf::Color::White);
+    nameInputBackground.setPosition((window.getSize().x / 2 - nameInputBackground.getLocalBounds().width / 2) - 50, 200);
 
     dropdownButton.setSize(sf::Vector2f(250, 50));
     dropdownButton.setFillColor(sf::Color::Transparent);
-    dropdownButton.setPosition(110, 140);
+    dropdownButton.setPosition((window.getSize().x / 2 - dropdownButton.getLocalBounds().width / 2) - 110, 280);
 
     dropdownText.setFont(font);
     dropdownText.setString("Select Fighter Type: ");
     dropdownText.setCharacterSize(24);
     dropdownText.setFillColor(sf::Color::Black);
-    dropdownText.setPosition(115, 150);
+    dropdownText.setPosition((window.getSize().x / 2 - dropdownText.getLocalBounds().width / 2) - 110, 280);
 
     fighterOptions[static_cast<int>(FighterType::NIMBLE)].setFont(font);
     fighterOptions[static_cast<int>(FighterType::NIMBLE)].setString("Nimble");
     fighterOptions[static_cast<int>(FighterType::NIMBLE)].setCharacterSize(24);
     fighterOptions[static_cast<int>(FighterType::NIMBLE)].setFillColor(sf::Color::Black);
-    fighterOptions[static_cast<int>(FighterType::NIMBLE)].setPosition(110, 200);
+    fighterOptions[static_cast<int>(FighterType::NIMBLE)].setPosition((window.getSize().x / 2 - levelLabel.getLocalBounds().width / 2) - 200, 330);
 
     fighterOptions[static_cast<int>(FighterType::TANK)].setFont(font);
     fighterOptions[static_cast<int>(FighterType::TANK)].setString("Tank");
     fighterOptions[static_cast<int>(FighterType::TANK)].setCharacterSize(24);
     fighterOptions[static_cast<int>(FighterType::TANK)].setFillColor(sf::Color::Black);
-    fighterOptions[static_cast<int>(FighterType::TANK)].setPosition(110, 250);
+    fighterOptions[static_cast<int>(FighterType::TANK)].setPosition((window.getSize().x / 2 - levelLabel.getLocalBounds().width / 2) - 200, 380);
 
     fighterOptions[static_cast<int>(FighterType::BULLY)].setFont(font);
     fighterOptions[static_cast<int>(FighterType::BULLY)].setString("Bully");
     fighterOptions[static_cast<int>(FighterType::BULLY)].setCharacterSize(24);
     fighterOptions[static_cast<int>(FighterType::BULLY)].setFillColor(sf::Color::Black);
-    fighterOptions[static_cast<int>(FighterType::BULLY)].setPosition(110, 300);
+    fighterOptions[static_cast<int>(FighterType::BULLY)].setPosition((window.getSize().x / 2 - levelLabel.getLocalBounds().width / 2) - 200, 430);
+
+    createCharacterButton.setSize(sf::Vector2f(250, 50));
+    createCharacterButton.setFillColor(sf::Color::Black);
+    createCharacterButton.setPosition((window.getSize().x / 2 - createCharacterButtonText.getLocalBounds().width / 2) - 125, 500);
+
+    createCharacterButtonText.setFont(font);
+    createCharacterButtonText.setString("Create Character");
+    createCharacterButtonText.setCharacterSize(24);
+    createCharacterButtonText.setFillColor(sf::Color::White);
+    createCharacterButtonText.setPosition((window.getSize().x / 2 - createCharacterButtonText.getLocalBounds().width / 2), 510);
 
     alertText.setFont(font);
     alertText.setString("Successfully created character!");
     alertText.setCharacterSize(24);
-    alertText.setFillColor(sf::Color::Black); // Text color
-    alertText.setPosition(window.getSize().x / 2 - alertText.getLocalBounds().width / 2, 500); // Adjust position as needed
+    alertText.setFillColor(sf::Color::Green); // Text color
+    alertText.setPosition(window.getSize().x / 2 - alertText.getLocalBounds().width / 2, 570); // Adjust position as needed
 }
 
 void CharacterCreation::handleMainMenuClick(int mouseX, int mouseY) {
@@ -160,6 +175,8 @@ void CharacterCreation::drawMainMenu(sf::RenderWindow& window) {
 
 void CharacterCreation::drawCharacterCreation() {
     // Draw character creation screen
+    window.draw(worldBackground);
+
     window.draw(dropdownButton);
     window.draw(dropdownText);
     if (dropdownOpen) {
@@ -167,6 +184,8 @@ void CharacterCreation::drawCharacterCreation() {
             window.draw(fighterOptions[i]);
         }
     }
+    window.draw(titleLabel);
+
     window.draw(levelInputBackground);
     window.draw(levelLabel);
     window.draw(levelValue);

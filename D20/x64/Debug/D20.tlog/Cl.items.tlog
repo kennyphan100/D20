@@ -15,12 +15,10 @@ C:\Users\kenny\source\repos\D20\D20\Item\Item2.cpp;C:\Users\kenny\source\repos\D
 C:\Users\kenny\source\repos\D20\D20\Main.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\Main.obj
 C:\Users\kenny\source\repos\D20\D20\Map\Campaign.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\Campaign.obj
 C:\Users\kenny\source\repos\D20\D20\Map\Editor.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\Editor.obj
-C:\Users\kenny\source\repos\D20\D20\LoggerObserver.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\LoggerObserver.obj
 C:\Users\kenny\source\repos\D20\D20\Map\Map.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\Map.obj
 C:\Users\kenny\source\repos\D20\D20\Map\MapEditorBuilder.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\MapEditorBuilder.obj
 C:\Users\kenny\source\repos\D20\D20\Map\MapGameBuilder.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\MapGameBuilder.obj
 C:\Users\kenny\source\repos\D20\D20\Map\MapObserver.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\MapObserver.obj
-C:\Users\kenny\source\repos\D20\D20\LoggerObservable.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\LoggerObservable.obj
 C:\Users\kenny\source\repos\D20\D20\Observable.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\Observable.obj
 C:\Users\kenny\source\repos\D20\D20\Observer.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\Observer.obj
 C:\Users\kenny\source\repos\D20\D20\Test\TestCharacter.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\TestCharacter.obj

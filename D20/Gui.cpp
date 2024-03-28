@@ -23,7 +23,7 @@ int main() {
     sf::Texture worldBackgroundTex;
     sf::Sprite worldBackground;
 
-    if (!worldBackgroundTex.loadFromFile("d20.jpg")) {
+    if (!worldBackgroundTex.loadFromFile("./Images/d20.jpg")) {
         cout << "ERROR: Game could not load background image" << "\n";
     }
     worldBackground.setScale(static_cast<float>(window.getSize().x) / worldBackgroundTex.getSize().x,
@@ -59,13 +59,7 @@ int main() {
 
     MenuState currentState = MAIN_MENU;
 
-    Character* playerCharacter;
     CharacterCreation characterCreation(window);
-
-    bool dropdownOpen = false;
-    string inputLevel;
-    string inputName;
-    bool showAlert = false;
 
     while (window.isOpen()) {
         sf::Event event;
