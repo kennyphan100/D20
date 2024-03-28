@@ -1,39 +1,53 @@
-﻿  AggressorStrategy.cpp
-  Character.cpp
-C:\devroot\D20\D20\Character\Character.cpp(311,33): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  CharacterBuilder.cpp
-  CharacterDirector.cpp
-  CharacterObserver.cpp
-  CharacterUtils.cpp
-  FighterCharacter.cpp
-  FriendlyStrategy.cpp
-  HumanPlayerStrategy.cpp
-  Dice.cpp
-C:\devroot\D20\D20\Dice\Dice.cpp(18,18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Item.cpp
-C:\devroot\D20\D20\Item\Item.cpp(233,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  Item2.cpp
-  Main.cpp
-C:\devroot\D20\D20\Main.cpp(204,29): warning C4804: '<': unsafe use of type 'bool' in operation
-C:\devroot\D20\D20\Main.cpp(47,16): warning C4101: 'myCharacter': unreferenced local variable
-  Campaign.cpp
-  Editor.cpp
-  LoggerObserver.cpp
-  Map.cpp
-  MapEditorBuilder.cpp
-  MapGameBuilder.cpp
-  MapObserver.cpp
+﻿  CharacterCreation.cpp
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(99,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(99,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(104,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(104,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(111,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp(111,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Gui.cpp
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(86,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(86,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(62,16): warning C4101: 'playerCharacter': unreferenced local variable
   Generating Code...
-  Compiling...
-  LoggerObservable.cpp
-  Observable.cpp
-  Observer.cpp
-  TestCharacter.cpp
-  TestDice.cpp
-C:\devroot\D20\D20\Test\TestDice.cpp(29,2): warning C4002: too many arguments for function-like macro invocation 'CPPUNIT_ASSERT_NO_THROW'
-  TestItem.cpp
-  TestMap.cpp
-  TestMapEditorBuilder.cpp
-  TestMapGameBuilder.cpp
-  Generating Code...
-  D20.vcxproj -> C:\devroot\D20\x64\Debug\D20.exe
+  D20.vcxproj -> C:\Users\kenny\source\repos\D20\x64\Debug\D20.exe

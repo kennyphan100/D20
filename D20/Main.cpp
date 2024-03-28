@@ -43,7 +43,7 @@ string toLowercase(const string& str) {
 //! 4. Roll a dice using the form xdy[+z]
 //! 5. Run the test cases. 
 //! 9. Exit the program.
-int main() {
+int main_no_good() {
     Character* myCharacter;
     CharacterDirector director;
     Character* newCharacter;
