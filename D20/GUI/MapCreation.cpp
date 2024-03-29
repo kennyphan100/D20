@@ -92,6 +92,7 @@ void MapCreation::handleMainMenuClick(int mouseX, int mouseY) {
 
 void MapCreation::handleMapCreationClick(int mouseX, int mouseY) {
     try {
+        showSuccessfulAlert, showFailureAlert = false, false;
         sf::Vector2f mousePosF(static_cast<float>(mouseX), static_cast<float>(mouseY));
         if (nameInputBackground.getGlobalBounds().contains(mousePosF)) {
             activeField = NAME;
