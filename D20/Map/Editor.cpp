@@ -682,7 +682,7 @@ void Editor::createMapGUI(string name, int width, int height) {
     const string directoryPath = "./data/maps/";
     filePath = directoryPath + name + ".txt";
     if (filesystem::exists(filePath)) {
-        throw std::runtime_error("A map with this name already exists. Please choose a different namefsdfsdf.");
+        throw std::runtime_error("A map with this name already exists. Please choose a different name.");
     }
 
     Map myMap(width, height, name);
@@ -700,6 +700,50 @@ void Editor::createMapGUI(string name, int width, int height) {
     }
     else {
         cerr << "Failed to save the map '" << name << "' to a file.\n" << endl;
+    }
+}
+
+void Editor::createCampaignGUI(string campaignName, std::vector<std::string> selectedMaps) {
+    filesystem::path dirPathCampaign, dirPathMapsInCampaign, infoFilePath;
+
+    dirPathCampaign = filesystem::current_path() / "data" / "campaigns" / campaignName;
+    dirPathMapsInCampaign = filesystem::current_path() / "data" / "campaigns" / campaignName / "maps";
+
+    if (filesystem::exists(dirPathCampaign)) {
+        throw std::runtime_error("A campaign with this name already exists. Please choose a different name.");
+    }
+
+    if (!filesystem::create_directories(dirPathCampaign)) {
+        cerr << "Failed to create directory for the campaign \"" << campaignName << "\".\n";
+        return;
+    }
+
+    if (!filesystem::create_directories(dirPathMapsInCampaign)) {
+        cerr << "Failed to create directory for the maps in \"" << campaignName << "\".\n";
+        return;
+    }
+
+    infoFilePath = dirPathCampaign / (campaignName + ".txt");
+
+    Campaign newCampaign(campaignName);
+
+    if (newCampaign.saveToFile(infoFilePath.string())) {
+        cout << "Campaign \"" << campaignName << "\" created and saved successfully.\n\n";
+    }
+    else {
+        cerr << "Failed to save the campaign \"" << campaignName << "\".\n\n";
+    }
+
+    for (size_t i = 0; i < selectedMaps.size(); ++i) {
+        cout << selectedMaps[i] << endl;
+        newCampaign.addMap(selectedMaps[i], dirPathCampaign.string());
+    }
+
+    if (newCampaign.saveToFile(infoFilePath.string())) {
+        cout << "Campaign \"" << campaignName << "\" created and saved successfully.\n\n";
+    }
+    else {
+        cerr << "Failed to save the campaign \"" << campaignName << "\".\n\n";
     }
 }
 

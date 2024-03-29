@@ -3,6 +3,8 @@
 #include "Character/CharacterDirector.h"
 #include "GUI/CharacterCreation.h"
 #include "GUI/MapCreation.h"
+#include "GUI/CampaignCreation.h"
+
 using namespace std;
 
 enum MenuState {
@@ -84,6 +86,7 @@ int main() {
 
     CharacterCreation characterCreation(window);
     MapCreation mapCreation(window);
+    CampaignCreation campaignCreation(window);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -156,7 +159,7 @@ int main() {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                             currentState = EDITOR;
                         }
-                        mapCreation.handleMapCreationClick(mousePos.x, mousePos.y);
+                        campaignCreation.handleCampaignCreationClick(mousePos.x, mousePos.y);
                     }
                     else if (currentState == EDIT_CAMPAIGN) {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
@@ -193,14 +196,8 @@ int main() {
                     }
                 }
                 else if (currentState == CAMPAIGN_CREATION) {
-                    if (mapCreation.getActiveField() == MapCreation::NAME) {
-                        mapCreation.handleTextInput(event.text.unicode);
-                    }
-                    else if (mapCreation.getActiveField() == MapCreation::WIDTH) {
-                        mapCreation.handleTextInput(event.text.unicode);
-                    }
-                    else if (mapCreation.getActiveField() == MapCreation::HEIGHT) {
-                        mapCreation.handleTextInput(event.text.unicode);
+                    if (campaignCreation.getActiveField() == CampaignCreation::NAME) {
+                        campaignCreation.handleTextInput(event.text.unicode);
                     }
                 }
                 else if (currentState == EDIT_CAMPAIGN) {
@@ -243,7 +240,7 @@ int main() {
             mapCreation.drawMapCreation();
         }
         else if (currentState == CAMPAIGN_CREATION) {
-            mapCreation.drawMapCreation();
+            campaignCreation.drawCampaignCreation();
         }
         else if (currentState == EDIT_CAMPAIGN) {
             mapCreation.drawMapCreation();

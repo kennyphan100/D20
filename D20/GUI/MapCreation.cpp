@@ -1,7 +1,6 @@
 #include "MapCreation.h"
 #include "../Map/Map.h"
 #include "../Map/Editor.h"
-#include "../Character/CharacterBuilder.h"
 
 MapCreation::MapCreation(sf::RenderWindow& window) : window(window), showSuccessfulAlert(false), showFailureAlert(false) {
     if (!font.loadFromFile("arial.ttf")) {
