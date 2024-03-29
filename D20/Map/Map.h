@@ -111,6 +111,8 @@ public:
 
     bool moveCharacter(int fromX, int fromY, int toX, int toY);
 
+    void logMap(ostream& out) const;
+
     /**
      * @brief BFS Pathfinding function
      * @param startX The starting x position.

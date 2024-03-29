@@ -2,13 +2,14 @@
 #include <iostream>
 #include "Character/CharacterDirector.h"
 #include "GUI/CharacterCreation.h"
+#include "GUI/MapCreation.h"
 using namespace std;
 
 enum MenuState {
     MAIN_MENU,
     CHARACTER_CREATION,
-    CREATE_MAP,
-    CREATE_CAMPAIGN
+    MAP_CREATION,
+    CAMPAIGN_CREATION
 };
 
 int main() {
@@ -60,6 +61,7 @@ int main() {
     MenuState currentState = MAIN_MENU;
 
     CharacterCreation characterCreation(window);
+    MapCreation mapCreation(window);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -81,6 +83,9 @@ int main() {
                                 if (i == 0) {
                                     currentState = CHARACTER_CREATION;
                                 }
+                                else if (i == 1) {
+                                    currentState = MAP_CREATION;
+                                }
                                 // Add handling for other menu options here
                             }
                         }
@@ -91,11 +96,28 @@ int main() {
                         }
                         characterCreation.handleCharacterCreationClick(mousePos.x, mousePos.y);
                     }
+                    else if (currentState == MAP_CREATION) {
+                        if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+                            currentState = MAIN_MENU;
+                        }
+                        mapCreation.handleMapCreationClick(mousePos.x, mousePos.y);
+                    }
                 }
                 break;
             case sf::Event::TextEntered:
                 if (currentState == CHARACTER_CREATION) {
                     characterCreation.handleTextInput(event.text.unicode);
+                }
+                else if (currentState == MAP_CREATION) {
+                    if (mapCreation.getActiveField() == MapCreation::NAME) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
+                    else if (mapCreation.getActiveField() == MapCreation::WIDTH) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
+                    else if (mapCreation.getActiveField() == MapCreation::HEIGHT) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
                 }
                 break;
             }
@@ -112,6 +134,9 @@ int main() {
         }
         else if (currentState == CHARACTER_CREATION) {
             characterCreation.drawCharacterCreation();
+        }
+        else if (currentState == MAP_CREATION) {
+            mapCreation.drawMapCreation();
         }
         window.display();
     }
