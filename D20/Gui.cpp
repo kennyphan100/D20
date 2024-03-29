@@ -60,25 +60,25 @@ int main() {
     editorOptions[0].setString("Create Map");
     editorOptions[0].setCharacterSize(34);
     editorOptions[0].setFillColor(sf::Color::Black);
-    editorOptions[0].setPosition(100, 300);
+    editorOptions[0].setPosition(100, 200);
 
     editorOptions[1].setFont(font);
     editorOptions[1].setString("Edit Map");
     editorOptions[1].setCharacterSize(34);
     editorOptions[1].setFillColor(sf::Color::Black);
-    editorOptions[1].setPosition(100, 400);
+    editorOptions[1].setPosition(100, 300);
 
     editorOptions[2].setFont(font);
     editorOptions[2].setString("Create Campaign");
     editorOptions[2].setCharacterSize(34);
     editorOptions[2].setFillColor(sf::Color::Black);
-    editorOptions[2].setPosition(100, 500);
+    editorOptions[2].setPosition(100, 400);
 
-    editorOptions[2].setFont(font);
-    editorOptions[2].setString("Edit Campaign");
-    editorOptions[2].setCharacterSize(34);
-    editorOptions[2].setFillColor(sf::Color::Black);
-    editorOptions[2].setPosition(100, 500);
+    editorOptions[3].setFont(font);
+    editorOptions[3].setString("Edit Campaign");
+    editorOptions[3].setCharacterSize(34);
+    editorOptions[3].setFillColor(sf::Color::Black);
+    editorOptions[3].setPosition(100, 500);
 
     MenuState currentState = MAIN_MENU;
 
@@ -114,7 +114,7 @@ int main() {
                     }
                     else if (currentState == EDITOR) {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-                            currentState = EDITOR;
+                            currentState = MAIN_MENU;
                         }
                         for (int i = 0; i < 4; ++i) {
                             if (editorOptions[i].getGlobalBounds().contains(mousePos.x, mousePos.y)) {
@@ -146,6 +146,24 @@ int main() {
                         }
                         mapCreation.handleMapCreationClick(mousePos.x, mousePos.y);
                     }
+                    else if (currentState == EDIT_MAP) {
+                        if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+                            currentState = EDITOR;
+                        }
+                        mapCreation.handleMapCreationClick(mousePos.x, mousePos.y);
+                    }
+                    else if (currentState == CAMPAIGN_CREATION) {
+                        if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+                            currentState = EDITOR;
+                        }
+                        mapCreation.handleMapCreationClick(mousePos.x, mousePos.y);
+                    }
+                    else if (currentState == EDIT_CAMPAIGN) {
+                        if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+                            currentState = EDITOR;
+                        }
+                        mapCreation.handleMapCreationClick(mousePos.x, mousePos.y);
+                    }
                 }
                 break;
             case sf::Event::TextEntered:
@@ -153,6 +171,39 @@ int main() {
                     characterCreation.handleTextInput(event.text.unicode);
                 }
                 else if (currentState == MAP_CREATION) {
+                    if (mapCreation.getActiveField() == MapCreation::NAME) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
+                    else if (mapCreation.getActiveField() == MapCreation::WIDTH) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
+                    else if (mapCreation.getActiveField() == MapCreation::HEIGHT) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
+                }
+                else if (currentState == EDIT_MAP) {
+                    if (mapCreation.getActiveField() == MapCreation::NAME) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
+                    else if (mapCreation.getActiveField() == MapCreation::WIDTH) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
+                    else if (mapCreation.getActiveField() == MapCreation::HEIGHT) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
+                }
+                else if (currentState == CAMPAIGN_CREATION) {
+                    if (mapCreation.getActiveField() == MapCreation::NAME) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
+                    else if (mapCreation.getActiveField() == MapCreation::WIDTH) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
+                    else if (mapCreation.getActiveField() == MapCreation::HEIGHT) {
+                        mapCreation.handleTextInput(event.text.unicode);
+                    }
+                }
+                else if (currentState == EDIT_CAMPAIGN) {
                     if (mapCreation.getActiveField() == MapCreation::NAME) {
                         mapCreation.handleTextInput(event.text.unicode);
                     }
@@ -186,6 +237,15 @@ int main() {
             characterCreation.drawCharacterCreation();
         }
         else if (currentState == MAP_CREATION) {
+            mapCreation.drawMapCreation();
+        }
+        else if (currentState == EDIT_MAP) {
+            mapCreation.drawMapCreation();
+        }
+        else if (currentState == CAMPAIGN_CREATION) {
+            mapCreation.drawMapCreation();
+        }
+        else if (currentState == EDIT_CAMPAIGN) {
             mapCreation.drawMapCreation();
         }
         window.display();
