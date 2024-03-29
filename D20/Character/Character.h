@@ -124,8 +124,8 @@ public:
     void levelUp();
     void printCharacter() const;
     void logCharacter(ostream& out) const;
-    bool saveToFile(const string& filename);
-    bool loadFromFile(const string& filename);
+    //bool saveToFile(const string& filename);
+    //bool loadFromFile(const string& filename);
 
     void removeItem(const string& item);
 

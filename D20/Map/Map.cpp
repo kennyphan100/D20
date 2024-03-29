@@ -155,6 +155,40 @@ void Map::display() const {
     }
 }
 
+void Map::logMap(ostream& out) const {
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            switch (grid[y][x]) {
+            case Cell::EMPTY:
+                out << "_ ";
+                break;
+            case Cell::WALL:
+                out << "W ";
+                break;
+            case Cell::OCCUPIED:
+                out << "O ";
+                break;
+            case Cell::START:
+                out << "S ";
+                break;
+            case Cell::FINISH:
+                out << "F ";
+                break;
+            case Cell::DOOR:
+                out << "D ";
+                break;
+            case Cell::CHEST:
+                out << "C ";
+                break;
+            case Cell::PLAYER:
+                out << "P ";
+                break;
+            }
+        }
+        out << endl;
+    }
+}
+
 //! Gets the width of the map.
 //! @return The width of the map.
 int Map::getWidth() const {
