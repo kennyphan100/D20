@@ -7,6 +7,8 @@ using namespace std;
 
 class CharacterCreation {
 public:
+    enum ActiveInputField { NAME, LEVEL };
+
     CharacterCreation(sf::RenderWindow& window);
 
     void handleMainMenuClick(int mouseX, int mouseY);
@@ -14,6 +16,9 @@ public:
     void handleTextInput(sf::Uint32 unicode);
     void drawMainMenu(sf::RenderWindow& window);
     void drawCharacterCreation();
+    bool isPrintableAscii(sf::Uint32 unicode);
+    ActiveInputField getActiveField() const;
+
 
     sf::Text nameLabel;
 
@@ -53,4 +58,6 @@ private:
     string inputLevel;
     string inputName;
     string fighterType;
+
+    ActiveInputField activeField;
 };
