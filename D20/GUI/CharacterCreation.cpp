@@ -111,10 +111,6 @@ void CharacterCreation::handleMainMenuClick(int mouseX, int mouseY) {
 
 void CharacterCreation::handleCharacterCreationClick(int mouseX, int mouseY) {
     // Handle clicks on character creation screen
-    if (dropdownButton.getGlobalBounds().contains(mouseX, mouseY)) {
-        dropdownOpen = !dropdownOpen;
-    }
-
     for (int i = 0; i < 3; ++i) {
         if (fighterOptions[i].getGlobalBounds().contains(mouseX, mouseY)) {
             dropdownText.setString(fighterOptions[i].getString());
@@ -123,7 +119,16 @@ void CharacterCreation::handleCharacterCreationClick(int mouseX, int mouseY) {
         }
     }
 
-    if (createCharacterButton.getGlobalBounds().contains(mouseX, mouseY)) {
+    if (nameInputBackground.getGlobalBounds().contains(mouseX, mouseY)) {
+        activeField = NAME;
+    }
+    else if (levelInputBackground.getGlobalBounds().contains(mouseX, mouseY)) {
+        activeField = LEVEL;
+    }
+    else if (dropdownButton.getGlobalBounds().contains(mouseX, mouseY)) {
+        dropdownOpen = !dropdownOpen;
+    }
+    else if (createCharacterButton.getGlobalBounds().contains(mouseX, mouseY)) {
         // add logic for creating character here
         std::cout << "creating character..." << std::endl;
         cout << fighterType << endl;
@@ -151,22 +156,31 @@ void CharacterCreation::handleCharacterCreationClick(int mouseX, int mouseY) {
 }
 
 void CharacterCreation::handleTextInput(sf::Uint32 unicode) {
-    // Handle text input for character creation
-    if (unicode >= '0' && unicode <= '9') {
-        inputLevel += static_cast<char>(unicode);
-        levelValue.setString(inputLevel);
-    }
-    else if ((unicode >= 32 && unicode <= 126) || unicode == 8) {
-        if (unicode == 8 && inputName.size() > 0) {
-            inputName.pop_back();
-            nameValue.setString(inputName);
-        }
-        else if (unicode != 8) {
-            inputName += static_cast<char>(unicode);
+    if (activeField == NAME) {
+        // Handle name input (similar to character creation)
+        if (isPrintableAscii(unicode)) {
+            if (unicode == 8 && inputName.size() > 0) { // Backspace pressed
+                inputName.pop_back();
+            }
+            else if (unicode != 8) {
+                inputName += static_cast<char>(unicode);
+            }
             nameValue.setString(inputName);
         }
     }
-
+    else if (activeField == LEVEL) {
+        // Handle width and height input (numeric input)
+        if (unicode >= '0' && unicode <= '9') {
+            inputLevel += static_cast<char>(unicode);
+            levelValue.setString(inputLevel);
+        }
+        else if (unicode == 8) { // Backspace logic
+            if (inputLevel.size() > 0) {
+                inputLevel.pop_back();
+                levelValue.setString(inputLevel);
+            }
+        }
+    }
 }
 
 void CharacterCreation::drawMainMenu(sf::RenderWindow& window) {
@@ -201,4 +215,14 @@ void CharacterCreation::drawCharacterCreation() {
     if (showSuccessfulAlert) {
         window.draw(alertText);
     }
+}
+
+bool CharacterCreation::isPrintableAscii(sf::Uint32 unicode)
+{
+    return (unicode >= 32 && unicode <= 126) || unicode == 8;
+}
+
+CharacterCreation::ActiveInputField CharacterCreation::getActiveField() const
+{
+    return activeField;
 }
