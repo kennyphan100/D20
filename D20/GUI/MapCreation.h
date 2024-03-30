@@ -18,6 +18,7 @@ public:
     bool isPrintableAscii(sf::Uint32 unicode);
     ActiveInputField getActiveField() const;
 
+    sf::Text titleLabel;
     sf::Text nameLabel;
     sf::Text nameValue;
     sf::RectangleShape nameInputBackground;
@@ -35,7 +36,10 @@ public:
 private:
     sf::RenderWindow& window;
     sf::Font font;
+    sf::Texture worldBackgroundTex;
+    sf::Sprite worldBackground;
     sf::Text backButton;
+
     bool showSuccessfulAlert;
     bool showFailureAlert;
     string inputName;

@@ -18,6 +18,7 @@ public:
     bool isPrintableAscii(sf::Uint32 unicode);
     ActiveInputField getActiveField() const;
 
+    sf::Text titleLabel;
     sf::Text nameLabel;
     sf::Text nameValue;
     sf::RectangleShape nameInputBackground;
@@ -30,12 +31,15 @@ public:
 private:
     sf::RenderWindow& window;
     sf::Font font;
+    sf::Texture worldBackgroundTex;
+    sf::Sprite worldBackground;
     sf::Text backButton;
+
     bool showSuccessfulAlert;
     bool showFailureAlert;
     string inputName;
     ActiveInputField activeField;
-    sf::Vector2f mapListStartPosition{ 50, 200 }; // Starting position of the map list
+    sf::Vector2f mapListStartPosition{ 500, 200 }; // Starting position of the map list
     float mapListItemSpacing = 30.0f;
     vector<string> mapFiles;
     vector<bool> mapSelections;

@@ -11,55 +11,73 @@ CampaignCreation::CampaignCreation(sf::RenderWindow& window) : window(window), s
         std::cerr << "Failed to load font" << std::endl;
     }
 
+    if (!worldBackgroundTex.loadFromFile("./Images/mapbackground.jpg")) {
+        cout << "ERROR: Game could not load background image" << "\n";
+    }
+    worldBackground.setScale(static_cast<float>(window.getSize().x) / worldBackgroundTex.getSize().x,
+        static_cast<float>(window.getSize().y) / worldBackgroundTex.getSize().y);
+
+    worldBackground.setTexture(worldBackgroundTex);
+
     backButton.setFont(font);
     backButton.setString("Go Back");
     backButton.setCharacterSize(24);
     backButton.setFillColor(sf::Color::Black);
     backButton.setPosition(25, 25);
 
+    titleLabel.setFont(font);
+    titleLabel.setString("Campaign Creation: ");
+    titleLabel.setCharacterSize(40);
+    titleLabel.setFillColor(sf::Color::Black);
+    titleLabel.setStyle(sf::Text::Bold | sf::Text::Underlined);
+    titleLabel.setPosition((window.getSize().x / 2 - titleLabel.getLocalBounds().width / 2), 25);
+
     nameLabel.setFont(font);
     nameLabel.setString("Name:");
     nameLabel.setCharacterSize(24);
     nameLabel.setFillColor(sf::Color::Black);
-    nameLabel.setPosition(50, 100);
+    nameLabel.setPosition((window.getSize().x / 2 - nameLabel.getLocalBounds().width / 2) - 200, 100);
 
     nameValue.setFont(font);
     nameValue.setString("");
     nameValue.setCharacterSize(24);
     nameValue.setFillColor(sf::Color::Black);
-    nameValue.setPosition(nameInputBackground.getPosition().x + 160, 100);
+    nameValue.setPosition((window.getSize().x / 2 - nameValue.getLocalBounds().width / 2) - 140, 100);
+
+    nameInputBackground.setSize(sf::Vector2f(200, 40));
+    nameInputBackground.setFillColor(sf::Color::White);
+    nameInputBackground.setPosition((window.getSize().x / 2 - nameInputBackground.getLocalBounds().width / 2) - 50, 95);
 
     mapLabel.setFont(font);
     mapLabel.setString("Available Maps");
     mapLabel.setCharacterSize(24);
     mapLabel.setFillColor(sf::Color::Black);
-    mapLabel.setPosition(50, 170);
-
-    nameInputBackground.setSize(sf::Vector2f(200, 40));
-    nameInputBackground.setFillColor(sf::Color::White);
-    nameInputBackground.setPosition(150, 95);
+    mapLabel.setStyle(sf::Text::Underlined);
+    mapLabel.setPosition((window.getSize().x / 2 - mapLabel.getLocalBounds().width / 2) - 50, 170);
 
     createCampaignButton.setSize(sf::Vector2f(245, 50));
     createCampaignButton.setFillColor(sf::Color::Black);
-    createCampaignButton.setPosition(735, 500);
+    createCampaignButton.setPosition((window.getSize().x / 2 - createCampaignButton.getLocalBounds().width / 2), 450);
 
     createCampaignButtonText.setFont(font);
     createCampaignButtonText.setString("Create Campaign");
     createCampaignButtonText.setCharacterSize(24);
     createCampaignButtonText.setFillColor(sf::Color::White);
-    createCampaignButtonText.setPosition(750, 510);
+    createCampaignButtonText.setPosition((window.getSize().x / 2 - createCampaignButtonText.getLocalBounds().width / 2), 460);
 
     alertTextSuccess.setFont(font);
     alertTextSuccess.setString("Successfully created campaign " + inputName + " !");
     alertTextSuccess.setCharacterSize(24);
     alertTextSuccess.setFillColor(sf::Color::Black); // Text color
-    alertTextSuccess.setPosition(window.getSize().x / 2 - alertTextSuccess.getLocalBounds().width / 2, 500); // Adjust position as needed
+    alertTextSuccess.setStyle(sf::Text::Bold);
+    alertTextSuccess.setPosition(window.getSize().x / 2 - alertTextSuccess.getLocalBounds().width / 2 - 50, 550); // Adjust position as needed
 
     alertTextFailure.setFont(font);
     alertTextFailure.setString("The campaign with the name " + inputName + " already exists!");
     alertTextFailure.setCharacterSize(24);
     alertTextFailure.setFillColor(sf::Color::Black); // Text color
-    alertTextFailure.setPosition(window.getSize().x / 2 - alertTextFailure.getLocalBounds().width / 2, 500); // Adjust position as needed
+    alertTextFailure.setStyle(sf::Text::Bold);
+    alertTextFailure.setPosition(window.getSize().x / 2 - alertTextFailure.getLocalBounds().width / 2 - 50, 550); // Adjust position as needed
 
 }
 
@@ -123,6 +141,12 @@ void CampaignCreation::drawMainMenu(sf::RenderWindow& window) {
 
 void CampaignCreation::drawCampaignCreation() {
     // Draw character creation screen
+    alertTextSuccess.setString("Successfully created campaign " + inputName + " !");
+    alertTextFailure.setString("The campaign with the name " + inputName + " already exists!");
+
+    window.draw(worldBackground);
+    window.draw(titleLabel);
+
     window.draw(nameInputBackground);
     window.draw(nameValue);
     window.draw(nameLabel);
@@ -156,6 +180,7 @@ void CampaignCreation::drawCampaignCreation() {
         mapNameText.setCharacterSize(20);
         mapNameText.setFillColor(mapSelections[i] ? sf::Color::Red : sf::Color::Black); // Highlight if selected
         mapNameText.setPosition(mapListStartPosition.x, currentYPosition);
+        //mapNameText.setPosition((window.getSize().x / 2 - mapNameText.getLocalBounds().width / 2) - 50, currentYPosition);
 
         window.draw(mapNameText);
 

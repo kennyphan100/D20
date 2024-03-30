@@ -7,73 +7,89 @@ MapCreation::MapCreation(sf::RenderWindow& window) : window(window), showSuccess
         std::cerr << "Failed to load font" << std::endl;
     }
 
+    if (!worldBackgroundTex.loadFromFile("./Images/mapbackground.jpg")) {
+        cout << "ERROR: Game could not load background image" << "\n";
+    }
+    worldBackground.setScale(static_cast<float>(window.getSize().x) / worldBackgroundTex.getSize().x,
+        static_cast<float>(window.getSize().y) / worldBackgroundTex.getSize().y);
+
+    worldBackground.setTexture(worldBackgroundTex);
+
     backButton.setFont(font);
     backButton.setString("Go Back");
     backButton.setCharacterSize(24);
     backButton.setFillColor(sf::Color::Black);
     backButton.setPosition(25, 25);
 
+    titleLabel.setFont(font);
+    titleLabel.setString("Map Creation: ");
+    titleLabel.setCharacterSize(40);
+    titleLabel.setFillColor(sf::Color::Black);
+    titleLabel.setStyle(sf::Text::Bold | sf::Text::Underlined);
+    titleLabel.setPosition((window.getSize().x / 2 - titleLabel.getLocalBounds().width / 2), 25);
+
     nameLabel.setFont(font);
     nameLabel.setString("Name:");
     nameLabel.setCharacterSize(24);
     nameLabel.setFillColor(sf::Color::Black);
-    nameLabel.setPosition(50, 100);
+    nameLabel.setPosition((window.getSize().x / 2 - nameLabel.getLocalBounds().width / 2) - 200, 100);
 
     nameValue.setFont(font);
     nameValue.setString("");
     nameValue.setCharacterSize(24);
     nameValue.setFillColor(sf::Color::Black);
-    nameValue.setPosition(nameInputBackground.getPosition().x + 160, 100);
+    nameValue.setPosition((window.getSize().x / 2 - nameValue.getLocalBounds().width / 2) - 140, 100);
 
     nameInputBackground.setSize(sf::Vector2f(200, 40));
     nameInputBackground.setFillColor(sf::Color::White);
-    nameInputBackground.setPosition(150, 95);
+    nameInputBackground.setPosition((window.getSize().x / 2 - nameInputBackground.getLocalBounds().width / 2) - 50, 95);
 
     widthLabel.setFont(font);
     widthLabel.setString("Width: ");
     widthLabel.setCharacterSize(24);
     widthLabel.setFillColor(sf::Color::Black);
-    widthLabel.setPosition(50, 150);
+    widthLabel.setPosition((window.getSize().x / 2 - widthLabel.getLocalBounds().width / 2) - 200, 150);
 
     widthValue.setFont(font);
     widthValue.setString("");
     widthValue.setCharacterSize(24);
     widthValue.setFillColor(sf::Color::Black);
-    widthValue.setPosition(widthInputBackground.getPosition().x + 160, 150);
+    widthValue.setPosition((window.getSize().x / 2 - widthValue.getLocalBounds().width / 2) - 140, 150);
 
-    widthInputBackground.setSize(sf::Vector2f(150, 40));
+    widthInputBackground.setSize(sf::Vector2f(100, 40));
     widthInputBackground.setFillColor(sf::Color::White);
-    widthInputBackground.setPosition(150, 145);
+    widthInputBackground.setPosition((window.getSize().x / 2 - widthInputBackground.getLocalBounds().width / 2) - 100, 145);
 
     heightLabel.setFont(font);
     heightLabel.setString("Height: ");
     heightLabel.setCharacterSize(24);
     heightLabel.setFillColor(sf::Color::Black);
-    heightLabel.setPosition(50, 200);
+    heightLabel.setPosition((window.getSize().x / 2 - heightLabel.getLocalBounds().width / 2) - 200, 200);
 
     heightValue.setFont(font);
     heightValue.setString("");
     heightValue.setCharacterSize(24);
     heightValue.setFillColor(sf::Color::Black);
-    heightValue.setPosition(heightInputBackground.getPosition().x + 160, 200);
+    heightValue.setPosition((window.getSize().x / 2 - heightValue.getLocalBounds().width / 2) - 140, 200);
 
-    heightInputBackground.setSize(sf::Vector2f(150, 40));
+    heightInputBackground.setSize(sf::Vector2f(100, 40));
     heightInputBackground.setFillColor(sf::Color::White);
-    heightInputBackground.setPosition(150, 195);
+    heightInputBackground.setPosition((window.getSize().x / 2 - heightInputBackground.getLocalBounds().width / 2) - 100, 195);
 
     createMapButton.setSize(sf::Vector2f(175, 50));
     createMapButton.setFillColor(sf::Color::Black);
-    createMapButton.setPosition(100, 500);
+    createMapButton.setPosition((window.getSize().x / 2 - createMapButton.getLocalBounds().width / 2), 300);
 
     createMapButtonText.setFont(font);
     createMapButtonText.setString("Create Map");
     createMapButtonText.setCharacterSize(24);
     createMapButtonText.setFillColor(sf::Color::White);
-    createMapButtonText.setPosition(115, 510);
+    createMapButtonText.setPosition((window.getSize().x / 2 - createMapButtonText.getLocalBounds().width / 2), 310);
 
     alertTextSuccess.setFont(font);
     alertTextSuccess.setString("Successfully created map " + inputName + " !");
     alertTextSuccess.setCharacterSize(24);
+    alertTextSuccess.setStyle(sf::Text::Bold);
     alertTextSuccess.setFillColor(sf::Color::Black); // Text color
     alertTextSuccess.setPosition(window.getSize().x / 2 - alertTextSuccess.getLocalBounds().width / 2, 500); // Adjust position as needed
 
@@ -161,6 +177,32 @@ void MapCreation::drawMainMenu(sf::RenderWindow& window) {
 
 void MapCreation::drawMapCreation() {
     // Draw character creation screen
+    window.draw(worldBackground);
+    window.draw(titleLabel);
+
+    if (activeField == NAME) {
+        nameInputBackground.setOutlineThickness(2);
+        nameInputBackground.setOutlineColor(sf::Color::Black);
+    }
+    else {
+        nameInputBackground.setOutlineThickness(0);
+    }
+
+    if (activeField == WIDTH) {
+        widthInputBackground.setOutlineThickness(2);
+        widthInputBackground.setOutlineColor(sf::Color::Black);
+    }
+    else {
+        widthInputBackground.setOutlineThickness(0);
+    }
+
+    if (activeField == HEIGHT) {
+        heightInputBackground.setOutlineThickness(2);
+        heightInputBackground.setOutlineColor(sf::Color::Black);
+    }
+    else {
+        heightInputBackground.setOutlineThickness(0);
+    }
 
     window.draw(widthInputBackground);
     window.draw(widthLabel);

@@ -101,8 +101,11 @@ CharacterCreation::CharacterCreation(sf::RenderWindow& window) : window(window),
     alertText.setFont(font);
     alertText.setString("Successfully created character!");
     alertText.setCharacterSize(24);
-    alertText.setFillColor(sf::Color::Green); // Text color
+    alertText.setStyle(sf::Text::Bold);
+    alertText.setFillColor(sf::Color::Black); // Text color
     alertText.setPosition(window.getSize().x / 2 - alertText.getLocalBounds().width / 2, 570); // Adjust position as needed
+
+    activeField = ActiveInputField::LEVEL;
 }
 
 void CharacterCreation::handleMainMenuClick(int mouseX, int mouseY) {
@@ -199,6 +202,22 @@ void CharacterCreation::drawCharacterCreation() {
         }
     }
     window.draw(titleLabel);
+
+    if (activeField == LEVEL) {
+        levelInputBackground.setOutlineThickness(2);
+        levelInputBackground.setOutlineColor(sf::Color::Black);
+    }
+    else {
+        levelInputBackground.setOutlineThickness(0);
+    }
+
+    if (activeField == NAME) {
+        nameInputBackground.setOutlineThickness(2);
+        nameInputBackground.setOutlineColor(sf::Color::Black);
+    }
+    else {
+        nameInputBackground.setOutlineThickness(0);
+    }
 
     window.draw(levelInputBackground);
     window.draw(levelLabel);
