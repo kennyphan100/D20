@@ -1,5 +1,5 @@
 ﻿  Gui.cpp
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(80,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(104,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -8,7 +8,25 @@ C:\Users\kenny\source\repos\D20\D20\Gui.cpp(80,95): warning C4244: 'argument': c
           [
               T=float
           ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(80,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(104,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(120,97): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(120,85): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int

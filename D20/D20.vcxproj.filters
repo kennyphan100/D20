@@ -30,6 +30,7 @@
     <ClCompile Include="Test\TestMapGameBuilder.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="GUI\CharacterCreation.cpp" />
+    <ClCompile Include="GUI\MapCreation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character\AggressorStrategy.h" />
@@ -62,6 +63,7 @@
     <ClInclude Include="Test\TestMapEditorBuilder.h" />
     <ClInclude Include="Test\TestMapGameBuilder.h" />
     <ClInclude Include="GUI\CharacterCreation.h" />
+    <ClInclude Include="GUI\MapCreation.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Test\test_map.txt" />

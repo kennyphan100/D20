@@ -147,6 +147,7 @@
     <ClInclude Include="Character\HumanPlayerStrategy.h" />
     <ClInclude Include="Dice\Dice.h" />
     <ClInclude Include="GUI\CharacterCreation.h" />
+    <ClInclude Include="GUI\MapCreation.h" />
     <ClInclude Include="Item\Item.h" />
     <ClInclude Include="Item\Item2.h" />
     <ClInclude Include="Map\Campaign.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="Dice\Dice.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="GUI\CharacterCreation.cpp" />
+    <ClCompile Include="GUI\MapCreation.cpp" />
     <ClCompile Include="Item\Item.cpp" />
     <ClCompile Include="Item\Item2.cpp" />
     <ClCompile Include="Main.cpp" />
