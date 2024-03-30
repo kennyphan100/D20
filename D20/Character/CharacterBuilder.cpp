@@ -35,12 +35,12 @@ bool CharacterBuilder::saveToFile(const string& filename) {
         << "WIS: " << getCharacter()->abilityScores[4] << " (" << getCharacter()->abilityModifiers[4] << "), "
         << "CHA: " << getCharacter()->abilityScores[5] << " (" << getCharacter()->abilityModifiers[5] << ")\n";
 
-    out << "Equipped Armor: " << (getCharacter()->getArmor() ? getCharacter()->getArmor()->name : "---") << "\n"
-        << "Equipped Shield: " << (getCharacter()->getShield() ? getCharacter()->getShield()->name : "---") << "\n"
-        << "Equipped Weapon: " << (getCharacter()->getWeapon() ? getCharacter()->getWeapon()->name : "---") << "\n"
-        << "Equipped Boots: " << (getCharacter()->getBoots() ? getCharacter()->getBoots()->name : "---") << "\n"
-        << "Equipped Ring: " << (getCharacter()->getRing() ? getCharacter()->getRing()->name : "---") << "\n"
-        << "Equipped Helmet: " << (getCharacter()->getHelmet() ? getCharacter()->getHelmet()->name : "---") << "\n";
+    out << "Equipped Armor: " << (getCharacter()->getArmor() ? getCharacter()->getArmor()->getName() : "---") << "\n"
+        << "Equipped Shield: " << (getCharacter()->getShield() ? getCharacter()->getShield()->getName() : "---") << "\n"
+        << "Equipped Weapon: " << (getCharacter()->getWeapon() ? getCharacter()->getWeapon()->getName() : "---") << "\n"
+        << "Equipped Boots: " << (getCharacter()->getBoots() ? getCharacter()->getBoots()->getName() : "---") << "\n"
+        << "Equipped Ring: " << (getCharacter()->getRing() ? getCharacter()->getRing()->getName() : "---") << "\n"
+        << "Equipped Helmet: " << (getCharacter()->getHelmet() ? getCharacter()->getHelmet()->getName() : "---") << "\n";
 
     out.close();
     return true;
@@ -157,12 +157,12 @@ void BullyFighterBuilder::logCharacter(ostream& out) {
         << "WIS: " << getCharacter()->abilityScores[4] << " (" << getCharacter()->abilityModifiers[4] << "), "
         << "CHA: " << getCharacter()->abilityScores[5] << " (" << getCharacter()->abilityModifiers[5] << ")\n";
 
-    out << "Equipped Armor: " << (getCharacter()->getArmor() ? getCharacter()->getArmor()->name : "---") << std::endl
-        << "Equipped Shield: " << (getCharacter()->getShield() ? getCharacter()->getShield()->name : "---") << std::endl
-        << "Equipped Weapon: " << (getCharacter()->getWeapon() ? getCharacter()->getWeapon()->name : "---") << std::endl
-        << "Equipped Boots: " << (getCharacter()->getBoots() ? getCharacter()->getBoots()->name : "---") << std::endl
-        << "Equipped Ring: " << (getCharacter()->getRing() ? getCharacter()->getRing()->name : "---") << std::endl
-        << "Equipped Helmet: " << (getCharacter()->getHelmet() ? getCharacter()->getHelmet()->name : "---") << std::endl;
+    out << "Equipped Armor: " << (getCharacter()->getArmor() ? getCharacter()->getArmor()->getName() : "---") << std::endl
+        << "Equipped Shield: " << (getCharacter()->getShield() ? getCharacter()->getShield()->getName() : "---") << std::endl
+        << "Equipped Weapon: " << (getCharacter()->getWeapon() ? getCharacter()->getWeapon()->getName() : "---") << std::endl
+        << "Equipped Boots: " << (getCharacter()->getBoots() ? getCharacter()->getBoots()->getName() : "---") << std::endl
+        << "Equipped Ring: " << (getCharacter()->getRing() ? getCharacter()->getRing()->getName() : "---") << std::endl
+        << "Equipped Helmet: " << (getCharacter()->getHelmet() ? getCharacter()->getHelmet()->getName() : "---") << std::endl;
 }
 
 void NimbleFighterBuilder::logCharacter(ostream& out) {
@@ -177,12 +177,12 @@ void NimbleFighterBuilder::logCharacter(ostream& out) {
         << "WIS: " << getCharacter()->abilityScores[4] << " (" << getCharacter()->abilityModifiers[4] << "), "
         << "CHA: " << getCharacter()->abilityScores[5] << " (" << getCharacter()->abilityModifiers[5] << ")\n";
 
-    out << "Equipped Armor: " << (getCharacter()->getArmor() ? getCharacter()->getArmor()->name : "---") << std::endl
-        << "Equipped Shield: " << (getCharacter()->getShield() ? getCharacter()->getShield()->name : "---") << std::endl
-        << "Equipped Weapon: " << (getCharacter()->getWeapon() ? getCharacter()->getWeapon()->name : "---") << std::endl
-        << "Equipped Boots: " << (getCharacter()->getBoots() ? getCharacter()->getBoots()->name : "---") << std::endl
-        << "Equipped Ring: " << (getCharacter()->getRing() ? getCharacter()->getRing()->name : "---") << std::endl
-        << "Equipped Helmet: " << (getCharacter()->getHelmet() ? getCharacter()->getHelmet()->name : "---") << std::endl;
+    out << "Equipped Armor: " << (getCharacter()->getArmor() ? getCharacter()->getArmor()->getName() : "---") << std::endl
+        << "Equipped Shield: " << (getCharacter()->getShield() ? getCharacter()->getShield()->getName() : "---") << std::endl
+        << "Equipped Weapon: " << (getCharacter()->getWeapon() ? getCharacter()->getWeapon()->getName() : "---") << std::endl
+        << "Equipped Boots: " << (getCharacter()->getBoots() ? getCharacter()->getBoots()->getName() : "---") << std::endl
+        << "Equipped Ring: " << (getCharacter()->getRing() ? getCharacter()->getRing()->getName() : "---") << std::endl
+        << "Equipped Helmet: " << (getCharacter()->getHelmet() ? getCharacter()->getHelmet()->getName() : "---") << std::endl;
 }
 
 void TankFighterBuilder::logCharacter(ostream& out) {
@@ -197,11 +197,11 @@ void TankFighterBuilder::logCharacter(ostream& out) {
         << "WIS: " << getCharacter()->abilityScores[4] << " (" << getCharacter()->abilityModifiers[4] << "), "
         << "CHA: " << getCharacter()->abilityScores[5] << " (" << getCharacter()->abilityModifiers[5] << ")\n";
 
-    out << "Equipped Armor: " << (getCharacter()->getArmor() ? getCharacter()->getArmor()->name : "---") << std::endl
-        << "Equipped Shield: " << (getCharacter()->getShield() ? getCharacter()->getShield()->name : "---") << std::endl
-        << "Equipped Weapon: " << (getCharacter()->getWeapon() ? getCharacter()->getWeapon()->name : "---") << std::endl
-        << "Equipped Boots: " << (getCharacter()->getBoots() ? getCharacter()->getBoots()->name : "---") << std::endl
-        << "Equipped Ring: " << (getCharacter()->getRing() ? getCharacter()->getRing()->name : "---") << std::endl
-        << "Equipped Helmet: " << (getCharacter()->getHelmet() ? getCharacter()->getHelmet()->name : "---") << std::endl;
+    out << "Equipped Armor: " << (getCharacter()->getArmor() ? getCharacter()->getArmor()->getName() : "---") << std::endl
+        << "Equipped Shield: " << (getCharacter()->getShield() ? getCharacter()->getShield()->getName() : "---") << std::endl
+        << "Equipped Weapon: " << (getCharacter()->getWeapon() ? getCharacter()->getWeapon()->getName() : "---") << std::endl
+        << "Equipped Boots: " << (getCharacter()->getBoots() ? getCharacter()->getBoots()->getName() : "---") << std::endl
+        << "Equipped Ring: " << (getCharacter()->getRing() ? getCharacter()->getRing()->getName() : "---") << std::endl
+        << "Equipped Helmet: " << (getCharacter()->getHelmet() ? getCharacter()->getHelmet()->getName() : "---") << std::endl;
 }
 

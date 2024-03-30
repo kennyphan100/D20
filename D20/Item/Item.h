@@ -10,16 +10,17 @@
 
 using namespace std;
 
-enum class Enhancements {
-    damageBonus,    //!< Additional damage bonus.
-    attackBonus,    //!< Additional attack bonus.
-    armorClass,     //!< Bonus to armor class.
-    strength,       //!< Increase in strength.
-    dexterity,      //!< Increase in dexterity.
-    wisdom,         //!< Increase in wisdom.
-    intelligence,   //!< Increase in intelligence.
-    constitution,   //!< Increase in constitution.
-    charisma        //!< Increase in charisma.
+enum class EnhancementType {
+    Strength,
+    Dexterity,
+    Constitution,
+    Intelligence,
+    Wisdom,
+    Charisma,
+    ArmorClass,
+    AttackBonus,
+    DamageBonus,
+    NoEffect
 };
 
 /**
@@ -44,11 +45,25 @@ enum class Enhancements {
  */
 class Item {
 public:
-    string name;
     Item(string name);
+    Item(string name, EnhancementType enhancementType, int enhancementBonus);
     virtual ~Item() = default;
-    virtual pair<Enhancements, int> getEnhancement() const = 0;
+    virtual pair<EnhancementType, int> getEnhancement() const = 0;
     void displayItem() const;
+    bool saveToFile(const string& filename, const string& itemType);
+
+    string getName() const;
+    void setName(string newName);
+
+    EnhancementType getEnhancementType() const;
+    void setEnhancementType(EnhancementType newEnhancementType);
+
+    int getEnhancementBonus() const;
+    void setEnhancementBonus(int newEnhancementBonus);
+private:
+    string name;
+    EnhancementType enhancementType;
+    int enhancementBonus;
 };
 
 //! Class representing a helmet item.
@@ -57,52 +72,65 @@ public:
     //! Constructor for Helmet class.
     //! @param name The name of the helmet.
     Helmet(string name);
+    Helmet(string name, EnhancementType enhancementType, int enhancementBonus);
 
     //! Overridden function to get the enhancement provided by the helmet.
     //! @return A pair containing the enhancement type and its value.
-    pair<Enhancements, int> getEnhancement() const override;
+    pair<EnhancementType, int> getEnhancement() const override;
 };
 
 //! Class representing an armor item.
 class Armor : public Item {
 public:
     Armor(string name);
-    pair<Enhancements, int> getEnhancement() const override;
+    Armor(string name, EnhancementType enhancementType, int enhancementBonus);
+
+    pair<EnhancementType, int> getEnhancement() const override;
 };
 
 //! Class representing a shield item.
 class Shield : public Item {
 public:
     Shield(string name);
-    pair<Enhancements, int> getEnhancement() const override;
+    Shield(string name, EnhancementType enhancementType, int enhancementBonus);
+
+    pair<EnhancementType, int> getEnhancement() const override;
 };
 
 //! Class representing a ring item.
 class Ring : public Item {
 public:
     Ring(string name);
-    pair<Enhancements, int> getEnhancement() const override;
+    Ring(string name, EnhancementType enhancementType, int enhancementBonus);
+
+    pair<EnhancementType, int> getEnhancement() const override;
 };
 
 //! Class representing a belt item.
 class Belt : public Item {
 public:
     Belt(string name);
-    pair<Enhancements, int> getEnhancement() const override;
+    Belt(string name, EnhancementType enhancementType, int enhancementBonus);
+
+    pair<EnhancementType, int> getEnhancement() const override;
 };
 
 //! Class representing a boots item.
 class Boots : public Item {
 public:
     Boots(string name);
-    pair<Enhancements, int> getEnhancement() const override;
+    Boots(string name, EnhancementType enhancementType, int enhancementBonus);
+
+    pair<EnhancementType, int> getEnhancement() const override;
 };
 
 //! Class representing a weapon item.
 class Weapon : public Item {
 public:
     Weapon(string name);
-    pair<Enhancements, int> getEnhancement() const override;
+    Weapon(string name, EnhancementType enhancementType, int enhancementBonus);
+
+    pair<EnhancementType, int> getEnhancement() const override;
 };
 
 //! Class representing a container for items.
@@ -136,6 +164,6 @@ class TreasureChest : public ItemContainer {
 //! Function to convert an enhancement type enum value to its string representation.
 //! @param enhancement The enhancement type enum value.
 //! @return The string representation of the enhancement type.
-string enhancementToString(Enhancements enhancement);
+string enhancementToString(EnhancementType enhancement);
 
 #endif

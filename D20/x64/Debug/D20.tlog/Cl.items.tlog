@@ -9,6 +9,7 @@ C:\Users\kenny\source\repos\D20\D20\Character\FriendlyStrategy.cpp;C:\Users\kenn
 C:\Users\kenny\source\repos\D20\D20\Character\HumanPlayerStrategy.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\HumanPlayerStrategy.obj
 C:\Users\kenny\source\repos\D20\D20\Dice\Dice.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\Dice.obj
 C:\Users\kenny\source\repos\D20\D20\Gui.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\Gui.obj
+C:\Users\kenny\source\repos\D20\D20\GUI\CampaignCreation.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\CampaignCreation.obj
 C:\Users\kenny\source\repos\D20\D20\GUI\CharacterCreation.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\CharacterCreation.obj
 C:\Users\kenny\source\repos\D20\D20\GUI\MapCreation.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\MapCreation.obj
 C:\Users\kenny\source\repos\D20\D20\Item\Item.cpp;C:\Users\kenny\source\repos\D20\D20\x64\Debug\Item.obj
