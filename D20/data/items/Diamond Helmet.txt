@@ -1,0 +1,4 @@
+Armor Type: Helmet
+Name: Diamond Helmet
+Enhancement Type: Strength
+Enhancement Bonus: 5

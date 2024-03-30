@@ -1,5 +1,5 @@
 ﻿  Gui.cpp
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(80,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(107,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -8,7 +8,7 @@ C:\Users\kenny\source\repos\D20\D20\Gui.cpp(80,95): warning C4244: 'argument': c
           [
               T=float
           ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(80,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(107,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -17,4 +17,25 @@ C:\Users\kenny\source\repos\D20\D20\Gui.cpp(80,83): warning C4244: 'argument': c
           [
               T=float
           ]
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(123,97): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(123,85): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+  Main.cpp
+C:\Users\kenny\source\repos\D20\D20\Main.cpp(47,16): warning C4101: 'myCharacter': unreferenced local variable
+  Generating Code...
   D20.vcxproj -> C:\Users\kenny\source\repos\D20\x64\Debug\D20.exe

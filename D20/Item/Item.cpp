@@ -4,6 +4,8 @@
 
 #include "Item.h"
 #include <iostream>
+#include <fstream> 
+#include <sstream>
 
 using namespace std;
 
@@ -11,6 +13,10 @@ using namespace std;
 //! @param name The name of the item.
 //! @return new Item object
 Item::Item(string name): name(move(name)) {}
+
+Item::Item(string name, EnhancementType enhancementType, int enhancementBonus) : name(name), enhancementType(enhancementType), enhancementBonus(enhancementBonus)
+{
+}
 
 //! Constructor for ItemContainer class.
 //! @param name The name of the item container.
@@ -28,18 +34,22 @@ Backpack::Backpack(string name): ItemContainer(name) {}
 Helmet::Helmet(string name) : Item(move(name)) {
 }
 
+Helmet::Helmet(string name, EnhancementType enhancementType, int enhancementBonus) : Item(name, enhancementType, enhancementBonus)
+{
+}
+
 //! Retrieves an enhancement and its bonus for the helmet.
 //! @return A pair containing the enhancement and its bonus.
-pair<Enhancements, int> Helmet::getEnhancement() const {
+pair<EnhancementType, int> Helmet::getEnhancement() const {
     int bonus = rand() % 5 + 1;
-    Enhancements enhance;
+    EnhancementType enhance;
 
     if (rand() % 3 == 0)
-        enhance = Enhancements::wisdom;
+        enhance = EnhancementType::Wisdom;
     else if (rand() % 3 == 1)
-        enhance = Enhancements::intelligence;
+        enhance = EnhancementType::Intelligence;
     else
-        enhance = Enhancements::armorClass;
+        enhance = EnhancementType::ArmorClass;
 
     return { enhance, bonus };
 }
@@ -50,11 +60,15 @@ pair<Enhancements, int> Helmet::getEnhancement() const {
 Armor::Armor(string name): Item(move(name)) {
 }
 
+Armor::Armor(string name, EnhancementType enhancementType, int enhancementBonus) : Item(name, enhancementType, enhancementBonus)
+{
+}
+
 //! Retrieves the enhancement and its bonus for the armor.
 //! @return A pair containing the enhancement and its bonus.
-pair<Enhancements, int> Armor::getEnhancement() const {
+pair<EnhancementType, int> Armor::getEnhancement() const {
     int armorBonus = rand() %5+1;
-    return {Enhancements::armorClass, armorBonus};
+    return { EnhancementType::ArmorClass, armorBonus};
 }
 
 //! Constructor for Shield class.
@@ -63,11 +77,15 @@ pair<Enhancements, int> Armor::getEnhancement() const {
 Shield::Shield(string name): Item(move(name)) {
 }
 
+Shield::Shield(string name, EnhancementType enhancementType, int enhancementBonus) : Item(name, enhancementType, enhancementBonus)
+{
+}
+
 //! Retrieves the enhancement and its bonus for the shield.
 //! @return A pair containing the enhancement and its bonus.
-pair<Enhancements, int> Shield::getEnhancement() const {
+pair<EnhancementType, int> Shield::getEnhancement() const {
     int armorBonus = rand() %5+1;
-    return {Enhancements::armorClass, armorBonus};
+    return { EnhancementType::ArmorClass, armorBonus};
 }
 
 //! Constructor for Ring class.
@@ -76,22 +94,26 @@ pair<Enhancements, int> Shield::getEnhancement() const {
 Ring::Ring(string name) : Item(move(name)) {
 }
 
+Ring::Ring(string name, EnhancementType enhancementType, int enhancementBonus) : Item(name, enhancementType, enhancementBonus)
+{
+}
+
 //! Retrieves a random enhancement and its bonus for the ring.
 //! @return A pair containing the enhancement and its bonus.
-pair<Enhancements, int> Ring::getEnhancement() const {
+pair<EnhancementType, int> Ring::getEnhancement() const {
     int bonus = rand() % 5 + 1;
-    Enhancements enhance;
+    EnhancementType enhance;
 
     if (rand() % 5 == 0)
-        enhance = Enhancements::strength;
+        enhance = EnhancementType::Strength;
     else if (rand() % 5 == 1)
-        enhance = Enhancements::constitution;
+        enhance = EnhancementType::Constitution;
     else if (rand() % 5 == 2)
-        enhance = Enhancements::armorClass;
+        enhance = EnhancementType::ArmorClass;
     else if (rand() % 5 == 3)
-        enhance = Enhancements::wisdom;
+        enhance = EnhancementType::Wisdom;
     else
-        enhance = Enhancements::charisma;
+        enhance = EnhancementType::Charisma;
 
     return { enhance, bonus };
 }
@@ -102,16 +124,20 @@ pair<Enhancements, int> Ring::getEnhancement() const {
 Belt::Belt(string name) : Item(move(name)) {
 }
 
+Belt::Belt(string name, EnhancementType enhancementType, int enhancementBonus) : Item(name, enhancementType, enhancementBonus)
+{
+}
+
 //! Retrieves a random enhancement and its bonus for the belt.
 //! @return A pair containing the enhancement and its bonus.
-pair<Enhancements, int> Belt::getEnhancement() const {
+pair<EnhancementType, int> Belt::getEnhancement() const {
     int bonus = rand() % 5 + 1;
-    Enhancements enhance;
+    EnhancementType enhance;
 
     if (rand() % 2 == 0)
-        enhance = Enhancements::constitution;
+        enhance = EnhancementType::Constitution;
     else
-        enhance = Enhancements::strength;
+        enhance = EnhancementType::Strength;
 
     return { enhance, bonus };
 }
@@ -122,16 +148,20 @@ pair<Enhancements, int> Belt::getEnhancement() const {
 Boots::Boots(string name): Item(move(name)) {
 }
 
+Boots::Boots(string name, EnhancementType enhancementType, int enhancementBonus) : Item(name, enhancementType, enhancementBonus)
+{
+}
+
 //! Retrieves a random enhancement and its bonus for the boots.
 //! @return A pair containing the enhancement and its bonus.
-pair<Enhancements, int> Boots::getEnhancement() const {
+pair<EnhancementType, int> Boots::getEnhancement() const {
     int bonus = rand() %5+1;
-    Enhancements enhance;
+    EnhancementType enhance;
     
     if (rand() % 2 == 0)
-        enhance = Enhancements::dexterity;
+        enhance = EnhancementType::Dexterity;
     else
-        enhance = Enhancements::armorClass;
+        enhance = EnhancementType::ArmorClass;
 
     return { enhance, bonus };
 }
@@ -142,16 +172,20 @@ pair<Enhancements, int> Boots::getEnhancement() const {
 Weapon::Weapon(string name) : Item(move(name)) {
 }
 
+Weapon::Weapon(string name, EnhancementType enhancementType, int enhancementBonus) : Item(name, enhancementType, enhancementBonus)
+{
+}
+
 //! Retrieves a random enhancement and its bonus for the weapon.
 //! @return A pair containing the enhancement and its bonus.
-pair<Enhancements, int> Weapon::getEnhancement() const {
+pair<EnhancementType, int> Weapon::getEnhancement() const {
     int bonus = rand() % 5 + 1;
-    Enhancements enhance;
+    EnhancementType enhance;
 
     if (rand() % 2 == 0)
-        enhance = Enhancements::attackBonus;
+        enhance = EnhancementType::AttackBonus;
     else
-        enhance = Enhancements::damageBonus;
+        enhance = EnhancementType::DamageBonus;
 
     return { enhance, bonus };
 }
@@ -159,25 +193,25 @@ pair<Enhancements, int> Weapon::getEnhancement() const {
 //! Converts an enhancement enum value to its string representation.
 //! @param enhancement The enhancement enum value.
 //! @return The string representation of the enhancement.
-string enhancementToString(Enhancements enhancement) {
+string enhancementToString(EnhancementType enhancement) {
     switch (enhancement) {
-        case Enhancements::damageBonus:
+        case EnhancementType::DamageBonus:
             return "Damage Bonus";
-        case Enhancements::attackBonus:
+        case EnhancementType::AttackBonus:
             return "Attack Bonus";
-        case Enhancements::armorClass:
+        case EnhancementType::ArmorClass:
             return "Armor Class";
-        case Enhancements::strength:
+        case EnhancementType::Strength:
             return "Strength";
-        case Enhancements::dexterity:
+        case EnhancementType::Dexterity:
             return "Dexterity";
-        case Enhancements::wisdom:
+        case EnhancementType::Wisdom:
             return "Wisdom";
-        case Enhancements::intelligence:
+        case EnhancementType::Intelligence:
             return "Intelligence";
-        case Enhancements::constitution:
+        case EnhancementType::Constitution:
             return "Constitution";
-        case Enhancements::charisma:
+        case EnhancementType::Charisma:
             return "Charisma";
         default:
             return "Unknown Enhancement";
@@ -195,7 +229,7 @@ void ItemContainer::addItem(Item* item){
 void ItemContainer::removeItem(const string& label){
 
     for(auto element = items.begin(); element != items.end(); ++element){
-        if ((*element)->name == label){
+        if ((*element)->getName() == label) {
             delete *element;
             items.erase(element);
             break;
@@ -208,7 +242,7 @@ void ItemContainer::removeItem(const string& label){
 //! @return Pointer to the item if found, nullptr otherwise.
 Item* ItemContainer::getItemByName(const string& itemName) const {
     for (const auto& item : items) {
-        if (item->name == itemName) {
+        if (item->getName() == itemName) {
             return item;
         }
     }
@@ -221,6 +255,23 @@ void Item::displayItem() const {
     cout << "Enhancement: " << enhancementToString(getEnhancement().first) << ", Enhancement Bonus: " << getEnhancement().second << endl << endl;
 }
 
+bool Item::saveToFile(const string& filename, const string& itemType)
+{
+    ofstream out(filename);
+    if (!out.is_open()) {
+        cerr << "Failed to open file '" << filename << "' for writing.\n";
+        return false;
+    }
+
+    out << "Armor Type: " << itemType << "\n"
+        << "Name: " << name << "\n"
+        << "Enhancement Type: " << enhancementToString(enhancementType) << "\n"
+        << "Enhancement Bonus: " << enhancementBonus << "\n";
+
+    out.close();
+    return true;
+}
+
 //! Displays all items' information from the item container.
 void ItemContainer::displayItems() const {
     cout << " ====== Items in " << name << ": ======" << endl;
@@ -231,4 +282,34 @@ void ItemContainer::displayItems() const {
 
 int ItemContainer::getSize() const {
     return items.size();
+}
+
+string Item::getName() const
+{
+    return name;
+}
+
+void Item::setName(string newName)
+{
+    name = newName;
+}
+
+EnhancementType Item::getEnhancementType() const
+{
+    return enhancementType;
+}
+
+void Item::setEnhancementType(EnhancementType newEnhancementType)
+{
+    enhancementType = newEnhancementType;
+}
+
+int Item::getEnhancementBonus() const
+{
+    return enhancementBonus;
+}
+
+void Item::setEnhancementBonus(int newEnhancementBonus)
+{
+    enhancementBonus = newEnhancementBonus;
 }
