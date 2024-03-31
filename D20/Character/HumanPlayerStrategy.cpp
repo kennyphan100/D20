@@ -5,6 +5,9 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <ctime>
+
+using namespace std;
 
 void HumanPlayerStrategy::move(Character& character, Map& map) {
     auto [startX, startY] = map.getCharacterPosition(character);
@@ -64,8 +67,9 @@ void HumanPlayerStrategy::attack(Character& attacker, Map& map) {
 
     std::ofstream logFile("./game_log.txt", std::ios::app);
     if (logFile.is_open()) {
-        logFile << "============ Character Attack ============\n";
-        logFile << "Character " << attacker.getName() << " attacks target at position (" << x << ", " << y << ") with roll " << rollResult << ".\n";
+        logFile << "============ Character Attack ============" << endl;
+        //logFile << "Character " << character.getName() << " attack " << targetId << "." << "\n";
+        logFile << "\n";
         logFile.close();
     }
 
@@ -91,7 +95,14 @@ void HumanPlayerStrategy::freeAction(Character& character) {
         std::cout << "Resting... health recovered." << std::endl;
         // Implement health recovery
         if (logFile.is_open()) {
+            time_t t = time(nullptr);
+            tm tm;
+            localtime_s(&tm, &t);
+            char buffer[80];
+            strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
+            string timestamp(buffer);
             logFile << "============ Character Rest ============" << endl;
+            logFile << "Timestamp: " << timestamp << endl;
             logFile << "Character " << character.getName() << " rest." << "\n";
             logFile << "\n";
             logFile.close();
@@ -101,7 +112,14 @@ void HumanPlayerStrategy::freeAction(Character& character) {
         std::cout << "Looking around the area..." << std::endl;
         // Implement the logic to describe the area or reveal certain elements
         if (logFile.is_open()) {
+            time_t t = time(nullptr);
+            tm tm;
+            localtime_s(&tm, &t);
+            char buffer[80];
+            strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
+            string timestamp(buffer);
             logFile << "============ Character Look ============" << endl;
+            logFile << "Timestamp: " << timestamp << endl;
             logFile << "Character " << character.getName() << " look." << "\n";
             logFile << "\n";
             logFile.close();
@@ -111,7 +129,14 @@ void HumanPlayerStrategy::freeAction(Character& character) {
         std::cout << "Speaking to nearby characters..." << std::endl;
         // Implement interaction with NPCs or other characters
         if (logFile.is_open()) {
+            time_t t = time(nullptr);
+            tm tm;
+            localtime_s(&tm, &t);
+            char buffer[80];
+            strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
+            string timestamp(buffer);
             logFile << "============ Character Speak ============" << endl;
+            logFile << "Timestamp: " << timestamp << endl;
             logFile << "Character " << character.getName() << " speak." << "\n";
             logFile << "\n";
             logFile.close();

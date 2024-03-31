@@ -42,11 +42,15 @@ void MapObserver::log(Observable* o) {
 
     if (_subject == o) {
         if (logFile.is_open()) {
-            logFile << "============ Character Update ============" << endl;
-            // Assuming _subject->printCharacter() returns a string to log. Adjust if needed.
-            // For example, if printCharacter() writes directly to a stream, you might need to adjust its implementation
-            // to support writing to different output streams or return a string instead.
-            _subject->display(); // This needs to be adjusted based on how printCharacter is implemented
+            time_t t = time(nullptr);
+            tm tm;
+            localtime_s(&tm, &t);
+            char buffer[80];
+            strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
+            string timestamp(buffer);
+            logFile << "============ Map Update ============" << endl;
+            logFile << "Timestamp: " << timestamp << endl;
+            _subject->logMap(logFile); // This needs to be adjusted based on how printCharacter is implemented
             logFile << "\n";
             logFile.close(); // Close the file
         }

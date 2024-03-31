@@ -57,7 +57,14 @@ void CharacterObserver::log(Observable* o) {
 
     if (_subject == o) {
         if (logFile.is_open()) {
+            time_t t = time(nullptr);
+            tm tm;
+            localtime_s(&tm, &t);
+            char buffer[80];
+            strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
+            string timestamp(buffer);
             logFile << "============ Character Update ============" << endl;
+            logFile << "Timestamp: " << timestamp << endl;
             _subject->logCharacter(logFile);
             logFile << "\n";
             logFile.close();
@@ -69,7 +76,14 @@ void CharacterObserver::log(Observable* o) {
 
     if (_subject2 == o) {
         if (logFile.is_open()) {
+            time_t t = time(nullptr);
+            tm tm;
+            localtime_s(&tm, &t);
+            char buffer[80];
+            strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
+            string timestamp(buffer);
             logFile << "============ Character Creation ============" << endl;
+            logFile << "Timestamp: " << timestamp << endl;
             _subject2->logCharacter(logFile);
             logFile << "\n";
             logFile.close();

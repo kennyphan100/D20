@@ -1,181 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="Character\AggressorStrategy.cpp" />
+    <ClCompile Include="Character\Character.cpp" />
+    <ClCompile Include="Character\CharacterBuilder.cpp" />
+    <ClCompile Include="Character\CharacterDirector.cpp" />
+    <ClCompile Include="Character\CharacterObserver.cpp" />
+    <ClCompile Include="Character\CharacterUtils.cpp" />
+    <ClCompile Include="Character\FighterCharacter.cpp" />
+    <ClCompile Include="Character\FriendlyStrategy.cpp" />
+    <ClCompile Include="Character\HumanPlayerStrategy.cpp" />
+    <ClCompile Include="Dice\Dice.cpp" />
+    <ClCompile Include="Item\Item.cpp" />
+    <ClCompile Include="Item\Item2.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Map\Campaign.cpp" />
+    <ClCompile Include="Map\Editor.cpp" />
+    <ClCompile Include="Map\Map.cpp" />
+    <ClCompile Include="Map\MapEditorBuilder.cpp" />
+    <ClCompile Include="Map\MapGameBuilder.cpp" />
+    <ClCompile Include="Map\MapObserver.cpp" />
+    <ClCompile Include="Observable.cpp" />
+    <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="Test\TestCharacter.cpp" />
+    <ClCompile Include="Test\TestDice.cpp" />
+    <ClCompile Include="Test\TestItem.cpp" />
+    <ClCompile Include="Test\TestMap.cpp" />
+    <ClCompile Include="Test\TestMapEditorBuilder.cpp" />
+    <ClCompile Include="Test\TestMapGameBuilder.cpp" />
+    <ClCompile Include="Gui.cpp" />
+    <ClCompile Include="GUI\CharacterCreation.cpp" />
+    <ClCompile Include="GUI\MapCreation.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Character\Character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\CharacterObserver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Dice\Dice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Item\Item.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map\Campaign.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map\Editor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map\Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map\MapBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map\MapConnection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map\MapEditorBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map\MapGameBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map\MapObserver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Observable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Observer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Test\TestCharacter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Test\TestDice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Test\TestItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Test\TestMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Test\TestMapEditorBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Test\TestMapGameBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\CharacterStrategy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\HumanPlayerStrategy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\FriendlyStrategy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LoggerObserver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LoggerObservable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LoggerObserver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LoggerObservable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\CharacterObserver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Dice\Dice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Item\Item.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map\Campaign.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map\Editor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map\Map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map\MapEditorBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map\MapGameBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map\MapObserver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Observable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Observer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\TestCharacter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\TestDice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\TestItem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\TestMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\TestMapEditorBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\TestMapGameBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< Updated upstream
-=======
-    <ClCompile Include="Character\CharacterBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\CharacterDirector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LoggerObserver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LoggerObservable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+    <ClInclude Include="Character\AggressorStrategy.h" />
+    <ClInclude Include="Character\Character.h" />
+    <ClInclude Include="Character\CharacterBuilder.h" />
+    <ClInclude Include="Character\CharacterDirector.h" />
+    <ClInclude Include="Character\CharacterObserver.h" />
+    <ClInclude Include="Character\CharacterStrategy.h" />
+    <ClInclude Include="Character\CharacterUtils.h" />
+    <ClInclude Include="Character\FighterCharacter.h" />
+    <ClInclude Include="Character\FriendlyStrategy.h" />
+    <ClInclude Include="Character\HumanPlayerStrategy.h" />
+    <ClInclude Include="Dice\Dice.h" />
+    <ClInclude Include="Item\Item.h" />
+    <ClInclude Include="Item\Item2.h" />
+    <ClInclude Include="Map\Campaign.h" />
+    <ClInclude Include="Map\Editor.h" />
+    <ClInclude Include="Map\Map.h" />
+    <ClInclude Include="Map\MapBuilder.h" />
+    <ClInclude Include="Map\MapConnection.h" />
+    <ClInclude Include="Map\MapEditorBuilder.h" />
+    <ClInclude Include="Map\MapGameBuilder.h" />
+    <ClInclude Include="Map\MapObserver.h" />
+    <ClInclude Include="Observable.h" />
+    <ClInclude Include="Observer.h" />
+    <ClInclude Include="Test\TestCharacter.h" />
+    <ClInclude Include="Test\TestDice.h" />
+    <ClInclude Include="Test\TestItem.h" />
+    <ClInclude Include="Test\TestMap.h" />
+    <ClInclude Include="Test\TestMapEditorBuilder.h" />
+    <ClInclude Include="Test\TestMapGameBuilder.h" />
+    <ClInclude Include="GUI\CharacterCreation.h" />
+    <ClInclude Include="GUI\MapCreation.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Test\test_map.txt" />
-    <Text Include="game_log.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\d20.jpg" />
+    <Image Include="Images\background1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="arial.ttf" />
   </ItemGroup>
 </Project>

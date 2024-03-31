@@ -35,7 +35,7 @@ void TestItem::tearDown(void)
 void TestItem::testShieldEnhancement() {
     Shield shield("Shield");
     auto enhancement = shield.getEnhancement();
-    CPPUNIT_ASSERT(enhancement.first == Enhancements::armorClass);
+    CPPUNIT_ASSERT(enhancement.first == EnhancementType::ArmorClass);
     CPPUNIT_ASSERT(enhancement.second >= 1 && enhancement.second <= 5);
 }
 
@@ -43,7 +43,7 @@ void TestItem::testShieldEnhancement() {
 void TestItem::testArmorEnhancement() {
     Armor armor("Armor");
     auto enhancement = armor.getEnhancement();
-    CPPUNIT_ASSERT(enhancement.first == Enhancements::armorClass);
+    CPPUNIT_ASSERT(enhancement.first == EnhancementType::ArmorClass);
     CPPUNIT_ASSERT(enhancement.second >= 1 && enhancement.second <= 5);
 }
 
@@ -51,7 +51,7 @@ void TestItem::testArmorEnhancement() {
 void TestItem::testHelmetEnhancement() {
     Helmet helmet("Helmet");
     auto enhancement = helmet.getEnhancement();
-    CPPUNIT_ASSERT((enhancement.first == Enhancements::wisdom) || (enhancement.first == Enhancements::intelligence) || (enhancement.first == Enhancements::armorClass));
+    CPPUNIT_ASSERT((enhancement.first == EnhancementType::Wisdom) || (enhancement.first == EnhancementType::Intelligence) || (enhancement.first == EnhancementType::ArmorClass));
     CPPUNIT_ASSERT(enhancement.second >= 1 && enhancement.second <= 5);
 }
 
@@ -59,7 +59,7 @@ void TestItem::testHelmetEnhancement() {
 void TestItem::testRingEnhancement() {
     Ring ring("Ring");
     auto enhancement = ring.getEnhancement();
-    CPPUNIT_ASSERT((enhancement.first == Enhancements::strength) || (enhancement.first == Enhancements::constitution) || (enhancement.first == Enhancements::armorClass) || (enhancement.first == Enhancements::wisdom) || (enhancement.first == Enhancements::charisma));
+    CPPUNIT_ASSERT((enhancement.first == EnhancementType::Strength) || (enhancement.first == EnhancementType::Constitution) || (enhancement.first == EnhancementType::ArmorClass) || (enhancement.first == EnhancementType::Wisdom) || (enhancement.first == EnhancementType::Charisma));
     CPPUNIT_ASSERT(enhancement.second >= 1 && enhancement.second <= 5);
 }
 
@@ -67,7 +67,7 @@ void TestItem::testRingEnhancement() {
 void TestItem::testWeaponEnhancement() {
     Weapon weapon("Weapon");
     auto enhancement = weapon.getEnhancement();
-    CPPUNIT_ASSERT((enhancement.first == Enhancements::attackBonus) || (enhancement.first == Enhancements::damageBonus));
+    CPPUNIT_ASSERT((enhancement.first == EnhancementType::AttackBonus) || (enhancement.first == EnhancementType::DamageBonus));
     CPPUNIT_ASSERT(enhancement.second >= 1 && enhancement.second <= 5);
 }
 
@@ -75,7 +75,7 @@ void TestItem::testWeaponEnhancement() {
 void TestItem::testBootsEnhancement() {
     Boots boots("Boots");
     auto enhancement = boots.getEnhancement();
-    CPPUNIT_ASSERT((enhancement.first == Enhancements::dexterity) || (enhancement.first == Enhancements::armorClass));
+    CPPUNIT_ASSERT((enhancement.first == EnhancementType::Dexterity) || (enhancement.first == EnhancementType::ArmorClass));
     CPPUNIT_ASSERT(enhancement.second >= 1 && enhancement.second <= 5);
 }
 
@@ -89,6 +89,6 @@ void TestItem::testAddItemInContainer() {
 //! @brief Test case for removing an item from the container.
 void TestItem::testRemoveItemFromContainer() {
     int size = ContainerObject->getSize();
-    ContainerObject->removeItem(ArmorObject->name);
+    ContainerObject->removeItem(ArmorObject->getName());
     CPPUNIT_ASSERT(ContainerObject->getSize() == 0);
 }

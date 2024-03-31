@@ -7,6 +7,7 @@
 #include <cmath>
 #include "CharacterUtils.h"
 #include <fstream>
+#include <ctime>
 
 using namespace std;
 
@@ -326,12 +327,12 @@ void Character::printCharacter() const {
         << "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
         << "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
 
-    cout << "Equipped Armor: " << (getArmor() ? getArmor()->name : "---") << endl;
-    cout << "Equipped Shield: " << (getShield() ? getShield()->name : "---") << endl;
-    cout << "Equipped Weapon: " << (getWeapon() ? getWeapon()->name : "---") << endl;
-    cout << "Equipped Boots: " << (getBoots() ? getBoots()->name : "---") << endl;
-    cout << "Equipped Ring: " << (getRing() ? getRing()->name : "---") << endl;
-    cout << "Equipped Helmet: " << (getHelmet() ? getHelmet()->name : "---") << endl;
+    cout << "Equipped Armor: " << (getArmor() ? getArmor()->getName() : "---") << endl;
+    cout << "Equipped Shield: " << (getShield() ? getShield()->getName() : "---") << endl;
+    cout << "Equipped Weapon: " << (getWeapon() ? getWeapon()->getName() : "---") << endl;
+    cout << "Equipped Boots: " << (getBoots() ? getBoots()->getName() : "---") << endl;
+    cout << "Equipped Ring: " << (getRing() ? getRing()->getName() : "---") << endl;
+    cout << "Equipped Helmet: " << (getHelmet() ? getHelmet()->getName() : "---") << endl;
 
 }
 
@@ -347,12 +348,12 @@ void Character::logCharacter(ostream& out) const {
         << "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
         << "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
 
-    out << "Equipped Armor: " << (getArmor() ? getArmor()->name : "---") << std::endl
-        << "Equipped Shield: " << (getShield() ? getShield()->name : "---") << std::endl
-        << "Equipped Weapon: " << (getWeapon() ? getWeapon()->name : "---") << std::endl
-        << "Equipped Boots: " << (getBoots() ? getBoots()->name : "---") << std::endl
-        << "Equipped Ring: " << (getRing() ? getRing()->name : "---") << std::endl
-        << "Equipped Helmet: " << (getHelmet() ? getHelmet()->name : "---") << std::endl;
+    out << "Equipped Armor: " << (getArmor() ? getArmor()->getName() : "---") << std::endl
+        << "Equipped Shield: " << (getShield() ? getShield()->getName() : "---") << std::endl
+        << "Equipped Weapon: " << (getWeapon() ? getWeapon()->getName() : "---") << std::endl
+        << "Equipped Boots: " << (getBoots() ? getBoots()->getName() : "---") << std::endl
+        << "Equipped Ring: " << (getRing() ? getRing()->getName() : "---") << std::endl
+        << "Equipped Helmet: " << (getHelmet() ? getHelmet()->getName() : "---") << std::endl;
 }
 void Character::display() {
     cout << "Name: " << name << "\n"
@@ -376,7 +377,14 @@ void Character::display() {
 
     ofstream logFile("./game_log.txt", ios::app);
     if (logFile.is_open()) {
+        time_t t = time(nullptr);
+        tm tm;
+        localtime_s(&tm, &t);
+        char buffer[80];
+        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
+        string timestamp(buffer);
         logFile << "============ Equipping Item ============" << endl;
+        logFile << "Timestamp: " << timestamp << endl;
         logFile << "Equipped Helmet: " << (CharacterUtils::getHelmet(this) ? CharacterUtils::getHelmet(this)->getName() : "---") << endl;
         logFile << "Equipped Armor: " << (CharacterUtils::getArmor(this) ? CharacterUtils::getArmor(this)->getName() : "---") << endl;
         logFile << "Equipped Shield: " << (CharacterUtils::getShield(this) ? CharacterUtils::getShield(this)->getName() : "---") << endl;
