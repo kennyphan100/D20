@@ -8,6 +8,7 @@
 #include <fstream> 
 #include <sstream>
 #include <string>
+#include <cmath>
 #include <vector>
 #include <filesystem>
 #include "../Character/Character.h"
@@ -44,9 +45,11 @@ Map::Map(int width, int height, string name) : width(width), height(height), nam
 //! @param x The x-coordinate of the cell.
 //! @param y The y-coordinate of the cell.
 //! @return True if the cell is traversable, false otherwise.
-bool isTraversable(const vector<vector<Cell>>& grid, int x, int y) {
-    return x >= 0 && x < grid[0].size() && y >= 0 && y < grid.size() &&
-        (grid[y][x] != Cell::WALL && grid[y][x] != Cell::OCCUPIED);
+bool isTraversable(const vector<vector<Cell>>& grid, int x, int y, bool allowOccupiedStartEnd = false) {
+    if (x < 0 || x >= grid[0].size() || y < 0 || y >= grid.size()) return false;
+
+    Cell cell = grid[y][x];
+    return cell == Cell::EMPTY || (allowOccupiedStartEnd && (cell == Cell::OCCUPIED || cell == Cell::PLAYER));
 }
 
 //! Checks if the given coordinates represent an empty cell in the map.
@@ -421,4 +424,69 @@ int Map::findShortestPath(int startX, int startY, int endX, int endY) {
     }
 
     return -1;
+}
+
+std::pair<int, int> Map::getCharacterPosition(Character& character) {
+    for (const auto& entry : characters) {
+        const auto& position = entry.first;
+        Character* storedCharacter = entry.second;
+        if (storedCharacter == &character) {
+            return std::make_pair(position.first, position.second);
+        }
+    }
+    return std::make_pair(-1, -1);
+}
+
+std::pair<int, int> Map::findClosestEnemyPosition(int charX, int charY) {
+    std::pair<int, int> closestEnemyPos = { -1, -1 };
+    int minDistance = std::numeric_limits<int>::max();
+
+    for (const auto& entry : characters) {
+        const auto& position = entry.first;
+        Character* character = entry.second;
+
+        if (character && character->getStrategyType() == StrategyType::Aggressor) {
+            int distance = std::abs(charX - position.first) + std::abs(charY - position.second);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestEnemyPos = position;
+            }
+        }
+    }
+
+    return closestEnemyPos;
+}
+
+std::pair<int, int> Map::getPlayerPosition() const {
+    for (const auto& entry : characters) {
+        const auto& position = entry.first;
+        Character* character = entry.second;
+
+        if (character && character->getStrategyType() == StrategyType::Player) {
+            return position;
+        }
+    }
+
+    return std::make_pair(-1, -1);
+}
+
+std::pair<int, int> Map::findClosestAllyPosition(int charX, int charY, const Character& askingCharacter) {
+    std::pair<int, int> closestAllyPos = { -1, -1 };
+    int minDistance = std::numeric_limits<int>::max();
+
+    for (const auto& entry : characters) {
+        const auto& position = entry.first;
+        Character* potentialAlly = entry.second;
+
+        if (potentialAlly != &askingCharacter &&
+            (potentialAlly->getStrategyType() == StrategyType::Friendly || potentialAlly->getStrategyType() == StrategyType::Player)) {
+            int distance = std::abs(charX - position.first) + std::abs(charY - position.second);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestAllyPos = position;
+            }
+        }
+    }
+
+    return closestAllyPos;
 }

@@ -1,36 +1,84 @@
 #include "HumanPlayerStrategy.h"
 #include "Character.h"
+#include "../Dice/Dice.h"
+#include "../Map/Map.h"
 #include <iostream>
 #include <string>
 #include <fstream>
 
-void HumanPlayerStrategy::move(Character& character) {
-    std::cout << "Enter move direction (N, S, E, W): ";
-    std::string direction;
-    std::cin >> direction;
-    std::cout << "Moving " << direction << std::endl;
-    ofstream logFile("./game_log.txt", ios::app);
-    if (logFile.is_open()) {
-        logFile << "============ Character Move ============" << endl;
-        logFile << "Character " << character.getName() << " moved " << direction << "." << "\n";
-        logFile << "\n";
-        logFile.close();
+void HumanPlayerStrategy::move(Character& character, Map& map) {
+    auto [startX, startY] = map.getCharacterPosition(character);
+    if (startX == -1 && startY == -1) {
+        std::cerr << "Error: Character's position not found on the map.\n";
+        return;
+    }
+
+    std::cout << "Current position: (" << startX << ", " << startY << ")\n";
+    std::cout << "Enter target position coordinates (x y): ";
+    int targetX, targetY;
+    std::cin >> targetX >> targetY;
+
+    if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cerr << "Invalid input. Please enter numerical coordinates.\n";
+        return;
+    }
+
+    int distance = map.findShortestPath(startX, startY, targetX, targetY);
+
+    if (distance == -1 || distance > 10) {
+        std::cout << "Invalid move. Target is either unreachable or too far away.\n";
+    }
+    else {
+        if (map.moveCharacter(startX, startY, targetX, targetY)) {
+            std::cout << "Moved to (" << targetX << ", " << targetY << "). Distance covered: " << distance << " units.\n";
+
+            std::ofstream logFile("./game_log.txt", std::ios::app);
+            if (logFile.is_open()) {
+                logFile << "============ Character Move ============\n";
+                logFile << "Character " << character.getName() << " moved to (" << targetX << ", " << targetY << ").\n\n";
+                logFile.close();
+            }
+        }
+        else {
+            std::cerr << "Move failed. Could not update the character's position on the map.\n";
+        }
     }
 }
 
-void HumanPlayerStrategy::attack(Character& character) {
-    std::cout << "\nSelect target to attack (input target ID): ";
-    int targetId;
-    std::cin >> targetId;
-    std::cout << "Attacking target ID " << targetId << std::endl;
-    ofstream logFile("./game_log.txt", ios::app);
+void HumanPlayerStrategy::attack(Character& attacker, Map& map) {
+    std::cout << "\nEnter the position of the target to attack (x y): ";
+    int x, y;
+    std::cin >> x >> y;
+
+    Character* target = map.getCharacter(x, y);
+    if (!target) {
+        std::cout << "No target found at the given position.\n";
+        return;
+    }
+
+    Dice dice;
+    std::string attackRoll = "1d20";
+    int rollResult = dice.rollDice(attackRoll);
+
+    std::ofstream logFile("./game_log.txt", std::ios::app);
     if (logFile.is_open()) {
-        logFile << "============ Character Attack ============" << endl;
-        logFile << "Character " << character.getName() << " attack " << targetId << "." << "\n";
-        logFile << "\n";
+        logFile << "============ Character Attack ============\n";
+        logFile << "Character " << attacker.getName() << " attacks target at position (" << x << ", " << y << ") with roll " << rollResult << ".\n";
         logFile.close();
     }
+
+    if (rollResult >= target->getArmorClass()) {
+        int damageRoll = dice.rollDice("1d8");
+        target->takeDamage(damageRoll);
+        std::cout << "Hit! Target takes " << damageRoll << " damage.\n";
+    }
+    else {
+        std::cout << "Miss! The attack did not hit the target.\n";
+    }
 }
+
 
 void HumanPlayerStrategy::freeAction(Character& character) {
     std::cout << "\nChoose a free action: \n1. Rest (recover health)\n2. Look around\n3. Speak\nEnter choice: ";
@@ -73,4 +121,8 @@ void HumanPlayerStrategy::freeAction(Character& character) {
         std::cout << "Invalid choice." << std::endl;
         break;
     }
+}
+
+StrategyType HumanPlayerStrategy::getStrategyType() const {
+    return StrategyType::Player;
 }

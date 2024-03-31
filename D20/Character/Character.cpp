@@ -80,12 +80,12 @@ void Character::setStrategy(CharacterStrategy* strategy) {
     actionStrategy = strategy;
 }
 
-void Character::performMove() {
-    actionStrategy->move(*this);
+void Character::performMove(Map& map) {
+    actionStrategy->move(*this, map);
 }
 
-void Character::performAttack() {
-    actionStrategy->attack(*this);
+void Character::performAttack(Map& map) {
+    actionStrategy->attack(*this, map);
 }
 
 void Character::performFreeActions() {
@@ -419,4 +419,24 @@ string fighterTypeToString(FighterType fighterType) {
     case FighterType::TANK: return "TANK";
     default: return "Unknown FighterType";
     }
+}
+
+void Character::takeDamage(int damage) {
+    hitPoints -= damage;
+
+    if (hitPoints <= 0) {
+        std::cout << name << " has been defeated.\n";
+    }
+    else {
+        std::cout << name << " now has " << hitPoints << " hit points remaining.\n";
+    }
+
+    notify();
+}
+
+StrategyType Character::getStrategyType() const {
+    if (actionStrategy) {
+        return actionStrategy->getStrategyType();
+    }
+    return StrategyType::Player;
 }

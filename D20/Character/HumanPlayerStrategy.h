@@ -2,12 +2,15 @@
 #define HUMANPLAYERSTRATEGY_H
 
 #include "CharacterStrategy.h"
+#include "../Map/Map.h"
 
 class HumanPlayerStrategy : public CharacterStrategy {
 public:
-    void move(Character& character) override;
-    void attack(Character& character) override;
+
+    void move(Character& character, Map& map) override;
+    void attack(Character& character, Map& map) override;
     void freeAction(Character& character) override;
+    StrategyType getStrategyType() const override;
 };
 
 #endif // HUMANPLAYERSTRATEGY_H

@@ -121,10 +121,18 @@ public:
      */
     int findShortestPath(int startX, int startY, int endX, int endY);
 
+    std::pair<int, int> getCharacterPosition(Character& character);
+
+    std::pair<int, int> findClosestEnemyPosition(int charX, int charY);
+
+    std::pair<int, int> findClosestAllyPosition(int charX, int charY, const Character& character);
+
+    std::pair<int, int> getPlayerPosition() const;
+
 private:
     int width; ///< Width of the map.
     int height; ///< Height of the map.
-    string name; ///< Name of the map.
+    string name; ///< Name of the map. 
     vector<vector<Cell>> grid; ///< 2D grid representing the map, containing cells of type Cell.
     map<pair<int, int>, Character*> characters; ///< 2D map containing the pointers to the Characters on the map.
 };

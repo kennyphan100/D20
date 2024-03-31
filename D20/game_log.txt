@@ -52,3 +52,366 @@ Equipped Belt: ---
 Equipped Boots: ---
 Equipped Weapon: ---
 
+============ Dice Roll ============
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 16
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 16
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 16
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 16
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 16
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Roll dice of type 3d6: 16
+
+============ Dice Roll ============
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Roll dice of type 3d6+5: 14
+
