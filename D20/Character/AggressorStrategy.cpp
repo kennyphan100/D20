@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
-#include <ctime>
 
 using namespace std;
 
@@ -16,7 +15,6 @@ AggressorStrategy::AggressorStrategy() {
     }
 }
 
-<<<<<<< HEAD
 void AggressorStrategy::move(Character& character, Map& map) {
     auto [charX, charY] = map.getCharacterPosition(character);
 
@@ -79,42 +77,6 @@ void AggressorStrategy::attack(Character& aggressor, Map& map) {
                 return;
             }
         }
-=======
-void AggressorStrategy::move(Character& character) {
-    std::cout << "Aggressor moves towards the player..." << std::endl;
-    ofstream logFile("./game_log.txt", ios::app);
-    if (logFile.is_open()) {
-        time_t t = time(nullptr);
-        tm tm;
-        localtime_s(&tm, &t);
-        char buffer[80];
-        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
-        string timestamp(buffer);
-        logFile << "============ Character Move ============" << endl;
-        logFile << "Timestamp: " << timestamp << endl;
-        logFile << "Aggressor " << character.getName() << " moved." << "\n";
-        logFile << "\n";
-        logFile.close();
-    }
-}
-
-void AggressorStrategy::attack(Character& character) {
-    // Attack logic...
-    std::cout << "Aggressor attacks the player!" << std::endl;
-    ofstream logFile("./game_log.txt", ios::app);
-    if (logFile.is_open()) {
-        time_t t = time(nullptr);
-        tm tm;
-        localtime_s(&tm, &t);
-        char buffer[80];
-        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
-        string timestamp(buffer);
-        logFile << "============ Character Attack ============" << endl;
-        logFile << "Timestamp: " << timestamp << endl;
-        logFile << "Aggressor " << character.getName() << " attacked." << "\n";
-        logFile << "\n";
-        logFile.close();
->>>>>>> 2cec534f8416ba4837f12659c6ce711147e4ef84
     }
 }
 
