@@ -178,7 +178,7 @@ void CampaignCreation::drawCampaignCreation() {
         mapNameText.setFont(font);
         mapNameText.setString(mapFiles[i]);
         mapNameText.setCharacterSize(20);
-        mapNameText.setFillColor(mapSelections[i] ? sf::Color::Red : sf::Color::Black); // Highlight if selected
+        mapNameText.setFillColor(mapSelections[i] ? sf::Color::White : sf::Color::Black); // Highlight if selected
         mapNameText.setPosition(mapListStartPosition.x, currentYPosition);
         //mapNameText.setPosition((window.getSize().x / 2 - mapNameText.getLocalBounds().width / 2) - 50, currentYPosition);
 

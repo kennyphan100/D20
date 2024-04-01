@@ -18,7 +18,7 @@
  *
  * This enumeration covers all possible types of cells within the map, each representing a different state or object.
  */
-enum class Cell { START, FINISH, EMPTY, WALL, OCCUPIED, PLAYER, DOOR, CHEST };
+enum class Cell { START, FINISH, EMPTY, WALL, OCCUPIED, PLAYER, DOOR, CHEST, NONE };
 
 /**
  * @class Map
@@ -96,6 +96,8 @@ public:
     string getName() const;
 
     void setName(string newName);
+
+    vector<vector<Cell>> getGrid() const;
 
     bool saveToFile(const string& filename);
 

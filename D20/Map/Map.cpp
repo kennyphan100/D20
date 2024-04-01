@@ -380,6 +380,11 @@ void Map::setName(string newName) {
     name = newName;
 }
 
+vector<vector<Cell>> Map::getGrid() const
+{
+    return grid;
+}
+
 void Map::placeCharacter(int x, int y, Character* character) {
     if (x < 0 || x >= width || y < 0 || y >= height) {
         throw std::out_of_range("Character coordinates are out of bounds.");

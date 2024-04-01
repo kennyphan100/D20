@@ -4,6 +4,7 @@
 #include "GUI/CharacterCreation.h"
 #include "GUI/MapCreation.h"
 #include "GUI/CampaignCreation.h"
+#include "GUI/MapEdit.h"
 
 using namespace std;
 
@@ -12,6 +13,7 @@ enum MenuState {
     EDITOR,
     CHARACTER_CREATION,
     MAP_CREATION,
+    MAP_EDIT,
     CAMPAIGN_CREATION,
     EDIT_MAP,
     EDIT_CAMPAIGN
@@ -86,6 +88,7 @@ int main() {
 
     CharacterCreation characterCreation(window);
     MapCreation mapCreation(window);
+    MapEdit mapEdit(window);
     CampaignCreation campaignCreation(window);
 
     while (window.isOpen()) {
@@ -153,7 +156,7 @@ int main() {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                             currentState = EDITOR;
                         }
-                        mapCreation.handleMapCreationClick(mousePos.x, mousePos.y);
+                        mapEdit.handleMapEditClick(mousePos.x, mousePos.y);
                     }
                     else if (currentState == CAMPAIGN_CREATION) {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
@@ -166,6 +169,16 @@ int main() {
                             currentState = EDITOR;
                         }
                         mapCreation.handleMapCreationClick(mousePos.x, mousePos.y);
+                    }
+                }
+                else if (event.mouseButton.button == sf::Mouse::Right) {
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+                    if (currentState == EDIT_MAP) {
+                        if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+                            currentState = EDITOR;
+                        }
+                        mapEdit.handleRemoveObject(mousePos.x, mousePos.y);
                     }
                 }
                 break;
@@ -237,7 +250,7 @@ int main() {
             mapCreation.drawMapCreation();
         }
         else if (currentState == EDIT_MAP) {
-            mapCreation.drawMapCreation();
+            mapEdit.drawMapEdit();
         }
         else if (currentState == CAMPAIGN_CREATION) {
             campaignCreation.drawCampaignCreation();
