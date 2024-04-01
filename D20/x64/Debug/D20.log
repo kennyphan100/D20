@@ -1,38 +1,43 @@
-﻿  Gui.cpp
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(104,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(104,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(120,97): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\kenny\source\repos\D20\D20\Gui.cpp(120,85): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-  D20.vcxproj -> C:\Users\kenny\source\repos\D20\x64\Debug\D20.exe
+﻿  AggressorStrategy.cpp
+  Character.cpp
+C:\devroot\D20\D20\Character\Character.cpp(312,33): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  CharacterBuilder.cpp
+  CharacterDirector.cpp
+  CharacterObserver.cpp
+  CharacterUtils.cpp
+  FighterCharacter.cpp
+  FriendlyStrategy.cpp
+  HumanPlayerStrategy.cpp
+  Dice.cpp
+C:\devroot\D20\D20\Dice\Dice.cpp(19,18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Gui.cpp
+C:\devroot\D20\D20\Gui.cpp(1,10): fatal  error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  CampaignCreation.cpp
+C:\devroot\D20\D20\GUI\CampaignCreation.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  CharacterCreation.cpp
+C:\devroot\D20\D20\GUI\CharacterCreation.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  MapCreation.cpp
+C:\devroot\D20\D20\GUI\MapCreation.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  Item.cpp
+C:\devroot\D20\D20\Item\Item.cpp(284,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Item2.cpp
+  Main.cpp
+C:\devroot\D20\D20\Main.cpp(47,16): warning C4101: 'myCharacter': unreferenced local variable
+  Campaign.cpp
+  Editor.cpp
+  Map.cpp
+  Generating Code...
+  Compiling...
+  MapEditorBuilder.cpp
+  MapGameBuilder.cpp
+  MapObserver.cpp
+  Observable.cpp
+  Observer.cpp
+  TestCharacter.cpp
+  TestDice.cpp
+C:\devroot\D20\D20\Test\TestDice.cpp(29,2): warning C4002: too many arguments for function-like macro invocation 'CPPUNIT_ASSERT_NO_THROW'
+  TestItem.cpp
+  TestMap.cpp
+  TestMapEditorBuilder.cpp
+  TestMapGameBuilder.cpp
+  Generating Code...

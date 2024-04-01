@@ -369,9 +369,9 @@ int mainX() {
 
             FighterCharacter myCharacter(5, FighterType::BULLY, &hps);
 
-            myCharacter.performMove();
-            myCharacter.performAttack();
-            myCharacter.performFreeActions();
+            //myCharacter.performMove();
+            //myCharacter.performAttack();
+            //myCharacter.performFreeActions();
 
         }
         else

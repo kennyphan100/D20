@@ -69,8 +69,8 @@ public:
     Dice dice;
 
     void setStrategy(CharacterStrategy* strategy);
-    void performMove();
-    void performAttack();
+    void performMove(Map& map);
+    void performAttack(Map& map);
     void performFreeActions();
 
     Armor* armor;
@@ -131,6 +131,10 @@ public:
 
     virtual void display();
     virtual void applyEnhancement(CharacterStat stat, int bonus) = 0;
+
+    void takeDamage(int damage);
+
+    StrategyType getStrategyType() const;
 
 private:
     CharacterStrategy* actionStrategy;

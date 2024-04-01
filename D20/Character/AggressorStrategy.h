@@ -2,13 +2,15 @@
 #define AGGRESSORSTRATEGY_H
 
 #include "CharacterStrategy.h"
+#include "../Map/Map.h"
 
 class AggressorStrategy : public CharacterStrategy {
 public:
     AggressorStrategy();
-    virtual void move(Character& character) override;
-    virtual void attack(Character& character) override;
+    virtual void move(Character& character, Map& map) override;
+    virtual void attack(Character& character, Map& map) override;
     virtual void freeAction(Character& character) override;
+    StrategyType getStrategyType() const override;
 };
 
 #endif // AGGRESSORSTRATEGY_H

@@ -15,39 +15,74 @@ FriendlyStrategy::FriendlyStrategy() {
     }
 }
 
-void FriendlyStrategy::move(Character& character) {
-    std::cout << "Friendly character is moving towards the player..." << std::endl;
-    ofstream logFile("./game_log.txt", ios::app);
-    if (logFile.is_open()) {
-        time_t t = time(nullptr);
-        tm tm;
-        localtime_s(&tm, &t);
-        char buffer[80];
-        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
-        string timestamp(buffer);
-        logFile << "============ Character Move ============" << endl;
-        logFile << "Timestamp: " << timestamp << endl;
-        logFile << "Friendly character " << character.getName() << " moved." << "\n";
-        logFile << "\n";
-        logFile.close();
+void FriendlyStrategy::move(Character& character, Map& map) {
+    auto [charX, charY] = map.getCharacterPosition(character);
+
+    int targetX = -1, targetY = -1;
+
+    std::tie(targetX, targetY) = map.findClosestEnemyPosition(charX, charY);
+
+    if (targetX == -1 && targetY == -1) {
+        std::tie(targetX, targetY) = map.getPlayerPosition();
+    }
+
+    if (targetX != -1 && targetY != -1) {
+        int dirX = targetX - charX, dirY = targetY - charY;
+        if (abs(dirX) > abs(dirY)) {
+            dirX = (dirX > 0) ? 1 : -1;
+            dirY = 0;
+        }
+        else {
+            dirY = (dirY > 0) ? 1 : -1;
+            dirX = 0;
+        }
+
+        if (map.isEmptyCell(charX + dirX, charY + dirY)) {
+            map.moveCharacter(charX, charY, charX + dirX, charY + dirY);
+            std::cout << "Friendly character " << character.getName() << " moves towards target." << std::endl;
+
+            std::ofstream logFile("./game_log.txt", std::ios::app);
+            if (logFile.is_open()) {
+                logFile << "============ Character Move ============\n";
+                logFile << "Friendly character " << character.getName() << " moved towards (" << targetX << ", " << targetY << ").\n\n";
+                logFile.close();
+            }
+        }
+        else {
+            std::cout << "Friendly character " << character.getName() << " cannot move towards target due to an obstacle." << std::endl;
+        }
+    }
+    else {
+        std::cout << "No valid target found for friendly character to move towards." << std::endl;
     }
 }
 
-void FriendlyStrategy::attack(Character& character) {
-    std::cout << "Friendly character does not want to fight." << std::endl;
-    ofstream logFile("./game_log.txt", ios::app);
-    if (logFile.is_open()) {
-        time_t t = time(nullptr);
-        tm tm;
-        localtime_s(&tm, &t);
-        char buffer[80];
-        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
-        string timestamp(buffer);
-        logFile << "============ Character Move ============" << endl;
-        logFile << "Timestamp: " << timestamp << endl;
-        logFile << "Friendly character " << character.getName() << " does not want to fight." << "\n";
-        logFile << "\n";
-        logFile.close();
+void FriendlyStrategy::attack(Character& friendly, Map& map) {
+    auto [friendlyX, friendlyY] = map.getCharacterPosition(friendly);
+
+    for (int dx = -1; dx <= 1; ++dx) {
+        for (int dy = -1; dy <= 1; ++dy) {
+            if (dx == 0 && dy == 0) continue;
+
+            Character* target = map.getCharacter(friendlyX + dx, friendlyY + dy);
+            if (target && target->getStrategyType() == StrategyType::Aggressor) {
+                Dice dice;
+                std::string attackRollFormula = "1d20";
+                int rollResult = dice.rollDice(attackRollFormula);
+
+                if (rollResult >= target->getArmorClass()) {
+                    std::string damageRollFormula = "1d8";
+                    int damageRoll = dice.rollDice(damageRollFormula);
+                    target->takeDamage(damageRoll);
+
+                    std::cout << "Friendly hit the target for " << damageRoll << " damage.\n";
+                }
+                else {
+                    std::cout << "Friendly's attack missed the target.\n";
+                }
+                return;
+            }
+        }
     }
 }
 
@@ -112,4 +147,8 @@ void FriendlyStrategy::freeAction(Character& character) {
 void FriendlyStrategy::switchToAggressor(Character& character) {
     std::cout << "Friendly character is now hostile." << std::endl;
     character.setStrategy(new AggressorStrategy());
+}
+
+StrategyType FriendlyStrategy::getStrategyType() const {
+    return StrategyType::Player;
 }
