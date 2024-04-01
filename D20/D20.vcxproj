@@ -149,6 +149,7 @@
     <ClInclude Include="GUI\CampaignCreation.h" />
     <ClInclude Include="GUI\CharacterCreation.h" />
     <ClInclude Include="GUI\MapCreation.h" />
+    <ClInclude Include="GUI\MapEdit.h" />
     <ClInclude Include="Item\Item.h" />
     <ClInclude Include="Item\Item2.h" />
     <ClInclude Include="Map\Campaign.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="GUI\CampaignCreation.cpp" />
     <ClCompile Include="GUI\CharacterCreation.cpp" />
     <ClCompile Include="GUI\MapCreation.cpp" />
+    <ClCompile Include="GUI\MapEdit.cpp" />
     <ClCompile Include="Item\Item.cpp" />
     <ClCompile Include="Item\Item2.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -207,6 +209,9 @@
   <ItemGroup>
     <Image Include="Images\background1.jpg" />
     <Image Include="Images\d20.jpg" />
+    <Image Include="Images\door_icon.png" />
+    <Image Include="Images\mapbackground.jpg" />
+    <Image Include="Images\player_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial.ttf" />

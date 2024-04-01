@@ -13,6 +13,7 @@
 #include <cppunit/CompilerOutputter.h>
 #include <filesystem>
 #include "MapObserver.h"
+#include "../GUI/MapEdit.h"
 
 using namespace std;
 
@@ -548,6 +549,36 @@ Map* Editor::selectMap() {
     }
 }
 
+Map* Editor::selectMapGUI(string mapName) {
+    string directoryPath = "./data/maps";
+    vector<string> mapFiles;
+
+    for (const auto& entry : filesystem::directory_iterator(directoryPath)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".txt") {
+            mapFiles.push_back(entry.path().string());
+        }
+    }
+
+    if (mapFiles.empty()) {
+        cout << "No map files available.\n";
+        return nullptr;
+    }
+
+    displayAllMaps();
+
+    Map* selectedMap = new Map();
+    if (selectedMap->loadFromFile("./data/maps/" + mapName + ".txt")) {
+        selectedMap->display();
+        return selectedMap;
+    }
+    else {
+        delete selectedMap;
+        cout << "Failed to load the selected map.\n";
+        return nullptr;
+    }
+    
+}
+
 //! @brief Select a map from a specific campaign.
 //! 
 //! This function prompts the user to select a map from the maps directory of the specified campaign
@@ -744,6 +775,27 @@ void Editor::createCampaignGUI(string campaignName, std::vector<std::string> sel
     }
     else {
         cerr << "Failed to save the campaign \"" << campaignName << "\".\n\n";
+    }
+}
+
+void Editor::editMapGUI(Map* selectedMap)
+{
+    if (selectedMap) {
+        int width = selectedMap->getWidth();
+        int height = selectedMap->getHeight();
+        string name = selectedMap->getName();
+
+        string filename = "./data/maps/" + selectedMap->getName() + ".txt";
+
+        if (selectedMap->saveToFile(filename)) {
+            cout << "Map '" << selectedMap->getName() << "' has been successfully edited to '" << filename << "'.\n" << endl;
+        }
+        else {
+            cerr << "Failed to edit the map '" << selectedMap->getName() << "' to a file.\n" << endl;
+        }
+    }
+    else {
+        cout << "Map selection cancelled or invalid.\n" << "\n";
     }
 }
 

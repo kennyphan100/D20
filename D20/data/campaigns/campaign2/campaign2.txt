@@ -1,0 +1,6 @@
+Campaign Name: campaign2
+Maps:
+test
+test2
+
+Connections:
