@@ -56,7 +56,7 @@ int mainX() {
         cout << "3. Item" << endl;
         cout << "4. Dice" << endl;
         cout << "5. Run Unit Tests" << endl;
-        cout << "6. Character Strategy" << endl;
+        cout << "6. Play Game" << endl;
         cout << "9. Exit \n" << endl;
         cout << "Please enter one of the number part: ";
 
@@ -363,16 +363,57 @@ int mainX() {
         }
         else if (part._Equal("6"))
         {
+            int width = 10;
+            int height = 10;
             FriendlyStrategy fs;
             AggressorStrategy as;
             HumanPlayerStrategy hps;
 
-            FighterCharacter myCharacter(5, FighterType::BULLY, &hps);
+            FighterCharacter myCharacter(1, FighterType::NIMBLE, &hps);
+            FighterCharacter enemyCharacter(1, FighterType::BULLY, &as);
 
-            //myCharacter.performMove();
-            //myCharacter.performAttack();
-            //myCharacter.performFreeActions();
+            Map myMap(width, height, "test map");
+            //MapObserver* mo = new MapObserver(&myMap);
+            myMap.setCell(2, 1, Cell::WALL);
+            myMap.setCell(2, 2, Cell::WALL);
+            myMap.setCell(2, 3, Cell::WALL);
+            myMap.setCell(9, 9, Cell::DOOR);
 
+            myMap.placeCharacter(0, 0, &myCharacter);
+            myMap.placeCharacter(5, 5, &enemyCharacter);
+
+            myMap.display();
+
+            string actionChoice;
+
+            while (true) {
+                cout << "============== Actions ==============" << endl;
+                cout << "1. Move" << endl;
+                cout << "2. Attack" << endl;
+                cout << "3. Free action" << endl;
+                cout << "9. Exit \n" << endl;
+
+                cout << "Please enter the number of the action: ";
+                cin >> actionChoice;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "\n";
+
+                if (actionChoice == "1") {
+                    myCharacter.performMove(myMap);
+                }
+                else if (actionChoice == "2") {
+                    myCharacter.performAttack(myMap);
+                }
+                else if (actionChoice == "3") {
+                    myCharacter.performFreeActions();
+                }
+                else if (actionChoice == "9") {
+                    break;
+                }
+
+                cout << "\n";
+                myMap.display();
+            }
         }
         else
         {

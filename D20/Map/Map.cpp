@@ -124,9 +124,61 @@ bool Map::verifyMap() {
 
 //! Displays the map on the console.
 //! Uses characters to represent different types of cells.
+//void Map::display() const {
+//    for (int y = 0; y < height; ++y) {
+//        for (int x = 0; x < width; ++x) {
+//            switch (grid[y][x]) {
+//            case Cell::EMPTY:
+//                cout << "_ ";
+//                break;
+//            case Cell::WALL:
+//                cout << "W ";
+//                break;
+//            case Cell::OCCUPIED:
+//                cout << "O ";
+//                break;
+//            case Cell::START:
+//                cout << "S ";
+//                break;
+//            case Cell::FINISH:
+//                cout << "F ";
+//                break;
+//            case Cell::DOOR:
+//                cout << "D ";
+//                break;
+//            case Cell::CHEST:
+//                cout << "C ";
+//                break;
+//            case Cell::PLAYER:
+//                cout << "P ";
+//                break;
+//            case Cell::AGGRESOR:
+//                cout << "A ";
+//                break;
+//            case Cell::FRIENDLY:
+//                cout << "F ";
+//                break;
+//            }
+//        }
+//        cout << endl;
+//    }
+//}
 void Map::display() const {
-    for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
+    // Display column numbers on top
+    cout << "  ";
+    cout << "\t";
+    cout << "  ";
+    for (int x = 0; x < getWidth(); ++x) {
+        cout << x << " ";
+    }
+    cout << endl;
+
+    for (int y = 0; y < getHeight(); ++y) {
+        // Display row numbers on the left
+        cout << "\t";
+        cout << y << " ";
+
+        for (int x = 0; x < getWidth(); ++x) {
             switch (grid[y][x]) {
             case Cell::EMPTY:
                 cout << "_ ";
@@ -152,10 +204,17 @@ void Map::display() const {
             case Cell::PLAYER:
                 cout << "P ";
                 break;
+            case Cell::AGGRESSOR:
+                cout << "A ";
+                break;
+            case Cell::FRIENDLY:
+                cout << "F ";
+                break;
             }
         }
         cout << endl;
     }
+    cout << "\n";
 }
 
 void Map::logMap(ostream& out) const {
@@ -395,7 +454,15 @@ void Map::placeCharacter(int x, int y, Character* character) {
     if (grid[y][x] != Cell::EMPTY) {
         throw std::logic_error("Cannot place a character on a non-empty cell.");
     }
-    grid[y][x] = Cell::OCCUPIED;
+    if (character->getStrategyType() == StrategyType::Aggressor) {
+        grid[y][x] = Cell::AGGRESSOR;
+    }
+    else if (character->getStrategyType() == StrategyType::Friendly) {
+        grid[y][x] = Cell::FRIENDLY;
+    }
+    else {
+        grid[y][x] = Cell::PLAYER;
+    }
     characters[{x, y}] = character;
 }
 
@@ -434,14 +501,14 @@ bool Map::moveCharacter(int fromX, int fromY, int toX, int toY) {
     characters[{toX, toY}] = character;
 
     setCell(fromX, fromY, Cell::EMPTY);
-    setCell(toX, toY, Cell::OCCUPIED);
+    setCell(toX, toY, Cell::PLAYER);
 
     return true;
 }
 
 int Map::findShortestPath(int startX, int startY, int endX, int endY) {
     if (startX == endX && startY == endY) return 0;
-    if (!isTraversable(grid, startX, startY) || !isTraversable(grid, endX, endY)) return -1;
+    if (!isTraversable(grid, startX, startY, true) || !isTraversable(grid, endX, endY, true)) return -1;
 
     std::vector<std::vector<int>> distances(height, std::vector<int>(width, std::numeric_limits<int>::max()));
     distances[startY][startX] = 0;

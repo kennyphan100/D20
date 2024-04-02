@@ -18,7 +18,7 @@
  *
  * This enumeration covers all possible types of cells within the map, each representing a different state or object.
  */
-enum class Cell { START, FINISH, EMPTY, WALL, OCCUPIED, PLAYER, DOOR, CHEST, NONE };
+enum class Cell { START, FINISH, EMPTY, WALL, OCCUPIED, PLAYER, AGGRESSOR, FRIENDLY, DOOR, CHEST, NONE };
 
 /**
  * @class Map
