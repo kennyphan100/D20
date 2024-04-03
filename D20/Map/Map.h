@@ -152,9 +152,12 @@ public:
 
     void visualizePath(const std::vector<MapPoint>& path, Character& character);
 
+    bool isPlayerAtDoor();
+
 private:
     int width; ///< Width of the map.
     int height; ///< Height of the map.
+    bool reachedDoor;
     string name; ///< Name of the map. 
     vector<vector<Cell>> grid; ///< 2D grid representing the map, containing cells of type Cell.
     map<pair<int, int>, Character*> characters; ///< 2D map containing the pointers to the Characters on the map.

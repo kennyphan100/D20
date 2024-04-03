@@ -4278,3 +4278,1306 @@ Roll dice of type 1d20: 15
 Timestamp: 2024-04-03 15:39:25
 Roll dice of type 1d8: 5
 
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:01
+Roll dice of type 3d6: 13
+
+============ Loaded Map ============
+Timestamp: 2024-04-03 18:33:06
+_ _ _ _ _ _ W _ C _ 
+_ _ _ _ _ _ W _ _ _ 
+_ _ _ _ _ _ W W W _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ D 
+
+============ Character Move ============
+Character  moved from (0, 0) to (3, 5) covering a distance of 8 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:33:53
+Roll dice of type 1d20: 2
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:36:47
+Roll dice of type 3d6: 10
+
+============ Loaded Map ============
+Timestamp: 2024-04-03 18:36:47
+_ _ _ _ _ _ W _ C _ 
+_ _ _ _ _ _ W _ _ _ 
+_ _ _ _ _ _ W W W _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ D 
+
+============ Character Move ============
+Character  moved from (0, 0) to (3, 5) covering a distance of 8 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 17
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:20
+Roll dice of type 3d6: 17
+
+============ Loaded Map ============
+Timestamp: 2024-04-03 18:41:21
+_ _ _ _ _ _ W _ C _ 
+_ _ _ _ _ _ W _ _ _ 
+_ _ _ _ _ _ W W W _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ D 
+
+============ Character Move ============
+Character  moved from (0, 0) to (3, 5) covering a distance of 8 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:32
+Roll dice of type 1d20: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:41:32
+Roll dice of type 1d8: 4
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 5
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:08
+Roll dice of type 3d6: 12
+
+============ Loaded Map ============
+Timestamp: 2024-04-03 18:43:10
+_ _ _ _ _ _ W _ C _ 
+_ _ _ _ _ _ W _ _ _ 
+_ _ _ _ _ _ W W W _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ D 
+
+============ Character Move ============
+Character  moved from (0, 0) to (3, 3) covering a distance of 6 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:23
+Roll dice of type 1d20: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:43:23
+Roll dice of type 1d8: 5
+
+============ Character Move ============
+Character  moved from (3, 3) to (8, 8) covering a distance of 10 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:44:03
+Roll dice of type 1d20: 2
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:44:25
+Roll dice of type 1d20: 3
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 17
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 17
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:38
+Roll dice of type 3d6: 8
+
+============ Loaded Map ============
+Timestamp: 2024-04-03 18:48:39
+_ _ _ _ _ _ W _ C _ 
+_ _ _ _ _ _ W _ _ _ 
+_ _ _ _ _ _ W W W _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ D 
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:48:52
+Roll dice of type 1d20: 1
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:10
+Roll dice of type 3d6: 12
+
+============ Loaded Map ============
+Timestamp: 2024-04-03 18:54:10
+_ _ _ _ _ _ W _ C _ 
+_ _ _ _ _ _ W _ _ _ 
+_ _ _ _ _ _ W W W _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ D 
+
+============ Character Move ============
+Character  moved from (0, 0) to (5, 5) covering a distance of 10 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:22
+Roll dice of type 1d20: 18
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:22
+Roll dice of type 1d8: 5
+
+============ Character Move ============
+Character  moved from (5, 5) to (9, 9) covering a distance of 8 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:43
+Roll dice of type 1d20: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:54:43
+Roll dice of type 1d8: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 16
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 16
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:56:59
+Roll dice of type 3d6: 13
+
+============ Loaded Map ============
+Timestamp: 2024-04-03 18:57:00
+_ _ _ _ _ _ W _ C _ 
+_ _ _ _ _ _ W _ _ _ 
+_ _ _ _ _ _ W W W _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ D 
+
+============ Character Move ============
+Character  moved from (0, 0) to (5, 5) covering a distance of 10 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 18:57:11
+Roll dice of type 1d20: 1
+
+============ Character Move ============
+Character  moved from (5, 5) to (9, 9) covering a distance of 8 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 17
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 17
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:00
+Roll dice of type 3d6: 15
+
+============ Loaded Map ============
+Timestamp: 2024-04-03 19:04:00
+_ _ _ _ _ _ W _ C _ 
+_ _ _ _ _ _ W _ _ _ 
+_ _ _ _ _ _ W W W _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ D 
+
+============ Character Move ============
+Character  moved from (0, 0) to (5, 5) covering a distance of 10 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:04:13
+Roll dice of type 1d20: 6
+
+============ Character Move ============
+Character  moved from (5, 5) to (9, 9) covering a distance of 8 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 4
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 14
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:05:59
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 18
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 12
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 18
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 6
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:21
+Roll dice of type 3d6: 12
+
+============ Loaded Map ============
+Timestamp: 2024-04-03 19:06:21
+_ _ _ _ _ _ W _ C _ 
+_ _ _ _ _ _ W _ _ _ 
+_ _ _ _ _ _ W W W _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ D 
+
+============ Character Move ============
+Character  moved from (0, 0) to (5, 5) covering a distance of 10 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:33
+Roll dice of type 1d20: 17
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:06:33
+Roll dice of type 1d8: 4
+
+============ Character Move ============
+Character  moved from (5, 5) to (9, 9) covering a distance of 8 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 7
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 13
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 11
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 15
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 8
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 10
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 9
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:42
+Roll dice of type 3d6: 9
+
+============ Loaded Map ============
+Timestamp: 2024-04-03 19:08:42
+_ _ _ _ _ _ W _ C _ 
+_ _ _ _ _ _ W _ _ _ 
+_ _ _ _ _ _ W W W _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ _ 
+_ _ _ _ _ _ _ W _ D 
+
+============ Character Move ============
+Character  moved from (0, 0) to (5, 5) covering a distance of 10 units.
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:56
+Roll dice of type 1d20: 19
+
+============ Dice Roll ============
+Timestamp: 2024-04-03 19:08:56
+Roll dice of type 1d8: 7
+
+============ Character Move ============
+Character  moved from (5, 5) to (9, 9) covering a distance of 8 units.
+

@@ -415,6 +415,10 @@ int main() {
                 }
 
                 cout << "\n";
+                if (chosenMap->isPlayerAtDoor()) {
+                    cout << "YOU WON. GAME OVER. \n";
+                    break;
+                }
                 cout << "Press Enter to continue...";
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cin.get();
@@ -426,7 +430,7 @@ int main() {
                 enemyCharacter.performAttack(*chosenMap);
 
                 if (myCharacter.getHitPoints() <= 0) {
-                    cout << "GAME OVER \n";
+                    cout << "YOU LOST. GAME OVER. \n";
                     break;
                 }
             }
