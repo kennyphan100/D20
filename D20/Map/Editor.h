@@ -39,11 +39,11 @@ class Editor : public Observable {
 		void createCampaignGUI(string campaignName, std::vector<std::string> selectedMaps);
 		void editMapGUI(Map* map);
 		Map* selectMapGUI(string mapName);
+		Map* selectMap();
 	private:
 		vector<Map> maps; ///< Collection of maps included in the campaign.
 
 		//void createMap();
-		Map* selectMap();
 		void createMap();
 		void editMap();
 		void createCampaign();

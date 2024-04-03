@@ -46,12 +46,16 @@ Map::Map(int width, int height, string name) : width(width), height(height), nam
 //! @param x The x-coordinate of the cell.
 //! @param y The y-coordinate of the cell.
 //! @return True if the cell is traversable, false otherwise.
-bool isTraversable(const vector<vector<Cell>>& grid, int x, int y, bool allowOccupiedStartEnd = false) {
-    if (x < 0 || x >= grid[0].size() || y < 0 || y >= grid.size()) return false;
-
-    Cell cell = grid[y][x];
-    return cell == Cell::EMPTY || (allowOccupiedStartEnd && (cell == Cell::OCCUPIED || cell == Cell::PLAYER));
+bool isTraversable(const vector<vector<Cell>>& grid, int x, int y) {
+    return x >= 0 && x < grid[0].size() && y >= 0 && y < grid.size() && (grid[y][x] != Cell::WALL && grid[y][x] != Cell::OCCUPIED);
 }
+
+//bool isTraversable(const vector<vector<Cell>>& grid, int x, int y, bool allowOccupiedStartEnd = false) {
+//    if (x < 0 || x >= grid[0].size() || y < 0 || y >= grid.size()) return false;
+//
+//    Cell cell = grid[y][x];
+//    return cell == Cell::EMPTY || (allowOccupiedStartEnd && (cell == Cell::OCCUPIED || cell == Cell::PLAYER));
+//}
 
 //! Checks if the given coordinates represent an empty cell in the map.
 //! @param x The x-coordinate of the cell.
@@ -501,14 +505,23 @@ bool Map::moveCharacter(int fromX, int fromY, int toX, int toY) {
     characters[{toX, toY}] = character;
 
     setCell(fromX, fromY, Cell::EMPTY);
-    setCell(toX, toY, Cell::PLAYER);
+
+    if (character->getStrategyType() == StrategyType::Aggressor) {
+        setCell(toX, toY, Cell::AGGRESSOR);
+    }
+    else if (character->getStrategyType() == StrategyType::Friendly) {
+        setCell(toX, toY, Cell::FRIENDLY);
+    }
+    else {
+        setCell(toX, toY, Cell::PLAYER);
+    }
 
     return true;
 }
 
 int Map::findShortestPath(int startX, int startY, int endX, int endY) {
     if (startX == endX && startY == endY) return 0;
-    if (!isTraversable(grid, startX, startY, true) || !isTraversable(grid, endX, endY, true)) return -1;
+    //if (!isTraversable(grid, startX, startY, true) || !isTraversable(grid, endX, endY, true)) return -1;
 
     std::vector<std::vector<int>> distances(height, std::vector<int>(width, std::numeric_limits<int>::max()));
     distances[startY][startX] = 0;

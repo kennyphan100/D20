@@ -363,26 +363,20 @@ int mainX() {
         }
         else if (part._Equal("6"))
         {
-            int width = 10;
-            int height = 10;
             FriendlyStrategy fs;
             AggressorStrategy as;
             HumanPlayerStrategy hps;
-
             FighterCharacter myCharacter(1, FighterType::NIMBLE, &hps);
             FighterCharacter enemyCharacter(1, FighterType::BULLY, &as);
 
-            Map myMap(width, height, "test map");
-            //MapObserver* mo = new MapObserver(&myMap);
-            myMap.setCell(2, 1, Cell::WALL);
-            myMap.setCell(2, 2, Cell::WALL);
-            myMap.setCell(2, 3, Cell::WALL);
-            myMap.setCell(9, 9, Cell::DOOR);
+            Editor* editor = new Editor();
 
-            myMap.placeCharacter(0, 0, &myCharacter);
-            myMap.placeCharacter(5, 5, &enemyCharacter);
+            Map* chosenMap = editor->selectMap();
 
-            myMap.display();
+            chosenMap->placeCharacter(0, 0, &myCharacter);
+            chosenMap->placeCharacter(4, 6, &enemyCharacter);
+
+            chosenMap->display();
 
             string actionChoice;
 
@@ -399,10 +393,10 @@ int mainX() {
                 cout << "\n";
 
                 if (actionChoice == "1") {
-                    myCharacter.performMove(myMap);
+                    myCharacter.performMove(*chosenMap);
                 }
                 else if (actionChoice == "2") {
-                    myCharacter.performAttack(myMap);
+                    myCharacter.performAttack(*chosenMap);
                 }
                 else if (actionChoice == "3") {
                     myCharacter.performFreeActions();
@@ -412,7 +406,11 @@ int mainX() {
                 }
 
                 cout << "\n";
-                myMap.display();
+                chosenMap->display();
+
+                cout << "Enemy's turn to move: ";
+                enemyCharacter.performMove(*chosenMap);
+
             }
         }
         else
