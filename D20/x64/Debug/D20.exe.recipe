@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\kenny\source\repos\D20\x64\Debug\D20.exe</FullPath>
+      <FullPath>C:\devroot\D20\x64\Debug\D20.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

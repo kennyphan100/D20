@@ -13,20 +13,11 @@
 #include <filesystem>
 #include "../Character/Character.h"
 #include <ctime>
+#include <chrono>
+#include <thread>
+#include <algorithm>
 
 using namespace std;
-
-//! Represents a point in 2D space.
-struct Point {
-    int x;
-    int y;
-
-    Point(int x, int y) : x(x), y(y) {}
-
-    bool operator==(const Point& other) const {
-        return x == other.x && y == other.y;
-    }
-};
 
 Map::Map() : width(0), height(0), name(" "), grid(0, vector<Cell>(0, Cell::EMPTY))
 {
@@ -85,16 +76,16 @@ void Map::setCell(int x, int y, Cell cellType) {
 //! Uses Breadth First Search (BFS) algorithm to find the path.
 //! @return True if a path exists, false otherwise.
 bool Map::verifyMap() {
-    queue<Point> q;
+    queue<MapPoint> q;
     vector<vector<bool>> visited(height, vector<bool>(width, false));
 
     // Starting point
-    Point start(0, 0);
+    MapPoint start(0, 0);
     // Ending point
-    Point end(width - 1, height - 1);
+    MapPoint end(width - 1, height - 1);
 
     // Directions to move in the grid (up, down, left, right)
-    vector<Point> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
+    vector<MapPoint> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
 
     // Initialize BFS from the starting point
     q.push(start);
@@ -102,7 +93,7 @@ bool Map::verifyMap() {
 
     // Perform BFS
     while (!q.empty()) {
-        Point current = q.front();
+        MapPoint current = q.front();
         q.pop();
 
         // Check if we've reached the end
@@ -519,38 +510,44 @@ bool Map::moveCharacter(int fromX, int fromY, int toX, int toY) {
     return true;
 }
 
-int Map::findShortestPath(int startX, int startY, int endX, int endY) {
-    if (startX == endX && startY == endY) return 0;
-    //if (!isTraversable(grid, startX, startY, true) || !isTraversable(grid, endX, endY, true)) return -1;
-
+std::vector<MapPoint> Map::findShortestPath(int startX, int startY, int endX, int endY) {
+    // Initialize distances matrix with max values
     std::vector<std::vector<int>> distances(height, std::vector<int>(width, std::numeric_limits<int>::max()));
     distances[startY][startX] = 0;
 
-    std::queue<Point> q;
+    std::queue<MapPoint> q;
     q.push({ startX, startY });
 
-    std::vector<Point> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
+    std::map<MapPoint, MapPoint> prev; // To reconstruct the path
+    prev[{startX, startY}] = { -1, -1 };
+
+    std::vector<MapPoint> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
 
     while (!q.empty()) {
-        Point current = q.front();
+        MapPoint current = q.front();
         q.pop();
 
+        if (current.x == endX && current.y == endY) break; // Path found
+
         for (const auto& dir : directions) {
-            int nextX = current.x + dir.x;
-            int nextY = current.y + dir.y;
+            int nx = current.x + dir.x;
+            int ny = current.y + dir.y;
 
-            if (nextX >= 0 && nextX < width && nextY >= 0 && nextY < height && grid[nextY][nextX] == Cell::EMPTY && distances[nextY][nextX] == std::numeric_limits<int>::max()) {
-                distances[nextY][nextX] = distances[current.y][current.x] + 1;
-                q.push({ nextX, nextY });
-
-                if (nextX == endX && nextY == endY) {
-                    return distances[nextY][nextX];
-                }
+            if (nx >= 0 && nx < width && ny >= 0 && ny < height && grid[ny][nx] == Cell::EMPTY && distances[ny][nx] == std::numeric_limits<int>::max()) {
+                distances[ny][nx] = distances[current.y][current.x] + 1;
+                q.push({ nx, ny });
+                prev[{nx, ny}] = current;
             }
         }
     }
 
-    return -1;
+    std::vector<MapPoint> path;
+    for (MapPoint at(endX, endY); at != MapPoint(-1, -1); at = prev[at]) {
+        path.push_back(at);
+    }
+    std::reverse(path.begin(), path.end());
+
+    return path.empty() || path.front() != MapPoint(startX, startY) ? std::vector<MapPoint>() : path;
 }
 
 std::pair<int, int> Map::getCharacterPosition(Character& character) {
@@ -616,4 +613,28 @@ std::pair<int, int> Map::findClosestAllyPosition(int charX, int charY, const Cha
     }
 
     return closestAllyPos;
+}
+
+void Map::visualizePath(const std::vector<MapPoint>& path) {
+    for (const auto& p : path) {
+        setCell(p.x, p.y, Cell::PATH); // Temporarily mark the path
+        displayWithNumbering();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Delay
+        setCell(p.x, p.y, Cell::EMPTY); // Reset the cell
+    }
+}
+
+void Map::visualizePath(const std::vector<MapPoint>& path, Character& character) {
+    for (size_t i = 1; i < path.size(); ++i) { // Skip the first point, which is the character's current position
+        // Move the character to the next point in the path
+        MapPoint from = path[i - 1];
+        MapPoint to = path[i];
+
+        // This assumes that you have a way to get and set the character's position on the map
+        this->moveCharacter(from.x, from.y, to.x, to.y); // Move the character on the map
+
+        // Now display the map with the character at the new position
+        this->displayWithNumbering();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Wait for half a second
+    }
 }

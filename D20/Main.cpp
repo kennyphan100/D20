@@ -21,6 +21,7 @@
 #include "Character/FriendlyStrategy.h"
 #include "Character/HumanPlayerStrategy.h"
 #include "Character/AggressorStrategy.h"
+#include <thread>
 
 using namespace std;
 
@@ -35,6 +36,14 @@ string toLowercase(const string& str) {
     return result;
 }
 
+void printDots(int numDots) {
+    for (int i = 0; i < numDots; ++i) {
+        std::cout << ".";
+        std::cout.flush(); // Flush the output buffer to ensure dots are printed immediately
+        std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Delay for 1 second
+    }
+}
+
 //! main() function. Entry point of the program.
 //! It does the following: 
 //! 1. Create a character given the user's input for the desired level and class type
@@ -43,7 +52,7 @@ string toLowercase(const string& str) {
 //! 4. Roll a dice using the form xdy[+z]
 //! 5. Run the test cases. 
 //! 9. Exit the program.
-int mainX() {
+int main() {
     Character* myCharacter;
     CharacterDirector director;
     Character* newCharacter;
@@ -406,11 +415,20 @@ int mainX() {
                 }
 
                 cout << "\n";
-                chosenMap->displayWithNumbering();
+                cout << "Press Enter to continue...";
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin.get();
 
-                cout << "Enemy's turn to move: ";
+                cout << "Enemy's turn to move";
+                printDots(5);
+                cout << "\n";
                 enemyCharacter.performMove(*chosenMap);
+                enemyCharacter.performAttack(*chosenMap);
 
+                if (myCharacter.getHitPoints() <= 0) {
+                    cout << "GAME OVER \n";
+                    break;
+                }
             }
         }
         else

@@ -10,17 +10,20 @@
 using namespace std;
 
 void HumanPlayerStrategy::move(Character& character, Map& map) {
+    // Get the character's current position
     auto [startX, startY] = map.getCharacterPosition(character);
     if (startX == -1 && startY == -1) {
         std::cerr << "Error: Character's position not found on the map.\n";
         return;
     }
 
+    // Prompt for target position
     std::cout << "Current position: (" << startX << ", " << startY << ")\n";
     std::cout << "Enter target position coordinates (x y): ";
     int targetX, targetY;
     std::cin >> targetX >> targetY;
 
+    // Validate input
     if (std::cin.fail()) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -28,26 +31,38 @@ void HumanPlayerStrategy::move(Character& character, Map& map) {
         return;
     }
 
-    int distance = map.findShortestPath(startX, startY, targetX, targetY);
+    // Retrieve the path
+    std::vector<MapPoint> path = map.findShortestPath(startX, startY, targetX, targetY);
 
-    if (distance == -1 || distance > 10) {
+    // Validate the path
+    if (path.empty()) {
         std::cout << "Invalid move. Target is either unreachable or too far away.\n";
+        return;
     }
-    else {
-        if (map.moveCharacter(startX, startY, targetX, targetY)) {
-            std::cout << "Moved to (" << targetX << ", " << targetY << "). Distance covered: " << distance << " units.\n";
 
-            std::ofstream logFile("./game_log.txt", std::ios::app);
-            if (logFile.is_open()) {
-                logFile << "============ Character Move ============\n";
-                logFile << "Character " << character.getName() << " moved to (" << targetX << ", " << targetY << ").\n\n";
-                logFile.close();
-            }
-        }
-        else {
-            std::cerr << "Move failed. Could not update the character's position on the map.\n";
-        }
+    // Check the path length
+    if (path.size() > 11) { // Including the start point
+        std::cout << "Invalid move. Target is too far away.\n";
+        return;
     }
+
+    if (!path.empty() && path.size() <= 11) { // Path found and within movement range
+        map.visualizePath(path, character); // Pass the character to visualizePath
+        std::cout << "Character moved to target position.\n";
+    }
+
+    // Log the move
+    std::ofstream logFile("./game_log.txt", std::ios::app);
+    if (logFile.is_open()) {
+        logFile << "============ Character Move ============\n";
+        logFile << "Character " << character.getName() << " moved from (" << startX << ", " << startY
+            << ") to (" << targetX << ", " << targetY << ") covering a distance of "
+            << path.size() - 1 << " units.\n\n";
+        logFile.close();
+    }
+
+    // Display the final map state
+    map.displayWithNumbering();
 }
 
 void HumanPlayerStrategy::attack(Character& attacker, Map& map) {
