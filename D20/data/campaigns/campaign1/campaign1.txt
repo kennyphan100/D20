@@ -1,7 +1,0 @@
-Campaign Name: campaign1
-Maps:
-test
-test1
-
-Connections:
-test -> test1

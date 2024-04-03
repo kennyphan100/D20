@@ -140,5 +140,5 @@ void AggressorStrategy::freeAction(Character& character) {
 }
 
 StrategyType AggressorStrategy::getStrategyType() const {
-    return StrategyType::Player;
+    return StrategyType::Aggressor;
 }

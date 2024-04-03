@@ -46,12 +46,16 @@ Map::Map(int width, int height, string name) : width(width), height(height), nam
 //! @param x The x-coordinate of the cell.
 //! @param y The y-coordinate of the cell.
 //! @return True if the cell is traversable, false otherwise.
-bool isTraversable(const vector<vector<Cell>>& grid, int x, int y, bool allowOccupiedStartEnd = false) {
-    if (x < 0 || x >= grid[0].size() || y < 0 || y >= grid.size()) return false;
-
-    Cell cell = grid[y][x];
-    return cell == Cell::EMPTY || (allowOccupiedStartEnd && (cell == Cell::OCCUPIED || cell == Cell::PLAYER));
+bool isTraversable(const vector<vector<Cell>>& grid, int x, int y) {
+    return x >= 0 && x < grid[0].size() && y >= 0 && y < grid.size() && (grid[y][x] != Cell::WALL && grid[y][x] != Cell::OCCUPIED);
 }
+
+//bool isTraversable(const vector<vector<Cell>>& grid, int x, int y, bool allowOccupiedStartEnd = false) {
+//    if (x < 0 || x >= grid[0].size() || y < 0 || y >= grid.size()) return false;
+//
+//    Cell cell = grid[y][x];
+//    return cell == Cell::EMPTY || (allowOccupiedStartEnd && (cell == Cell::OCCUPIED || cell == Cell::PLAYER));
+//}
 
 //! Checks if the given coordinates represent an empty cell in the map.
 //! @param x The x-coordinate of the cell.
@@ -152,10 +156,69 @@ void Map::display() const {
             case Cell::PLAYER:
                 cout << "P ";
                 break;
+            case Cell::AGGRESSOR:
+                cout << "A ";
+                break;
+            case Cell::FRIENDLY:
+                cout << "F ";
+                break;
             }
         }
         cout << endl;
     }
+}
+void Map::displayWithNumbering() const {
+    // Display column numbers on top
+    cout << "  ";
+    cout << "\t";
+    cout << "  ";
+    for (int x = 0; x < getWidth(); ++x) {
+        cout << x << " ";
+    }
+    cout << endl;
+
+    for (int y = 0; y < getHeight(); ++y) {
+        // Display row numbers on the left
+        cout << "\t";
+        cout << y << " ";
+
+        for (int x = 0; x < getWidth(); ++x) {
+            switch (grid[y][x]) {
+            case Cell::EMPTY:
+                cout << "_ ";
+                break;
+            case Cell::WALL:
+                cout << "W ";
+                break;
+            case Cell::OCCUPIED:
+                cout << "O ";
+                break;
+            case Cell::START:
+                cout << "S ";
+                break;
+            case Cell::FINISH:
+                cout << "F ";
+                break;
+            case Cell::DOOR:
+                cout << "D ";
+                break;
+            case Cell::CHEST:
+                cout << "C ";
+                break;
+            case Cell::PLAYER:
+                cout << "P ";
+                break;
+            case Cell::AGGRESSOR:
+                cout << "A ";
+                break;
+            case Cell::FRIENDLY:
+                cout << "F ";
+                break;
+            }
+        }
+        cout << endl;
+    }
+    cout << "\n";
 }
 
 void Map::logMap(ostream& out) const {
@@ -395,7 +458,15 @@ void Map::placeCharacter(int x, int y, Character* character) {
     if (grid[y][x] != Cell::EMPTY) {
         throw std::logic_error("Cannot place a character on a non-empty cell.");
     }
-    grid[y][x] = Cell::OCCUPIED;
+    if (character->getStrategyType() == StrategyType::Aggressor) {
+        grid[y][x] = Cell::AGGRESSOR;
+    }
+    else if (character->getStrategyType() == StrategyType::Friendly) {
+        grid[y][x] = Cell::FRIENDLY;
+    }
+    else {
+        grid[y][x] = Cell::PLAYER;
+    }
     characters[{x, y}] = character;
 }
 
@@ -434,14 +505,23 @@ bool Map::moveCharacter(int fromX, int fromY, int toX, int toY) {
     characters[{toX, toY}] = character;
 
     setCell(fromX, fromY, Cell::EMPTY);
-    setCell(toX, toY, Cell::OCCUPIED);
+
+    if (character->getStrategyType() == StrategyType::Aggressor) {
+        setCell(toX, toY, Cell::AGGRESSOR);
+    }
+    else if (character->getStrategyType() == StrategyType::Friendly) {
+        setCell(toX, toY, Cell::FRIENDLY);
+    }
+    else {
+        setCell(toX, toY, Cell::PLAYER);
+    }
 
     return true;
 }
 
 int Map::findShortestPath(int startX, int startY, int endX, int endY) {
     if (startX == endX && startY == endY) return 0;
-    if (!isTraversable(grid, startX, startY) || !isTraversable(grid, endX, endY)) return -1;
+    //if (!isTraversable(grid, startX, startY, true) || !isTraversable(grid, endX, endY, true)) return -1;
 
     std::vector<std::vector<int>> distances(height, std::vector<int>(width, std::numeric_limits<int>::max()));
     distances[startY][startX] = 0;

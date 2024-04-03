@@ -56,7 +56,7 @@ int mainX() {
         cout << "3. Item" << endl;
         cout << "4. Dice" << endl;
         cout << "5. Run Unit Tests" << endl;
-        cout << "6. Character Strategy" << endl;
+        cout << "6. Play Game" << endl;
         cout << "9. Exit \n" << endl;
         cout << "Please enter one of the number part: ";
 
@@ -366,13 +366,52 @@ int mainX() {
             FriendlyStrategy fs;
             AggressorStrategy as;
             HumanPlayerStrategy hps;
+            FighterCharacter myCharacter(1, FighterType::NIMBLE, &hps);
+            FighterCharacter enemyCharacter(1, FighterType::BULLY, &as);
 
-            FighterCharacter myCharacter(5, FighterType::BULLY, &hps);
+            Editor* editor = new Editor();
 
-            //myCharacter.performMove();
-            //myCharacter.performAttack();
-            //myCharacter.performFreeActions();
+            Map* chosenMap = editor->selectMap();
 
+            chosenMap->placeCharacter(0, 0, &myCharacter);
+            chosenMap->placeCharacter(4, 6, &enemyCharacter);
+
+            chosenMap->displayWithNumbering();
+
+            string actionChoice;
+
+            while (true) {
+                cout << "============== Actions ==============" << endl;
+                cout << "1. Move" << endl;
+                cout << "2. Attack" << endl;
+                cout << "3. Free action" << endl;
+                cout << "9. Exit \n" << endl;
+
+                cout << "Please enter the number of the action: ";
+                cin >> actionChoice;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "\n";
+
+                if (actionChoice == "1") {
+                    myCharacter.performMove(*chosenMap);
+                }
+                else if (actionChoice == "2") {
+                    myCharacter.performAttack(*chosenMap);
+                }
+                else if (actionChoice == "3") {
+                    myCharacter.performFreeActions();
+                }
+                else if (actionChoice == "9") {
+                    break;
+                }
+
+                cout << "\n";
+                chosenMap->displayWithNumbering();
+
+                cout << "Enemy's turn to move: ";
+                enemyCharacter.performMove(*chosenMap);
+
+            }
         }
         else
         {

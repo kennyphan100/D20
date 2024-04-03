@@ -1,0 +1,11 @@
+Name: Lucas Braveheart
+Class: NIMBLE
+Level: 1
+HP: 9, AC: 9, Attack Bonus: 2, Damage Bonus: 1
+STR: 13 (1), DEX: 13 (-1), CON: 13 (-1), INT: 12 (-1), WIS: 11 (1), CHA: 12 (0)
+Equipped Armor: ---
+Equipped Shield: ---
+Equipped Weapon: ---
+Equipped Boots: ---
+Equipped Ring: ---
+Equipped Helmet: ---

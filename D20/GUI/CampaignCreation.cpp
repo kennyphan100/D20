@@ -44,9 +44,9 @@ CampaignCreation::CampaignCreation(sf::RenderWindow& window) : window(window), s
     nameValue.setFillColor(sf::Color::Black);
     nameValue.setPosition((window.getSize().x / 2 - nameValue.getLocalBounds().width / 2) - 140, 100);
 
-    nameInputBackground.setSize(sf::Vector2f(200, 40));
+    nameInputBackground.setSize(sf::Vector2f(400, 40));
     nameInputBackground.setFillColor(sf::Color::White);
-    nameInputBackground.setPosition((window.getSize().x / 2 - nameInputBackground.getLocalBounds().width / 2) - 50, 95);
+    nameInputBackground.setPosition((window.getSize().x / 2 - nameInputBackground.getLocalBounds().width / 2) + 50, 95);
 
     mapLabel.setFont(font);
     mapLabel.setString("Available Maps");
@@ -68,7 +68,7 @@ CampaignCreation::CampaignCreation(sf::RenderWindow& window) : window(window), s
     alertTextSuccess.setFont(font);
     alertTextSuccess.setString("Successfully created campaign " + inputName + " !");
     alertTextSuccess.setCharacterSize(24);
-    alertTextSuccess.setFillColor(sf::Color::Black); // Text color
+    alertTextSuccess.setFillColor(sf::Color::White); // Text color
     alertTextSuccess.setStyle(sf::Text::Bold);
     alertTextSuccess.setPosition(window.getSize().x / 2 - alertTextSuccess.getLocalBounds().width / 2 - 50, 550); // Adjust position as needed
 
