@@ -73,6 +73,7 @@ public:
      * @brief Displays the map to the console.
      */
     void display() const;
+    void displayWithNumbering() const;
 
     /**
      * @brief Getter for the map's width.

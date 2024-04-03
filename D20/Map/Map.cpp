@@ -128,46 +128,46 @@ bool Map::verifyMap() {
 
 //! Displays the map on the console.
 //! Uses characters to represent different types of cells.
-//void Map::display() const {
-//    for (int y = 0; y < height; ++y) {
-//        for (int x = 0; x < width; ++x) {
-//            switch (grid[y][x]) {
-//            case Cell::EMPTY:
-//                cout << "_ ";
-//                break;
-//            case Cell::WALL:
-//                cout << "W ";
-//                break;
-//            case Cell::OCCUPIED:
-//                cout << "O ";
-//                break;
-//            case Cell::START:
-//                cout << "S ";
-//                break;
-//            case Cell::FINISH:
-//                cout << "F ";
-//                break;
-//            case Cell::DOOR:
-//                cout << "D ";
-//                break;
-//            case Cell::CHEST:
-//                cout << "C ";
-//                break;
-//            case Cell::PLAYER:
-//                cout << "P ";
-//                break;
-//            case Cell::AGGRESOR:
-//                cout << "A ";
-//                break;
-//            case Cell::FRIENDLY:
-//                cout << "F ";
-//                break;
-//            }
-//        }
-//        cout << endl;
-//    }
-//}
 void Map::display() const {
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            switch (grid[y][x]) {
+            case Cell::EMPTY:
+                cout << "_ ";
+                break;
+            case Cell::WALL:
+                cout << "W ";
+                break;
+            case Cell::OCCUPIED:
+                cout << "O ";
+                break;
+            case Cell::START:
+                cout << "S ";
+                break;
+            case Cell::FINISH:
+                cout << "F ";
+                break;
+            case Cell::DOOR:
+                cout << "D ";
+                break;
+            case Cell::CHEST:
+                cout << "C ";
+                break;
+            case Cell::PLAYER:
+                cout << "P ";
+                break;
+            case Cell::AGGRESSOR:
+                cout << "A ";
+                break;
+            case Cell::FRIENDLY:
+                cout << "F ";
+                break;
+            }
+        }
+        cout << endl;
+    }
+}
+void Map::displayWithNumbering() const {
     // Display column numbers on top
     cout << "  ";
     cout << "\t";

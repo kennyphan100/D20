@@ -376,7 +376,7 @@ int mainX() {
             chosenMap->placeCharacter(0, 0, &myCharacter);
             chosenMap->placeCharacter(4, 6, &enemyCharacter);
 
-            chosenMap->display();
+            chosenMap->displayWithNumbering();
 
             string actionChoice;
 
@@ -406,7 +406,7 @@ int mainX() {
                 }
 
                 cout << "\n";
-                chosenMap->display();
+                chosenMap->displayWithNumbering();
 
                 cout << "Enemy's turn to move: ";
                 enemyCharacter.performMove(*chosenMap);

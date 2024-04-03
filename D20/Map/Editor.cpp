@@ -533,7 +533,7 @@ Map* Editor::selectMap() {
         if (choice > 0 && static_cast<size_t>(choice) <= mapFiles.size()) {
             Map* selectedMap = new Map();
             if (selectedMap->loadFromFile(mapFiles[choice - 1])) {
-                selectedMap->display();
+                //selectedMap->display();
                 return selectedMap;
             }
             else {
