@@ -33,6 +33,7 @@
     <ClCompile Include="GUI\MapCreation.cpp" />
     <ClCompile Include="GUI\CampaignCreation.cpp" />
     <ClCompile Include="GUI\MapEdit.cpp" />
+    <ClCompile Include="GUI\PlayGameMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character\AggressorStrategy.h" />
@@ -68,6 +69,7 @@
     <ClInclude Include="GUI\MapCreation.h" />
     <ClInclude Include="GUI\CampaignCreation.h" />
     <ClInclude Include="GUI\MapEdit.h" />
+    <ClInclude Include="GUI\PlayGameMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Test\test_map.txt" />
@@ -78,6 +80,8 @@
     <Image Include="Images\mapbackground.jpg" />
     <Image Include="Images\player_icon.png" />
     <Image Include="Images\door_icon.png" />
+    <Image Include="Images\treasure_icon.png" />
+    <Image Include="Images\wall_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial.ttf" />
