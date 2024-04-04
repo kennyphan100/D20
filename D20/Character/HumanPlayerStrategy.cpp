@@ -28,26 +28,33 @@ void HumanPlayerStrategy::move(Character& character, Map& map) {
         return;
     }
 
-    int distance = map.findShortestPath(startX, startY, targetX, targetY);
+    std::vector<MapPoint> path = map.findShortestPath(startX, startY, targetX, targetY);
 
-    if (distance == -1 || distance > 10) {
+    if (path.empty()) {
         std::cout << "Invalid move. Target is either unreachable or too far away.\n";
+        return;
     }
-    else {
-        if (map.moveCharacter(startX, startY, targetX, targetY)) {
-            std::cout << "Moved to (" << targetX << ", " << targetY << "). Distance covered: " << distance << " units.\n";
 
-            std::ofstream logFile("./game_log.txt", std::ios::app);
-            if (logFile.is_open()) {
-                logFile << "============ Character Move ============\n";
-                logFile << "Character " << character.getName() << " moved to (" << targetX << ", " << targetY << ").\n\n";
-                logFile.close();
-            }
-        }
-        else {
-            std::cerr << "Move failed. Could not update the character's position on the map.\n";
-        }
+    if (path.size() > 11) {
+        std::cout << "Invalid move. Target is too far away.\n";
+        return;
     }
+
+    if (!path.empty() && path.size() <= 11) {
+        map.visualizePath(path, character);
+        std::cout << "Character moved to target position.\n";
+    }
+
+    std::ofstream logFile("./game_log.txt", std::ios::app);
+    if (logFile.is_open()) {
+        logFile << "============ Character Move ============\n";
+        logFile << "Character " << character.getName() << " moved from (" << startX << ", " << startY
+            << ") to (" << targetX << ", " << targetY << ") covering a distance of "
+            << path.size() - 1 << " units.\n\n";
+        logFile.close();
+    }
+
+    map.displayWithNumbering();
 }
 
 void HumanPlayerStrategy::attack(Character& attacker, Map& map) {

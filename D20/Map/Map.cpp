@@ -13,23 +13,15 @@
 #include <filesystem>
 #include "../Character/Character.h"
 #include <ctime>
+#include <chrono>
+#include <thread>
+#include <algorithm>
 
 using namespace std;
 
-//! Represents a point in 2D space.
-struct Point {
-    int x;
-    int y;
-
-    Point(int x, int y) : x(x), y(y) {}
-
-    bool operator==(const Point& other) const {
-        return x == other.x && y == other.y;
-    }
-};
-
 Map::Map() : width(0), height(0), name(" "), grid(0, vector<Cell>(0, Cell::EMPTY))
 {
+    reachedDoor = false;
 }
 
 //! Constructor of Map class
@@ -38,6 +30,7 @@ Map::Map() : width(0), height(0), name(" "), grid(0, vector<Cell>(0, Cell::EMPTY
 //! @return new Map object
 Map::Map(int width, int height, string name) : width(width), height(height), name(name), grid(height, vector<Cell>(width, Cell::EMPTY))
 {
+    reachedDoor = false;
 }
 
 //! Checks if the map is traversable from the starting point to the ending point
@@ -85,16 +78,16 @@ void Map::setCell(int x, int y, Cell cellType) {
 //! Uses Breadth First Search (BFS) algorithm to find the path.
 //! @return True if a path exists, false otherwise.
 bool Map::verifyMap() {
-    queue<Point> q;
+    queue<MapPoint> q;
     vector<vector<bool>> visited(height, vector<bool>(width, false));
 
     // Starting point
-    Point start(0, 0);
+    MapPoint start(0, 0);
     // Ending point
-    Point end(width - 1, height - 1);
+    MapPoint end(width - 1, height - 1);
 
     // Directions to move in the grid (up, down, left, right)
-    vector<Point> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
+    vector<MapPoint> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
 
     // Initialize BFS from the starting point
     q.push(start);
@@ -102,7 +95,7 @@ bool Map::verifyMap() {
 
     // Perform BFS
     while (!q.empty()) {
-        Point current = q.front();
+        MapPoint current = q.front();
         q.pop();
 
         // Check if we've reached the end
@@ -495,8 +488,10 @@ bool Map::moveCharacter(int fromX, int fromY, int toX, int toY) {
         return false;
     }
 
-    if (grid[toY][toX] != Cell::EMPTY) {
-        std::cerr << "Target cell is not empty." << std::endl;
+    bool isMovingToDoor = (grid[toY][toX] == Cell::DOOR);
+
+    if (!(grid[toY][toX] == Cell::EMPTY || isMovingToDoor)) {
+        std::cerr << "Target position is blocked." << std::endl;
         return false;
     }
 
@@ -516,41 +511,56 @@ bool Map::moveCharacter(int fromX, int fromY, int toX, int toY) {
         setCell(toX, toY, Cell::PLAYER);
     }
 
+    if (isMovingToDoor) {
+        reachedDoor = true;
+    }
+
     return true;
 }
 
-int Map::findShortestPath(int startX, int startY, int endX, int endY) {
-    if (startX == endX && startY == endY) return 0;
-    //if (!isTraversable(grid, startX, startY, true) || !isTraversable(grid, endX, endY, true)) return -1;
-
+std::vector<MapPoint> Map::findShortestPath(int startX, int startY, int endX, int endY) {
     std::vector<std::vector<int>> distances(height, std::vector<int>(width, std::numeric_limits<int>::max()));
     distances[startY][startX] = 0;
 
-    std::queue<Point> q;
+    std::queue<MapPoint> q;
     q.push({ startX, startY });
 
-    std::vector<Point> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
+    std::map<MapPoint, MapPoint> prev;
+    prev[{startX, startY}] = { -1, -1 };
+
+    std::vector<MapPoint> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
 
     while (!q.empty()) {
-        Point current = q.front();
+        MapPoint current = q.front();
         q.pop();
 
+        if ((current.x == endX && current.y == endY && (grid[endY][endX] == Cell::DOOR || grid[endY][endX] == Cell::EMPTY)) ||
+            (current.x == endX && current.y == endY)) {
+            break;
+        }
+
         for (const auto& dir : directions) {
-            int nextX = current.x + dir.x;
-            int nextY = current.y + dir.y;
+            int nx = current.x + dir.x;
+            int ny = current.y + dir.y;
 
-            if (nextX >= 0 && nextX < width && nextY >= 0 && nextY < height && grid[nextY][nextX] == Cell::EMPTY && distances[nextY][nextX] == std::numeric_limits<int>::max()) {
-                distances[nextY][nextX] = distances[current.y][current.x] + 1;
-                q.push({ nextX, nextY });
-
-                if (nextX == endX && nextY == endY) {
-                    return distances[nextY][nextX];
-                }
+            if (nx >= 0 && nx < width && ny >= 0 && ny < height &&
+                (grid[ny][nx] == Cell::EMPTY || grid[ny][nx] == Cell::DOOR) && distances[ny][nx] == std::numeric_limits<int>::max()) {
+                distances[ny][nx] = distances[current.y][current.x] + 1;
+                q.push({ nx, ny });
+                prev[{nx, ny}] = current;
             }
         }
     }
 
-    return -1;
+    std::vector<MapPoint> path;
+    if (prev.find({ endX, endY }) != prev.end()) {
+        for (MapPoint at(endX, endY); at != MapPoint(-1, -1); at = prev[at]) {
+            path.push_back(at);
+        }
+        std::reverse(path.begin(), path.end());
+    }
+
+    return path;
 }
 
 std::pair<int, int> Map::getCharacterPosition(Character& character) {
@@ -616,4 +626,29 @@ std::pair<int, int> Map::findClosestAllyPosition(int charX, int charY, const Cha
     }
 
     return closestAllyPos;
+}
+
+void Map::visualizePath(const std::vector<MapPoint>& path) {
+    for (const auto& p : path) {
+        setCell(p.x, p.y, Cell::PATH);
+        displayWithNumbering();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        setCell(p.x, p.y, Cell::EMPTY);
+    }
+}
+
+void Map::visualizePath(const std::vector<MapPoint>& path, Character& character) {
+    for (size_t i = 1; i < path.size(); ++i) {
+        MapPoint from = path[i - 1];
+        MapPoint to = path[i];
+
+        this->moveCharacter(from.x, from.y, to.x, to.y);
+
+        this->displayWithNumbering();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+}
+
+bool Map::isPlayerAtDoor() {
+    return reachedDoor;
 }

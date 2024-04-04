@@ -19,7 +19,7 @@ enum MenuState {
     EDIT_CAMPAIGN
 };
 
-int main() {
+int mainX() {
     sf::RenderWindow window(sf::VideoMode(1280, 720), "D20 Game", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
 
     sf::Font font;

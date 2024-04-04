@@ -4,6 +4,9 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
+#include <queue>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -17,67 +20,103 @@ AggressorStrategy::AggressorStrategy() {
 
 void AggressorStrategy::move(Character& character, Map& map) {
     auto [charX, charY] = map.getCharacterPosition(character);
-
-    int targetX = -1, targetY = -1;
-
-    std::tie(targetX, targetY) = map.findClosestAllyPosition(charX, charY, character);
+    auto [targetX, targetY] = map.findClosestAllyPosition(charX, charY, character);
 
     if (targetX == -1 && targetY == -1) {
         std::tie(targetX, targetY) = map.getPlayerPosition();
     }
 
-    if (targetX != -1 && targetY != -1) {
-        int dirX = targetX - charX, dirY = targetY - charY;
-        if (std::abs(dirX) > std::abs(dirY)) {
-            dirX = (dirX > 0) ? 1 : -1;
-            dirY = 0;
-        }
-        else {
-            dirY = (dirY > 0) ? 1 : -1;
-            dirX = 0;
+    if (std::abs(targetX - charX) + std::abs(targetY - charY) == 1) {
+        return;
+    }
+
+    std::queue<std::pair<int, int>> q;
+    std::map<std::pair<int, int>, int> distance;
+    std::map<std::pair<int, int>, std::pair<int, int>> prev;
+    q.push({ charX, charY });
+    distance[{charX, charY}] = 0;
+    prev[{charX, charY}] = { -1, -1 };
+
+    std::pair<int, int> bestCell = { charX, charY };
+    int minDistance = std::numeric_limits<int>::max();
+
+    while (!q.empty()) {
+        auto [x, y] = q.front(); q.pop();
+        int steps = distance[{x, y}];
+
+        if (steps >= 10) {
+            continue;
         }
 
-        if (map.isEmptyCell(charX + dirX, charY + dirY)) {
-            map.moveCharacter(charX, charY, charX + dirX, charY + dirY);
-            std::cout << "Aggressor character " << character.getName() << " moves towards ally/player." << std::endl;
-        }
-        else {
-            std::cout << "Aggressor character " << character.getName() << " cannot move towards ally/player due to an obstacle." << std::endl;
+        for (auto [dx, dy] : std::vector<std::pair<int, int>>{ {1, 0}, {-1, 0}, {0, 1}, {0, -1} }) {
+            int nx = x + dx, ny = y + dy;
+
+            if (nx >= 0 && ny >= 0 && nx < map.getWidth() && ny < map.getHeight() &&
+                map.isEmptyCell(nx, ny) && !distance.count({ nx, ny })) {
+                q.push({ nx, ny });
+                distance[{nx, ny}] = steps + 1;
+                prev[{nx, ny}] = { x, y };
+
+                int distToTarget = std::abs(targetX - nx) + std::abs(targetY - ny);
+                if (distToTarget < minDistance) {
+                    minDistance = distToTarget;
+                    bestCell = { nx, ny };
+                }
+            }
         }
     }
-    else {
-        std::cout << "No valid ally/player found for aggressor character to move towards." << std::endl;
+
+    std::list<std::pair<int, int>> path;
+    for (std::pair<int, int> at = bestCell; at != std::pair<int, int>{-1, -1}; at = prev[at]) {
+        path.push_front(at);
     }
+
+    for (const auto& [nextX, nextY] : path) {
+        if (distance[{nextX, nextY}] > 10) {
+            break;
+        }
+
+        map.moveCharacter(charX, charY, nextX, nextY);
+        charX = nextX;
+        charY = nextY;
+
+        map.displayWithNumbering();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+
+    std::cout << "Aggressor character moved towards the target.\n";
 }
 
 void AggressorStrategy::attack(Character& aggressor, Map& map) {
     auto [aggressorX, aggressorY] = map.getCharacterPosition(aggressor);
 
-    for (int dx = -1; dx <= 1; ++dx) {
-        for (int dy = -1; dy <= 1; ++dy) {
-            if (dx == 0 && dy == 0) continue;
+    std::vector<MapPoint> directions = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
 
-            Character* target = map.getCharacter(aggressorX + dx, aggressorY + dy);
-            if (target && (target->getStrategyType() == StrategyType::Friendly ||
-                target->getStrategyType() == StrategyType::Player)) {
-                Dice dice;
-                std::string attackRollFormula = "1d20";
-                int rollResult = dice.rollDice(attackRollFormula);
+    for (const auto& dir : directions) {
+        int targetX = aggressorX + dir.x;
+        int targetY = aggressorY + dir.y;
 
-                if (rollResult >= target->getArmorClass()) {
-                    std::string damageRollFormula = "1d8";
-                    int damageRoll = dice.rollDice(damageRollFormula);
-                    target->takeDamage(damageRoll);
+        Character* target = map.getCharacter(targetX, targetY);
+        if (target && (target->getStrategyType() == StrategyType::Friendly ||
+            target->getStrategyType() == StrategyType::Player)) {
+            Dice dice;
+            std::string attackRollFormula = "1d20";
+            int rollResult = dice.rollDice(attackRollFormula);
 
-                    std::cout << "Aggressor hit the target for " << damageRoll << " damage.\n";
-                }
-                else {
-                    std::cout << "Aggressor's attack missed the target.\n";
-                }
-                return;
+            if (rollResult >= target->getArmorClass()) {
+                std::string damageRollFormula = "1d8";
+                int damageRoll = dice.rollDice(damageRollFormula);
+                std::cout << "Aggressor hit the target for " << damageRoll << " damage.\n";
+                target->takeDamage(damageRoll);
             }
+            else {
+                std::cout << "Aggressor's attack missed the target.\n";
+            }
+            return;
         }
     }
+
+    std::cout << "No target in range to attack.\n";
 }
 
 void AggressorStrategy::freeAction(Character& character) {
