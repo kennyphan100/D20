@@ -221,7 +221,6 @@
     <Text Include="Test\test_map.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\Users\L_Law\Desktop\background2.jpg" />
     <Image Include="Images\background1.jpg" />
     <Image Include="Images\background2.jpg" />
     <Image Include="Images\d20.jpg" />
