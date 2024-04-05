@@ -40,9 +40,9 @@ MapCreation::MapCreation(sf::RenderWindow& window) : window(window), showSuccess
     nameValue.setFillColor(sf::Color::Black);
     nameValue.setPosition((window.getSize().x / 2 - nameValue.getLocalBounds().width / 2) - 140, 100);
 
-    nameInputBackground.setSize(sf::Vector2f(200, 40));
+    nameInputBackground.setSize(sf::Vector2f(400, 40));
     nameInputBackground.setFillColor(sf::Color::White);
-    nameInputBackground.setPosition((window.getSize().x / 2 - nameInputBackground.getLocalBounds().width / 2) - 50, 95);
+    nameInputBackground.setPosition((window.getSize().x / 2 - nameInputBackground.getLocalBounds().width / 2) + 50, 95);
 
     widthLabel.setFont(font);
     widthLabel.setString("Width: ");
@@ -90,7 +90,7 @@ MapCreation::MapCreation(sf::RenderWindow& window) : window(window), showSuccess
     alertTextSuccess.setString("Successfully created map " + inputName + " !");
     alertTextSuccess.setCharacterSize(24);
     alertTextSuccess.setStyle(sf::Text::Bold);
-    alertTextSuccess.setFillColor(sf::Color::Black); // Text color
+    alertTextSuccess.setFillColor(sf::Color::White); // Text color
     alertTextSuccess.setPosition(window.getSize().x / 2 - alertTextSuccess.getLocalBounds().width / 2, 500); // Adjust position as needed
 
     alertTextFailure.setFont(font);

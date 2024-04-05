@@ -150,5 +150,5 @@ void FriendlyStrategy::switchToAggressor(Character& character) {
 }
 
 StrategyType FriendlyStrategy::getStrategyType() const {
-    return StrategyType::Player;
+    return StrategyType::Friendly;
 }

@@ -1,0 +1,11 @@
+Name: Jake Strongarm
+Class: TANK
+Level: 1
+HP: 10, AC: 10, Attack Bonus: 0, Damage Bonus: -1
+STR: 9 (-1), DEX: 10 (0), CON: 12 (0), INT: 9 (1), WIS: 9 (-1), CHA: 9 (0)
+Equipped Armor: ---
+Equipped Shield: ---
+Equipped Weapon: ---
+Equipped Boots: ---
+Equipped Ring: ---
+Equipped Helmet: ---

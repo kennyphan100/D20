@@ -102,7 +102,7 @@ CharacterCreation::CharacterCreation(sf::RenderWindow& window) : window(window),
     alertText.setString("Successfully created character!");
     alertText.setCharacterSize(24);
     alertText.setStyle(sf::Text::Bold);
-    alertText.setFillColor(sf::Color::Black); // Text color
+    alertText.setFillColor(sf::Color::White); // Text color
     alertText.setPosition(window.getSize().x / 2 - alertText.getLocalBounds().width / 2, 570); // Adjust position as needed
 
     activeField = ActiveInputField::LEVEL;

@@ -6,6 +6,7 @@
 #include "GUI/CampaignCreation.h"
 #include "GUI/MapEdit.h"
 #include "GUI/ItemCreation.h"
+#include "GUI/PlayGameMenu.h"
 
 
 using namespace std;
@@ -19,7 +20,8 @@ enum MenuState {
     CAMPAIGN_CREATION,
     EDIT_MAP,
     EDIT_CAMPAIGN,
-    ITEM_MENU,
+    PLAY_GAME,
+    ITEM_MENU
 };
 
 int main() {
@@ -48,8 +50,10 @@ int main() {
     backButton.setCharacterSize(24);
     backButton.setFillColor(sf::Color::Black);
     backButton.setPosition(25, 25);
+    
+    const int NUMBER_OF_ITEMS_IN_MENU = 4;
+    sf::Text menuOptions[NUMBER_OF_ITEMS_IN_MENU];
 
-    sf::Text menuOptions[3];
     menuOptions[0].setFont(font);
     menuOptions[0].setString("Create Character");
     menuOptions[0].setCharacterSize(34);
@@ -63,10 +67,17 @@ int main() {
     menuOptions[1].setPosition(100, 400);
 
     menuOptions[2].setFont(font);
-    menuOptions[2].setString("Create Item");
-    menuOptions[2].setCharacterSize(34);
-    menuOptions[2].setFillColor(sf::Color::Black);
-    menuOptions[2].setPosition(100, 500); // Position the button appropriately
+    menuOptions[2].setString("Start Game");
+    menuOptions[2].setCharacterSize(38);
+    menuOptions[2].setStyle(sf::Text::Bold);
+    menuOptions[2].setFillColor(sf::Color(153, 0, 0));
+    menuOptions[2].setPosition((window.getSize().x / 2 - menuOptions[2].getLocalBounds().width / 2), 500);
+
+    menuOptions[3].setFont(font);
+    menuOptions[3].setString("Create Item");
+    menuOptions[3].setCharacterSize(34);
+    menuOptions[3].setFillColor(sf::Color::Black);
+    menuOptions[3].setPosition(100, 500); // Position the button appropriately
 
 
     sf::Text editorOptions[4];
@@ -100,6 +111,7 @@ int main() {
     MapCreation mapCreation(window);
     MapEdit mapEdit(window);
     CampaignCreation campaignCreation(window);
+    PlayGameMenu PlayGameMenu(window);
     ItemCreation itemCreation(window);
 
     while (window.isOpen()) {
@@ -117,7 +129,7 @@ int main() {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                     if (currentState == MAIN_MENU) {
-                        for (int i = 0; i < 3; ++i) {
+                        for (int i = 0; i < NUMBER_OF_ITEMS_IN_MENU; ++i) {
                             if (menuOptions[i].getGlobalBounds().contains(mousePos.x, mousePos.y)) {
                                 if (i == 0) {
                                     currentState = CHARACTER_CREATION;
@@ -126,8 +138,11 @@ int main() {
                                     currentState = EDITOR;
                                 }
                                 else if (i == 2) {
-                                    currentState = ITEM_MENU;
+                                    currentState = PLAY_GAME;
                                       
+                                }
+                                else if (i == 3) {
+                                    currentState = ITEM_MENU;
                                 }
                                 // Add handling for other menu options here
                             }
@@ -191,6 +206,12 @@ int main() {
                             currentState = EDITOR;
                         }
                         mapCreation.handleMapCreationClick(mousePos.x, mousePos.y);
+                    }
+                    else if (currentState == PLAY_GAME) {
+                        if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+                            currentState = MAIN_MENU;
+                        }
+                        PlayGameMenu.handlePlayGameMenuClick(mousePos.x, mousePos.y);
                     }
                 }
                 else if (event.mouseButton.button == sf::Mouse::Right) {
@@ -258,7 +279,7 @@ int main() {
         window.draw(worldBackground);
 
         if (currentState == MAIN_MENU) {
-            for (int i = 0; i < 3; ++i) {
+            for (int i = 0; i < NUMBER_OF_ITEMS_IN_MENU; ++i) {
                 window.draw(menuOptions[i]);
             }
         }
@@ -286,6 +307,9 @@ int main() {
         }
         else if (currentState == EDIT_CAMPAIGN) {
             mapCreation.drawMapCreation();
+        }
+        else if (currentState == PLAY_GAME) {
+            PlayGameMenu.drawPlayGameMenu();
         }
         window.display();
     }

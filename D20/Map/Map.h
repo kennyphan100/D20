@@ -11,6 +11,28 @@
 #include <map>
 #include "../Observable.h"
 #include "../Character/Character.h"
+#include <limits>
+#include <queue>
+#include <iostream>
+
+struct MapPoint {
+    int x, y;
+
+    MapPoint(int x = 0, int y = 0) : x(x), y(y) {}
+
+    bool operator==(const MapPoint& other) const {
+        return x == other.x && y == other.y;
+    }
+
+    bool operator!=(const MapPoint& other) const {
+        return !(*this == other);
+    }
+
+    bool operator<(const MapPoint& other) const {
+        if (x == other.x) return y < other.y;
+        return x < other.x;
+    }
+};
 
 /**
  * @enum Cell
@@ -18,7 +40,7 @@
  *
  * This enumeration covers all possible types of cells within the map, each representing a different state or object.
  */
-enum class Cell { START, FINISH, EMPTY, WALL, OCCUPIED, PLAYER, DOOR, CHEST, NONE };
+enum class Cell { START, FINISH, EMPTY, WALL, OCCUPIED, PLAYER, AGGRESSOR, FRIENDLY, DOOR, CHEST, NONE, PATH };
 
 /**
  * @class Map
@@ -73,6 +95,7 @@ public:
      * @brief Displays the map to the console.
      */
     void display() const;
+    void displayWithNumbering() const;
 
     /**
      * @brief Getter for the map's width.
@@ -115,15 +138,7 @@ public:
 
     void logMap(ostream& out) const;
 
-    /**
-     * @brief BFS Pathfinding function
-     * @param startX The starting x position.
-     * @param startY The starting y position.
-     * @param endX The ending x position.
-     * @param endY The ending y position.
-     * @return The travel distance. -1 If no path found.
-     */
-    int findShortestPath(int startX, int startY, int endX, int endY);
+    std::vector<MapPoint> findShortestPath(int startX, int startY, int endX, int endY);
 
     std::pair<int, int> getCharacterPosition(Character& character);
 
@@ -133,9 +148,16 @@ public:
 
     std::pair<int, int> getPlayerPosition() const;
 
+    void visualizePath(const std::vector<MapPoint>& path);
+
+    void visualizePath(const std::vector<MapPoint>& path, Character& character);
+
+    bool isPlayerAtDoor();
+
 private:
     int width; ///< Width of the map.
     int height; ///< Height of the map.
+    bool reachedDoor;
     string name; ///< Name of the map. 
     vector<vector<Cell>> grid; ///< 2D grid representing the map, containing cells of type Cell.
     map<pair<int, int>, Character*> characters; ///< 2D map containing the pointers to the Characters on the map.
