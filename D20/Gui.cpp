@@ -5,7 +5,9 @@
 #include "GUI/MapCreation.h"
 #include "GUI/CampaignCreation.h"
 #include "GUI/MapEdit.h"
+#include "GUI/ItemCreation.h"
 #include "GUI/PlayGameMenu.h"
+
 
 using namespace std;
 
@@ -18,7 +20,8 @@ enum MenuState {
     CAMPAIGN_CREATION,
     EDIT_MAP,
     EDIT_CAMPAIGN,
-    PLAY_GAME
+    PLAY_GAME,
+    ITEM_MENU
 };
 
 int main() {
@@ -48,8 +51,9 @@ int main() {
     backButton.setFillColor(sf::Color::Black);
     backButton.setPosition(25, 25);
     
-    const int NUMBER_OF_ITEMS_IN_MENU = 3;
+    const int NUMBER_OF_ITEMS_IN_MENU = 4;
     sf::Text menuOptions[NUMBER_OF_ITEMS_IN_MENU];
+
     menuOptions[0].setFont(font);
     menuOptions[0].setString("Create Character");
     menuOptions[0].setCharacterSize(34);
@@ -68,6 +72,13 @@ int main() {
     menuOptions[2].setStyle(sf::Text::Bold);
     menuOptions[2].setFillColor(sf::Color(153, 0, 0));
     menuOptions[2].setPosition((window.getSize().x / 2 - menuOptions[2].getLocalBounds().width / 2), 500);
+
+    menuOptions[3].setFont(font);
+    menuOptions[3].setString("Create Item");
+    menuOptions[3].setCharacterSize(34);
+    menuOptions[3].setFillColor(sf::Color::Black);
+    menuOptions[3].setPosition(100, 500); // Position the button appropriately
+
 
     sf::Text editorOptions[4];
     editorOptions[0].setFont(font);
@@ -101,6 +112,7 @@ int main() {
     MapEdit mapEdit(window);
     CampaignCreation campaignCreation(window);
     PlayGameMenu PlayGameMenu(window);
+    ItemCreation itemCreation(window);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -127,6 +139,10 @@ int main() {
                                 }
                                 else if (i == 2) {
                                     currentState = PLAY_GAME;
+                                      
+                                }
+                                else if (i == 3) {
+                                    currentState = ITEM_MENU;
                                 }
                                 // Add handling for other menu options here
                             }
@@ -159,6 +175,13 @@ int main() {
                             currentState = MAIN_MENU;
                         }
                         characterCreation.handleCharacterCreationClick(mousePos.x, mousePos.y);
+                    }
+
+                    else if (currentState == ITEM_MENU) {
+                        if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+                            currentState = MAIN_MENU;
+                        }
+                        itemCreation.handleItemCreationClick(mousePos.x, mousePos.y);
                     }
                     else if (currentState == MAP_CREATION) {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
@@ -205,6 +228,9 @@ int main() {
             case sf::Event::TextEntered:
                 if (currentState == CHARACTER_CREATION) {
                     characterCreation.handleTextInput(event.text.unicode);
+                }
+                else if (currentState == ITEM_MENU) {
+                    itemCreation.handleTextInput(event.text.unicode);
                 }
                 else if (currentState == MAP_CREATION) {
                     if (mapCreation.getActiveField() == MapCreation::NAME) {
@@ -266,6 +292,10 @@ int main() {
         else if (currentState == CHARACTER_CREATION) {
             characterCreation.drawCharacterCreation();
         }
+        else if (currentState == ITEM_MENU) {
+            itemCreation.drawItemCreation();
+        }
+
         else if (currentState == MAP_CREATION) {
             mapCreation.drawMapCreation();
         }

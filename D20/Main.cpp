@@ -183,111 +183,110 @@ int mainX() {
         }
         else if (part._Equal("3"))
         {
-            //Character* fighterCharacter = new FighterCharacter(10, FighterType::TANK);
-            //fighterCharacter->setName("TestCharacter");
-            //fighterCharacter->display();
+            Character* fighterCharacter = new FighterCharacter(10, FighterType::TANK);
+            fighterCharacter->setName("TestCharacter");
+            fighterCharacter->display();
 
-            //cout << "\n";
-            //cout << "========================\n" << endl;
+            cout << "\n";
+            cout << "========================\n" << endl;
 
-            //cout << "=== List of items that you can equip (write the negative to unequip) ===\n"
-            //    << "1. Helmet - Name: Iron Helmet, Enchantment: Intelligence, Bonus: +1\n"
-            //    << "2. Armor - Name: Diamond Helmet, Enchantment: Armor class, Bonus: +5\n"
-            //    << "3. Shield - Name: Diamond Shield, Enchantment: Armor class, Bonus: +5\n"
-            //    << "4. Ring - Name: Silver Ring, Enchantment: Strength, Bonus: +3\n"
-            //    << "5. Belt - Name: Iron Belt, Enchantment: Constitution, Bonus: +2\n"
-            //    << "6. Boots - Name: Leather Boots, Enchantment: Dexterity, Bonus: +1\n"
-            //    << "7. Weapon - Name: Gold Sword, Enchantment: Attack bonus, Bonus: +4\n";
+            cout << "=== List of items that you can equip (write the negative to unequip) ===\n"
+                << "1. Helmet - Name: Iron Helmet, Enchantment: Intelligence, Bonus: +1\n"
+                << "2. Armor - Name: Diamond Helmet, Enchantment: Armor class, Bonus: +5\n"
+                << "3. Shield - Name: Diamond Shield, Enchantment: Armor class, Bonus: +5\n"
+                << "4. Ring - Name: Silver Ring, Enchantment: Strength, Bonus: +3\n"
+                << "5. Belt - Name: Iron Belt, Enchantment: Constitution, Bonus: +2\n"
+                << "6. Boots - Name: Leather Boots, Enchantment: Dexterity, Bonus: +1\n"
+                << "7. Weapon - Name: Gold Sword, Enchantment: Attack bonus, Bonus: +4\n";
 
-            //cout << "\n";
-            //cout << "========================\n" << endl;
+            cout << "\n";
+            cout << "========================\n" << endl;
 
-            //int itemOption;
-            //while (true) {
-            //    cout << "Choose an option to equip (enter 0 to exit): ";
-            //    string input;
-            //    getline(cin, input);
-            //    stringstream ss(input);
+            int itemOption;
+            while (true) {
+                cout << "Choose an option to equip (enter 0 to exit): ";
+                string input;
+                getline(cin, input);
+                stringstream ss(input);
 
-            //    if (ss >> itemOption && ss.eof()) {
-            //        if ((-8 < itemOption < 8 && itemOption != 0)) {
-            //            if (itemOption == 1) {
-            //                fighterCharacter = new Helmet2(fighterCharacter, "Iron Helmet", CharacterStat::Intelligence, 1);
-            //            }
-            //            else if (itemOption == 2) {
-            //                fighterCharacter = new Armor2(fighterCharacter, "Diamond Helmet", CharacterStat::ArmorClass, 5);
-            //            }
-            //            else if (itemOption == 3) {
-            //                fighterCharacter = new Shield2(fighterCharacter, "Diamond Shield", CharacterStat::ArmorClass, 5);
-            //            }
-            //            else if (itemOption == 4) {
-            //                fighterCharacter = new Ring2(fighterCharacter, "Silver Ring", CharacterStat::Strength, 3);
-            //            }
-            //            else if (itemOption == 5) {
-            //                fighterCharacter = new Belt2(fighterCharacter, "Iron Belt", CharacterStat::Constitution, 2);
-            //            }
-            //            else if (itemOption == 6) {
-            //                fighterCharacter = new Boots2(fighterCharacter, "Leather Boots", CharacterStat::Dexterity, 1);
-            //            }
-            //            else if (itemOption == 7) {
-            //                fighterCharacter = new Weapon2(fighterCharacter, "Gold Sword", CharacterStat::Strength, 4);
-            //            }
-            //            else if (itemOption == -1) {
-            //                fighterCharacter = new Helmet2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
-            //            }
-            //            else if (itemOption == -2) {
-            //                fighterCharacter = new Armor2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
-            //            }
-            //            else if (itemOption == -3) {
-            //                fighterCharacter = new Shield2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
-            //            }
-            //            else if (itemOption == -4) {
-            //                fighterCharacter = new Ring2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
-            //            }
-            //            else if (itemOption == -5) {
-            //                fighterCharacter = new Belt2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
-            //            }
-            //            else if (itemOption == -6) {
-            //                fighterCharacter = new Boots2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
-            //            }
-            //            else if (itemOption == -7) {
-            //                fighterCharacter = new Weapon2(fighterCharacter, "---", CharacterStat::NoEffect, 0);
-            //            }
+                if (ss >> itemOption && ss.eof()) {
+                    if ((-8 < itemOption < 8 && itemOption != 0)) {
+                        if (itemOption == 1) {
+                            fighterCharacter = new Helmet2(fighterCharacter, "Iron Helmet", CharacterStat::Intelligence, 1);
+                        }
+                        else if (itemOption == 2) {
+                            fighterCharacter = new Armor2(fighterCharacter, "Diamond Helmet", CharacterStat::ArmorClass, 5);
+                        }
+                        else if (itemOption == 3) {
+                            fighterCharacter = new Shield2(fighterCharacter, "Diamond Shield", CharacterStat::ArmorClass, 5);
+                        }
+                        else if (itemOption == 4) {
+                            fighterCharacter = new Ring2(fighterCharacter, "Silver Ring", CharacterStat::Strength, 3);
+                        }
+                        else if (itemOption == 5) {
+                            fighterCharacter = new Belt2(fighterCharacter, "Iron Belt", CharacterStat::Constitution, 2);
+                        }
+                        else if (itemOption == 6) {
+                            fighterCharacter = new Boots2(fighterCharacter, "Leather Boots", CharacterStat::Dexterity, 1);
+                        }
+                        else if (itemOption == 7) {
+                            fighterCharacter = new Weapon2(fighterCharacter, "Gold Sword", CharacterStat::Strength, 4);
+                        }
+                        else if (itemOption == -1) {
+                            fighterCharacter->removeHelmet();
+                        }
+                        else if (itemOption == -2) {
+                            fighterCharacter->removeArmor();
+                        }
+                        else if (itemOption == -3) {
+                            
+                        }
+                        else if (itemOption == -4) {
+                            
+                        }
+                        else if (itemOption == -5) {
+                       
+                        }
+                        else if (itemOption == -6) {
+                        
+                        }
+                        else if (itemOption == -7) {
+                           
+                        }
 
-            //            cout << "\n" << endl;
-            //            fighterCharacter->display();
-            //            cout << "\n" << endl;
+                        cout << "\n" << endl;
+                        fighterCharacter->display();
+                        cout << "\n" << endl;
 
-            //        }
-            //        else {
-            //            break;
-            //            cout << "Terminating.\n" << endl;
-            //        }
-            //    }
-            //    else {
-            //        cerr << "Input format must be a positive integer value.\n" << endl;
-            //    }
-            //}
+                    }
+                    else {
+                        break;
+                        cout << "Terminating.\n" << endl;
+                    }
+                }
+                else {
+                    cerr << "Input format must be a positive integer value.\n" << endl;
+                }
+            }
 
-            //fighterCharacter = new Helmet2(fighterCharacter, "Iron Helmet", CharacterStat::Strength, 2);
-            //fighterCharacter->display();
+            
 
 
-            //Helmet2* helmet = CharacterUtils::findHelmet(fighterCharacter);
-            //cout << helmet->getEnhancementBonus() << endl;
+            /*helmet2* helmet = characterutils::findhelmet(fightercharacter);
+            cout << helmet->getenhancementbonus() << endl;
 
-            // ===============================================================
+             ===============================================================
 
-            Helmet newHelmet("Diamond Helmet", EnhancementType::Strength, 5);
+            helmet newhelmet("diamond helmet", enhancementtype::strength, 5);
 
-            string filename = "./data/items/" + newHelmet.getName() + ".txt";
+            string filename = "./data/items/" + newhelmet.getname() + ".txt";
 
-            if (newHelmet.saveToFile(filename, "Helmet")) {
-                cout << "Item '" << newHelmet.getName() << "' has been successfully saved to '" << filename << "'." << endl;
+            if (newhelmet.savetofile(filename, "helmet")) {
+                cout << "item '" << newhelmet.getname() << "' has been successfully saved to '" << filename << "'." << endl;
             }
             else {
-                cerr << "Failed to save the item '" << newHelmet.getName() << "' to a file.\n" << endl;
-            }
+                cerr << "failed to save the item '" << newhelmet.getname() << "' to a file.\n" << endl;
+            }*/
 
             //Helmet helmet("Helmet");
             //Armor armor("Armor");

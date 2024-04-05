@@ -102,6 +102,14 @@ public:
     void equipRing(Ring* r);
     void equipHelmet(Helmet* h);
 
+    void removeArmor();
+    void removeShield();
+    void removeWeapon();
+    void removeBoots();
+    void removeRing();
+    void removeHelmet();
+    void removeBelt();
+
     Armor* getArmor() const;
     Shield* getShield() const;
     Weapon* getWeapon() const;
@@ -127,7 +135,7 @@ public:
     //bool saveToFile(const string& filename);
     //bool loadFromFile(const string& filename);
 
-    void removeItem(const string& item);
+    void remove(const std::string& itemType);
 
     virtual void display();
     virtual void applyEnhancement(CharacterStat stat, int bonus) = 0;

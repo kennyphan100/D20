@@ -237,6 +237,73 @@ Helmet* Character::getHelmet() const
     }
 }
 
+void Character::removeArmor() {
+    if (armor) {
+        armor = nullptr;
+        calculateArmorClass();
+        notify();
+    }
+}
+
+//! Unequips the shield from the character.
+void Character::removeShield() {
+    if (shield) {
+        shield = nullptr;
+        // Update any stats if necessary
+        notify();
+    }
+}
+
+//! Unequips the weapon from the character.
+void Character::removeWeapon() {
+    if (weapon) {
+        weapon = nullptr;
+        delete weapon;
+        calculateAttackBonus();
+        calculateDamageBonus();  
+        notify();
+    }
+}
+
+//! Unequips the boots from the character.
+void Character::removeBoots() {
+    if (boots) {
+        boots = nullptr;
+        delete boots;
+        notify();
+    }
+}
+
+//! Unequips the ring from the character.
+void Character::removeRing() {
+    if (ring) {
+        ring = nullptr;
+        delete ring;
+        notify();
+    }
+}
+
+//! Unequips the helmet from the character.
+void Character::removeHelmet() {
+    if (helmet) {
+        helmet = nullptr;
+        delete helmet;
+        notify();
+    }
+}
+
+/* Unequips the belt from the character(assuming there's a belt field).
+void Character::removeBelt() {
+    if (belt) {
+        belt = nullptr;
+         Update any stats if necessary
+        notify();
+    }
+}
+*/
+
+
+
 //! Retrieves the level of the character.
 //! @return The level of the character.
 int Character::getLevel() const {
@@ -296,6 +363,8 @@ int Character::getAttackBonus() const {
 int Character::getDamageBonus() const {
     return damageBonus;
 }
+
+
 
 void Character::levelUp()
 {
