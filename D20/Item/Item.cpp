@@ -218,6 +218,27 @@ string enhancementToString(EnhancementType enhancement) {
     }
 }
 
+EnhancementType stringToEnhancementType(const string& enhancementStr) {
+    if (enhancementStr == "Damage Bonus")
+        return EnhancementType::DamageBonus;
+    if (enhancementStr == "Attack Bonus")
+        return EnhancementType::AttackBonus;
+    if (enhancementStr == "Armor Class")
+        return EnhancementType::ArmorClass;
+    if (enhancementStr == "Strength")
+        return EnhancementType::Strength;
+    if (enhancementStr == "Dexterity")
+        return EnhancementType::Dexterity;
+    if (enhancementStr == "Wisdom")
+        return EnhancementType::Wisdom;
+    if (enhancementStr == "Intelligence")
+        return EnhancementType::Intelligence;
+    if (enhancementStr == "Constitution")
+        return EnhancementType::Constitution;
+    if (enhancementStr == "Charisma")
+        return EnhancementType::Charisma;
+}
+
 //! Adds an item to the item container.
 //! @param item Pointer to the item to be added.
 void ItemContainer::addItem(Item* item){

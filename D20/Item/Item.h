@@ -165,5 +165,6 @@ class TreasureChest : public ItemContainer {
 //! @param enhancement The enhancement type enum value.
 //! @return The string representation of the enhancement type.
 string enhancementToString(EnhancementType enhancement);
+EnhancementType stringToEnhancementType(const string& enhancementStr);
 
 #endif

@@ -5,6 +5,8 @@
 #include "GUI/MapCreation.h"
 #include "GUI/CampaignCreation.h"
 #include "GUI/MapEdit.h"
+#include "GUI/ItemCreation.h"
+
 
 using namespace std;
 
@@ -16,7 +18,8 @@ enum MenuState {
     MAP_EDIT,
     CAMPAIGN_CREATION,
     EDIT_MAP,
-    EDIT_CAMPAIGN
+    EDIT_CAMPAIGN,
+    ITEM_MENU,
 };
 
 int main() {
@@ -46,7 +49,7 @@ int main() {
     backButton.setFillColor(sf::Color::Black);
     backButton.setPosition(25, 25);
 
-    sf::Text menuOptions[2];
+    sf::Text menuOptions[3];
     menuOptions[0].setFont(font);
     menuOptions[0].setString("Create Character");
     menuOptions[0].setCharacterSize(34);
@@ -58,6 +61,13 @@ int main() {
     menuOptions[1].setCharacterSize(34);
     menuOptions[1].setFillColor(sf::Color::Black);
     menuOptions[1].setPosition(100, 400);
+
+    menuOptions[2].setFont(font);
+    menuOptions[2].setString("Create Item");
+    menuOptions[2].setCharacterSize(34);
+    menuOptions[2].setFillColor(sf::Color::Black);
+    menuOptions[2].setPosition(100, 500); // Position the button appropriately
+
 
     sf::Text editorOptions[4];
     editorOptions[0].setFont(font);
@@ -90,6 +100,7 @@ int main() {
     MapCreation mapCreation(window);
     MapEdit mapEdit(window);
     CampaignCreation campaignCreation(window);
+    ItemCreation itemCreation(window);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -106,13 +117,17 @@ int main() {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                     if (currentState == MAIN_MENU) {
-                        for (int i = 0; i < 2; ++i) {
+                        for (int i = 0; i < 3; ++i) {
                             if (menuOptions[i].getGlobalBounds().contains(mousePos.x, mousePos.y)) {
                                 if (i == 0) {
                                     currentState = CHARACTER_CREATION;
                                 }
                                 else if (i == 1) {
                                     currentState = EDITOR;
+                                }
+                                else if (i == 2) {
+                                    currentState = ITEM_MENU;
+                                      
                                 }
                                 // Add handling for other menu options here
                             }
@@ -145,6 +160,13 @@ int main() {
                             currentState = MAIN_MENU;
                         }
                         characterCreation.handleCharacterCreationClick(mousePos.x, mousePos.y);
+                    }
+
+                    else if (currentState == ITEM_MENU) {
+                        if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+                            currentState = MAIN_MENU;
+                        }
+                        itemCreation.handleItemCreationClick(mousePos.x, mousePos.y);
                     }
                     else if (currentState == MAP_CREATION) {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
@@ -185,6 +207,9 @@ int main() {
             case sf::Event::TextEntered:
                 if (currentState == CHARACTER_CREATION) {
                     characterCreation.handleTextInput(event.text.unicode);
+                }
+                else if (currentState == ITEM_MENU) {
+                    itemCreation.handleTextInput(event.text.unicode);
                 }
                 else if (currentState == MAP_CREATION) {
                     if (mapCreation.getActiveField() == MapCreation::NAME) {
@@ -233,7 +258,7 @@ int main() {
         window.draw(worldBackground);
 
         if (currentState == MAIN_MENU) {
-            for (int i = 0; i < 2; ++i) {
+            for (int i = 0; i < 3; ++i) {
                 window.draw(menuOptions[i]);
             }
         }
@@ -246,6 +271,10 @@ int main() {
         else if (currentState == CHARACTER_CREATION) {
             characterCreation.drawCharacterCreation();
         }
+        else if (currentState == ITEM_MENU) {
+            itemCreation.drawItemCreation();
+        }
+
         else if (currentState == MAP_CREATION) {
             mapCreation.drawMapCreation();
         }
