@@ -13,6 +13,8 @@ This project is about writing a C++ program that allows the user to play a simpl
 3. Inlcude all files into the solution. Click the button "Show All Files" in the Solution Explorer and include those missing files by right-clicking them and "Include in Project"
 4. Ensure that you have installed CppUnit (the following tutorial was used to install CppUnit: [video](https://www.youtube.com/watch?v=UjwBHaUH14o) <br>
   4.1 (Place the installed CppUnit folder into your C:\Program Files)
+5. Ensure that you have installed SFML for Visual C++ 17 (2022) - 64 bit ([link](https://www.sfml-dev.org/download/sfml/2.6.1/)) <br>
+   1.1 (Place the installed SFML folder into your C:\Program Files)
 6. Ensure that you are using C++ 17 version. (Right click on the solution project > Properties > Configuration Properties > General > C++ Language Standard (make sure it is usin ISO C++ 17 Standard)
 7. ReBuild the project
 8. Open the Main.cpp and run the program
