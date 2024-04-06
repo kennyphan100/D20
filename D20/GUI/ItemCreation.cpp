@@ -13,7 +13,7 @@ ItemCreation::ItemCreation(sf::RenderWindow& window) : window(window), showSucce
         cerr << "Failed to load font" << endl;
     }
 
-    if (!worldBackgroundTex.loadFromFile("./Images/background2.jpg")) {
+    if (!worldBackgroundTex.loadFromFile("./Images/mapbackground.jpg")) {
         cout << "ERROR: Game could not load background image" << "\n";
     }
 
@@ -22,13 +22,18 @@ ItemCreation::ItemCreation(sf::RenderWindow& window) : window(window), showSucce
 
     worldBackground.setTexture(worldBackgroundTex);
 
-
     backButton.setFont(font);
     backButton.setString("Go Back");
     backButton.setCharacterSize(24);
     backButton.setFillColor(sf::Color::Black);
     backButton.setPosition(25, 25);
 
+    titleLabel.setFont(font);
+    titleLabel.setString("Item Creation");
+    titleLabel.setCharacterSize(36);
+    titleLabel.setFillColor(sf::Color::Black);
+    titleLabel.setStyle(sf::Text::Bold | sf::Text::Underlined);
+    titleLabel.setPosition((window.getSize().x / 2 - titleLabel.getLocalBounds().width / 2), 25);
  
     createItemButton.setSize(sf::Vector2f(200, 50));
     createItemButton.setFillColor(sf::Color::Black);
@@ -42,11 +47,10 @@ ItemCreation::ItemCreation(sf::RenderWindow& window) : window(window), showSucce
 
     alertText.setFont(font);
     alertText.setCharacterSize(24);
-    alertText.setFillColor(sf::Color::Red); 
+    alertText.setFillColor(sf::Color::White); 
     alertText.setStyle(sf::Text::Bold);
     alertText.setPosition(window.getSize().x / 2 - alertText.getLocalBounds().width / 2 -160, 510);
 
-    
     armorTypeMenu.box.setSize(sf::Vector2f(220, 60));
     armorTypeMenu.box.setFillColor(sf::Color::Black);
     armorTypeMenu.box.setPosition(50, 150); 
@@ -56,7 +60,6 @@ ItemCreation::ItemCreation(sf::RenderWindow& window) : window(window), showSucce
     armorTypeMenu.title.setString("Select Armor Type");
     armorTypeMenu.title.setPosition(armorTypeMenu.box.getPosition().x, armorTypeMenu.box.getPosition().y - 30);
 
-  
     enhancementMenu.box.setSize(sf::Vector2f(220, 60));
     enhancementMenu.box.setFillColor(sf::Color::Black);
     enhancementMenu.box.setPosition(armorTypeMenu.box.getPosition().x + armorTypeMenu.box.getSize().x + 60, armorTypeMenu.box.getPosition().y);
@@ -101,7 +104,6 @@ ItemCreation::ItemCreation(sf::RenderWindow& window) : window(window), showSucce
         bonusOption.setString(item);
         bonusOption.setPosition(bonusMenu.box.getPosition().x, bonusMenu.box.getPosition().y + bonusMenu.box.getSize().y);
         bonusMenu.options.push_back(bonusOption);
-
     }
 
     sf::Text enhancementOption;
@@ -110,7 +112,6 @@ ItemCreation::ItemCreation(sf::RenderWindow& window) : window(window), showSucce
 
     float optionHeight2 = enhancementOption.getLocalBounds().height + 5;
 
-
     std::vector<std::string> armorItems = {"Intelligence", "Wisdom", "Armor class", "Strength", "Constitution", "Wisdom", "Charisma", "Dexterity", "Attack Bonus", "Damage Bonus"};
     for (const auto& item : armorItems) {
         enhancementOption.setString(item);
@@ -118,21 +119,19 @@ ItemCreation::ItemCreation(sf::RenderWindow& window) : window(window), showSucce
         enhancementMenu.options.push_back(enhancementOption);
     }
 
-
     sf::Text armorTypeOption;
     armorTypeOption.setFont(font);
     armorTypeOption.setCharacterSize(24);
 
     float optionHeight = armorTypeOption.getLocalBounds().height + 5;
 
-    std::vector<std::string> items = { "Helmet", "Armor", "Shield", "Ring", "Belt", "Boots" };
+    std::vector<std::string> items = { "Helmet", "Armor", "Shield", "Ring", "Belt", "Boots", "Weapon"};
     for (const auto& item : items) {
         armorTypeOption.setString(item);
         armorTypeOption.setPosition(armorTypeMenu.box.getPosition().x, armorTypeMenu.box.getPosition().y + armorTypeMenu.box.getSize().y + items.size() * optionHeight);
         armorTypeMenu.options.push_back(armorTypeOption);
     }
 }
-
 
 void ItemCreation::handleTextInput(sf::Uint32 unicode) {
     if (activeField == ARMOR_NAME) { // Assume ARMOR_NAME is an enum value for the active input field
@@ -171,6 +170,7 @@ void ItemCreation::handleItemCreationClick(int mouseX, int mouseY) {
             }
             offsetY += armorTypeMenu.options[i].getLocalBounds().height + 5;  // Add some padding
         }
+        showSuccessfulAlert = false;
     }
 
     if (enhancementMenu.box.getGlobalBounds().contains(mousePos)) {
@@ -188,6 +188,7 @@ void ItemCreation::handleItemCreationClick(int mouseX, int mouseY) {
             }
             offsetY += enhancementMenu.options[i].getLocalBounds().height + 5;
         }
+        showSuccessfulAlert = false;
     }
 
     if (bonusMenu.box.getGlobalBounds().contains(mousePos)) {
@@ -205,13 +206,13 @@ void ItemCreation::handleItemCreationClick(int mouseX, int mouseY) {
             }
             offsetY += bonusMenu.options[i].getLocalBounds().height + 5;
         }
+        showSuccessfulAlert = false;
     }
     if (createItemButton.getGlobalBounds().contains(mousePos)) {
         createItem();  
     }
     
 }
-
 
 void ItemCreation::drawItemCreation() {
     window.draw(worldBackground);

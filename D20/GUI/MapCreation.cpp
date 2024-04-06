@@ -22,7 +22,7 @@ MapCreation::MapCreation(sf::RenderWindow& window) : window(window), showSuccess
     backButton.setPosition(25, 25);
 
     titleLabel.setFont(font);
-    titleLabel.setString("Map Creation: ");
+    titleLabel.setString("Map Creation");
     titleLabel.setCharacterSize(40);
     titleLabel.setFillColor(sf::Color::Black);
     titleLabel.setStyle(sf::Text::Bold | sf::Text::Underlined);

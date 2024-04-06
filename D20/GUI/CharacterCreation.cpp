@@ -22,7 +22,7 @@ CharacterCreation::CharacterCreation(sf::RenderWindow& window) : window(window),
     backButton.setPosition(25, 25);
 
     titleLabel.setFont(font);
-    titleLabel.setString("Character Creation: ");
+    titleLabel.setString("Character Creation");
     titleLabel.setCharacterSize(40);
     titleLabel.setFillColor(sf::Color::Black);
     titleLabel.setStyle(sf::Text::Bold | sf::Text::Underlined);
@@ -124,12 +124,15 @@ void CharacterCreation::handleCharacterCreationClick(int mouseX, int mouseY) {
 
     if (nameInputBackground.getGlobalBounds().contains(mouseX, mouseY)) {
         activeField = NAME;
+        showSuccessfulAlert = false;
     }
     else if (levelInputBackground.getGlobalBounds().contains(mouseX, mouseY)) {
         activeField = LEVEL;
+        showSuccessfulAlert = false;
     }
     else if (dropdownButton.getGlobalBounds().contains(mouseX, mouseY)) {
         dropdownOpen = !dropdownOpen;
+        showSuccessfulAlert = false;
     }
     else if (createCharacterButton.getGlobalBounds().contains(mouseX, mouseY)) {
         // add logic for creating character here

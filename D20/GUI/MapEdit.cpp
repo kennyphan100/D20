@@ -233,6 +233,7 @@ void MapEdit::handleMapEditClick(int mouseX, int mouseY) {
 
             drawSelectedMapGrid(selectedMap);
         }
+        showSuccessfulAlert = false;
     }
     else if (editMapButton.getGlobalBounds().contains(mouseX, mouseY)) {
         cout << "Editing map..." << endl;

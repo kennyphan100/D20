@@ -26,7 +26,7 @@ CampaignCreation::CampaignCreation(sf::RenderWindow& window) : window(window), s
     backButton.setPosition(25, 25);
 
     titleLabel.setFont(font);
-    titleLabel.setString("Campaign Creation: ");
+    titleLabel.setString("Campaign Creation");
     titleLabel.setCharacterSize(40);
     titleLabel.setFillColor(sf::Color::Black);
     titleLabel.setStyle(sf::Text::Bold | sf::Text::Underlined);

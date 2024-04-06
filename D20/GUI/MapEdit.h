@@ -53,7 +53,7 @@ public:
     sf::Text mapLabel;
     sf::Text alertText;
 
-    sf::Vector2f mapListStartPosition{ 100, 130 }; // Starting position of the map list
+    sf::Vector2f mapListStartPosition{ 50, 130 }; // Starting position of the map list
     float mapListItemSpacing = 30.0f;
     vector<string> mapFiles;
     vector<bool> mapSelections;
