@@ -20,7 +20,7 @@ enum MenuState {
     CAMPAIGN_CREATION,
     EDIT_MAP,
     EDIT_CAMPAIGN,
-    PLAY_GAME,
+    PLAY_GAME_MENU,
     ITEM_MENU
 };
 
@@ -138,8 +138,7 @@ int main() {
                                     currentState = EDITOR;
                                 }
                                 else if (i == 2) {
-                                    currentState = PLAY_GAME;
-                                      
+                                    currentState = PLAY_GAME_MENU;
                                 }
                                 else if (i == 3) {
                                     currentState = ITEM_MENU;
@@ -207,7 +206,7 @@ int main() {
                         }
                         mapCreation.handleMapCreationClick(mousePos.x, mousePos.y);
                     }
-                    else if (currentState == PLAY_GAME) {
+                    else if (currentState == PLAY_GAME_MENU) {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                             currentState = MAIN_MENU;
                         }
@@ -308,7 +307,7 @@ int main() {
         else if (currentState == EDIT_CAMPAIGN) {
             mapCreation.drawMapCreation();
         }
-        else if (currentState == PLAY_GAME) {
+        else if (currentState == PLAY_GAME_MENU) {
             PlayGameMenu.drawPlayGameMenu();
         }
         window.display();
