@@ -79,6 +79,10 @@ int main() {
     menuOptions[3].setFillColor(sf::Color::Black);
     menuOptions[3].setPosition(100, 500); // Position the button appropriately
 
+    sf::RectangleShape startGameInputBackground;
+    startGameInputBackground.setSize(sf::Vector2f(245, 50));
+    startGameInputBackground.setFillColor(sf::Color::Black);
+    startGameInputBackground.setPosition((window.getSize().x / 2 - menuOptions[2].getLocalBounds().width / 2) - 10, 500);
 
     sf::Text editorOptions[4];
     editorOptions[0].setFont(font);
@@ -278,6 +282,7 @@ int main() {
         window.draw(worldBackground);
 
         if (currentState == MAIN_MENU) {
+            window.draw(startGameInputBackground);
             for (int i = 0; i < NUMBER_OF_ITEMS_IN_MENU; ++i) {
                 window.draw(menuOptions[i]);
             }
