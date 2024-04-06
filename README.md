@@ -6,6 +6,7 @@ This project is about writing a C++ program that allows the user to play a simpl
 # Technologies Used
 - C++
 - CppUnit
+- SFML
 
 # New Developer Instructions
 1. Open the project in Visual Studio
