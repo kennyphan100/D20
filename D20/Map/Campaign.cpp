@@ -185,5 +185,14 @@ void Campaign::display() const {
     }
 }
 
+//! Returns connection given a key
+vector<string> Campaign::getConnectedMap(const string& mapKey) {
+    auto it = connections.find(mapKey);
+    if (it != connections.end()) {
+        return it->second;
+    }
+    return {}; // Return empty vector if mapKey is not found
+}
+
 
 

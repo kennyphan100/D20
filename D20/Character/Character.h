@@ -144,6 +144,8 @@ public:
 
     StrategyType getStrategyType() const;
 
+    bool loadFromFile(const string& filename);
+
 private:
     CharacterStrategy* actionStrategy;
 

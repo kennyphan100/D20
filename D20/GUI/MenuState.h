@@ -1,0 +1,14 @@
+#pragma once
+enum MenuState {
+    MAIN_MENU,
+    EDITOR,
+    CHARACTER_CREATION,
+    MAP_CREATION,
+    MAP_EDIT,
+    CAMPAIGN_CREATION,
+    EDIT_MAP,
+    EDIT_CAMPAIGN,
+    ITEM_MENU,
+    PLAY_GAME_MENU,
+    PLAY_GAME,
+};

@@ -151,6 +151,9 @@
     <ClInclude Include="GUI\ItemCreation.h" />
     <ClInclude Include="GUI\MapCreation.h" />
     <ClInclude Include="GUI\MapEdit.h" />
+    <ClInclude Include="GUI\MenuState.h" />
+    <ClInclude Include="GUI\Object.h" />
+    <ClInclude Include="GUI\PlayGame.h" />
     <ClInclude Include="GUI\PlayGameMenu.h" />
     <ClInclude Include="Item\Item.h" />
     <ClInclude Include="Item\Item2.h" />
@@ -188,6 +191,7 @@
     <ClCompile Include="GUI\ItemCreation.cpp" />
     <ClCompile Include="GUI\MapCreation.cpp" />
     <ClCompile Include="GUI\MapEdit.cpp" />
+    <ClCompile Include="GUI\PlayGame.cpp" />
     <ClCompile Include="GUI\PlayGameMenu.cpp" />
     <ClCompile Include="Item\Item.cpp" />
     <ClCompile Include="Item\Item2.cpp" />

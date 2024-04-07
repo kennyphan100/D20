@@ -47,6 +47,7 @@ public:
     void removeMap(const string& mapName, const string& campaignDir);
 
     void connectMaps(const string& fromMap, const string& toMap);
+    vector<string> getConnectedMap(const string& mapKey);
 
     string getName() const;
     bool saveToFile(const string& filePath);

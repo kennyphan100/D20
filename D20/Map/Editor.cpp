@@ -576,7 +576,35 @@ Map* Editor::selectMapGUI(string mapName) {
         cout << "Failed to load the selected map.\n";
         return nullptr;
     }
-    
+}
+
+Character* Editor::selectCharacterGUI(string characterName) {
+    string directoryPath = "./data/characters";
+    vector<string> characterFiles;
+
+    for (const auto& entry : filesystem::directory_iterator(directoryPath)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".txt") {
+            characterFiles.push_back(entry.path().string());
+        }
+    }
+
+    if (characterFiles.empty()) {
+        cout << "No map files available.\n";
+        return nullptr;
+    }
+
+    //displayAllMaps();
+
+    Character* fighterCharacter = new FighterCharacter();
+    if (fighterCharacter->loadFromFile("./data/characters/" + characterName + ".txt")) {
+        //selectedCharacter->display();
+        return fighterCharacter;
+    }
+    else {
+        delete fighterCharacter;
+        cout << "Failed to load the selected map.\n";
+        return nullptr;
+    }
 }
 
 //! @brief Select a map from a specific campaign.

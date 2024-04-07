@@ -3,33 +3,35 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "MenuState.h"
+#include "Object.h"
 #include "../Character/Character.h"
 
 using namespace std;
 
-class PlayGameMenu {
+class PlayGame {
 public:
-    PlayGameMenu(sf::RenderWindow& window);
+    enum ActiveInputField { NAME, LEVEL };
 
-    void handlePlayGameMenuClick(int mouseX, int mouseY, MenuState& currentState, Character* character);
+    PlayGame(sf::RenderWindow& window);
+
+    void handlePlayGameClick(int mouseX, int mouseY, Character* character);
     void handleCharacterCreationClick(int mouseX, int mouseY);
     void handleTextInput(sf::Uint32 unicode);
     void drawMainMenu(sf::RenderWindow& window);
-    void drawPlayGameMenu(MenuState& currentState);
+    void drawPlayGame();
 
-    bool isClickOnCharacterList(int mouseX, int mouseY);
-    void loadCharacterFiles(const string& directoryPath);
+    void drawGrid(sf::RenderWindow& window);
+    void drawSelectedMapGrid(string selectedMap);
 
-    bool isClickOnCampaignList(int mouseX, int mouseY);
-    void loadCampaignFiles(const string& directoryPath);
+    std::vector<Object> objects;
 
-    sf::Text characterLabel;
-    sf::Text campaignLabel;
-    sf::RectangleShape startGameButtonBackground;
-    sf::Text startGameButtonText;
+    sf::Text titleLabel;
     sf::RectangleShape dropdownButton;
     sf::Text dropdownText;
     sf::Text alertText;
+
+    sf::RectangleShape startGameButtonBackground;
+    sf::Text startGameButtonText;
 
     sf::Vector2f characterListStartPosition{ 200, 130 };
     float characterListItemSpacing = 30.0f;
@@ -43,6 +45,9 @@ public:
     vector<bool> campaignSelection;
     string selectedCampaign;
 
+    int GRID_WIDTH = 10;
+    int GRID_HEIGHT = 10;
+
 private:
     sf::RenderWindow& window;
     sf::Font font;
@@ -53,4 +58,5 @@ private:
     bool dropdownOpen;
     bool showSuccessfulAlert;
 
+    ActiveInputField activeField;
 };

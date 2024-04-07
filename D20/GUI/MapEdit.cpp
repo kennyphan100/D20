@@ -99,6 +99,9 @@ void MapEdit::drawSelectedMapGrid(string selectedMap)
     Editor* editor = new Editor();
     Map* loadedMap = editor->selectMapGUI(selectedMap);
 
+    GRID_WIDTH = loadedMap->getWidth();
+    GRID_HEIGHT = loadedMap->getHeight();
+
     for (int y = 0; y < GRID_HEIGHT; ++y) {
         for (int x = 0; x < GRID_WIDTH; ++x) {
             switch (loadedMap->getGrid()[y][x]) {

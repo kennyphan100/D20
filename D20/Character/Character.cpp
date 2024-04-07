@@ -7,7 +7,11 @@
 #include <cmath>
 #include "CharacterUtils.h"
 #include <fstream>
+#include <sstream>
 #include <ctime>
+#include <filesystem>
+#include "CharacterBuilder.h"
+#include "CharacterDirector.h"
 
 using namespace std;
 
@@ -388,7 +392,7 @@ void Character::printCharacter() const {
     cout << "Name: " << name << "\n"
         << "Class: " << fighterTypeToString(getFighterType()) << "\n"
         << "Level: " << level << "\n"
-        << "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
+        << "HP: " << hitPoints << ", AC: " << armorClass << ", AttackBonus: " << attackBonus << ", DamageBonus: " << damageBonus << "\n"
         << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
         << "DEX: " << abilityScores[1] << " (" << abilityModifiers[1] << "), "
         << "CON: " << abilityScores[2] << " (" << abilityModifiers[2] << "), "
@@ -409,7 +413,7 @@ void Character::logCharacter(ostream& out) const {
     out << "Name: " << name << "\n"
         << "Class: " << fighterTypeToString(getFighterType()) << "\n"
         << "Level: " << level << "\n"
-        << "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
+        << "HP: " << hitPoints << ", AC: " << armorClass << ", AttackBonus: " << attackBonus << ", DamageBonus: " << damageBonus << "\n"
         << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
         << "DEX: " << abilityScores[1] << " (" << abilityModifiers[1] << "), "
         << "CON: " << abilityScores[2] << " (" << abilityModifiers[2] << "), "
@@ -427,14 +431,14 @@ void Character::logCharacter(ostream& out) const {
 void Character::display() {
     cout << "Name: " << name << "\n"
         << "Class: " << fighterTypeToString(getFighterType()) << "\n"
-        << "Level: " << level << "\n";
-        //<< "HP: " << hitPoints << ", AC: " << armorClass << ", Attack Bonus: " << attackBonus << ", Damage Bonus: " << damageBonus << "\n"
-        //<< "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
-        //<< "DEX: " << abilityScores[1] << " (" << abilityModifiers[1] << "), "
-        //<< "CON: " << abilityScores[2] << " (" << abilityModifiers[2] << "), "
-        //<< "INT: " << abilityScores[3] << " (" << abilityModifiers[3] << "), "
-        //<< "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
-        //<< "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
+        << "Level: " << level << "\n"
+        << "HP: " << hitPoints << ", AC: " << armorClass << ", AttackBonus: " << attackBonus << ", DamageBonus: " << damageBonus << "\n"
+        << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
+        << "DEX: " << abilityScores[1] << " (" << abilityModifiers[1] << "), "
+        << "CON: " << abilityScores[2] << " (" << abilityModifiers[2] << "), "
+        << "INT: " << abilityScores[3] << " (" << abilityModifiers[3] << "), "
+        << "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
+        << "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
         
     cout << "Equipped Helmet: " << (CharacterUtils::getHelmet(this) ? CharacterUtils::getHelmet(this)->getName() : "---") << endl;
     cout << "Equipped Armor: " << (CharacterUtils::getArmor(this) ? CharacterUtils::getArmor(this)->getName() : "---") << endl;
@@ -517,3 +521,92 @@ StrategyType Character::getStrategyType() const {
     }
     return StrategyType::Player;
 }
+
+bool Character::loadFromFile(const string& filename) {
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cerr << "Failed to open file: " << filename << endl;
+        return false;
+    }
+
+    string line;
+    string name;
+    FighterType fighterType;
+    int level;
+    int hitPoints, armorClass, attackBonus, damageBonus;
+    array<int, 6> abilityScores; // STR, DEX, CON, INT, WIS, CHA
+    array<int, 6> abilityModifiers;
+
+    string armor;
+
+    // Read character data from the file
+    while (getline(file, line)) {
+        istringstream iss(line);
+        string key;
+        if (iss >> key) {
+            if (key == "Name:") {
+                getline(iss, name);
+                name = name.substr(1); // Remove leading space
+            }
+            else if (key == "Class:") {
+                std::string classStr;
+                std::getline(iss, classStr);
+                if (classStr == " TANK") {
+                    fighterType = FighterType::TANK;
+                }
+                else if (classStr == " BULLY") {
+                    fighterType = FighterType::BULLY;
+                }
+                else if (classStr == " NIMBLE") {
+                    fighterType = FighterType::NIMBLE;
+                }
+            }
+            else if (key == "Level:") {
+                iss >> level;
+            }
+            else if (key == "HP:") {
+                char comma;
+                iss >> hitPoints >> comma >> key >> armorClass >> comma >> key >> attackBonus >> comma >> key >> damageBonus;
+            }
+            else if (key == "STR:") {
+                char comma;
+                char paren;
+                iss >> abilityScores[0] >> paren >> abilityModifiers[0] >> paren >> comma >> key >> abilityScores[1] >> paren >> abilityModifiers[1] >> paren >> comma >> key >> abilityScores[2] >> paren >> abilityModifiers[2] >> paren >> comma >> key >> abilityScores[3] >> paren >> abilityModifiers[3] >> paren >> comma >> key >> abilityScores[4] >> paren >> abilityModifiers[4] >> paren >> comma >> key >> abilityScores[5] >> paren >> abilityModifiers[5] >> paren;
+            }
+            else if (key == "Equipped Armor:") {
+                iss >> armor;
+            }
+            else if (key == "Equipped Shield:") {
+                iss >> armor;
+            }
+            else if (key == "Equipped Weapon:") {
+                iss >> armor;
+            }
+            else if (key == "Equipped Boots:") {
+                iss >> armor;
+            }
+            else if (key == "Equipped Ring:") {
+                iss >> armor;
+            }
+            else if (key == "Equipped Helmet:") {
+                iss >> armor;
+            }
+        }
+    }
+
+    this->name = name;
+    this->fighterType = fighterType;
+    this->level = level;
+    this->hitPoints = hitPoints;
+    this->armorClass = armorClass;
+    this->attackBonus = attackBonus;
+    this->damageBonus = damageBonus;
+
+    for (int i = 0; i < 6; ++i) {
+        this->abilityScores[i] = abilityScores[i];
+        this->abilityModifiers[i] = abilityModifiers[i];
+    }
+
+    return true;
+}
+
