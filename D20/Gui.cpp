@@ -7,6 +7,7 @@
 #include "GUI/MapEdit.h"
 #include "GUI/ItemCreation.h"
 #include "GUI/PlayGameMenu.h"
+#include "GUI/CampaignEdit.h"
 
 
 using namespace std;
@@ -115,6 +116,7 @@ int main() {
     MapCreation mapCreation(window);
     MapEdit mapEdit(window);
     CampaignCreation campaignCreation(window);
+    CampaignEdit campaignEdit(window);
     PlayGameMenu PlayGameMenu(window);
     ItemCreation itemCreation(window);
 
@@ -208,7 +210,7 @@ int main() {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                             currentState = EDITOR;
                         }
-                        mapCreation.handleMapCreationClick(mousePos.x, mousePos.y);
+                        campaignEdit.handleCampaignEditClick(mousePos.x, mousePos.y);
                     }
                     else if (currentState == PLAY_GAME_MENU) {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
@@ -263,15 +265,7 @@ int main() {
                     }
                 }
                 else if (currentState == EDIT_CAMPAIGN) {
-                    if (mapCreation.getActiveField() == MapCreation::NAME) {
-                        mapCreation.handleTextInput(event.text.unicode);
-                    }
-                    else if (mapCreation.getActiveField() == MapCreation::WIDTH) {
-                        mapCreation.handleTextInput(event.text.unicode);
-                    }
-                    else if (mapCreation.getActiveField() == MapCreation::HEIGHT) {
-                        mapCreation.handleTextInput(event.text.unicode);
-                    }
+                    continue;
                 }
                 break;
             }
@@ -310,7 +304,7 @@ int main() {
             campaignCreation.drawCampaignCreation();
         }
         else if (currentState == EDIT_CAMPAIGN) {
-            mapCreation.drawMapCreation();
+            campaignEdit.drawCampaignEdit();
         }
         else if (currentState == PLAY_GAME_MENU) {
             PlayGameMenu.drawPlayGameMenu();

@@ -185,5 +185,26 @@ void Campaign::display() const {
     }
 }
 
+void Campaign::connectSequentialMaps(const std::vector<std::string>& selectedMaps) {
+    for (size_t i = 0; i < selectedMaps.size() - 1; ++i) {
+        const auto& fromMapName = selectedMaps[i];
+        const auto& toMapName = selectedMaps[i + 1];
+
+        // Check if both maps exist in the campaign
+        if (find(maps.begin(), maps.end(), fromMapName) != maps.end() &&
+            find(maps.begin(), maps.end(), toMapName) != maps.end()) {
+
+            // Add the connection only if it doesn't already exist
+            if (find(connections[fromMapName].begin(), connections[fromMapName].end(), toMapName) == connections[fromMapName].end()) {
+                connections[fromMapName].push_back(toMapName);
+                cout << "Connected \"" << fromMapName << "\" to \"" << toMapName << "\" within the campaign \"" << name << "\".\n";
+            }
+        }
+        else {
+            cerr << "One or both maps named \"" << fromMapName << "\" and \"" << toMapName << "\" are not in the campaign \"" << name << "\". Connection failed.\n";
+        }
+    }
+}
+
 
 
