@@ -827,3 +827,53 @@ void Editor::editMapGUI(Map* selectedMap)
     }
 }
 
+Campaign* Editor::selectCampaignGUI(string campaignName) {
+    string directoryPath = "./data/campaigns/";
+    vector<filesystem::path> campaignDirectories;
+
+    for (const auto& entry : filesystem::directory_iterator(directoryPath)) {
+        if (entry.is_directory()) {
+            campaignDirectories.push_back(entry.path());
+        }
+    }
+
+    if (campaignDirectories.empty()) {
+        cout << "No campaign directories available.\n";
+        return nullptr;
+    }
+
+    filesystem::path selectedCampaignPath = directoryPath + campaignName + "/" + campaignName + ".txt";
+
+    Campaign* selectedCampaign = new Campaign(campaignName);
+    if (!selectedCampaign->loadFromFile(selectedCampaignPath.string())) {
+        delete selectedCampaign;
+        cout << "Failed to load the selected campaign.\n";
+        return nullptr;
+    }
+
+    return selectedCampaign;
+}
+
+void Editor::editCampaignGUI(Campaign* selectedCampaign, const vector<string>& selectedMaps) {
+    if (!selectedCampaign) {
+        cout << "Campaign selection cancelled or invalid.\n";
+        return;
+    }
+
+    string campaignName = selectedCampaign->getName();
+
+    selectedCampaign->connectSequentialMaps(selectedMaps);
+
+    filesystem::path dirPath, infoFilePath;
+    dirPath = filesystem::current_path() / "data" / "campaigns" / campaignName;
+    infoFilePath = dirPath / (campaignName + ".txt");
+    if (selectedCampaign->saveToFile(infoFilePath.string())) {
+        cout << "Campaign \"" << campaignName << "\" has been successfully saved to \"" << infoFilePath << "\".\n";
+    }
+    else {
+        cerr << "Failed to save the campaign \"" << campaignName << "\".\n";
+    }
+
+    delete selectedCampaign;
+}
+

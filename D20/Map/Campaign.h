@@ -48,6 +48,7 @@ public:
 
     void connectMaps(const string& fromMap, const string& toMap);
     vector<string> getConnectedMap(const string& mapKey);
+    void connectSequentialMaps(const vector<string>& selectedMaps);
 
     string getName() const;
     bool saveToFile(const string& filePath);
