@@ -40,6 +40,8 @@ class Editor : public Observable {
 		void editMapGUI(Map* map);
 		Map* selectMapGUI(string mapName);
 		Map* selectMap();
+		Campaign* selectCampaignGUI(string campaignName);
+		void editCampaignGUI(Campaign* campaign, const vector<string>& selectedMaps);
 	private:
 		vector<Map> maps; ///< Collection of maps included in the campaign.
 

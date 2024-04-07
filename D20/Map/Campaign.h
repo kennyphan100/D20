@@ -47,6 +47,7 @@ public:
     void removeMap(const string& mapName, const string& campaignDir);
 
     void connectMaps(const string& fromMap, const string& toMap);
+    void connectSequentialMaps(const vector<string>& selectedMaps);
 
     string getName() const;
     bool saveToFile(const string& filePath);
