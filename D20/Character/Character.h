@@ -68,6 +68,8 @@ public:
     int nbOfAttacksPerRound;
     Dice dice;
 
+    void addToInventory(Item* item);
+
     void setStrategy(CharacterStrategy* strategy);
     void performMove(Map& map);
     void performMoveGUI(Map& map, int targetX, int targetY);

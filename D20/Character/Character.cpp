@@ -618,3 +618,9 @@ bool Character::loadFromFile(const string& filename) {
     return true;
 }
 
+void Character::addToInventory(Item* item) {
+    if (!backpack) {
+        backpack = new Backpack("Character Backpack");
+    }
+    backpack->addItem(item);
+}

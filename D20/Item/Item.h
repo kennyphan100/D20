@@ -60,6 +60,8 @@ public:
 
     int getEnhancementBonus() const;
     void setEnhancementBonus(int newEnhancementBonus);
+
+    static Item* spawnRandomItem();
 private:
     string name;
     EnhancementType enhancementType;

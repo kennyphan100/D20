@@ -151,7 +151,7 @@ void FriendlyStrategy::attack(Character& friendly, Map& map) {
     }
 }
 
-void FriendlyStrategy::freeAction(Character& character) {
+void FriendlyStrategy::freeAction(Character& character, Map& map) {
     int action = std::rand() % 3;
     ofstream logFile("./game_log.txt", ios::app);
 

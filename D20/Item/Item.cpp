@@ -6,6 +6,10 @@
 #include <iostream>
 #include <fstream> 
 #include <sstream>
+#include <cstdlib>
+#include <ctime>
+#include <memory>
+#include <vector>
 
 using namespace std;
 
@@ -333,4 +337,33 @@ int Item::getEnhancementBonus() const
 void Item::setEnhancementBonus(int newEnhancementBonus)
 {
     enhancementBonus = newEnhancementBonus;
+}
+
+Item* Item::spawnRandomItem() {
+    srand(static_cast<unsigned int>(time(nullptr)));
+
+    int itemType = rand() % 7;
+
+    string itemName = "Random Item";
+    EnhancementType enhancementType = static_cast<EnhancementType>(rand() % 9);
+    int enhancementBonus = rand() % 5 + 1;
+
+    switch (itemType) {
+    case 0:
+        return new Armor(itemName, enhancementType, enhancementBonus);
+    case 1:
+        return new Weapon(itemName, enhancementType, enhancementBonus);
+    case 2:
+        return new Ring(itemName, enhancementType, enhancementBonus);
+    case 3:
+        return new Helmet(itemName, enhancementType, enhancementBonus);
+    case 4:
+        return new Shield(itemName, enhancementType, enhancementBonus);
+    case 5:
+        return new Belt(itemName, enhancementType, enhancementBonus);
+    case 6:
+        return new Boots(itemName, enhancementType, enhancementBonus);
+    default:
+        return;
+    }
 }
