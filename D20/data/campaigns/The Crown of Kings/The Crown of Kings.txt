@@ -1,7 +1,0 @@
-Campaign Name: The Crown of Kings
-Maps:
-The Citadel of Sorrows
-The Forbidden Crypts
-The Isle of the Forgotten Ones
-
-Connections:
