@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -17,44 +19,71 @@ FriendlyStrategy::FriendlyStrategy() {
 
 void FriendlyStrategy::move(Character& character, Map& map) {
     auto [charX, charY] = map.getCharacterPosition(character);
-
-    int targetX = -1, targetY = -1;
-
-    std::tie(targetX, targetY) = map.findClosestEnemyPosition(charX, charY);
+    auto [targetX, targetY] = map.findClosestEnemyPosition(charX, charY);
 
     if (targetX == -1 && targetY == -1) {
         std::tie(targetX, targetY) = map.getPlayerPosition();
     }
 
-    if (targetX != -1 && targetY != -1) {
-        int dirX = targetX - charX, dirY = targetY - charY;
-        if (abs(dirX) > abs(dirY)) {
-            dirX = (dirX > 0) ? 1 : -1;
-            dirY = 0;
-        }
-        else {
-            dirY = (dirY > 0) ? 1 : -1;
-            dirX = 0;
+    if (std::abs(targetX - charX) + std::abs(targetY - charY) == 1) {
+        return;
+    }
+
+    std::queue<std::pair<int, int>> q;
+    std::map<std::pair<int, int>, int> distance;
+    std::map<std::pair<int, int>, std::pair<int, int>> prev;
+    q.push({ charX, charY });
+    distance[{charX, charY}] = 0;
+    prev[{charX, charY}] = { -1, -1 };
+
+    std::pair<int, int> bestCell = { charX, charY };
+    int minDistance = std::numeric_limits<int>::max();
+
+    while (!q.empty()) {
+        auto [x, y] = q.front(); q.pop();
+        int steps = distance[{x, y}];
+
+        if (steps >= 10) {
+            continue;
         }
 
-        if (map.isEmptyCell(charX + dirX, charY + dirY)) {
-            map.moveCharacter(charX, charY, charX + dirX, charY + dirY);
-            std::cout << "Friendly character " << character.getName() << " moves towards target." << std::endl;
+        for (auto [dx, dy] : std::vector<std::pair<int, int>>{ {1, 0}, {-1, 0}, {0, 1}, {0, -1} }) {
+            int nx = x + dx, ny = y + dy;
 
-            std::ofstream logFile("./game_log.txt", std::ios::app);
-            if (logFile.is_open()) {
-                logFile << "============ Character Move ============\n";
-                logFile << "Friendly character " << character.getName() << " moved towards (" << targetX << ", " << targetY << ").\n\n";
-                logFile.close();
+            if (nx >= 0 && ny >= 0 && nx < map.getWidth() && ny < map.getHeight() &&
+                map.isEmptyCell(nx, ny) && distance.count({ nx, ny }) == 0) {
+                q.push({ nx, ny });
+                distance[{nx, ny}] = steps + 1;
+                prev[{nx, ny}] = { x, y };
+
+                int distToTarget = std::abs(targetX - nx) + std::abs(targetY - ny);
+                if (distToTarget < minDistance) {
+                    minDistance = distToTarget;
+                    bestCell = { nx, ny };
+                }
             }
         }
-        else {
-            std::cout << "Friendly character " << character.getName() << " cannot move towards target due to an obstacle." << std::endl;
+    }
+
+    std::list<std::pair<int, int>> path;
+    for (std::pair<int, int> at = bestCell; at != std::pair<int, int>{-1, -1}; at = prev[at]) {
+        path.push_front(at);
+    }
+
+    for (const auto& [nextX, nextY] : path) {
+        if (distance[{nextX, nextY}] > 10) {
+            break;
         }
+
+        map.moveCharacter(charX, charY, nextX, nextY);
+        charX = nextX;
+        charY = nextY;
+
+        map.displayWithNumbering();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
-    else {
-        std::cout << "No valid target found for friendly character to move towards." << std::endl;
-    }
+
+    std::cout << "Friendly character moved towards the target.\n";
 }
 
 void FriendlyStrategy::moveGUI(Character& character, Map& map, int targetX, int targetY) {
