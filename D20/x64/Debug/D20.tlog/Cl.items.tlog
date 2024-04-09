@@ -10,9 +10,13 @@ C:\devroot\D20\D20\Character\HumanPlayerStrategy.cpp;C:\devroot\D20\D20\x64\Debu
 C:\devroot\D20\D20\Dice\Dice.cpp;C:\devroot\D20\D20\x64\Debug\Dice.obj
 C:\devroot\D20\D20\Gui.cpp;C:\devroot\D20\D20\x64\Debug\Gui.obj
 C:\devroot\D20\D20\GUI\CampaignCreation.cpp;C:\devroot\D20\D20\x64\Debug\CampaignCreation.obj
+C:\devroot\D20\D20\GUI\CampaignEdit.cpp;C:\devroot\D20\D20\x64\Debug\CampaignEdit.obj
 C:\devroot\D20\D20\GUI\CharacterCreation.cpp;C:\devroot\D20\D20\x64\Debug\CharacterCreation.obj
+C:\devroot\D20\D20\GUI\ItemCreation.cpp;C:\devroot\D20\D20\x64\Debug\ItemCreation.obj
 C:\devroot\D20\D20\GUI\MapCreation.cpp;C:\devroot\D20\D20\x64\Debug\MapCreation.obj
 C:\devroot\D20\D20\GUI\MapEdit.cpp;C:\devroot\D20\D20\x64\Debug\MapEdit.obj
+C:\devroot\D20\D20\GUI\PlayGame.cpp;C:\devroot\D20\D20\x64\Debug\PlayGame.obj
+C:\devroot\D20\D20\GUI\PlayGameMenu.cpp;C:\devroot\D20\D20\x64\Debug\PlayGameMenu.obj
 C:\devroot\D20\D20\Item\Item.cpp;C:\devroot\D20\D20\x64\Debug\Item.obj
 C:\devroot\D20\D20\Item\Item2.cpp;C:\devroot\D20\D20\x64\Debug\Item2.obj
 C:\devroot\D20\D20\Main.cpp;C:\devroot\D20\D20\x64\Debug\Main.obj

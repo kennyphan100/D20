@@ -1,2 +1,42 @@
-﻿  Map.cpp
+﻿  Gui.cpp
+C:\devroot\D20\D20\Gui.cpp(140,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\devroot\D20\D20\Gui.cpp(140,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\devroot\D20\D20\Gui.cpp(162,97): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\devroot\D20\D20\Gui.cpp(162,85): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+  Main.cpp
+C:\devroot\D20\D20\Main.cpp(214,29): warning C4804: '<': unsafe use of type 'bool' in operation
+C:\devroot\D20\D20\Main.cpp(56,16): warning C4101: 'myCharacter': unreferenced local variable
+  Generating Code...
   D20.vcxproj -> C:\devroot\D20\x64\Debug\D20.exe

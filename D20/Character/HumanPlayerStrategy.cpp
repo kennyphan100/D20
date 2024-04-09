@@ -126,17 +126,18 @@ void HumanPlayerStrategy::attack(Character& attacker, Map& map) {
     }
 }
 
-
 void HumanPlayerStrategy::freeAction(Character& character, Map& map) {
-    std::cout << "\nChoose a free action: \n1. Rest (recover health)\n2. Look around\n3. Speak\nEnter choice: ";
+    std::cout << "\nChoose a free action: \n1. Rest (recover health)\n2. Look around\n3. Speak\n4. Interact\nEnter choice: ";
     int choice;
     std::cin >> choice;
+
     ofstream logFile("./game_log.txt", ios::app);
+    bool interacted = false;  // Declare before switch statement
+    auto [charX, charY] = map.getCharacterPosition(character);  // Declare before switch statement
 
     switch (choice) {
     case 1:
         std::cout << "Resting... health recovered." << std::endl;
-        // Implement health recovery
         if (logFile.is_open()) {
             time_t t = time(nullptr);
             tm tm;
@@ -153,7 +154,6 @@ void HumanPlayerStrategy::freeAction(Character& character, Map& map) {
         break;
     case 2:
         std::cout << "Looking around the area..." << std::endl;
-        // Implement the logic to describe the area or reveal certain elements
         if (logFile.is_open()) {
             time_t t = time(nullptr);
             tm tm;
@@ -170,7 +170,6 @@ void HumanPlayerStrategy::freeAction(Character& character, Map& map) {
         break;
     case 3:
         std::cout << "Speaking to nearby characters..." << std::endl;
-        // Implement interaction with NPCs or other characters
         if (logFile.is_open()) {
             time_t t = time(nullptr);
             tm tm;
@@ -187,18 +186,13 @@ void HumanPlayerStrategy::freeAction(Character& character, Map& map) {
         break;
     case 4:
         std::cout << "Attempting to interact with nearby objects..." << std::endl;
-        auto [charX, charY] = map.getCharacterPosition(character);
-        bool interacted = false;
 
-        // Check adjacent squares for a chest
         for (auto [dx, dy] : std::vector<std::pair<int, int>>{ {0, -1}, {1, 0}, {0, 1}, {-1, 0} }) {
             int nx = charX + dx, ny = charY + dy;
             if (map.getCell(nx, ny) == Cell::CHEST) {
-                // Assume spawnRandomItem is a method that creates a new random item
                 Item* item = Item::spawnRandomItem();
                 character.addToInventory(item);
                 std::cout << "Found and interacted with a chest! Obtained: " << item->getName() << std::endl;
-                // Optionally, remove the chest from the map after interaction
                 map.setCell(nx, ny, Cell::EMPTY);
                 interacted = true;
                 break;
@@ -209,8 +203,7 @@ void HumanPlayerStrategy::freeAction(Character& character, Map& map) {
             std::cout << "No interactable objects nearby." << std::endl;
         }
 
-        // Log interaction
-        if (logFile.is_open()) {
+        if (interacted && logFile.is_open()) {
             time_t t = time(nullptr);
             tm tm;
             localtime_s(&tm, &t);
@@ -227,6 +220,10 @@ void HumanPlayerStrategy::freeAction(Character& character, Map& map) {
     default:
         std::cout << "Invalid choice." << std::endl;
         break;
+    }
+
+    if (logFile.is_open()) {
+        logFile.close();
     }
 }
 

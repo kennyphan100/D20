@@ -74,7 +74,7 @@ public:
     void performMove(Map& map);
     void performMoveGUI(Map& map, int targetX, int targetY);
     void performAttack(Map& map);
-    void performFreeActions();
+    void performFreeActions(Map& map);
 
     Armor* armor;
     Shield* shield;
