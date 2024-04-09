@@ -155,7 +155,7 @@ void AggressorStrategy::attack(Character& aggressor, Map& map) {
     std::cout << "No target in range to attack.\n";
 }
 
-void AggressorStrategy::freeAction(Character& character) {
+void AggressorStrategy::freeAction(Character& character, Map& map) {
     int action = std::rand() % 3;
     ofstream logFile("./game_log.txt", ios::app);
 

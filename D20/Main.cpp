@@ -52,7 +52,7 @@ void printDots(int numDots) {
 //! 4. Roll a dice using the form xdy[+z]
 //! 5. Run the test cases. 
 //! 9. Exit the program.
-int mainX() {
+int main() {
     Character* myCharacter;
     CharacterDirector director;
     Character* newCharacter;
@@ -411,7 +411,7 @@ int mainX() {
                     myCharacter.performAttack(*chosenMap);
                 }
                 else if (actionChoice == "3") {
-                    myCharacter.performFreeActions();
+                    myCharacter.performFreeActions(*chosenMap);
                 }
                 else if (actionChoice == "9") {
                     break;

@@ -98,8 +98,8 @@ void Character::performAttack(Map& map) {
     actionStrategy->attack(*this, map);
 }
 
-void Character::performFreeActions() {
-    actionStrategy->freeAction(*this);
+void Character::performFreeActions(Map& map) {
+    actionStrategy->freeAction(*this, map);
 }
 
 //! Generates ability scores for the character by rolling 3d6 for each score.
@@ -618,3 +618,9 @@ bool Character::loadFromFile(const string& filename) {
     return true;
 }
 
+void Character::addToInventory(Item* item) {
+    if (!backpack) {
+        backpack = new Backpack("Character Backpack");
+    }
+    backpack->addItem(item);
+}

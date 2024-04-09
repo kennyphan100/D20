@@ -6,6 +6,10 @@
 #include <iostream>
 #include <fstream> 
 #include <sstream>
+#include <cstdlib>
+#include <ctime>
+#include <memory>
+#include <vector>
 
 using namespace std;
 
@@ -333,4 +337,45 @@ int Item::getEnhancementBonus() const
 void Item::setEnhancementBonus(int newEnhancementBonus)
 {
     enhancementBonus = newEnhancementBonus;
+}
+
+Item* Item::spawnRandomItem() {
+    srand(static_cast<unsigned int>(time(nullptr)));
+
+    int itemType = rand() % 7;
+    EnhancementType enhancementType = static_cast<EnhancementType>(rand() % 9);
+    int enhancementBonus = rand() % 5 + 1;
+    string itemName;
+
+    std::vector<string> armorNames = { "Armor of Aegis", "Breastplate of Protection", "Chainmail of Fortitude" };
+    std::vector<string> weaponNames = { "Butcher's Cleaver", "Sword of Valor", "Axe of the Minotaur" };
+    std::vector<string> ringNames = { "Ring of Power", "Band of Insight", "Circle of Mystique" };
+    std::vector<string> helmetNames = { "Helm of Wisdom", "Cap of the Fox", "Crown of Kings" };
+    std::vector<string> shieldNames = { "Barrier Buckler", "Shield of the Guardian", "Defender's Wall" };
+    std::vector<string> beltNames = { "Belt of Vigor", "Girdle of Giants", "Waistband of Stamina" };
+    std::vector<string> bootsNames = { "Boots of Speed", "Greaves of Grounding", "Footwear of the Fleet" };
+
+    switch (itemType) {
+    case 0:
+        itemName = armorNames[rand() % armorNames.size()];
+        return new Armor(itemName, enhancementType, enhancementBonus);
+    case 1:
+        itemName = weaponNames[rand() % weaponNames.size()];
+        return new Weapon(itemName, enhancementType, enhancementBonus);
+    case 2:
+        itemName = ringNames[rand() % ringNames.size()];
+        return new Ring(itemName, enhancementType, enhancementBonus);
+    case 3:
+        itemName = helmetNames[rand() % helmetNames.size()];
+        return new Helmet(itemName, enhancementType, enhancementBonus);
+    case 4:
+        itemName = shieldNames[rand() % shieldNames.size()];
+        return new Shield(itemName, enhancementType, enhancementBonus);
+    case 5:
+        itemName = beltNames[rand() % beltNames.size()];
+        return new Belt(itemName, enhancementType, enhancementBonus);
+    case 6:
+        itemName = bootsNames[rand() % bootsNames.size()];
+        return new Boots(itemName, enhancementType, enhancementBonus);
+    }
 }
