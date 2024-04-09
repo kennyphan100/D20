@@ -15,7 +15,7 @@ public:
     void handleCharacterCreationClick(int mouseX, int mouseY);
     void handleTextInput(sf::Uint32 unicode);
     void drawMainMenu(sf::RenderWindow& window);
-    void drawPlayGameMenu(MenuState& currentState);
+    void drawPlayGameMenu();
 
     bool isClickOnCharacterList(int mouseX, int mouseY);
     void loadCharacterFiles(const string& directoryPath);
@@ -51,6 +51,7 @@ private:
     sf::Text backButton;
 
     bool dropdownOpen;
-    bool showSuccessfulAlert;
+    bool characterSelected;
+    bool campaignSelected;
 
 };

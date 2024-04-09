@@ -17,28 +17,58 @@ PlayGame::PlayGame(sf::RenderWindow& window) : window(window), dropdownOpen(fals
 
     worldBackground.setTexture(worldBackgroundTex);
 
+    if (!characterTexture.loadFromFile("./Images/player_icon.png")) {
+        // Handle error if texture loading fails
+        cout << "ERROR: Game could not load icon" << "\n";
+    }
+
+    if (!wallTexture.loadFromFile("./Images/wall_icon.png")) {
+        // Handle error if texture loading fails
+        cout << "ERROR: Game could not load icon" << "\n";
+    }
+
+    if (!chestTexture.loadFromFile("./Images/treasure_icon.png")) {
+        // Handle error if texture loading fails
+        cout << "ERROR: Game could not load icon" << "\n";
+    }
+
+    if (!doorTexture.loadFromFile("./Images/door_icon.png")) {
+        // Handle error if texture loading fails
+        cout << "ERROR: Game could not load icon" << "\n";
+    }
+
     backButton.setFont(font);
     backButton.setString("Go Back");
     backButton.setCharacterSize(24);
     backButton.setFillColor(sf::Color::Black);
     backButton.setPosition(25, 25);
 
-    titleLabel.setFont(font);
-    titleLabel.setString("Game Play");
-    titleLabel.setCharacterSize(36);
-    titleLabel.setFillColor(sf::Color::Black);
-    titleLabel.setStyle(sf::Text::Bold | sf::Text::Underlined);
-    titleLabel.setPosition((window.getSize().x / 2 - titleLabel.getLocalBounds().width / 2), 70);
+    campaignLabel.setFont(font);
+    campaignLabel.setString("Campaign:");
+    campaignLabel.setCharacterSize(24);
+    campaignLabel.setFillColor(sf::Color::Black);
+    campaignLabel.setStyle(sf::Text::Underlined);
+    campaignLabel.setPosition(20, 85);
 
-    startGameButtonBackground.setSize(sf::Vector2f(250, 50));
-    startGameButtonBackground.setFillColor(sf::Color::Black);
-    startGameButtonBackground.setPosition((window.getSize().x / 2 - startGameButtonBackground.getLocalBounds().width / 2), 500);
+    campaignNameLabel.setFont(font);
+    campaignNameLabel.setString("");
+    campaignNameLabel.setCharacterSize(24);
+    campaignNameLabel.setFillColor(sf::Color::Black);
+    campaignNameLabel.setPosition(165, 85);
 
-    startGameButtonText.setFont(font);
-    startGameButtonText.setString("Play Game");
-    startGameButtonText.setCharacterSize(24);
-    startGameButtonText.setFillColor(sf::Color::White);
-    startGameButtonText.setPosition((window.getSize().x / 2 - startGameButtonText.getLocalBounds().width / 2), 510);
+    mapNameLabel.setFont(font);
+    mapNameLabel.setString("");
+    mapNameLabel.setCharacterSize(36);
+    mapNameLabel.setFillColor(sf::Color::Black);
+    mapNameLabel.setStyle(sf::Text::Bold | sf::Text::Underlined);
+    mapNameLabel.setPosition((window.getSize().x / 2 - mapNameLabel.getLocalBounds().width / 2) - 120, 20);
+
+    winLabel.setFont(font);
+    winLabel.setString("You have reached the end of the campaign. YOU WIN!");
+    winLabel.setCharacterSize(22);
+    winLabel.setFillColor(sf::Color(50, 200, 50));
+    winLabel.setStyle(sf::Text::Bold);
+    winLabel.setPosition((window.getSize().x / 2 - winLabel.getLocalBounds().width / 2), 600);
 
     alertText.setFont(font);
     alertText.setString("You must select a character and a campaign!");
@@ -51,7 +81,6 @@ PlayGame::PlayGame(sf::RenderWindow& window) : window(window), dropdownOpen(fals
 
     GRID_WIDTH = 10;
     GRID_HEIGHT = 10;
-
 }
 
 void PlayGame::drawGrid(sf::RenderWindow& window) {
@@ -82,6 +111,11 @@ void PlayGame::drawSelectedMapGrid(string selectedMap)
     Editor* editor = new Editor();
     Map* loadedMap = editor->selectMapGUI(selectedMap);
 
+    GRID_WIDTH = loadedMap->getWidth();
+    GRID_HEIGHT = loadedMap->getHeight();
+
+    objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+
     for (int y = 0; y < GRID_HEIGHT; ++y) {
         for (int x = 0; x < GRID_WIDTH; ++x) {
             switch (loadedMap->getGrid()[y][x]) {
@@ -99,15 +133,38 @@ void PlayGame::drawSelectedMapGrid(string selectedMap)
     }
 }
 
-void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character) {
-    // Handle clicks on main menu
+void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, string& mapName, vector<string>& listOfMaps) {
+    // Handle clicks on cell
+    if (mouseX >= GRID_OFFSET_X && mouseX < GRID_OFFSET_X + GRID_WIDTH * CELL_SIZE && mouseY >= GRID_OFFSET_Y && mouseY < GRID_OFFSET_Y + GRID_HEIGHT * CELL_SIZE) {
+        // Inside the grid
+        int gridX = (mouseX - GRID_OFFSET_X) / CELL_SIZE;
+        int gridY = (mouseY - GRID_OFFSET_Y) / CELL_SIZE;
 
+        // Check if targeted cell is occupied, if not move character to new position
+        if (!isXYInObjects(gridX, gridY)) {
+            characterPositionX = gridX;
+            characterPositionY = gridY;
+            //drawSelectedMapGrid(selectedMapName);
+            //character->performMove(*map);
+            //character->performMoveGUI(*map, gridX, gridY);
+        }
+        else if (XYPositionIsChest(gridX, gridY)) {
+            cout << "opening chests..." << endl;
+        }
+        else if (XYPositionIsDoor(gridX, gridY)) {
+            currentMapIndex += 1;
 
-    if (startGameButtonBackground.getGlobalBounds().contains(mouseX, mouseY))
-    {
-        cout << "test123" << endl;
+            // Check if its the last map
+            if (currentMapIndex >= listOfMaps.size()) {
+                wonTheGame = true;
+            }
+            else {
+                mapName = listOfMaps[currentMapIndex];
+                characterPositionX = 0;
+                characterPositionY = 0;
+            }
+        }
 
-        character->display();
     }
 
 }
@@ -123,18 +180,79 @@ void PlayGame::drawMainMenu(sf::RenderWindow& window) {
     // Draw main menu
 }
 
-void PlayGame::drawPlayGame() {
+void PlayGame::drawPlayGame(string mapName, string campaignName) {
+    mapNameLabel.setString(mapName);
+    campaignNameLabel.setString(campaignName);
+
     window.draw(worldBackground);
     window.draw(backButton);
-    window.draw(titleLabel);
+    window.draw(campaignLabel);
+    window.draw(campaignNameLabel);
+    window.draw(mapNameLabel);
 
-    window.draw(startGameButtonBackground);
-    window.draw(startGameButtonText);
+    drawGrid(window);
+    drawSelectedMapGrid(mapName);
 
+    // Draw objects
+    for (const auto& obj : objects) {
+        sf::Sprite objectSprite;
+        objectSprite.setPosition(GRID_OFFSET_X + obj.x * CELL_SIZE, GRID_OFFSET_Y + obj.y * CELL_SIZE);
+        objectSprite.setScale(static_cast<float>(CELL_SIZE) / wallTexture.getSize().x, static_cast<float>(CELL_SIZE) / wallTexture.getSize().y);
+        switch (obj.type) {
+        case ObjectType::Wall:
+            objectSprite.setTexture(wallTexture);
+            break;
+        case ObjectType::Chest:
+            objectSprite.setTexture(chestTexture);
+            break;
+        case ObjectType::Door:
+            objectSprite.setTexture(doorTexture);
+            break;
+        case ObjectType::Character:
+            objectSprite.setTexture(characterTexture);
+            break;
+        default:
+            break;
+        }
+        window.draw(objectSprite);
+    }
 
     if (showSuccessfulAlert) {
         window.draw(alertText);
     }
-    
 
+    if (wonTheGame) {
+        window.draw(winLabel);
+    }
+    
+}
+
+// Checks if a given cell (x,y) is occupied by a wall
+bool PlayGame::isXYInObjects(int x, int y) {
+    for (const auto& obj : objects) {
+        if (obj.x == x && obj.y == y && (obj.type == ObjectType::Wall or obj.type == ObjectType::Chest or obj.type == ObjectType::Door)) {
+            return true; // Found the coordinates in the list of objects
+        }
+    }
+    return false; // Did not find the coordinates in the list of objects
+}
+
+// Checks if a given cell (x,y) is occupied by a chest
+bool PlayGame::XYPositionIsChest(int x, int y) {
+    for (const auto& obj : objects) {
+        if (obj.x == x && obj.y == y && (obj.type == ObjectType::Chest)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Checks if a given cell (x,y) is occupied by a door
+bool PlayGame::XYPositionIsDoor(int x, int y) {
+    for (const auto& obj : objects) {
+        if (obj.x == x && obj.y == y && (obj.type == ObjectType::Door)) {
+            return true;
+        }
+    }
+    return false;
 }

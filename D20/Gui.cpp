@@ -113,8 +113,13 @@ int main() {
 
     Editor* editor = new Editor();
 
-    Character* newCharacter = nullptr;
-    //Campaign* campaign();
+    //FighterCharacter* characterToPlay = nullptr;
+    FighterCharacter characterToPlay(1, FighterType::NIMBLE);
+    Campaign* campaignToPlay = nullptr;
+    Map* mapToPlay = nullptr;
+    string mapNameToPlay = "";
+    string campaignNameToPlay = "";
+    vector<string> listOfMaps;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -211,15 +216,27 @@ int main() {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                             currentState = MAIN_MENU;
                         }
-                        PlayGameMenu.handlePlayGameMenuClick(mousePos.x, mousePos.y, currentState, newCharacter);
+                        PlayGameMenu.handlePlayGameMenuClick(mousePos.x, mousePos.y, currentState, &characterToPlay);
 
-                        newCharacter = editor->selectCharacterGUI(PlayGameMenu.selectedCharacter);
+                        //characterToPlay = editor->selectCharacterGUI(PlayGameMenu.selectedCharacter);
+                        characterToPlay.loadFromFile("./data/characters/" + PlayGameMenu.selectedCharacter + ".txt");
+
+                        campaignToPlay = editor->selectCampaignGUI(PlayGameMenu.selectedCampaign);
+
+                        // Fetch first map here from campaign
+                        if (campaignToPlay != nullptr) {
+                            campaignNameToPlay = campaignToPlay->getName();
+                            listOfMaps = campaignToPlay->connectionsOrdered;
+                            mapNameToPlay = listOfMaps[0];
+                            //mapToPlay = editor->selectMapGUI(mapNameToPlay);
+                        }
+
                     }
                     else if (currentState == PLAY_GAME) {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                             currentState = MAIN_MENU;
                         }
-                        PlayGame.handlePlayGameClick(mousePos.x, mousePos.y, newCharacter);
+                        PlayGame.handlePlayGameClick(mousePos.x, mousePos.y, &characterToPlay, campaignToPlay, mapNameToPlay, listOfMaps);
                     }
                 }
                 else if (event.mouseButton.button == sf::Mouse::Right) {
@@ -309,10 +326,10 @@ int main() {
             campaignEdit.drawCampaignEdit();
         }
         else if (currentState == PLAY_GAME_MENU) {
-            PlayGameMenu.drawPlayGameMenu(currentState);
+            PlayGameMenu.drawPlayGameMenu();
         }
         else if (currentState == PLAY_GAME) {
-            PlayGame.drawPlayGame();
+            PlayGame.drawPlayGame(mapNameToPlay, campaignNameToPlay);
         }
         window.display();
     }

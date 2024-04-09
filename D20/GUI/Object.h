@@ -3,7 +3,9 @@ enum class ObjectType {
     None,
     Wall,
     Chest,
-    Door
+    Door,
+    Character,
+    Aggressor
 };
 
 struct Object {

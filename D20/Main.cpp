@@ -66,6 +66,7 @@ int mainX() {
         cout << "4. Dice" << endl;
         cout << "5. Run Unit Tests" << endl;
         cout << "6. Play Game" << endl;
+        cout << "7. Testing" << endl;
         cout << "9. Exit \n" << endl;
         cout << "Please enter one of the number part: ";
 
@@ -374,8 +375,11 @@ int mainX() {
             FriendlyStrategy fs;
             AggressorStrategy as;
             HumanPlayerStrategy hps;
-            FighterCharacter myCharacter(1, FighterType::NIMBLE, &hps);
+            //FighterCharacter myCharacter(1, FighterType::NIMBLE, &hps);
+            FighterCharacter myCharacter(1, FighterType::NIMBLE);
             FighterCharacter enemyCharacter(1, FighterType::BULLY, &as);
+
+            myCharacter.setStrategy(&hps);
 
             Editor* editor = new Editor();
 
@@ -433,6 +437,40 @@ int mainX() {
                     break;
                 }
             }
+        }
+        else if (part._Equal("7")) {
+
+            Editor* editor = new Editor();
+            //Campaign* campaign = editor->selectCampaignGUI("The Crown of Kings");
+            Campaign* campaign = editor->selectCampaignGUI("Rise of the Dragon Lords");
+            //campaign->display();
+            //cout << "a============" << endl;
+            //string firstMap = campaign->getFirstMap();
+            //cout << firstMap << endl;
+
+            //string allMaps = campaign->getAllMaps();
+            //string test = campaign->getFirstMap();
+            //cout << "=============" << endl;
+            //cout << allMaps << endl;
+
+
+            cout << "=============asd" << endl;
+            auto result = campaign->getMapsAndConnections();
+            auto mapNames = result.first;
+            mapNames.reverse();
+
+            for (const auto& mapName : mapNames) {
+                cout << mapName << endl;
+            }
+            //cout << test2 << endl;
+
+            //for (const auto& [fromMap, toMaps] : campaign->connections) {
+            //    for (const auto& toMap : toMaps) {
+            //        cout << fromMap << " -> " << toMap << "\n";
+            //    }
+            //}
+
+
         }
         else
         {

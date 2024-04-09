@@ -11,6 +11,8 @@
 #include <string>
 #include <unordered_map>
 #include <filesystem>
+#include <set>
+#include <unordered_set>
 
 using namespace std;
 
@@ -105,7 +107,7 @@ void Campaign::connectMaps(const string& fromMapName, const string& toMapName) {
 //! Saves the campaign data to a file.
 //! @param filename The name of the file to save the campaign data.
 //! @return True if the save operation was successful, false otherwise.
-bool Campaign::saveToFile(const string& filename) {
+bool Campaign::saveToFile(const string& filename, const vector<string>& selectedMaps) {
     ofstream file(filename);
     if (!file.is_open()) {
         cerr << "Failed to open file \"" << filename << "\" for writing.\n";
@@ -124,6 +126,14 @@ bool Campaign::saveToFile(const string& filename) {
     for (const auto& [fromMap, toMaps] : connections) {
         for (const auto& toMap : toMaps) {
             file << fromMap << " -> " << toMap << "\n";
+        }
+    }
+    
+    if (!selectedMaps.empty()) {
+        file << "\n";
+        file << "Connections Ordered:\n";
+        for (auto mapName : selectedMaps) {
+            file << mapName << "\n";
         }
     }
 
@@ -159,7 +169,7 @@ bool Campaign::loadFromFile(const string& filename) {
         }
     }
 
-    while (getline(file, line)) {
+    while (getline(file, line) && line != "Connections Ordered:") {
         if (!line.empty()) {
             istringstream iss(line);
             string from, arrow, to;
@@ -168,6 +178,13 @@ bool Campaign::loadFromFile(const string& filename) {
             }
         }
     }
+
+    while (getline(file, line)) {
+        if (!line.empty()) {
+            connectionsOrdered.push_back(line);
+        }
+    }
+
     return true;
 }
 
@@ -185,7 +202,24 @@ void Campaign::display() const {
     }
 }
 
+void Campaign::display2() const {
+    for (const auto& pair : connections) {
+        // 'pair.first' is the key (a string)
+        // 'pair.second' is the value (a vector<string>)
+        std::cout << pair.first << " is connected to: ";
+        for (const auto& connectedNode : pair.second) {
+            // 'connectedNode' is each string in the vector<string>
+            std::cout << connectedNode << " ";
+        }
+        std::cout << std::endl; // Newline for readability
+    }
+}
+
 void Campaign::connectSequentialMaps(const std::vector<std::string>& selectedMaps) {
+    for (auto i = 0; i < selectedMaps.size(); i++) {
+        connectionsOrdered.push_back(selectedMaps[i]);
+    }
+
     for (size_t i = 0; i < selectedMaps.size() - 1; ++i) {
         const auto& fromMapName = selectedMaps[i];
         const auto& toMapName = selectedMaps[i + 1];
@@ -206,6 +240,93 @@ void Campaign::connectSequentialMaps(const std::vector<std::string>& selectedMap
     }
 }
 
+string Campaign::getFirstMap()
+{
+    auto it = connections.begin();
+    if (it != connections.end()) {
+        const auto& firstKey = it->first;
+        const auto& firstVector = it->second;
+
+        if (!firstVector.empty()) {
+            const auto& firstElementOfVector = firstVector[0];
+            cout << firstKey << endl;
+            cout << firstElementOfVector << endl;
+            return "\"" + firstKey + "\": \"" + firstElementOfVector + "\"";
+        }
+        else {
+            return "The vector associated with the first key is empty.";
+        }
+    }
+    else {
+        return "The map is empty.";
+    }
+}
+
+string Campaign::getAllMaps() {
+    if (connections.empty()) {
+        return "The map is empty.";
+    }
+
+    string result;
+    for (const auto& pair : connections) {
+        const auto& mapName = pair.first;
+        const auto& connectedMaps = pair.second;
+
+        result += mapName + " is connected to: ";
+        if (!connectedMaps.empty()) {
+            for (const auto& connectedMap : connectedMaps) {
+                result += connectedMap + ", ";
+            }
+            // Remove the last ", " from the string
+            result.pop_back(); // Removes the last space
+            result.pop_back(); // Removes the last comma
+        }
+        else {
+            result += "No connections";
+        }
+        result += ".\n"; // Add a newline for readability
+    }
+    return result;
+}
+
+pair<list<string>, string> Campaign::getMapsAndConnections() {
+    set<string> uniqueMapNames; // Use a set to track unique names
+    list<string> mapNames; // This will be our ordered list of unique map names
+    string connectionsSummary;
+
+    if (connections.empty()) {
+        return make_pair(mapNames, "The map is empty.");
+    }
+
+    // First, add all source maps to the set of unique names
+    for (const auto& pair : connections) {
+        uniqueMapNames.insert(pair.first);
+        for (const auto& connectedMap : pair.second) {
+            uniqueMapNames.insert(connectedMap); // Also add destination maps
+        }
+    }
+
+    // Now that we have all unique names, add them to the list for ordered access
+    for (const auto& name : uniqueMapNames) {
+        mapNames.push_back(name);
+    }
+
+    // Compile connections into a summary string
+    for (const auto& pair : connections) {
+        connectionsSummary += pair.first + " is connected to: ";
+        for (const auto& connectedMap : pair.second) {
+            connectionsSummary += connectedMap + ", ";
+        }
+        // Remove the trailing comma and space
+        connectionsSummary.pop_back();
+        connectionsSummary.pop_back();
+        connectionsSummary += ".\n";
+    }
+
+    return make_pair(mapNames, connectionsSummary);
+
+}
+
 //! Returns connection given a key
 vector<string> Campaign::getConnectedMap(const string& mapKey) {
     auto it = connections.find(mapKey);
@@ -214,6 +335,3 @@ vector<string> Campaign::getConnectedMap(const string& mapKey) {
     }
     return {}; // Return empty vector if mapKey is not found
 }
-
-
-
