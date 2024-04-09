@@ -2,16 +2,16 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "MenuState.h"
+#include "../Character/Character.h"
 
 using namespace std;
 
 class PlayGameMenu {
 public:
-    enum ActiveInputField { NAME, LEVEL };
-
     PlayGameMenu(sf::RenderWindow& window);
 
-    void handlePlayGameMenuClick(int mouseX, int mouseY);
+    void handlePlayGameMenuClick(int mouseX, int mouseY, MenuState& currentState, Character* character);
     void handleCharacterCreationClick(int mouseX, int mouseY);
     void handleTextInput(sf::Uint32 unicode);
     void drawMainMenu(sf::RenderWindow& window);
@@ -24,17 +24,11 @@ public:
     void loadCampaignFiles(const string& directoryPath);
 
     sf::Text characterLabel;
-
     sf::Text campaignLabel;
-
-    sf::RectangleShape startGameButton;
-
+    sf::RectangleShape startGameButtonBackground;
     sf::Text startGameButtonText;
-
     sf::RectangleShape dropdownButton;
-
     sf::Text dropdownText;
-
     sf::Text alertText;
 
     sf::Vector2f characterListStartPosition{ 200, 130 };
@@ -57,7 +51,7 @@ private:
     sf::Text backButton;
 
     bool dropdownOpen;
-    bool showSuccessfulAlert;
+    bool characterSelected;
+    bool campaignSelected;
 
-    ActiveInputField activeField;
 };

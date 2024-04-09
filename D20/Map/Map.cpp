@@ -291,12 +291,6 @@ bool Map::saveToFile(const string& filename) {
             // Assuming Cell is an enum and grid is a 2D vector of Cells
             // Convert each cell type to an integer or a character
             switch (grid[y][x]) {
-            case Cell::START:
-                file << "S ";  // Start
-                break;
-            case Cell::FINISH:
-                file << "F ";  // Finish
-                break;
             case Cell::EMPTY:
                 file << "_ ";  // Empty
                 break;
@@ -315,8 +309,6 @@ bool Map::saveToFile(const string& filename) {
             case Cell::CHEST:
                 file << "C ";  // Chest
                 break;
-            default:
-                file << "X ";  // Unknown or other types
             }
         }
         file << endl;  // Newline after each row

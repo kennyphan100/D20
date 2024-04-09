@@ -36,10 +36,11 @@ class Campaign {
 private:
     string name;
     vector<string> maps;
-    unordered_map<string, vector<string>> connections;
 
 public:
     Campaign();
+    unordered_map<string, vector<string>> connections;
+    vector<string> connectionsOrdered;
 
     Campaign(const string& name);
 
@@ -47,12 +48,17 @@ public:
     void removeMap(const string& mapName, const string& campaignDir);
 
     void connectMaps(const string& fromMap, const string& toMap);
+    vector<string> getConnectedMap(const string& mapKey);
     void connectSequentialMaps(const vector<string>& selectedMaps);
+    string getFirstMap();
+    string getAllMaps();
+    pair<list<string>, string> getMapsAndConnections();
 
     string getName() const;
-    bool saveToFile(const string& filePath);
+    bool saveToFile(const string& filePath, const vector<string>& selectedMaps = vector<string>());
     bool loadFromFile(const string& filePath);
     void display() const;
+    void display2() const;
 };
 
 #endif

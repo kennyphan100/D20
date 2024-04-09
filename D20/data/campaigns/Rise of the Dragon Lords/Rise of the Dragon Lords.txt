@@ -1,7 +1,0 @@
-Campaign Name: Rise of the Dragon Lords
-Maps:
-The Abyssal Depths
-The Caverns of Chaos
-The Tower of Twilight
-
-Connections:

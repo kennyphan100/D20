@@ -9,6 +9,7 @@
 #include <vector>
 #include "Map.h"
 #include "Campaign.h"
+#include "./../Character/FighterCharacter.h"
 
 using namespace std;
 
@@ -42,6 +43,8 @@ class Editor : public Observable {
 		Map* selectMap();
 		Campaign* selectCampaignGUI(string campaignName);
 		void editCampaignGUI(Campaign* campaign, const vector<string>& selectedMaps);
+		FighterCharacter* selectCharacterGUI(string mapName);
+
 	private:
 		vector<Map> maps; ///< Collection of maps included in the campaign.
 

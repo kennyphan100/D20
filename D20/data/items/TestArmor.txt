@@ -1,0 +1,4 @@
+Armor Type: Armor
+Name: TestArmor
+Enhancement Type: Charisma
+Enhancement Bonus: 3

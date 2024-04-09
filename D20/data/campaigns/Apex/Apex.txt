@@ -1,0 +1,14 @@
+Campaign Name: Apex
+Maps:
+Emberfell
+Frostpeak
+Mistwood
+
+Connections:
+Frostpeak -> Emberfell
+Emberfell -> Mistwood
+
+Connections Ordered:
+Frostpeak
+Emberfell
+Mistwood

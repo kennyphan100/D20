@@ -35,6 +35,7 @@
     <ClCompile Include="GUI\MapEdit.cpp" />
     <ClCompile Include="GUI\ItemCreation.cpp" />
     <ClCompile Include="GUI\PlayGameMenu.cpp" />
+    <ClCompile Include="GUI\PlayGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character\AggressorStrategy.h" />
@@ -72,9 +73,22 @@
     <ClInclude Include="GUI\MapEdit.h" />
     <ClInclude Include="GUI\ItemCreation.h" />
     <ClInclude Include="GUI\PlayGameMenu.h" />
+    <ClInclude Include="GUI\MenuState.h" />
+    <ClInclude Include="GUI\PlayGame.h" />
+    <ClInclude Include="GUI\Object.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Test\test_map.txt" />
+    <Text Include="data\campaigns\campaign1\campaign1.txt" />
+    <Text Include="data\campaigns\campaign2\campaign2.txt" />
+    <Text Include="data\campaigns\campaign2\maps\test.txt" />
+    <Text Include="data\campaigns\campaign2\maps\test2.txt" />
+    <Text Include="data\characters\test.txt" />
+    <Text Include="data\characters\test1.txt" />
+    <Text Include="data\items\Diamond Helmet.txt" />
+    <Text Include="data\maps\test.txt" />
+    <Text Include="data\maps\test1.txt" />
+    <Text Include="data\maps\test2.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\d20.jpg" />

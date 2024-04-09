@@ -564,11 +564,11 @@ Map* Editor::selectMapGUI(string mapName) {
         return nullptr;
     }
 
-    displayAllMaps();
+    //displayAllMaps();
 
     Map* selectedMap = new Map();
     if (selectedMap->loadFromFile("./data/maps/" + mapName + ".txt")) {
-        selectedMap->display();
+        //selectedMap->display();
         return selectedMap;
     }
     else {
@@ -576,7 +576,35 @@ Map* Editor::selectMapGUI(string mapName) {
         cout << "Failed to load the selected map.\n";
         return nullptr;
     }
-    
+}
+
+FighterCharacter* Editor::selectCharacterGUI(string characterName) {
+    string directoryPath = "./data/characters";
+    vector<string> characterFiles;
+
+    for (const auto& entry : filesystem::directory_iterator(directoryPath)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".txt") {
+            characterFiles.push_back(entry.path().string());
+        }
+    }
+
+    if (characterFiles.empty()) {
+        cout << "No map files available.\n";
+        return nullptr;
+    }
+
+    //displayAllMaps();
+
+    FighterCharacter* fighterCharacter = new FighterCharacter();
+    if (fighterCharacter->loadFromFile("./data/characters/" + characterName + ".txt")) {
+        //selectedCharacter->display();
+        return fighterCharacter;
+    }
+    else {
+        delete fighterCharacter;
+        cout << "Failed to load the selected map.\n";
+        return nullptr;
+    }
 }
 
 //! @brief Select a map from a specific campaign.
@@ -721,8 +749,8 @@ void Editor::createMapGUI(string name, int width, int height) {
 
     MapObserver* mo = new MapObserver(&myMap);
 
-    myMap.setCell(0, 0, Cell::START);
-    myMap.setCell(width - 1, height - 1, Cell::FINISH);
+    //myMap.setCell(0, 0, Cell::START);
+    //myMap.setCell(width - 1, height - 1, Cell::FINISH);
 
     if (myMap.saveToFile(filePath)) {
         cout << "Map '" << name << "' has been successfully saved to '" << filePath << "'." << endl;
@@ -836,10 +864,14 @@ void Editor::editCampaignGUI(Campaign* selectedCampaign, const vector<string>& s
 
     selectedCampaign->connectSequentialMaps(selectedMaps);
 
+    for (auto map : selectedMaps) {
+        selectedCampaign->connectionsOrdered.push_back(map);
+    }
+
     filesystem::path dirPath, infoFilePath;
     dirPath = filesystem::current_path() / "data" / "campaigns" / campaignName;
     infoFilePath = dirPath / (campaignName + ".txt");
-    if (selectedCampaign->saveToFile(infoFilePath.string())) {
+    if (selectedCampaign->saveToFile(infoFilePath.string(), selectedMaps)) {
         cout << "Campaign \"" << campaignName << "\" has been successfully saved to \"" << infoFilePath << "\".\n";
     }
     else {

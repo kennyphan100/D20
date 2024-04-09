@@ -1,0 +1,14 @@
+Campaign Name: Odyssey
+Maps:
+Shadowfen
+Stonegate
+Sunspire
+
+Connections:
+Sunspire -> Shadowfen
+Shadowfen -> Stonegate
+
+Connections Ordered:
+Sunspire
+Shadowfen
+Stonegate

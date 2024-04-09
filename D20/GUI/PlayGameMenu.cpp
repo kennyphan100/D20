@@ -1,9 +1,10 @@
 #include "PlayGameMenu.h"
 #include <filesystem>
+#include "../Map/Editor.h"
 
 namespace fs = std::filesystem;
 
-PlayGameMenu::PlayGameMenu(sf::RenderWindow& window) : window(window), dropdownOpen(false), showSuccessfulAlert(false) {
+PlayGameMenu::PlayGameMenu(sf::RenderWindow& window) : window(window), dropdownOpen(false), characterSelected(false), campaignSelected(false) {
     if (!font.loadFromFile("arial.ttf")) {
         std::cerr << "Failed to load font" << std::endl;
     }
@@ -36,9 +37,9 @@ PlayGameMenu::PlayGameMenu(sf::RenderWindow& window) : window(window), dropdownO
     campaignLabel.setStyle(sf::Text::Bold | sf::Text::Underlined);
     campaignLabel.setPosition(700, 70);
 
-    startGameButton.setSize(sf::Vector2f(250, 50));
-    startGameButton.setFillColor(sf::Color::Black);
-    startGameButton.setPosition((window.getSize().x / 2 - startGameButton.getLocalBounds().width / 2), 500);
+    startGameButtonBackground.setSize(sf::Vector2f(250, 50));
+    startGameButtonBackground.setFillColor(sf::Color::Black);
+    startGameButtonBackground.setPosition((window.getSize().x / 2 - startGameButtonBackground.getLocalBounds().width / 2), 500);
 
     startGameButtonText.setFont(font);
     startGameButtonText.setString("Play Game");
@@ -50,16 +51,15 @@ PlayGameMenu::PlayGameMenu(sf::RenderWindow& window) : window(window), dropdownO
     alertText.setString("You must select a character and a campaign!");
     alertText.setCharacterSize(24);
     alertText.setStyle(sf::Text::Bold);
-    alertText.setFillColor(sf::Color::White); // Text color
-    alertText.setPosition(window.getSize().x / 2 - alertText.getLocalBounds().width / 2, 570); // Adjust position as needed
-
-    activeField = ActiveInputField::LEVEL;
+    alertText.setFillColor(sf::Color(128, 0, 0)); // Text color
+    alertText.setPosition(window.getSize().x / 2 - alertText.getLocalBounds().width / 2, 450); // Adjust position as needed
 }
 
-void PlayGameMenu::handlePlayGameMenuClick(int mouseX, int mouseY) {
+void PlayGameMenu::handlePlayGameMenuClick(int mouseX, int mouseY, MenuState& currentState, Character* character) {
     // Handle clicks on main menu
     if (isClickOnCharacterList(mouseX, mouseY)) {
-        // Determine which map was clicked
+        characterSelected = true;
+        // Determine which character was clicked
         int characterIndex = static_cast<int>((mouseY - characterListStartPosition.y) / characterListItemSpacing);
         if (characterIndex >= 0 && static_cast<size_t>(characterIndex) < characterFiles.size()) {
             std::fill(characterSelection.begin(), characterSelection.end(), false);
@@ -69,12 +69,22 @@ void PlayGameMenu::handlePlayGameMenuClick(int mouseX, int mouseY) {
                 if (characterSelection[i]) {
                     //selectedMaps.push_back(mapFiles[i]);
                     selectedCharacter = characterFiles[i];
+                    //cout << selectedCharacter << endl;
+
+                    //Editor* editor = new Editor();
+                    //Character* loadedCharacter = editor->selectCharacterGUI(selectedCharacter);
+                    ////loadedCharacter->display();
+
+                    //character = loadedCharacter;
+
+
                 }
             }
         }
     }
     else if (isClickOnCampaignList(mouseX, mouseY)) {
-        // Determine which map was clicked
+        campaignSelected = true;
+        // Determine which campaign was clicked
         int campaignIndex = static_cast<int>((mouseY - campaignListStartPosition.y) / campaignListItemSpacing);
         if (campaignIndex >= 0 && static_cast<size_t>(campaignIndex) < campaignFiles.size()) {
             std::fill(campaignSelection.begin(), campaignSelection.end(), false);
@@ -87,6 +97,10 @@ void PlayGameMenu::handlePlayGameMenuClick(int mouseX, int mouseY) {
                 }
             }
         }
+    }
+    else if (startGameButtonBackground.getGlobalBounds().contains(mouseX, mouseY))
+    {
+        currentState = PLAY_GAME;
     }
 }
 
@@ -107,10 +121,10 @@ void PlayGameMenu::drawPlayGameMenu() {
     window.draw(characterLabel);
     window.draw(campaignLabel);
 
-    window.draw(startGameButton);
+    window.draw(startGameButtonBackground);
     window.draw(startGameButtonText);
 
-    if (showSuccessfulAlert) {
+    if (characterSelected == false or campaignSelected == false) {
         window.draw(alertText);
     }
 
