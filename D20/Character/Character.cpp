@@ -12,6 +12,7 @@
 #include <filesystem>
 #include "CharacterBuilder.h"
 #include "CharacterDirector.h"
+#include "HumanPlayerStrategy.h"
 
 using namespace std;
 
@@ -87,6 +88,10 @@ void Character::setStrategy(CharacterStrategy* strategy) {
 
 void Character::performMove(Map& map) {
     actionStrategy->move(*this, map);
+}
+
+void Character::performMoveGUI(Map& map, int targetX, int targetY) {
+    actionStrategy->moveGUI(*this, map, targetX, targetY);
 }
 
 void Character::performAttack(Map& map) {
@@ -528,6 +533,9 @@ bool Character::loadFromFile(const string& filename) {
         cerr << "Failed to open file: " << filename << endl;
         return false;
     }
+
+    HumanPlayerStrategy hps;
+    this->setStrategy(&hps);
 
     string line;
     string name;

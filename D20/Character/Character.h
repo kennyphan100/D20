@@ -70,6 +70,7 @@ public:
 
     void setStrategy(CharacterStrategy* strategy);
     void performMove(Map& map);
+    void performMoveGUI(Map& map, int targetX, int targetY);
     void performAttack(Map& map);
     void performFreeActions();
 
