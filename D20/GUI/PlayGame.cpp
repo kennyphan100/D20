@@ -193,23 +193,17 @@ void PlayGame::drawSelectedMapGridStatic(string selectedMap)
 }
 
 
-void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map* map, string& mapName, vector<string>& listOfMaps) {
+void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps) {
     // Handle clicks on cell
     if (mouseX >= GRID_OFFSET_X && mouseX < GRID_OFFSET_X + GRID_WIDTH * CELL_SIZE && mouseY >= GRID_OFFSET_Y && mouseY < GRID_OFFSET_Y + GRID_HEIGHT * CELL_SIZE) {
         // Inside the grid
         int gridX = (mouseX - GRID_OFFSET_X) / CELL_SIZE;
         int gridY = (mouseY - GRID_OFFSET_Y) / CELL_SIZE;
 
-        //if (characterPositionX == 0 and characterPositionY == 0) {
-        //    HumanPlayerStrategy hps;
-        //    character->setStrategy(&hps);
-        //    map->placeCharacter(characterPositionX, characterPositionY, character);
-        //}
-
         // Check if targeted cell is occupied, if not move character to new position
         if (!isXYInObjects(gridX, gridY)) {
-            characterPositionX = gridX;
-            characterPositionY = gridY;
+            //characterPositionX = gridX;
+            //characterPositionY = gridY;
 
             HumanPlayerStrategy hps;
             character->setStrategy(&hps);
@@ -234,6 +228,11 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character,
                 mapName = listOfMaps[currentMapIndex];
                 characterPositionX = 0;
                 characterPositionY = 0;
+
+                Editor* editor = new Editor();
+                map = editor->selectMapGUI(mapName);
+                character->setStrategy(&hps);
+                map->placeCharacter(0, 0, character);
             }
         }
 

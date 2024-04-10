@@ -15,7 +15,7 @@ public:
 
     PlayGame(sf::RenderWindow& window);
 
-    void handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map* map, string& mapName, vector<string>& listOfMaps);
+    void handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps);
     void handleCharacterCreationClick(int mouseX, int mouseY);
     void handleTextInput(sf::Uint32 unicode);
     void drawMainMenu(sf::RenderWindow& window);

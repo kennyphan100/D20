@@ -227,7 +227,7 @@ int main() {
                         campaignToPlay = editor->selectCampaignGUI(PlayGameMenu.selectedCampaign);
 
                         // Fetch first map here from campaign
-                        if (campaignToPlay != nullptr) {
+                        if (characterToPlay != nullptr and campaignToPlay != nullptr) {
                             campaignNameToPlay = campaignToPlay->getName();
                             listOfMaps = campaignToPlay->connectionsOrdered;
                             mapNameToPlay = listOfMaps[0];
@@ -242,7 +242,12 @@ int main() {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                             currentState = MAIN_MENU;
                         }
+
                         //mapToPlay = editor->selectMapGUI(mapNameToPlay);
+                        
+                        // placeCharacter into the cell he is in the map
+                        // characterToPlay->setStrategy(&hps);
+                        // mapToPlay->placeCharacter(X, Y, characterToPlay);
 
                         PlayGame.handlePlayGameClick(mousePos.x, mousePos.y, characterToPlay, campaignToPlay, mapToPlay, mapNameToPlay, listOfMaps);
                     }
