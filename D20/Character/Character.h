@@ -151,6 +151,10 @@ public:
 
     bool loadFromFile(const string& filename);
 
+    bool saveToFile(const std::string& filename) const;
+
+    Item* parseItem(const string& itemStr);
+
 private:
     CharacterStrategy* actionStrategy;
 

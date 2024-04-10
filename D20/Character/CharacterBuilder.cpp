@@ -18,32 +18,13 @@ void CharacterBuilder::assignName(string name)
 }
 
 bool CharacterBuilder::saveToFile(const string& filename) {
-    ofstream out(filename);
-    if (!out.is_open()) {
-        cerr << "Failed to open file '" << filename << "' for writing.\n";
+    Character* character = getCharacter();
+    if (!character) {
+        cerr << "No character to save.\n";
         return false;
     }
 
-    out << "Name: " << getCharacter()->getName() << "\n"
-        << "Class: " << fighterTypeToString(getCharacter()->getFighterType()) << "\n"
-        << "Level: " << getCharacter()->getLevel() << "\n"
-        << "HP: " << getCharacter()->getHitPoints() << ", AC: " << getCharacter()->getArmorClass() << ", AttackBonus: " << getCharacter()->getAttackBonus() << ", DamageBonus: " << getCharacter()->getDamageBonus() << "\n"
-        << "STR: " << getCharacter()->abilityScores[0] << " (" << getCharacter()->abilityModifiers[0] << "), "
-        << "DEX: " << getCharacter()->abilityScores[1] << " (" << getCharacter()->abilityModifiers[1] << "), "
-        << "CON: " << getCharacter()->abilityScores[2] << " (" << getCharacter()->abilityModifiers[2] << "), "
-        << "INT: " << getCharacter()->abilityScores[3] << " (" << getCharacter()->abilityModifiers[3] << "), "
-        << "WIS: " << getCharacter()->abilityScores[4] << " (" << getCharacter()->abilityModifiers[4] << "), "
-        << "CHA: " << getCharacter()->abilityScores[5] << " (" << getCharacter()->abilityModifiers[5] << ")\n";
-
-    out << "Equipped Armor: " << (getCharacter()->getArmor() ? getCharacter()->getArmor()->getName() : "---") << "\n"
-        << "Equipped Shield: " << (getCharacter()->getShield() ? getCharacter()->getShield()->getName() : "---") << "\n"
-        << "Equipped Weapon: " << (getCharacter()->getWeapon() ? getCharacter()->getWeapon()->getName() : "---") << "\n"
-        << "Equipped Boots: " << (getCharacter()->getBoots() ? getCharacter()->getBoots()->getName() : "---") << "\n"
-        << "Equipped Ring: " << (getCharacter()->getRing() ? getCharacter()->getRing()->getName() : "---") << "\n"
-        << "Equipped Helmet: " << (getCharacter()->getHelmet() ? getCharacter()->getHelmet()->getName() : "---") << "\n";
-
-    out.close();
-    return true;
+    return character->saveToFile(filename);
 }
 
 Character* CharacterBuilder::getCharacter() {

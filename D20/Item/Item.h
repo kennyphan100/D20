@@ -62,6 +62,8 @@ public:
     void setEnhancementBonus(int newEnhancementBonus);
 
     static Item* spawnRandomItem();
+    std::string getItemType(const Item* item);
+
 private:
     string name;
     EnhancementType enhancementType;
@@ -147,6 +149,7 @@ public:
     Item* getItemByName(const string& itemName) const;
     void displayItems() const;
     int getSize() const;
+    const vector<Item*>& getItems() const;
 };
 
 //! Class representing a backpack item container
