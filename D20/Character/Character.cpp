@@ -697,16 +697,33 @@ bool Character::saveToFile(const std::string& filename) const {
 
     if (armor)
         out << "Equipped Armor: " << armor->getName() << ", " << enhancementToString(armor->getEnhancementType()) << ", " << armor->getEnhancementBonus() << "\n";
+    else
+        out << "Equipped Armor: None\n";
+
     if (shield)
         out << "Equipped Shield: " << shield->getName() << ", " << enhancementToString(shield->getEnhancementType()) << ", " << shield->getEnhancementBonus() << "\n";
+    else
+        out << "Equipped Shield: None\n";
+
     if (weapon)
         out << "Equipped Weapon: " << weapon->getName() << ", " << enhancementToString(weapon->getEnhancementType()) << ", " << weapon->getEnhancementBonus() << "\n";
+    else
+        out << "Equipped Weapon: None\n";
+
     if (boots)
         out << "Equipped Boots: " << boots->getName() << ", " << enhancementToString(boots->getEnhancementType()) << ", " << boots->getEnhancementBonus() << "\n";
+    else
+        out << "Equipped Boots: None\n";
+
     if (ring)
         out << "Equipped Ring: " << ring->getName() << ", " << enhancementToString(ring->getEnhancementType()) << ", " << ring->getEnhancementBonus() << "\n";
+    else
+        out << "Equipped Ring: None\n";
+
     if (helmet)
         out << "Equipped Helmet: " << helmet->getName() << ", " << enhancementToString(helmet->getEnhancementType()) << ", " << helmet->getEnhancementBonus() << "\n";
+    else
+        out << "Equipped Helmet: None\n";
 
     if (backpack && !backpack->getItems().empty()) {
         out << "Inventory:\n";
