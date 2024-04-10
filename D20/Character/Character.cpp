@@ -676,3 +676,51 @@ Item* Character::parseItem(const string& itemStr) {
 
     return nullptr;
 }
+
+bool Character::saveToFile(const std::string& filename) const {
+    std::ofstream out(filename);
+    if (!out.is_open()) {
+        std::cerr << "Failed to open file '" << filename << "' for writing.\n";
+        return false;
+    }
+
+    out << "Name: " << name << "\n"
+        << "Class: " << fighterTypeToString(fighterType) << "\n"
+        << "Level: " << level << "\n"
+        << "HP: " << hitPoints << ", AC: " << armorClass << ", AttackBonus: " << attackBonus << ", DamageBonus: " << damageBonus << "\n"
+        << "STR: " << abilityScores[0] << " (" << abilityModifiers[0] << "), "
+        << "DEX: " << abilityScores[1] << " (" << abilityModifiers[1] << "), "
+        << "CON: " << abilityScores[2] << " (" << abilityModifiers[2] << "), "
+        << "INT: " << abilityScores[3] << " (" << abilityModifiers[3] << "), "
+        << "WIS: " << abilityScores[4] << " (" << abilityModifiers[4] << "), "
+        << "CHA: " << abilityScores[5] << " (" << abilityModifiers[5] << ")\n";
+
+    if (armor)
+        out << "Equipped Armor: " << armor->getName() << ", " << enhancementToString(armor->getEnhancementType()) << ", " << armor->getEnhancementBonus() << "\n";
+    if (shield)
+        out << "Equipped Shield: " << shield->getName() << ", " << enhancementToString(shield->getEnhancementType()) << ", " << shield->getEnhancementBonus() << "\n";
+    if (weapon)
+        out << "Equipped Weapon: " << weapon->getName() << ", " << enhancementToString(weapon->getEnhancementType()) << ", " << weapon->getEnhancementBonus() << "\n";
+    if (boots)
+        out << "Equipped Boots: " << boots->getName() << ", " << enhancementToString(boots->getEnhancementType()) << ", " << boots->getEnhancementBonus() << "\n";
+    if (ring)
+        out << "Equipped Ring: " << ring->getName() << ", " << enhancementToString(ring->getEnhancementType()) << ", " << ring->getEnhancementBonus() << "\n";
+    if (helmet)
+        out << "Equipped Helmet: " << helmet->getName() << ", " << enhancementToString(helmet->getEnhancementType()) << ", " << helmet->getEnhancementBonus() << "\n";
+
+    if (backpack && !backpack->getItems().empty()) {
+        out << "Inventory:\n";
+        for (const auto& item : backpack->getItems()) {
+            out << "Item Name: " << item->getName() << ", "
+                << "Item Type: " << item->getItemType(item) << ", "
+                << "Enhancement Type: " << enhancementToString(item->getEnhancementType()) << ", "
+                << "Enhancement Bonus: " << item->getEnhancementBonus() << "\n";
+        }
+    }
+    else {
+        out << "Inventory: None\n";
+    }
+
+    out.close();
+    return true;
+}

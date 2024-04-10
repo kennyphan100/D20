@@ -505,6 +505,9 @@ bool Map::moveCharacter(int fromX, int fromY, int toX, int toY) {
 
     if (isMovingToDoor) {
         reachedDoor = true;
+        std::cout << "The player has reached a door. Saving game..." << std::endl;
+        std::cout << "The player has reached a door. Saving game..." << std::endl;
+        character->saveToFile("./data/characters/auto_save_character.txt");
     }
 
     return true;

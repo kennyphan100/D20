@@ -18,52 +18,13 @@ void CharacterBuilder::assignName(string name)
 }
 
 bool CharacterBuilder::saveToFile(const string& filename) {
-    ofstream out(filename);
-    if (!out.is_open()) {
-        cerr << "Failed to open file '" << filename << "' for writing.\n";
-        return false;
-    }
-
     Character* character = getCharacter();
     if (!character) {
         cerr << "No character to save.\n";
         return false;
     }
 
-    out << "Name: " << character->getName() << "\n"
-        << "Class: " << fighterTypeToString(character->getFighterType()) << "\n"
-        << "Level: " << character->getLevel() << "\n"
-        << "HP: " << character->getHitPoints() << ", AC: " << character->getArmorClass() << ", AttackBonus: " << character->getAttackBonus() << ", DamageBonus: " << character->getDamageBonus() << "\n"
-        << "STR: " << character->getAbilityScore(0) << " (" << character->getAbilityModifier(0) << "), "
-        << "DEX: " << character->getAbilityScore(1) << " (" << character->getAbilityModifier(1) << "), "
-        << "CON: " << character->getAbilityScore(2) << " (" << character->getAbilityModifier(2) << "), "
-        << "INT: " << character->getAbilityScore(3) << " (" << character->getAbilityModifier(3) << "), "
-        << "WIS: " << character->getAbilityScore(4) << " (" << character->getAbilityModifier(4) << "), "
-        << "CHA: " << character->getAbilityScore(5) << " (" << character->getAbilityModifier(5) << ")\n";
-
-    out << "Equipped Armor: " << (character->getArmor() ? character->getArmor()->getName() + ", " + enhancementToString(character->getArmor()->getEnhancementType()) + ", " + to_string(character->getArmor()->getEnhancementBonus()) : "None") << "\n"
-        << "Equipped Shield: " << (character->getShield() ? character->getShield()->getName() + ", " + enhancementToString(character->getShield()->getEnhancementType()) + ", " + to_string(character->getShield()->getEnhancementBonus()) : "None") << "\n"
-        << "Equipped Weapon: " << (character->getWeapon() ? character->getWeapon()->getName() + ", " + enhancementToString(character->getWeapon()->getEnhancementType()) + ", " + to_string(character->getWeapon()->getEnhancementBonus()) : "None") << "\n"
-        << "Equipped Boots: " << (character->getBoots() ? character->getBoots()->getName() + ", " + enhancementToString(character->getBoots()->getEnhancementType()) + ", " + to_string(character->getBoots()->getEnhancementBonus()) : "None") << "\n"
-        << "Equipped Ring: " << (character->getRing() ? character->getRing()->getName() + ", " + enhancementToString(character->getRing()->getEnhancementType()) + ", " + to_string(character->getRing()->getEnhancementBonus()) : "None") << "\n"
-        << "Equipped Helmet: " << (character->getHelmet() ? character->getHelmet()->getName() + ", " + enhancementToString(character->getHelmet()->getEnhancementType()) + ", " + to_string(character->getHelmet()->getEnhancementBonus()) : "None") << "\n";
-
-    Backpack* backpack = character->backpack;
-    if (backpack && !backpack->getItems().empty()) {
-        out << "Inventory: \n";
-        for (const auto& item : backpack->getItems()) {
-            out << "Item Name: " << item->getName() << ", "
-                << "Item Type: " << item->getItemType(item) << ", "
-                << "Enhancement Type: " << enhancementToString(item->getEnhancementType()) << ", "
-                << "Enhancement Bonus: " << item->getEnhancementBonus() << "\n";
-        }
-    }
-    else {
-        out << "Inventory: None\n";
-    }
-
-    out.close();
-    return true;
+    return character->saveToFile(filename);
 }
 
 Character* CharacterBuilder::getCharacter() {

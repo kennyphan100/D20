@@ -1,0 +1,6 @@
+Name: 
+Class: NIMBLE
+Level: 1
+HP: 8, AC: 10, AttackBonus: 1, DamageBonus: 0
+STR: 10 (0), DEX: 10 (0), CON: 5 (-2), INT: 6 (-2), WIS: 9 (0), CHA: 14 (2)
+Inventory: None
