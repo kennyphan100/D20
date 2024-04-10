@@ -32,6 +32,8 @@ enum class CharacterStat {
     NoEffect
 };
 
+class PlayGame;
+
 /**
  * @class Character
  * @brief Class for generating player characters in a d20 system.
@@ -72,7 +74,7 @@ public:
 
     void setStrategy(CharacterStrategy* strategy);
     void performMove(Map& map);
-    void performMoveGUI(Map& map, int targetX, int targetY);
+    void performMoveGUI(Map& map, int targetX, int targetY, PlayGame& playGame);
     void performAttack(Map& map);
     void performFreeActions(Map& map);
 

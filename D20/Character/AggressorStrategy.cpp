@@ -87,7 +87,7 @@ void AggressorStrategy::move(Character& character, Map& map) {
     std::cout << "Aggressor character moved towards the target.\n";
 }
 
-void AggressorStrategy::moveGUI(Character& character, Map& map, int targetX, int targetY) {
+void AggressorStrategy::moveGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame) {
     //auto [startX, startY] = map.getCharacterPosition(character);
     //if (startX == -1 && startY == -1) {
     //    std::cerr << "Error: Character's position not found on the map.\n";
