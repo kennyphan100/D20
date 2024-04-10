@@ -22,10 +22,26 @@ Item::Item(string name, EnhancementType enhancementType, int enhancementBonus) :
 {
 }
 
+std::string Item::getItemType(const Item* item) {
+    if (dynamic_cast<const Armor*>(item)) return "Armor";
+    if (dynamic_cast<const Weapon*>(item)) return "Weapon";
+    if (dynamic_cast<const Ring*>(item)) return "Ring";
+    if (dynamic_cast<const Helmet*>(item)) return "Helmet";
+    if (dynamic_cast<const Shield*>(item)) return "Shield";
+    if (dynamic_cast<const Belt*>(item)) return "Belt";
+    if (dynamic_cast<const Boots*>(item)) return "Boots";
+
+    return "Unknown";
+}
+
 //! Constructor for ItemContainer class.
 //! @param name The name of the item container.
 //! @return new ItemContainer object
 ItemContainer::ItemContainer(string name): name(move(name)) {}
+
+const vector<Item*>& ItemContainer::getItems() const{
+    return items;
+}
 
 //! Constructor for Backpack class.
 //! @param name The name of the backpack.

@@ -149,6 +149,8 @@ public:
 
     bool loadFromFile(const string& filename);
 
+    Item* parseItem(const string& itemStr);
+
 private:
     CharacterStrategy* actionStrategy;
 

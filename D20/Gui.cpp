@@ -15,7 +15,7 @@
 
 using namespace std;
 
-int mainX() {
+int main() {
     sf::RenderWindow window(sf::VideoMode(1280, 720), "D20 Game", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
 
     sf::Font font;
