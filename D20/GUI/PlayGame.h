@@ -15,14 +15,18 @@ public:
 
     PlayGame(sf::RenderWindow& window);
 
-    void handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, string& mapName, vector<string>& listOfMaps);
+    void handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps);
     void handleCharacterCreationClick(int mouseX, int mouseY);
     void handleTextInput(sf::Uint32 unicode);
     void drawMainMenu(sf::RenderWindow& window);
     void drawPlayGame(string mapName, string campaignName);
+    void drawObjects(std::vector<Object> objects2);
+    void drawObjectsStatic(std::vector<Object> objects2);
 
     void drawGrid(sf::RenderWindow& window);
     void drawSelectedMapGrid(string selectedMap);
+    void drawSelectedMapGrid(Map* selectedMap);
+    void drawSelectedMapGridStatic(string selectedMap);
 
     bool isXYInObjects(int x, int y);
     bool XYPositionIsChest(int x, int y);

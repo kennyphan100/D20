@@ -55,7 +55,7 @@ PlayGameMenu::PlayGameMenu(sf::RenderWindow& window) : window(window), dropdownO
     alertText.setPosition(window.getSize().x / 2 - alertText.getLocalBounds().width / 2, 450); // Adjust position as needed
 }
 
-void PlayGameMenu::handlePlayGameMenuClick(int mouseX, int mouseY, MenuState& currentState, Character* character) {
+void PlayGameMenu::handlePlayGameMenuClick(int mouseX, int mouseY, MenuState& currentState) {
     // Handle clicks on main menu
     if (isClickOnCharacterList(mouseX, mouseY)) {
         characterSelected = true;

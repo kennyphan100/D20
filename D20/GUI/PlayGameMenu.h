@@ -11,7 +11,7 @@ class PlayGameMenu {
 public:
     PlayGameMenu(sf::RenderWindow& window);
 
-    void handlePlayGameMenuClick(int mouseX, int mouseY, MenuState& currentState, Character* character);
+    void handlePlayGameMenuClick(int mouseX, int mouseY, MenuState& currentState);
     void handleCharacterCreationClick(int mouseX, int mouseY);
     void handleTextInput(sf::Uint32 unicode);
     void drawMainMenu(sf::RenderWindow& window);

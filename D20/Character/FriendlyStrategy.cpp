@@ -86,7 +86,7 @@ void FriendlyStrategy::move(Character& character, Map& map) {
     std::cout << "Friendly character moved towards the target.\n";
 }
 
-void FriendlyStrategy::moveGUI(Character& character, Map& map, int targetX, int targetY) {
+void FriendlyStrategy::moveGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame) {
     //auto [startX, startY] = map.getCharacterPosition(character);
     //if (startX == -1 && startY == -1) {
     //    std::cerr << "Error: Character's position not found on the map.\n";

@@ -90,8 +90,8 @@ void Character::performMove(Map& map) {
     actionStrategy->move(*this, map);
 }
 
-void Character::performMoveGUI(Map& map, int targetX, int targetY) {
-    actionStrategy->moveGUI(*this, map, targetX, targetY);
+void Character::performMoveGUI(Map& map, int targetX, int targetY, PlayGame& playGame) {
+    actionStrategy->moveGUI(*this, map, targetX, targetY, playGame);
 }
 
 void Character::performAttack(Map& map) {

@@ -1,6 +1,7 @@
 #include "PlayGame.h"
 #include <filesystem>
 #include "../Map/Editor.h"
+#include "../Character/HumanPlayerStrategy.h"
 
 namespace fs = std::filesystem;
 
@@ -131,9 +132,68 @@ void PlayGame::drawSelectedMapGrid(string selectedMap)
             }
         }
     }
+    drawObjects(objects);
 }
 
-void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, string& mapName, vector<string>& listOfMaps) {
+void PlayGame::drawSelectedMapGrid(Map* selectedMap)
+{
+    objects.clear();
+
+    GRID_WIDTH = selectedMap->getWidth();
+    GRID_HEIGHT = selectedMap->getHeight();
+
+    objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+
+    for (int y = 0; y < GRID_HEIGHT; ++y) {
+        for (int x = 0; x < GRID_WIDTH; ++x) {
+            switch (selectedMap->getGrid()[y][x]) {
+            case Cell::WALL:
+                objects.push_back({ x, y, ObjectType::Wall });
+                break;
+            case Cell::DOOR:
+                objects.push_back({ x, y, ObjectType::Door });
+                break;
+            case Cell::CHEST:
+                objects.push_back({ x, y, ObjectType::Chest });
+                break;
+            }
+        }
+    }
+    drawObjects(objects);
+}
+
+void PlayGame::drawSelectedMapGridStatic(string selectedMap)
+{
+    objects.clear();
+
+    Editor* editor = new Editor();
+    Map* loadedMap = editor->selectMapGUI(selectedMap);
+
+    GRID_WIDTH = loadedMap->getWidth();
+    GRID_HEIGHT = loadedMap->getHeight();
+
+    objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+
+    for (int y = 0; y < GRID_HEIGHT; ++y) {
+        for (int x = 0; x < GRID_WIDTH; ++x) {
+            switch (loadedMap->getGrid()[y][x]) {
+            case Cell::WALL:
+                objects.push_back({ x, y, ObjectType::Wall });
+                break;
+            case Cell::DOOR:
+                objects.push_back({ x, y, ObjectType::Door });
+                break;
+            case Cell::CHEST:
+                objects.push_back({ x, y, ObjectType::Chest });
+                break;
+            }
+        }
+    }
+    drawObjectsStatic(objects);
+}
+
+
+void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps) {
     // Handle clicks on cell
     if (mouseX >= GRID_OFFSET_X && mouseX < GRID_OFFSET_X + GRID_WIDTH * CELL_SIZE && mouseY >= GRID_OFFSET_Y && mouseY < GRID_OFFSET_Y + GRID_HEIGHT * CELL_SIZE) {
         // Inside the grid
@@ -142,17 +202,23 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character,
 
         // Check if targeted cell is occupied, if not move character to new position
         if (!isXYInObjects(gridX, gridY)) {
-            characterPositionX = gridX;
-            characterPositionY = gridY;
-            //drawSelectedMapGrid(selectedMapName);
-            //character->performMove(*map);
-            //character->performMoveGUI(*map, gridX, gridY);
+            //characterPositionX = gridX;
+            //characterPositionY = gridY;
+
+            HumanPlayerStrategy hps;
+            character->setStrategy(&hps);
+            character->performMoveGUI(*map, gridX, gridY, *this);
+
         }
         else if (XYPositionIsChest(gridX, gridY)) {
             cout << "opening chests..." << endl;
         }
         else if (XYPositionIsDoor(gridX, gridY)) {
             currentMapIndex += 1;
+
+            HumanPlayerStrategy hps;
+            character->setStrategy(&hps);
+            character->performMoveGUI(*map, gridX, gridY, *this);
 
             // Check if its the last map
             if (currentMapIndex >= listOfMaps.size()) {
@@ -162,6 +228,11 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character,
                 mapName = listOfMaps[currentMapIndex];
                 characterPositionX = 0;
                 characterPositionY = 0;
+
+                Editor* editor = new Editor();
+                map = editor->selectMapGUI(mapName);
+                character->setStrategy(&hps);
+                map->placeCharacter(0, 0, character);
             }
         }
 
@@ -184,17 +255,38 @@ void PlayGame::drawPlayGame(string mapName, string campaignName) {
     mapNameLabel.setString(mapName);
     campaignNameLabel.setString(campaignName);
 
+    //window.draw(worldBackground);
+    //window.draw(backButton);
+    //window.draw(campaignLabel);
+    //window.draw(campaignNameLabel);
+    //window.draw(mapNameLabel);
+
+    //drawGrid(window);
+
+    //drawSelectedMapGrid(mapName);
+    drawSelectedMapGridStatic(mapName);
+
+
+    if (showSuccessfulAlert) {
+        window.draw(alertText);
+    }
+
+    if (wonTheGame) {
+        window.draw(winLabel);
+    }
+}
+
+void PlayGame::drawObjects(std::vector<Object> objects2) {
+    window.clear();
+
     window.draw(worldBackground);
     window.draw(backButton);
     window.draw(campaignLabel);
     window.draw(campaignNameLabel);
     window.draw(mapNameLabel);
-
     drawGrid(window);
-    drawSelectedMapGrid(mapName);
 
-    // Draw objects
-    for (const auto& obj : objects) {
+    for (const auto& obj : objects2) {
         sf::Sprite objectSprite;
         objectSprite.setPosition(GRID_OFFSET_X + obj.x * CELL_SIZE, GRID_OFFSET_Y + obj.y * CELL_SIZE);
         objectSprite.setScale(static_cast<float>(CELL_SIZE) / wallTexture.getSize().x, static_cast<float>(CELL_SIZE) / wallTexture.getSize().y);
@@ -216,15 +308,40 @@ void PlayGame::drawPlayGame(string mapName, string campaignName) {
         }
         window.draw(objectSprite);
     }
+    window.display();
+}
 
-    if (showSuccessfulAlert) {
-        window.draw(alertText);
-    }
+void PlayGame::drawObjectsStatic(std::vector<Object> objects2) {
+    window.draw(worldBackground);
+    window.draw(backButton);
+    window.draw(campaignLabel);
+    window.draw(campaignNameLabel);
+    window.draw(mapNameLabel);
+    drawGrid(window);
 
-    if (wonTheGame) {
-        window.draw(winLabel);
+    for (const auto& obj : objects2) {
+        sf::Sprite objectSprite;
+        objectSprite.setPosition(GRID_OFFSET_X + obj.x * CELL_SIZE, GRID_OFFSET_Y + obj.y * CELL_SIZE);
+        objectSprite.setScale(static_cast<float>(CELL_SIZE) / wallTexture.getSize().x, static_cast<float>(CELL_SIZE) / wallTexture.getSize().y);
+        switch (obj.type) {
+        case ObjectType::Wall:
+            objectSprite.setTexture(wallTexture);
+            break;
+        case ObjectType::Chest:
+            objectSprite.setTexture(chestTexture);
+            break;
+        case ObjectType::Door:
+            objectSprite.setTexture(doorTexture);
+            break;
+        case ObjectType::Character:
+            objectSprite.setTexture(characterTexture);
+            break;
+        default:
+            break;
+        }
+        window.draw(objectSprite);
     }
-    
+    //window.display();
 }
 
 // Checks if a given cell (x,y) is occupied by a wall

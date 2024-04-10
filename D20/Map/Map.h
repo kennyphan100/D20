@@ -15,6 +15,8 @@
 #include <queue>
 #include <iostream>
 
+class PlayGame;
+
 struct MapPoint {
     int x, y;
 
@@ -151,6 +153,8 @@ public:
     void visualizePath(const std::vector<MapPoint>& path);
 
     void visualizePath(const std::vector<MapPoint>& path, Character& character);
+
+    void visualizePath(const std::vector<MapPoint>& path, Character& character, PlayGame& playGame);
 
     bool isPlayerAtDoor();
 

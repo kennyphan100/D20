@@ -3,6 +3,7 @@
 
 class Character;
 class Map;
+class PlayGame;
 
 enum class StrategyType {
     Player,
@@ -14,7 +15,7 @@ class CharacterStrategy {
 public:
     virtual ~CharacterStrategy() {}
     virtual void move(Character& character, Map& map) = 0;
-    virtual void moveGUI(Character& character, Map& map, int targetX, int targetY) = 0;
+    virtual void moveGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame) = 0;
     virtual void attack(Character& character, Map& map) = 0;
     virtual void freeAction(Character& character, Map& map) = 0;
     virtual StrategyType getStrategyType() const = 0;

@@ -12,10 +12,11 @@
 #include "Map/Campaign.h"
 #include "Map/Editor.h"
 #include "GUI/CampaignEdit.h"
+#include "Character/HumanPlayerStrategy.h"
 
 using namespace std;
 
-int mainX() {
+int main() {
     sf::RenderWindow window(sf::VideoMode(1280, 720), "D20 Game", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);
 
     sf::Font font;
@@ -113,13 +114,14 @@ int mainX() {
 
     Editor* editor = new Editor();
 
-    //FighterCharacter* characterToPlay = nullptr;
-    FighterCharacter characterToPlay(1, FighterType::NIMBLE);
+    FighterCharacter* characterToPlay = nullptr;
+    //FighterCharacter characterToPlay(1, FighterType::NIMBLE);
     Campaign* campaignToPlay = nullptr;
     Map* mapToPlay = nullptr;
     string mapNameToPlay = "";
     string campaignNameToPlay = "";
     vector<string> listOfMaps;
+    HumanPlayerStrategy hps;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -216,19 +218,23 @@ int mainX() {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                             currentState = MAIN_MENU;
                         }
-                        PlayGameMenu.handlePlayGameMenuClick(mousePos.x, mousePos.y, currentState, &characterToPlay);
+                        PlayGameMenu.handlePlayGameMenuClick(mousePos.x, mousePos.y, currentState);
 
-                        //characterToPlay = editor->selectCharacterGUI(PlayGameMenu.selectedCharacter);
-                        characterToPlay.loadFromFile("./data/characters/" + PlayGameMenu.selectedCharacter + ".txt");
+                        // Fetch the Character object from the chosen character
+                        characterToPlay = editor->selectCharacterGUI(PlayGameMenu.selectedCharacter);
+                        //characterToPlay.loadFromFile("./data/characters/" + PlayGameMenu.selectedCharacter + ".txt");
 
                         campaignToPlay = editor->selectCampaignGUI(PlayGameMenu.selectedCampaign);
 
                         // Fetch first map here from campaign
-                        if (campaignToPlay != nullptr) {
+                        if (characterToPlay != nullptr and campaignToPlay != nullptr) {
                             campaignNameToPlay = campaignToPlay->getName();
                             listOfMaps = campaignToPlay->connectionsOrdered;
                             mapNameToPlay = listOfMaps[0];
-                            //mapToPlay = editor->selectMapGUI(mapNameToPlay);
+                            mapToPlay = editor->selectMapGUI(mapNameToPlay);
+
+                            characterToPlay->setStrategy(&hps);
+                            mapToPlay->placeCharacter(0, 0, characterToPlay);
                         }
 
                     }
@@ -236,7 +242,14 @@ int mainX() {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                             currentState = MAIN_MENU;
                         }
-                        PlayGame.handlePlayGameClick(mousePos.x, mousePos.y, &characterToPlay, campaignToPlay, mapNameToPlay, listOfMaps);
+
+                        //mapToPlay = editor->selectMapGUI(mapNameToPlay);
+                        
+                        // placeCharacter into the cell he is in the map
+                        // characterToPlay->setStrategy(&hps);
+                        // mapToPlay->placeCharacter(X, Y, characterToPlay);
+
+                        PlayGame.handlePlayGameClick(mousePos.x, mousePos.y, characterToPlay, campaignToPlay, mapToPlay, mapNameToPlay, listOfMaps);
                     }
                 }
                 else if (event.mouseButton.button == sf::Mouse::Right) {

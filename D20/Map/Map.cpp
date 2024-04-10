@@ -16,6 +16,7 @@
 #include <chrono>
 #include <thread>
 #include <algorithm>
+#include "../GUI/PlayGame.h"
 
 using namespace std;
 
@@ -637,6 +638,23 @@ void Map::visualizePath(const std::vector<MapPoint>& path, Character& character)
         this->moveCharacter(from.x, from.y, to.x, to.y);
 
         this->displayWithNumbering();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+}
+
+void Map::visualizePath(const std::vector<MapPoint>& path, Character& character, PlayGame& playGame) {
+    for (size_t i = 1; i < path.size(); ++i) {
+        MapPoint from = path[i - 1];
+        MapPoint to = path[i];
+
+        this->moveCharacter(from.x, from.y, to.x, to.y);
+
+        this->displayWithNumbering();
+
+        playGame.characterPositionX = to.x;
+        playGame.characterPositionY = to.y;
+        playGame.drawSelectedMapGrid(this);
+
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 }

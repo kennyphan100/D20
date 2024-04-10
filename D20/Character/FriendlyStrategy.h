@@ -8,7 +8,7 @@ class FriendlyStrategy : public CharacterStrategy {
 public:
     FriendlyStrategy();
     void move(Character& character, Map& map) override;
-    virtual void moveGUI(Character& character, Map& map, int targetX, int targetY) override;
+    virtual void moveGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame) override;
     void attack(Character& character, Map& map) override;
     void freeAction(Character& character, Map& map) override;
     void switchToAggressor(Character& character);
