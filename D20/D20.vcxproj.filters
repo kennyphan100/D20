@@ -36,6 +36,7 @@
     <ClCompile Include="GUI\ItemCreation.cpp" />
     <ClCompile Include="GUI\PlayGameMenu.cpp" />
     <ClCompile Include="GUI\PlayGame.cpp" />
+    <ClCompile Include="GUI\CampaignEdit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character\AggressorStrategy.h" />
@@ -76,6 +77,7 @@
     <ClInclude Include="GUI\MenuState.h" />
     <ClInclude Include="GUI\PlayGame.h" />
     <ClInclude Include="GUI\Object.h" />
+    <ClInclude Include="GUI\CampaignEdit.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Test\test_map.txt" />
@@ -89,6 +91,11 @@
     <Text Include="data\maps\test.txt" />
     <Text Include="data\maps\test1.txt" />
     <Text Include="data\maps\test2.txt" />
+    <Text Include="data\items\Emerald Helmet.txt" />
+    <Text Include="data\items\Diamond Armor.txt" />
+    <Text Include="data\items\Boots of Swiftness.txt" />
+    <Text Include="data\items\Ring of Charisma.txt" />
+    <Text Include="data\items\Shield of Chaos.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\d20.jpg" />
@@ -99,6 +106,14 @@
     <Image Include="Images\treasure_icon.png" />
     <Image Include="Images\wall_icon.png" />
     <Image Include="Images\background2.jpg" />
+    <Image Include="..\..\Users\L_Law\Desktop\helmet_game_icon.png" />
+    <Image Include="Images\helmet_game_icon.png" />
+    <Image Include="Images\armor_game_icon.png" />
+    <Image Include="Images\shield_game_icon.png" />
+    <Image Include="Images\sword_game_icon.png" />
+    <Image Include="Images\ring_game_icon.png" />
+    <Image Include="Images\boots_game_icon.png" />
+    <Image Include="Images\belt_game_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial.ttf" />

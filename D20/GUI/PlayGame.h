@@ -29,6 +29,8 @@ public:
     bool XYPositionIsDoor(int x, int y);
 
     std::vector<Object> objects;
+    std::vector<Item> items;
+
 
     int characterPositionX = 0;
     int characterPositionY = 0;
@@ -46,6 +48,7 @@ public:
     sf::RectangleShape dropdownButton;
     sf::Text dropdownText;
     sf::Text alertText;
+    sf::Text inventoryText;
 
     sf::Vector2f characterListStartPosition{ 200, 130 };
     float characterListItemSpacing = 30.0f;
@@ -63,6 +66,9 @@ public:
 
     int GRID_WIDTH = 10;
     int GRID_HEIGHT = 10;
+
+    void drawInventoryGrid(sf::RenderWindow& window);
+    void drawInventoryTitle(sf::RenderWindow& window);
 
 private:
     sf::RenderWindow& window;
