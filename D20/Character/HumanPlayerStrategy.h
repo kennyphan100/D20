@@ -4,6 +4,7 @@
 #include "CharacterStrategy.h"
 #include "../Map/Map.h"
 
+
 class HumanPlayerStrategy : public CharacterStrategy {
 public:
 
