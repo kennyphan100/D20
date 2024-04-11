@@ -7,6 +7,7 @@
 #include <queue>
 #include <chrono>
 #include <thread>
+#include "../GUI/PlayGame.h"
 
 using namespace std;
 
@@ -88,39 +89,81 @@ void AggressorStrategy::move(Character& character, Map& map) {
 }
 
 void AggressorStrategy::moveGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame) {
-    //auto [startX, startY] = map.getCharacterPosition(character);
-    //if (startX == -1 && startY == -1) {
-    //    std::cerr << "Error: Character's position not found on the map.\n";
-    //    return;
-    //}
+    // this function is not used
+}
 
-    //std::vector<MapPoint> path = map.findShortestPath(startX, startY, targetX, targetY);
+void AggressorStrategy::moveGUI(Character& character, Map& map, PlayGame& playGame)
+{
+    auto [charX, charY] = map.getCharacterPosition(character);
+    auto [targetX, targetY] = map.findClosestAllyPosition(charX, charY, character);
 
-    //if (path.empty()) {
-    //    std::cout << "Invalid move. Target is either unreachable or too far away.\n";
-    //    return;
-    //}
+    if (targetX == -1 && targetY == -1) {
+        std::tie(targetX, targetY) = map.getPlayerPosition();
+    }
 
-    //if (path.size() > 11) {
-    //    std::cout << "Invalid move. Target is too far away.\n";
-    //    return;
-    //}
+    if (std::abs(targetX - charX) + std::abs(targetY - charY) == 1) {
+        return;
+    }
 
-    //if (!path.empty() && path.size() <= 11) {
-    //    map.visualizePath(path, character);
-    //    std::cout << "Character moved to target position.\n";
-    //}
+    std::queue<std::pair<int, int>> q;
+    std::map<std::pair<int, int>, int> distance;
+    std::map<std::pair<int, int>, std::pair<int, int>> prev;
+    q.push({ charX, charY });
+    distance[{charX, charY}] = 0;
+    prev[{charX, charY}] = { -1, -1 };
 
-    //std::ofstream logFile("./game_log.txt", std::ios::app);
-    //if (logFile.is_open()) {
-    //    logFile << "============ Character Move ============\n";
-    //    logFile << "Character " << character.getName() << " moved from (" << startX << ", " << startY
-    //        << ") to (" << targetX << ", " << targetY << ") covering a distance of "
-    //        << path.size() - 1 << " units.\n\n";
-    //    logFile.close();
-    //}
+    std::pair<int, int> bestCell = { charX, charY };
+    int minDistance = std::numeric_limits<int>::max();
 
-    //map.displayWithNumbering();
+    while (!q.empty()) {
+        auto [x, y] = q.front(); q.pop();
+        int steps = distance[{x, y}];
+
+        if (steps >= 10) {
+            continue;
+        }
+
+        for (auto [dx, dy] : std::vector<std::pair<int, int>>{ {1, 0}, {-1, 0}, {0, 1}, {0, -1} }) {
+            int nx = x + dx, ny = y + dy;
+
+            if (nx >= 0 && ny >= 0 && nx < map.getWidth() && ny < map.getHeight() &&
+                map.isEmptyCell(nx, ny) && !distance.count({ nx, ny })) {
+                q.push({ nx, ny });
+                distance[{nx, ny}] = steps + 1;
+                prev[{nx, ny}] = { x, y };
+
+                int distToTarget = std::abs(targetX - nx) + std::abs(targetY - ny);
+                if (distToTarget < minDistance) {
+                    minDistance = distToTarget;
+                    bestCell = { nx, ny };
+                }
+            }
+        }
+    }
+
+    std::list<std::pair<int, int>> path;
+    for (std::pair<int, int> at = bestCell; at != std::pair<int, int>{-1, -1}; at = prev[at]) {
+        path.push_front(at);
+    }
+
+    for (const auto& [nextX, nextY] : path) {
+        if (distance[{nextX, nextY}] > 10) {
+            break;
+        }
+
+        map.moveCharacter(charX, charY, nextX, nextY);
+        charX = nextX;
+        charY = nextY;
+
+        playGame.aggressorPositionX = nextX;
+        playGame.aggressorPositionY = nextY;
+        playGame.drawSelectedMapGrid(&map);
+
+        map.displayWithNumbering();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+
+    std::cout << "Aggressor character moved towards the target.\n";
 }
 
 void AggressorStrategy::attack(Character& aggressor, Map& map) {
@@ -153,6 +196,10 @@ void AggressorStrategy::attack(Character& aggressor, Map& map) {
     }
 
     std::cout << "No target in range to attack.\n";
+}
+
+void AggressorStrategy::attackGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame)
+{
 }
 
 void AggressorStrategy::freeAction(Character& character, Map& map) {

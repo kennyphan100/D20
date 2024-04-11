@@ -87,39 +87,11 @@ void FriendlyStrategy::move(Character& character, Map& map) {
 }
 
 void FriendlyStrategy::moveGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame) {
-    //auto [startX, startY] = map.getCharacterPosition(character);
-    //if (startX == -1 && startY == -1) {
-    //    std::cerr << "Error: Character's position not found on the map.\n";
-    //    return;
-    //}
+    // this function is not used
+}
 
-    //std::vector<MapPoint> path = map.findShortestPath(startX, startY, targetX, targetY);
-
-    //if (path.empty()) {
-    //    std::cout << "Invalid move. Target is either unreachable or too far away.\n";
-    //    return;
-    //}
-
-    //if (path.size() > 11) {
-    //    std::cout << "Invalid move. Target is too far away.\n";
-    //    return;
-    //}
-
-    //if (!path.empty() && path.size() <= 11) {
-    //    map.visualizePath(path, character);
-    //    std::cout << "Character moved to target position.\n";
-    //}
-
-    //std::ofstream logFile("./game_log.txt", std::ios::app);
-    //if (logFile.is_open()) {
-    //    logFile << "============ Character Move ============\n";
-    //    logFile << "Character " << character.getName() << " moved from (" << startX << ", " << startY
-    //        << ") to (" << targetX << ", " << targetY << ") covering a distance of "
-    //        << path.size() - 1 << " units.\n\n";
-    //    logFile.close();
-    //}
-
-    //map.displayWithNumbering();
+void FriendlyStrategy::moveGUI(Character& character, Map& map, PlayGame& playGame)
+{
 }
 
 void FriendlyStrategy::attack(Character& friendly, Map& map) {
@@ -149,6 +121,10 @@ void FriendlyStrategy::attack(Character& friendly, Map& map) {
             }
         }
     }
+}
+
+void FriendlyStrategy::attackGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame)
+{
 }
 
 void FriendlyStrategy::freeAction(Character& character, Map& map) {

@@ -5,6 +5,7 @@
 #include "MenuState.h"
 #include "Object.h"
 #include "../Character/Character.h"
+#include "../Character/FighterCharacter.h"
 #include "../Map/Campaign.h"
 
 using namespace std;
@@ -15,13 +16,15 @@ public:
 
     PlayGame(sf::RenderWindow& window);
 
-    void handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps);
+    void handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps, FighterCharacter*& aggresorCharacter);
     void handleCharacterCreationClick(int mouseX, int mouseY);
     void handleTextInput(sf::Uint32 unicode);
     void drawMainMenu(sf::RenderWindow& window);
     void drawPlayGame(string mapName, string campaignName);
     void drawObjects(std::vector<Object> objects2);
     void drawObjectsStatic(std::vector<Object> objects2);
+
+    void handleAggressorTurn(Character* character, Map*& map);
 
     void drawGrid(sf::RenderWindow& window);
     void drawSelectedMapGrid(string selectedMap);
@@ -30,6 +33,7 @@ public:
 
     bool isXYInObjects(int x, int y);
     bool XYPositionIsChest(int x, int y);
+    bool XYPositionIsAggressor(int x, int y);
     bool XYPositionIsDoor(int x, int y);
     void removeObject(std::vector<Object>& objects, int x, int y);
 
@@ -38,8 +42,13 @@ public:
     int characterPositionX = 0;
     int characterPositionY = 0;
 
+    int aggressorPositionX = 8;
+    int aggressorPositionY = 8;
+    bool isAggressorDead = false;
+
     ObjectType selectedObjectType = ObjectType::None;
     sf::Texture characterTexture;
+    sf::Texture aggressorTexture;
     sf::Texture wallTexture;
     sf::Texture chestTexture;
     sf::Texture doorTexture;

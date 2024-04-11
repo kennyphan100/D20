@@ -36,6 +36,7 @@
     <ClCompile Include="GUI\ItemCreation.cpp" />
     <ClCompile Include="GUI\PlayGameMenu.cpp" />
     <ClCompile Include="GUI\PlayGame.cpp" />
+    <ClCompile Include="GUI\CampaignEdit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character\AggressorStrategy.h" />
@@ -76,6 +77,7 @@
     <ClInclude Include="GUI\MenuState.h" />
     <ClInclude Include="GUI\PlayGame.h" />
     <ClInclude Include="GUI\Object.h" />
+    <ClInclude Include="GUI\CampaignEdit.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Test\test_map.txt" />
@@ -99,6 +101,8 @@
     <Image Include="Images\treasure_icon.png" />
     <Image Include="Images\wall_icon.png" />
     <Image Include="Images\background2.jpg" />
+    <Image Include="Images\aggressor_icon.png" />
+    <Image Include="Images\friendly_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial.ttf" />

@@ -2,6 +2,7 @@
 #include <filesystem>
 #include "../Map/Editor.h"
 #include "../Character/HumanPlayerStrategy.h"
+#include "../Character/AggressorStrategy.h"
 
 namespace fs = std::filesystem;
 
@@ -19,6 +20,11 @@ PlayGame::PlayGame(sf::RenderWindow& window) : window(window), dropdownOpen(fals
     worldBackground.setTexture(worldBackgroundTex);
 
     if (!characterTexture.loadFromFile("./Images/player_icon.png")) {
+        // Handle error if texture loading fails
+        cout << "ERROR: Game could not load icon" << "\n";
+    }
+
+    if (!aggressorTexture.loadFromFile("./Images/aggressor_icon.png")) {
         // Handle error if texture loading fails
         cout << "ERROR: Game could not load icon" << "\n";
     }
@@ -105,35 +111,36 @@ void PlayGame::drawGrid(sf::RenderWindow& window) {
     }
 }
 
-void PlayGame::drawSelectedMapGrid(string selectedMap)
-{
-    objects.clear();
-
-    Editor* editor = new Editor();
-    Map* loadedMap = editor->selectMapGUI(selectedMap);
-
-    GRID_WIDTH = loadedMap->getWidth();
-    GRID_HEIGHT = loadedMap->getHeight();
-
-    objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
-
-    for (int y = 0; y < GRID_HEIGHT; ++y) {
-        for (int x = 0; x < GRID_WIDTH; ++x) {
-            switch (loadedMap->getGrid()[y][x]) {
-            case Cell::WALL:
-                objects.push_back({ x, y, ObjectType::Wall });
-                break;
-            case Cell::DOOR:
-                objects.push_back({ x, y, ObjectType::Door });
-                break;
-            case Cell::CHEST:
-                objects.push_back({ x, y, ObjectType::Chest });
-                break;
-            }
-        }
-    }
-    drawObjects(objects);
-}
+//void PlayGame::drawSelectedMapGrid(string selectedMap)
+//{
+//    objects.clear();
+//
+//    Editor* editor = new Editor();
+//    Map* loadedMap = editor->selectMapGUI(selectedMap);
+//
+//    GRID_WIDTH = loadedMap->getWidth();
+//    GRID_HEIGHT = loadedMap->getHeight();
+//
+//    objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+//    objects.push_back({ aggressorPositionX, aggressorPositionY, ObjectType::Aggressor });
+//
+//    for (int y = 0; y < GRID_HEIGHT; ++y) {
+//        for (int x = 0; x < GRID_WIDTH; ++x) {
+//            switch (loadedMap->getGrid()[y][x]) {
+//            case Cell::WALL:
+//                objects.push_back({ x, y, ObjectType::Wall });
+//                break;
+//            case Cell::DOOR:
+//                objects.push_back({ x, y, ObjectType::Door });
+//                break;
+//            case Cell::CHEST:
+//                objects.push_back({ x, y, ObjectType::Chest });
+//                break;
+//            }
+//        }
+//    }
+//    drawObjects(objects);
+//}
 
 void PlayGame::drawSelectedMapGrid(Map* selectedMap)
 {
@@ -143,6 +150,10 @@ void PlayGame::drawSelectedMapGrid(Map* selectedMap)
     GRID_HEIGHT = selectedMap->getHeight();
 
     objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+
+    if (!isAggressorDead) {
+        objects.push_back({ aggressorPositionX, aggressorPositionY, ObjectType::Aggressor });
+    }
 
     for (int y = 0; y < GRID_HEIGHT; ++y) {
         for (int x = 0; x < GRID_WIDTH; ++x) {
@@ -174,6 +185,10 @@ void PlayGame::drawSelectedMapGridStatic(string selectedMap)
 
     objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
 
+    if (!isAggressorDead) {
+        objects.push_back({ aggressorPositionX, aggressorPositionY, ObjectType::Aggressor });
+    }
+
     for (int y = 0; y < GRID_HEIGHT; ++y) {
         for (int x = 0; x < GRID_WIDTH; ++x) {
             switch (loadedMap->getGrid()[y][x]) {
@@ -192,8 +207,17 @@ void PlayGame::drawSelectedMapGridStatic(string selectedMap)
     drawObjectsStatic(objects);
 }
 
+void PlayGame::handleAggressorTurn(Character* aggressorCharacter, Map*& map)
+{
+    cout << "\n === Enemy's turn to move === \n";
+    //AggressorStrategy* as = new AggressorStrategy();
+    //aggressorCharacter->setStrategy(as);
+    aggressorCharacter->performMoveGUI(*map, *this);
+    //aggressorCharacter->performAttack(*map);
 
-void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps) {
+}
+
+void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps, FighterCharacter*& aggressorCharacter) {
     // Handle clicks on cell
     if (mouseX >= GRID_OFFSET_X && mouseX < GRID_OFFSET_X + GRID_WIDTH * CELL_SIZE && mouseY >= GRID_OFFSET_Y && mouseY < GRID_OFFSET_Y + GRID_HEIGHT * CELL_SIZE) {
         // Inside the grid
@@ -210,8 +234,16 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character,
             character->performMoveGUI(*map, gridX, gridY, *this);
 
         }
+        else if (XYPositionIsAggressor(gridX, gridY)) {
+            cout << "\n=== Attacking aggressor ===" << endl;
+
+            HumanPlayerStrategy hps;
+            character->setStrategy(&hps);
+            character->performAttackGUI(*map, gridX, gridY, *this);
+
+        }
         else if (XYPositionIsChest(gridX, gridY)) {
-            cout << "opening chest..." << endl;
+            cout << "\n=== Opening chest ===" << endl;
             character->interactWithChest(*map, gridX, gridY);
 
             removeObject(objects, gridX, gridY);
@@ -228,6 +260,8 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character,
             if (currentMapIndex >= listOfMaps.size()) {
                 wonTheGame = true;
             }
+
+            // Moving to next map
             else {
                 mapName = listOfMaps[currentMapIndex];
                 characterPositionX = 0;
@@ -237,11 +271,30 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character,
                 map = editor->selectMapGUI(mapName);
                 character->setStrategy(&hps);
                 map->placeCharacter(0, 0, character);
+
+                AggressorStrategy* as = new AggressorStrategy();
+                //FighterCharacter* newAggressorCharacter = new FighterCharacter(2, FighterType::BULLY, as);
+
+                //FighterCharacter* newAggressorCharacter = nullptr;
+                //newAggressorCharacter = new FighterCharacter(2, FighterType::BULLY, &as);
+                //newAggressorCharacter->setName("Hellfire2");
+
+                aggressorCharacter = new FighterCharacter(2, FighterType::BULLY, as);
+                //aggressorCharacter->setName("Hellfire2");
+
+                map->placeCharacter(8, 8, aggressorCharacter);
+
+                isAggressorDead = false;
+                aggressorPositionX = 8;
+                aggressorPositionY = 8;
+
+                drawSelectedMapGrid(map);
+                drawSelectedMapGridStatic(mapName);
+
             }
         }
 
     }
-
 }
 
 void PlayGame::handleCharacterCreationClick(int mouseX, int mouseY) {
@@ -307,6 +360,9 @@ void PlayGame::drawObjects(std::vector<Object> objects2) {
         case ObjectType::Character:
             objectSprite.setTexture(characterTexture);
             break;
+        case ObjectType::Aggressor:
+            objectSprite.setTexture(aggressorTexture);
+            break;
         default:
             break;
         }
@@ -340,6 +396,9 @@ void PlayGame::drawObjectsStatic(std::vector<Object> objects2) {
         case ObjectType::Character:
             objectSprite.setTexture(characterTexture);
             break;
+        case ObjectType::Aggressor:
+            objectSprite.setTexture(aggressorTexture);
+            break;
         default:
             break;
         }
@@ -350,7 +409,7 @@ void PlayGame::drawObjectsStatic(std::vector<Object> objects2) {
 // Checks if a given cell (x,y) is occupied by a wall
 bool PlayGame::isXYInObjects(int x, int y) {
     for (const auto& obj : objects) {
-        if (obj.x == x && obj.y == y && (obj.type == ObjectType::Wall or obj.type == ObjectType::Chest or obj.type == ObjectType::Door)) {
+        if (obj.x == x && obj.y == y && (obj.type == ObjectType::Wall or obj.type == ObjectType::Chest or obj.type == ObjectType::Door or obj.type == ObjectType::Aggressor)) {
             return true; // Found the coordinates in the list of objects
         }
     }
@@ -361,6 +420,16 @@ bool PlayGame::isXYInObjects(int x, int y) {
 bool PlayGame::XYPositionIsChest(int x, int y) {
     for (const auto& obj : objects) {
         if (obj.x == x && obj.y == y && (obj.type == ObjectType::Chest)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Checks if a given cell (x,y) is occupied by an aggressor
+bool PlayGame::XYPositionIsAggressor(int x, int y) {
+    for (const auto& obj : objects) {
+        if (obj.x == x && obj.y == y && (obj.type == ObjectType::Aggressor)) {
             return true;
         }
     }

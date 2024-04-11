@@ -6,8 +6,13 @@
 #include <string>
 #include <fstream>
 #include <ctime>
+#include "../GUI/PlayGame.h"
 
 using namespace std;
+
+HumanPlayerStrategy::HumanPlayerStrategy()
+{
+}
 
 void HumanPlayerStrategy::move(Character& character, Map& map) {
     auto [startX, startY] = map.getCharacterPosition(character);
@@ -93,6 +98,11 @@ void HumanPlayerStrategy::moveGUI(Character& character, Map& map, int targetX, i
     map.displayWithNumbering();
 }
 
+void HumanPlayerStrategy::moveGUI(Character& character, Map& map, PlayGame& playGame)
+{
+    // this function is not used
+}
+
 void HumanPlayerStrategy::attack(Character& attacker, Map& map) {
     std::cout << "\nEnter the position of the target to attack (x y): ";
     int x, y;
@@ -120,6 +130,47 @@ void HumanPlayerStrategy::attack(Character& attacker, Map& map) {
         int damageRoll = dice.rollDice("1d8");
         target->takeDamage(damageRoll);
         std::cout << "Hit! Target takes " << damageRoll << " damage.\n";
+    }
+    else {
+        std::cout << "Miss! The attack did not hit the target.\n";
+    }
+}
+
+void HumanPlayerStrategy::attackGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame)
+{
+    Character* target = map.getCharacter(targetX, targetY);
+    if (!target) {
+        std::cout << "No target found at the given position.\n";
+        return;
+    }
+
+    Dice dice;
+    std::string attackRoll = "1d20";
+    int rollResult = dice.rollDice(attackRoll);
+
+    std::ofstream logFile("./game_log.txt", std::ios::app);
+    if (logFile.is_open()) {
+        logFile << "============ Character Attack ============" << endl;
+        //logFile << "Character " << character.getName() << " attack " << targetId << "." << "\n";
+        logFile << "\n";
+        logFile.close();
+    }
+
+    if (rollResult >= target->getArmorClass()) {
+        int damageRoll = dice.rollDice("1d8");
+        std::cout << "Hit! Target takes " << damageRoll << " damage.\n";
+        target->takeDamage(damageRoll);
+
+        if (target->hitPoints <= 0) {
+            map.setCell(targetX, targetY, Cell::EMPTY);
+            playGame.removeObject(playGame.objects, targetX, targetY);
+
+            playGame.isAggressorDead = true;
+
+            playGame.drawSelectedMapGrid(&map);
+            playGame.drawSelectedMapGridStatic(map.getName());
+        }
+
     }
     else {
         std::cout << "Miss! The attack did not hit the target.\n";
