@@ -612,8 +612,7 @@ std::pair<int, int> Map::findClosestAllyPosition(int charX, int charY, const Cha
         const auto& position = entry.first;
         Character* potentialAlly = entry.second;
 
-        if (potentialAlly != &askingCharacter &&
-            (potentialAlly->getStrategyType() == StrategyType::Friendly || potentialAlly->getStrategyType() == StrategyType::Player)) {
+        if (potentialAlly != &askingCharacter) {
             int distance = std::abs(charX - position.first) + std::abs(charY - position.second);
             if (distance < minDistance) {
                 minDistance = distance;

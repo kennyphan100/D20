@@ -227,10 +227,12 @@
     <Text Include="Test\test_map.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Images\aggressor_icon.png" />
     <Image Include="Images\background1.jpg" />
     <Image Include="Images\background2.jpg" />
     <Image Include="Images\d20.jpg" />
     <Image Include="Images\door_icon.png" />
+    <Image Include="Images\friendly_icon.png" />
     <Image Include="Images\mapbackground.jpg" />
     <Image Include="Images\player_icon.png" />
     <Image Include="Images\treasure_icon.png" />

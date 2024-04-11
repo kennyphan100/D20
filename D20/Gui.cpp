@@ -13,6 +13,8 @@
 #include "Map/Editor.h"
 #include "GUI/CampaignEdit.h"
 #include "Character/HumanPlayerStrategy.h"
+#include "Character/FriendlyStrategy.h"
+#include "Character/AggressorStrategy.h"
 
 using namespace std;
 
@@ -114,14 +116,21 @@ int main() {
 
     Editor* editor = new Editor();
 
+    HumanPlayerStrategy hps;
+    FriendlyStrategy fs;
+    AggressorStrategy* as = new AggressorStrategy();
+
     FighterCharacter* characterToPlay = nullptr;
+    //FighterCharacter aggressorCharacter(1, FighterType::BULLY, &as);
+    FighterCharacter* aggressorCharacter = new FighterCharacter(1, FighterType::BULLY, as);
+    aggressorCharacter->setName("Hellfire");
     //FighterCharacter characterToPlay(1, FighterType::NIMBLE);
     Campaign* campaignToPlay = nullptr;
     Map* mapToPlay = nullptr;
     string mapNameToPlay = "";
     string campaignNameToPlay = "";
     vector<string> listOfMaps;
-    HumanPlayerStrategy hps;
+
 
     while (window.isOpen()) {
         sf::Event event;
@@ -233,8 +242,9 @@ int main() {
                             mapNameToPlay = listOfMaps[0];
                             mapToPlay = editor->selectMapGUI(mapNameToPlay);
 
-                            characterToPlay->setStrategy(&hps);
+                            //characterToPlay->setStrategy(&hps);
                             mapToPlay->placeCharacter(0, 0, characterToPlay);
+                            mapToPlay->placeCharacter(8, 8, aggressorCharacter);
                         }
 
                     }
@@ -249,7 +259,10 @@ int main() {
                         // characterToPlay->setStrategy(&hps);
                         // mapToPlay->placeCharacter(X, Y, characterToPlay);
 
-                        PlayGame.handlePlayGameClick(mousePos.x, mousePos.y, characterToPlay, campaignToPlay, mapToPlay, mapNameToPlay, listOfMaps);
+                        PlayGame.handlePlayGameClick(mousePos.x, mousePos.y, characterToPlay, campaignToPlay, mapToPlay, mapNameToPlay, listOfMaps, aggressorCharacter);
+
+                        // Enemy's turn
+                        PlayGame.handleAggressorTurn(aggressorCharacter, mapToPlay);
                     }
                 }
                 else if (event.mouseButton.button == sf::Mouse::Right) {
@@ -346,6 +359,9 @@ int main() {
         }
         window.display();
     }
+
+    delete characterToPlay;
+
 
     return 0;
 }

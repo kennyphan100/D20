@@ -75,7 +75,9 @@ public:
     void setStrategy(CharacterStrategy* strategy);
     void performMove(Map& map);
     void performMoveGUI(Map& map, int targetX, int targetY, PlayGame& playGame);
+    void performMoveGUI(Map& map, PlayGame& playGame);
     void performAttack(Map& map);
+    void performAttackGUI(Map& map, int targetX, int targetY, PlayGame& playGame);
     void performFreeActions(Map& map);
     void interactWithChest(Map& map, int targetX, int targetY);
 

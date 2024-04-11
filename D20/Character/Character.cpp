@@ -94,8 +94,16 @@ void Character::performMoveGUI(Map& map, int targetX, int targetY, PlayGame& pla
     actionStrategy->moveGUI(*this, map, targetX, targetY, playGame);
 }
 
+void Character::performMoveGUI(Map& map, PlayGame& playGame) {
+    actionStrategy->moveGUI(*this, map, playGame);
+}
+
 void Character::performAttack(Map& map) {
     actionStrategy->attack(*this, map);
+}
+
+void Character::performAttackGUI(Map& map, int targetX, int targetY, PlayGame& playGame) {
+    actionStrategy->attackGUI(*this, map, targetX, targetY, playGame);
 }
 
 void Character::performFreeActions(Map& map) {
@@ -109,6 +117,16 @@ void Character::interactWithChest(Map& map, int targetX, int targetY)
     auto [charX, charY] = map.getCharacterPosition(*this);  // Declare before switch statement
 
     std::cout << "Attempting to interact with nearby chest..." << std::endl;
+
+    //for (auto [dx, dy] : std::vector<std::pair<int, int>>{ {0, -1}, {1, 0}, {0, 1}, {-1, 0} }) {
+    //    int nx = charX + dx, ny = charY + dy;
+    //    if (map.getCell(targetX, targetY) == Cell::CHEST) {
+    //        Item* item = Item::spawnRandomItem();
+    //        this->addToInventory(item);
+    //        std::cout << "Found and interacted with a chest! Obtained: " << item->getName() << std::endl;
+    //        interacted = true;
+    //    }
+    //}
 
     if (map.getCell(targetX, targetY) == Cell::CHEST) {
         Item* item = Item::spawnRandomItem();
@@ -672,6 +690,7 @@ bool Character::loadFromFile(const string& filename) {
     this->armorClass = armorClass;
     this->attackBonus = attackBonus;
     this->damageBonus = damageBonus;
+    this->setStrategy(new HumanPlayerStrategy());
 
     for (int i = 0; i < 6; ++i) {
         this->abilityScores[i] = abilityScores[i];
