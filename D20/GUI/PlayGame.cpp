@@ -211,7 +211,11 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character,
 
         }
         else if (XYPositionIsChest(gridX, gridY)) {
-            cout << "opening chests..." << endl;
+            cout << "opening chest..." << endl;
+            character->interactWithChest(*map, gridX, gridY);
+
+            removeObject(objects, gridX, gridY);
+            drawObjects(objects);
         }
         else if (XYPositionIsDoor(gridX, gridY)) {
             currentMapIndex += 1;
@@ -341,7 +345,6 @@ void PlayGame::drawObjectsStatic(std::vector<Object> objects2) {
         }
         window.draw(objectSprite);
     }
-    //window.display();
 }
 
 // Checks if a given cell (x,y) is occupied by a wall
@@ -373,3 +376,18 @@ bool PlayGame::XYPositionIsDoor(int x, int y) {
     }
     return false;
 }
+
+void PlayGame::removeObject(std::vector<Object>& objects, int x, int y) {
+    auto it = std::remove_if(objects.begin(), objects.end(), [x, y](const Object& obj) {
+        return obj.x == x && obj.y == y;
+        });
+
+    if (it != objects.end()) {
+        objects.erase(it, objects.end());
+        std::cout << "Object removed successfully." << std::endl;
+    }
+    else {
+        std::cout << "Object not found." << std::endl;
+    }
+}
+

@@ -239,11 +239,11 @@ string enhancementToString(EnhancementType enhancement) {
 }
 
 EnhancementType stringToEnhancementType(const string& enhancementStr) {
-    if (enhancementStr == "Damage Bonus")
+    if (enhancementStr == "Damage Bonus" or enhancementStr == "DamageBonus")
         return EnhancementType::DamageBonus;
-    if (enhancementStr == "Attack Bonus")
+    if (enhancementStr == "Attack Bonus" or enhancementStr == "AttackBonus")
         return EnhancementType::AttackBonus;
-    if (enhancementStr == "Armor Class")
+    if (enhancementStr == "Armor Class" or enhancementStr == "ArmorClass")
         return EnhancementType::ArmorClass;
     if (enhancementStr == "Strength")
         return EnhancementType::Strength;

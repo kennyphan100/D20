@@ -102,6 +102,67 @@ void Character::performFreeActions(Map& map) {
     actionStrategy->freeAction(*this, map);
 }
 
+void Character::interactWithChest(Map& map, int targetX, int targetY)
+{
+    ofstream logFile("./game_log.txt", ios::app);
+    bool interacted = false;  // Declare before switch statement
+    auto [charX, charY] = map.getCharacterPosition(*this);  // Declare before switch statement
+
+    std::cout << "Attempting to interact with nearby chest..." << std::endl;
+
+    if (map.getCell(targetX, targetY) == Cell::CHEST) {
+        Item* item = Item::spawnRandomItem();
+        this->addToInventory(item);
+        std::cout << "Found and interacted with a chest! Obtained: " << item->getName() << std::endl;
+        map.setCell(targetX, targetY, Cell::EMPTY);
+        interacted = true;
+    }
+
+    if (!interacted) {
+        std::cout << "No interactable objects nearby." << std::endl;
+    }
+
+    if (interacted && logFile.is_open()) {
+        time_t t = time(nullptr);
+        tm tm;
+        localtime_s(&tm, &t);
+        char buffer[80];
+        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
+        string timestamp(buffer);
+        logFile << "============ Character Interact ============" << endl;
+        logFile << "Timestamp: " << timestamp << endl;
+        logFile << "Character " << this->getName() << " interacted." << "\n";
+        logFile << "\n";
+        logFile.close();
+    }
+}
+
+bool Character::isBackpackIsEmpty()
+{
+    std::ifstream file("./data/characters/" + this->getName() + ".txt");
+    std::string line;
+
+    bool characterHasItemsInInventory = true;
+
+    while (std::getline(file, line)) {
+        if (line.find("Inventory: None") != std::string::npos) {
+            characterHasItemsInInventory = false;
+            break;
+        }
+    }
+
+    if (!characterHasItemsInInventory) {
+        std::cout << "Inventory is empty" << std::endl;
+        return true;
+    }
+    else {
+        std::cout << "Inventory has items" << std::endl;
+        return false;
+    }
+
+    file.close();
+}
+
 //! Generates ability scores for the character by rolling 3d6 for each score.
 void Character::generateAbilityScores() {
     for (int& score : abilityScores) {
@@ -544,6 +605,9 @@ bool Character::loadFromFile(const string& filename) {
     string equippedArmor, equippedShield, equippedWeapon, equippedBoots, equippedRing, equippedHelmet;
     map<string, string> equippedItems;
 
+    bool characterItemsInInventory = false;
+    vector<string> backpackItems;
+
     while (getline(file, line)) {
         istringstream iss(line);
         string key;
@@ -595,6 +659,10 @@ bool Character::loadFromFile(const string& filename) {
             getline(iss, equippedHelmet);
             equippedHelmet = equippedHelmet.substr(1);
             equippedItems["Helmet"] = equippedHelmet;
+        } else if (key == "Inventory") {
+            characterItemsInInventory = true;
+        } else if (characterItemsInInventory && !line.empty()) {
+            backpackItems.push_back(line);
         }
     }
 
@@ -625,8 +693,65 @@ bool Character::loadFromFile(const string& filename) {
             else if (item.first == "Shield") equipShield(static_cast<Shield*>(newItem));
             else if (item.first == "Weapon") equipWeapon(static_cast<Weapon*>(newItem));
             else if (item.first == "Boots") equipBoots(static_cast<Boots*>(newItem));
-            else if (item.first == "Ring") equipRing(static_cast<Ring*>(newItem));
+           else if (item.first == "Ring") equipRing(static_cast<Ring*>(newItem));
             else if (item.first == "Helmet") equipHelmet(static_cast<Helmet*>(newItem));
+        }
+    }
+
+    this->backpack = new Backpack("Character Backpack");
+
+    // Add items from backpackItems to character's backpack
+    for (const auto& line : backpackItems) {
+        string itemName, itemType, enhancementTypeString;
+        EnhancementType enhancementType;
+        int enhancementBonus;
+        char comma;
+
+        // Finding and extracting Item Name
+        size_t pos = line.find("Item Name: ");
+        if (pos != std::string::npos) {
+            pos += 11; // Length of "Item Name: "
+            size_t endPos = line.find(",", pos);
+            itemName = line.substr(pos, endPos - pos);
+        }
+
+        // Finding and extracting Item Type
+        pos = line.find("Item Type: ");
+        if (pos != std::string::npos) {
+            pos += 11; // Length of "Item Type: "
+            size_t endPos = line.find(",", pos);
+            itemType = line.substr(pos, endPos - pos);
+        }
+
+        // Finding and extracting Enhancement Type
+        pos = line.find("Enhancement Type: ");
+        if (pos != std::string::npos) {
+            pos += 18; // Length of "Enhancement Type: "
+            size_t endPos = line.find(",", pos);
+            enhancementTypeString = line.substr(pos, endPos - pos);
+        }
+
+        enhancementType = stringToEnhancementType(enhancementTypeString);
+
+        // Finding and extracting Enhancement Bonus
+        pos = line.find("Enhancement Bonus: ");
+        if (pos != std::string::npos) {
+            pos += 19; // Length of "Enhancement Bonus: "
+            size_t endPos = line.find(",", pos);
+            enhancementBonus = std::stoi(line.substr(pos, endPos - pos));
+        }
+
+        Item* item = nullptr;
+        if (itemType == "Armor") item = new Armor(itemName, enhancementType, enhancementBonus);
+        else if (itemType == "Shield") item = new Shield(itemName, enhancementType, enhancementBonus);
+        else if (itemType == "Weapon") item = new Weapon(itemName, enhancementType, enhancementBonus);
+        else if (itemType == "Boots") item = new Boots(itemName, enhancementType, enhancementBonus);
+        else if (itemType == "Ring") item = new Ring(itemName, enhancementType, enhancementBonus);
+        else if (itemType == "Helmet") item = new Helmet(itemName, enhancementType, enhancementBonus);
+        else if (itemType == "Belt") item = new Belt(itemName, enhancementType, enhancementBonus);
+
+        if (item) {
+            backpack->addItem(item);
         }
     }
 
@@ -634,6 +759,9 @@ bool Character::loadFromFile(const string& filename) {
 }
 
 void Character::addToInventory(Item* item) {
+    //if (!backpack) {
+    //    backpack = new Backpack("Character Backpack");
+    //}
     if (!backpack) {
         backpack = new Backpack("Character Backpack");
     }
@@ -725,6 +853,7 @@ bool Character::saveToFile(const std::string& filename) const {
     else
         out << "Equipped Helmet: None\n";
 
+    //if (backpack && !backpack->getItems().empty()) {
     if (backpack && !backpack->getItems().empty()) {
         out << "Inventory:\n";
         for (const auto& item : backpack->getItems()) {

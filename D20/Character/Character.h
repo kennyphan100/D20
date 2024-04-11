@@ -77,6 +77,7 @@ public:
     void performMoveGUI(Map& map, int targetX, int targetY, PlayGame& playGame);
     void performAttack(Map& map);
     void performFreeActions(Map& map);
+    void interactWithChest(Map& map, int targetX, int targetY);
 
     Armor* armor;
     Shield* shield;
@@ -86,6 +87,8 @@ public:
     Helmet* helmet;
 
     Backpack* backpack;
+
+    bool isBackpackIsEmpty();
 
     Character();
     Character(int level, FighterType fighterType);

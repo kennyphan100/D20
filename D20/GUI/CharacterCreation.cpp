@@ -56,9 +56,9 @@ CharacterCreation::CharacterCreation(sf::RenderWindow& window) : window(window),
     nameValue.setFillColor(sf::Color::Black);
     nameValue.setPosition((window.getSize().x / 2 - nameValue.getLocalBounds().width / 2) - 140, 205);
 
-    nameInputBackground.setSize(sf::Vector2f(200, 40));
+    nameInputBackground.setSize(sf::Vector2f(300, 40));
     nameInputBackground.setFillColor(sf::Color::White);
-    nameInputBackground.setPosition((window.getSize().x / 2 - nameInputBackground.getLocalBounds().width / 2) - 50, 200);
+    nameInputBackground.setPosition((window.getSize().x / 2 - nameInputBackground.getLocalBounds().width / 2), 200);
 
     dropdownButton.setSize(sf::Vector2f(250, 50));
     dropdownButton.setFillColor(sf::Color::Transparent);
