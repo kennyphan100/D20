@@ -114,7 +114,6 @@ void Character::interactWithChest(Map& map, int targetX, int targetY)
         Item* item = Item::spawnRandomItem();
         this->addToInventory(item);
         std::cout << "Found and interacted with a chest! Obtained: " << item->getName() << std::endl;
-        map.setCell(targetX, targetY, Cell::EMPTY);
         interacted = true;
     }
 
