@@ -31,6 +31,7 @@ public:
     bool isXYInObjects(int x, int y);
     bool XYPositionIsChest(int x, int y);
     bool XYPositionIsDoor(int x, int y);
+    void removeObject(std::vector<Object>& objects, int x, int y);
 
     std::vector<Object> objects;
 
