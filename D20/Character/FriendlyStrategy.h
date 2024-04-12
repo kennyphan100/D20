@@ -12,6 +12,7 @@ public:
     void moveGUI(Character& character, Map& map, PlayGame& playGame) override;
     void attack(Character& character, Map& map) override;
     void attackGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame) override;
+    void attackGUI(Character& character, Map& map, PlayGame& playGame) override;
     void freeAction(Character& character, Map& map) override;
     void switchToAggressor(Character& character);
     StrategyType getStrategyType() const override;

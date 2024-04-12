@@ -173,7 +173,8 @@ void FriendlyStrategy::attack(Character& friendly, Map& map) {
             if (dx == 0 && dy == 0) continue;
 
             Character* target = map.getCharacter(friendlyX + dx, friendlyY + dy);
-            if (target && target->getStrategyType() == StrategyType::Aggressor) {
+            //if (target && target->getStrategyType() == StrategyType::Aggressor) {
+            if (target && target->getName() == "Hellfire") {
                 Dice dice;
                 std::string attackRollFormula = "1d20";
                 int rollResult = dice.rollDice(attackRollFormula);
@@ -181,9 +182,10 @@ void FriendlyStrategy::attack(Character& friendly, Map& map) {
                 if (rollResult >= target->getArmorClass()) {
                     std::string damageRollFormula = "1d8";
                     int damageRoll = dice.rollDice(damageRollFormula);
-                    target->takeDamage(damageRoll);
 
                     std::cout << "Friendly hit the target for " << damageRoll << " damage.\n";
+
+                    target->takeDamage(damageRoll);
                 }
                 else {
                     std::cout << "Friendly's attack missed the target.\n";
@@ -196,6 +198,52 @@ void FriendlyStrategy::attack(Character& friendly, Map& map) {
 
 void FriendlyStrategy::attackGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame)
 {
+    // this function is not used
+}
+
+void FriendlyStrategy::attackGUI(Character& friendly, Map& map, PlayGame& playGame)
+{
+    auto [friendlyX, friendlyY] = map.getCharacterPosition(friendly);
+
+    for (int dx = -1; dx <= 1; ++dx) {
+        for (int dy = -1; dy <= 1; ++dy) {
+            if (dx == 0 && dy == 0) continue;
+
+            int targetX = friendlyX + dx;
+            int targetY = friendlyY + dy;
+
+            Character* target = map.getCharacter(targetX, targetY);
+
+            //if (target && target->getStrategyType() == StrategyType::Aggressor) {
+            if (target && target->getName() == "Hellfire") {
+                Dice dice;
+                std::string attackRollFormula = "1d20";
+                int rollResult = dice.rollDice(attackRollFormula);
+
+                if (rollResult >= target->getArmorClass()) {
+                    std::string damageRollFormula = "1d8";
+                    int damageRoll = dice.rollDice(damageRollFormula);
+                    target->takeDamage(damageRoll);
+
+                    if (target->hitPoints <= 0) {
+                        map.setCell(targetX, targetY, Cell::EMPTY);
+                        playGame.removeObject(playGame.objects, targetX, targetY);
+
+                        playGame.isAggressorDead = true;
+
+                        playGame.drawSelectedMapGrid(&map);
+                        playGame.drawSelectedMapGridStatic(map.getName());
+                    }
+
+                    std::cout << "Friendly hit the target for " << damageRoll << " damage.\n";
+                }
+                else {
+                    std::cout << "Friendly's attack missed the target.\n";
+                }
+                return;
+            }
+        }
+    }
 }
 
 void FriendlyStrategy::freeAction(Character& character, Map& map) {

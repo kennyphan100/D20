@@ -177,6 +177,11 @@ void HumanPlayerStrategy::attackGUI(Character& character, Map& map, int targetX,
     }
 }
 
+void HumanPlayerStrategy::attackGUI(Character& character, Map& map, PlayGame& playGame)
+{
+    // this function is not used
+}
+
 void HumanPlayerStrategy::freeAction(Character& character, Map& map) {
     std::cout << "\nChoose a free action: \n1. Rest (recover health)\n2. Look around\n3. Speak\n4. Interact\nEnter choice: ";
     int choice;

@@ -19,6 +19,7 @@ public:
     virtual void moveGUI(Character& character, Map& map, PlayGame& playGame) = 0;
     virtual void attack(Character& character, Map& map) = 0;
     virtual void attackGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame) = 0;
+    virtual void attackGUI(Character& character, Map& map, PlayGame& playGame) = 0;
     virtual void freeAction(Character& character, Map& map) = 0;
     virtual StrategyType getStrategyType() const = 0;
 };

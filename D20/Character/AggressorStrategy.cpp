@@ -176,8 +176,8 @@ void AggressorStrategy::attack(Character& aggressor, Map& map) {
         int targetY = aggressorY + dir.y;
 
         Character* target = map.getCharacter(targetX, targetY);
-        if (target && (target->getStrategyType() == StrategyType::Friendly ||
-            target->getStrategyType() == StrategyType::Player)) {
+        //if (target && (target->getStrategyType() == StrategyType::Friendly || target->getStrategyType() == StrategyType::Player)) {
+        if (target && target->getName() != "Hellfire") {
             Dice dice;
             std::string attackRollFormula = "1d20";
             int rollResult = dice.rollDice(attackRollFormula);
@@ -200,6 +200,55 @@ void AggressorStrategy::attack(Character& aggressor, Map& map) {
 
 void AggressorStrategy::attackGUI(Character& character, Map& map, int targetX, int targetY, PlayGame& playGame)
 {
+    // this function is not used
+}
+
+void AggressorStrategy::attackGUI(Character& aggressor, Map& map, PlayGame& playGame)
+{
+    auto [aggressorX, aggressorY] = map.getCharacterPosition(aggressor);
+
+    std::vector<MapPoint> directions = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
+
+    for (const auto& dir : directions) {
+        int targetX = aggressorX + dir.x;
+        int targetY = aggressorY + dir.y;
+
+        Character* target = map.getCharacter(targetX, targetY);
+        //if (target && (target->getStrategyType() == StrategyType::Friendly || target->getStrategyType() == StrategyType::Player)) {
+        if (target && target->getName() != "Hellfire") {
+            Dice dice;
+            std::string attackRollFormula = "1d20";
+            int rollResult = dice.rollDice(attackRollFormula);
+
+            if (rollResult >= target->getArmorClass()) {
+                std::string damageRollFormula = "1d8";
+                int damageRoll = dice.rollDice(damageRollFormula);
+                std::cout << "Aggressor hit the target for " << damageRoll << " damage.\n";
+                target->takeDamage(damageRoll);
+
+                if (target->hitPoints <= 0) {
+                    map.setCell(targetX, targetY, Cell::EMPTY);
+                    playGame.removeObject(playGame.objects, targetX, targetY);
+
+                    if (target->getName() == "Sage") {
+                        playGame.isFriendlyDead = true;
+                    }
+                    else {
+                        playGame.iAmDead = true;
+                    }
+
+                    playGame.drawSelectedMapGrid(&map);
+                    playGame.drawSelectedMapGridStatic(map.getName());
+                }
+            }
+            else {
+                std::cout << "Aggressor's attack missed the target.\n";
+            }
+            return;
+        }
+    }
+
+    std::cout << "No target in range to attack.\n";
 }
 
 void AggressorStrategy::freeAction(Character& character, Map& map) {

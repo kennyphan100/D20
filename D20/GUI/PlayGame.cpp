@@ -83,6 +83,17 @@ PlayGame::PlayGame(sf::RenderWindow& window) : window(window), dropdownOpen(fals
     winLabel.setStyle(sf::Text::Bold);
     winLabel.setPosition((window.getSize().x / 2 - winLabel.getLocalBounds().width / 2), 600);
 
+    gameOverLabel.setFont(font);
+    gameOverLabel.setString("You have been defeated! GAME OVER!");
+    gameOverLabel.setCharacterSize(40);
+    gameOverLabel.setFillColor(sf::Color::Red);
+    gameOverLabel.setStyle(sf::Text::Bold);
+    gameOverLabel.setPosition((window.getSize().x / 2 - gameOverLabel.getLocalBounds().width / 2), 550);
+
+    gameOverBackground.setSize(sf::Vector2f(850, 70));
+    gameOverBackground.setFillColor(sf::Color::Black);
+    gameOverBackground.setPosition((window.getSize().x / 2 - gameOverLabel.getLocalBounds().width / 2) - 20, 540);
+
     alertText.setFont(font);
     alertText.setString("You must select a character and a campaign!");
     alertText.setCharacterSize(24);
@@ -155,7 +166,11 @@ void PlayGame::drawSelectedMapGrid(Map* selectedMap)
     GRID_WIDTH = selectedMap->getWidth();
     GRID_HEIGHT = selectedMap->getHeight();
 
-    objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+    //objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+
+    if (!iAmDead) {
+        objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+    }
 
     if (!isAggressorDead) {
         objects.push_back({ aggressorPositionX, aggressorPositionY, ObjectType::Aggressor });
@@ -193,7 +208,11 @@ void PlayGame::drawSelectedMapGridStatic(string selectedMap)
     GRID_WIDTH = loadedMap->getWidth();
     GRID_HEIGHT = loadedMap->getHeight();
 
-    objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+    //objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+
+    if (!iAmDead) {
+        objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+    }
 
     if (!isAggressorDead) {
         objects.push_back({ aggressorPositionX, aggressorPositionY, ObjectType::Aggressor });
@@ -224,18 +243,22 @@ void PlayGame::drawSelectedMapGridStatic(string selectedMap)
 void PlayGame::handleAggressorTurn(Character* aggressorCharacter, Map*& map)
 {
     cout << "\n === Enemy's turn to move === \n";
-    aggressorCharacter->performMoveGUI(*map, *this);
-    //aggressorCharacter->performAttack(*map);
-
+    if (!isAggressorDead) {
+        aggressorCharacter->performMoveGUI(*map, *this);
+        aggressorCharacter->performAttackGUI(*map, *this);
+    }
 }
 
 void PlayGame::handleFriendlyTurn(Character* friendlyCharacter, Map*& map)
 {
     cout << "\n === Friendly's turn to move === \n";
-    friendlyCharacter->performMoveGUI(*map, *this);
+    if (!isFriendlyDead) {
+        friendlyCharacter->performMoveGUI(*map, *this);
+        friendlyCharacter->performAttackGUI(*map, *this);
+    }
 }
 
-void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps, FighterCharacter*& aggressorCharacter, FighterCharacter*& friendlyCharacter, bool& movingToNextMap) {
+void PlayGame::handlePlayGameClick(int mouseX, int mouseY, FighterCharacter*& character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps, FighterCharacter*& aggressorCharacter, FighterCharacter*& friendlyCharacter, bool& movingToNextMap) {
     // Handle clicks on cell
     cout << "=== Your turn to make a move ===" << endl;
     if (mouseX >= GRID_OFFSET_X && mouseX < GRID_OFFSET_X + GRID_WIDTH * CELL_SIZE && mouseY >= GRID_OFFSET_Y && mouseY < GRID_OFFSET_Y + GRID_HEIGHT * CELL_SIZE) {
@@ -255,7 +278,7 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character,
 
         }
         else if (XYPositionIsAggressor(gridX, gridY)) {
-            cout << "\n=== Attacking aggressor ===" << endl;
+            cout << "\n=== YOUR TURN - Attacking aggressor ===" << endl;
 
             HumanPlayerStrategy hps;
             character->setStrategy(&hps);
@@ -291,7 +314,8 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character,
 
                 Editor* editor = new Editor();
                 map = editor->selectMapGUI(mapName);
-                character->setStrategy(&hps);
+
+                //character->setStrategy(&hps);
                 map->placeCharacter(0, 0, character);
 
                 AggressorStrategy* as = new AggressorStrategy();
@@ -403,6 +427,11 @@ void PlayGame::drawObjectsStatic(std::vector<Object> objects2) {
     window.draw(campaignNameLabel);
     window.draw(mapNameLabel);
     drawGrid(window);
+
+    if (iAmDead) {
+        window.draw(gameOverBackground);
+        window.draw(gameOverLabel);
+    }
 
     for (const auto& obj : objects2) {
         sf::Sprite objectSprite;
