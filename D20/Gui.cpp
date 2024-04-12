@@ -117,20 +117,24 @@ int main() {
     Editor* editor = new Editor();
 
     HumanPlayerStrategy hps;
-    FriendlyStrategy fs;
+    FriendlyStrategy* fs = new FriendlyStrategy();
     AggressorStrategy* as = new AggressorStrategy();
 
     FighterCharacter* characterToPlay = nullptr;
-    //FighterCharacter aggressorCharacter(1, FighterType::BULLY, &as);
+
     FighterCharacter* aggressorCharacter = new FighterCharacter(1, FighterType::BULLY, as);
     aggressorCharacter->setName("Hellfire");
-    //FighterCharacter characterToPlay(1, FighterType::NIMBLE);
+
+    FighterCharacter* friendlyCharacter = new FighterCharacter(1, FighterType::NIMBLE, fs);
+    friendlyCharacter->setName("Sage");
+
     Campaign* campaignToPlay = nullptr;
     Map* mapToPlay = nullptr;
     string mapNameToPlay = "";
     string campaignNameToPlay = "";
     vector<string> listOfMaps;
 
+    bool movingToNextMap = false;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -245,6 +249,7 @@ int main() {
                             //characterToPlay->setStrategy(&hps);
                             mapToPlay->placeCharacter(0, 0, characterToPlay);
                             mapToPlay->placeCharacter(8, 8, aggressorCharacter);
+                            mapToPlay->placeCharacter(0, 2, friendlyCharacter);
                         }
 
                     }
@@ -259,10 +264,16 @@ int main() {
                         // characterToPlay->setStrategy(&hps);
                         // mapToPlay->placeCharacter(X, Y, characterToPlay);
 
-                        PlayGame.handlePlayGameClick(mousePos.x, mousePos.y, characterToPlay, campaignToPlay, mapToPlay, mapNameToPlay, listOfMaps, aggressorCharacter);
+                        PlayGame.handlePlayGameClick(mousePos.x, mousePos.y, characterToPlay, campaignToPlay, mapToPlay, mapNameToPlay, listOfMaps, aggressorCharacter, friendlyCharacter, movingToNextMap);
 
-                        // Enemy's turn
-                        PlayGame.handleAggressorTurn(aggressorCharacter, mapToPlay);
+                        if (!movingToNextMap) {
+                            // Friendly's turn
+                            PlayGame.handleFriendlyTurn(friendlyCharacter, mapToPlay);
+
+                            // Enemy's turn
+                            PlayGame.handleAggressorTurn(aggressorCharacter, mapToPlay);
+                        }
+
                     }
                 }
                 else if (event.mouseButton.button == sf::Mouse::Right) {

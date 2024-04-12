@@ -16,7 +16,7 @@ public:
 
     PlayGame(sf::RenderWindow& window);
 
-    void handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps, FighterCharacter*& aggresorCharacter);
+    void handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps, FighterCharacter*& aggresorCharacter, FighterCharacter*& friendlyCharacter, bool& movingToNextMap);
     void handleCharacterCreationClick(int mouseX, int mouseY);
     void handleTextInput(sf::Uint32 unicode);
     void drawMainMenu(sf::RenderWindow& window);
@@ -25,6 +25,7 @@ public:
     void drawObjectsStatic(std::vector<Object> objects2);
 
     void handleAggressorTurn(Character* character, Map*& map);
+    void handleFriendlyTurn(Character* character, Map*& map);
 
     void drawGrid(sf::RenderWindow& window);
     void drawSelectedMapGrid(string selectedMap);
@@ -46,9 +47,14 @@ public:
     int aggressorPositionY = 8;
     bool isAggressorDead = false;
 
+    int friendlyPositionX = 0;
+    int friendlyPositionY = 2;
+    bool isFriendlyDead = false;
+
     ObjectType selectedObjectType = ObjectType::None;
     sf::Texture characterTexture;
     sf::Texture aggressorTexture;
+    sf::Texture friendlyTexture;
     sf::Texture wallTexture;
     sf::Texture chestTexture;
     sf::Texture doorTexture;
