@@ -6,6 +6,7 @@
 #include <ctime>
 #include <chrono>
 #include <thread>
+#include "../GUI/PlayGame.h"
 
 using namespace std;
 
@@ -92,6 +93,76 @@ void FriendlyStrategy::moveGUI(Character& character, Map& map, int targetX, int 
 
 void FriendlyStrategy::moveGUI(Character& character, Map& map, PlayGame& playGame)
 {
+    auto [charX, charY] = map.getCharacterPosition(character);
+    auto [targetX, targetY] = map.findClosestEnemyPosition(charX, charY);
+
+    if (targetX == -1 && targetY == -1) {
+        std::tie(targetX, targetY) = map.getPlayerPosition();
+    }
+
+    if (std::abs(targetX - charX) + std::abs(targetY - charY) == 1) {
+        return;
+    }
+
+    std::queue<std::pair<int, int>> q;
+    std::map<std::pair<int, int>, int> distance;
+    std::map<std::pair<int, int>, std::pair<int, int>> prev;
+    q.push({ charX, charY });
+    distance[{charX, charY}] = 0;
+    prev[{charX, charY}] = { -1, -1 };
+
+    std::pair<int, int> bestCell = { charX, charY };
+    int minDistance = std::numeric_limits<int>::max();
+
+    while (!q.empty()) {
+        auto [x, y] = q.front(); q.pop();
+        int steps = distance[{x, y}];
+
+        if (steps >= 10) {
+            continue;
+        }
+
+        for (auto [dx, dy] : std::vector<std::pair<int, int>>{ {1, 0}, {-1, 0}, {0, 1}, {0, -1} }) {
+            int nx = x + dx, ny = y + dy;
+
+            if (nx >= 0 && ny >= 0 && nx < map.getWidth() && ny < map.getHeight() &&
+                map.isEmptyCell(nx, ny) && distance.count({ nx, ny }) == 0) {
+                q.push({ nx, ny });
+                distance[{nx, ny}] = steps + 1;
+                prev[{nx, ny}] = { x, y };
+
+                int distToTarget = std::abs(targetX - nx) + std::abs(targetY - ny);
+                if (distToTarget < minDistance) {
+                    minDistance = distToTarget;
+                    bestCell = { nx, ny };
+                }
+            }
+        }
+    }
+
+    std::list<std::pair<int, int>> path;
+    for (std::pair<int, int> at = bestCell; at != std::pair<int, int>{-1, -1}; at = prev[at]) {
+        path.push_front(at);
+    }
+
+    for (const auto& [nextX, nextY] : path) {
+        if (distance[{nextX, nextY}] > 10) {
+            break;
+        }
+
+        map.moveCharacter(charX, charY, nextX, nextY);
+        charX = nextX;
+        charY = nextY;
+
+        playGame.friendlyPositionX = nextX;
+        playGame.friendlyPositionY = nextY;
+        playGame.drawSelectedMapGrid(&map);
+
+        map.displayWithNumbering();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+
+    std::cout << "Friendly character moved towards the target.\n";
 }
 
 void FriendlyStrategy::attack(Character& friendly, Map& map) {
