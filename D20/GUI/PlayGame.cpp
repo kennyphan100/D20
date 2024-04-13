@@ -88,7 +88,300 @@ PlayGame::PlayGame(sf::RenderWindow& window) : window(window), dropdownOpen(fals
 
     GRID_WIDTH = 10;
     GRID_HEIGHT = 10;
+
+    const float INVENTORY_OFFSET_X = 900;
+    const float INVENTORY_OFFSET_Y = 150;
+
+    inventoryText.setFont(font); // Assuming 'font' is the font loaded in your constructor
+    inventoryText.setString("Inventory Panel");
+    inventoryText.setCharacterSize(24);
+    inventoryText.setFillColor(sf::Color::Black);
+    inventoryText.setPosition(INVENTORY_OFFSET_X, INVENTORY_OFFSET_Y - 40);
+    window.draw(inventoryText);
 }
+
+void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
+    sf::Color gridColor = sf::Color::Black; // Change grid color to black
+    float lineThickness = 2.0f; // Adjust thickness as desired
+
+    const int INVENTORY_GRID_WIDTH = 5;
+    const int INVENTORY_GRID_HEIGHT = 5;
+    const int INVENTORY_CELL_SIZE = 50;
+    const float INVENTORY_OFFSET_X = 900;
+    const float INVENTORY_OFFSET_Y = 150;
+
+    const float UNEQUIP_BUTTON_OFFSET_X = 900; // Same X offset as the inventory
+    const float UNEQUIP_BUTTON_OFFSET_Y = INVENTORY_OFFSET_Y + (INVENTORY_GRID_HEIGHT * INVENTORY_CELL_SIZE) + 20; // Place it below the inventory
+    const float UNEQUIP_BUTTON_WIDTH = 170;
+    const float UNEQUIP_BUTTON_HEIGHT = 30;
+
+
+    // Create the unequip helmet button
+    sf::RectangleShape unequipHelmetButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipHelmetButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y);
+    unequipHelmetButton.setFillColor(sf::Color::Black); // Adjust color as needed
+
+    // Text for the button
+    sf::Text buttonText("Unequip Helmet", font, 18);
+    buttonText.setFillColor(sf::Color::White);
+    buttonText.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y); // Adjust text position within the button
+
+    // Draw the button and text
+    window.draw(unequipHelmetButton);
+    window.draw(buttonText);
+
+    sf::RectangleShape unequipArmorButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipArmorButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + UNEQUIP_BUTTON_HEIGHT + 5); // Place it below the helmet button
+    unequipArmorButton.setFillColor(sf::Color::Black); // Adjust color as needed
+
+    // Text for the button
+    sf::Text armorButtonText("Unequip Armor", font, 18);
+    armorButtonText.setFillColor(sf::Color::White);
+    armorButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + UNEQUIP_BUTTON_HEIGHT + 5); // Adjust text position within the button
+
+    // Draw the button and text
+    window.draw(unequipArmorButton);
+    window.draw(armorButtonText);
+
+    sf::RectangleShape unequipShieldButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipShieldButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 2); // Place it below the armor button
+    unequipShieldButton.setFillColor(sf::Color::Black); // Adjust color as needed
+
+    // Text for the button
+    sf::Text shieldButtonText("Unequip Shield", font, 18);
+    shieldButtonText.setFillColor(sf::Color::White);
+    shieldButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 2); // Adjust text position within the button
+
+    // Draw the button and text
+    window.draw(unequipShieldButton);
+    window.draw(shieldButtonText);
+
+    sf::RectangleShape unequipRingButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipRingButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Place it below the shield button
+    unequipRingButton.setFillColor(sf::Color::Black); // Adjust color as needed
+
+    // Text for the button
+    sf::Text ringButtonText("Unequip Ring", font, 18);
+    ringButtonText.setFillColor(sf::Color::White);
+    ringButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Adjust text position within the button
+
+    // Draw the button and text
+    window.draw(unequipRingButton);
+    window.draw(ringButtonText);
+
+    sf::RectangleShape unequipBeltButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipBeltButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y); // Place it to the right of the helmet button
+    unequipBeltButton.setFillColor(sf::Color::Black); // Adjust color as needed
+
+    // Text for the button
+    sf::Text beltButtonText("Unequip Belt", font, 18);
+    beltButtonText.setFillColor(sf::Color::White);
+    beltButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y); // Adjust text position within the button
+
+    // Draw the button and text
+    window.draw(unequipBeltButton);
+    window.draw(beltButtonText);
+
+    sf::RectangleShape unequipWeaponButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipWeaponButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + UNEQUIP_BUTTON_HEIGHT + 5); // Place it under the belt button
+    unequipWeaponButton.setFillColor(sf::Color::Black); // Adjust color as needed
+
+    // Text for the button
+    sf::Text weaponButtonText("Unequip Weapon", font, 18);
+    weaponButtonText.setFillColor(sf::Color::White);
+    weaponButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + UNEQUIP_BUTTON_HEIGHT + 5); // Adjust text position within the button
+
+    // Draw the button and text
+    window.draw(unequipWeaponButton);
+    window.draw(weaponButtonText);
+
+    sf::RectangleShape unequipBootsButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipBootsButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 2); // Place it under the weapon button
+    unequipBootsButton.setFillColor(sf::Color::Black); // Adjust color as needed
+
+    // Text for the button
+    sf::Text bootsButtonText("Unequip Boots", font, 18);
+    bootsButtonText.setFillColor(sf::Color::White);
+    bootsButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 2); // Adjust text position within the button
+
+    // Draw the button and text
+    window.draw(unequipBootsButton);
+    window.draw(bootsButtonText);
+
+    sf::RectangleShape equipButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    equipButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Place it under the boots button
+    equipButton.setFillColor(sf::Color::Green); // Adjust color as needed
+
+    // Text for the button
+    sf::Text equipButtonText("Equip", font, 18);
+    equipButtonText.setFillColor(sf::Color::White);
+    equipButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Adjust text position within the button
+
+    // Draw the button and text
+    window.draw(equipButton);
+    window.draw(equipButtonText);
+
+    // Draw vertical grid lines
+    for (int i = 0; i <= INVENTORY_GRID_WIDTH; ++i) {
+        sf::RectangleShape verticalLine(sf::Vector2f(lineThickness, INVENTORY_GRID_HEIGHT * INVENTORY_CELL_SIZE));
+        verticalLine.setPosition(INVENTORY_OFFSET_X + i * INVENTORY_CELL_SIZE - lineThickness / 2.0f, INVENTORY_OFFSET_Y);
+        verticalLine.setFillColor(gridColor);
+        window.draw(verticalLine);
+    }
+
+    for (int j = 0; j <= INVENTORY_GRID_HEIGHT; ++j) {
+        sf::RectangleShape horizontalLine(sf::Vector2f(INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE, lineThickness));
+        horizontalLine.setPosition(INVENTORY_OFFSET_X, INVENTORY_OFFSET_Y + j * INVENTORY_CELL_SIZE - lineThickness / 2.0f);
+        horizontalLine.setFillColor(gridColor);
+        window.draw(horizontalLine);
+    }
+
+
+    const std::string itemFolderPath = "./data/characters/";
+    int itemIndex = 0;
+
+    for (const auto& entry : fs::directory_iterator(itemFolderPath)) {
+        if (entry.is_regular_file()) {
+            std::string itemName = entry.path().stem().string();
+
+            if (itemName.find("Helmet") != std::string::npos) {
+                sf::Texture helmetTexture;
+                if (helmetTexture.loadFromFile("./Images/helmet_game_icon.png")) {
+                    sf::Sprite helmetSprite(helmetTexture);
+                    const float cellSize = 50.0f;
+                    const float scale = cellSize / helmetTexture.getSize().x;
+
+                    helmetSprite.setScale(scale, scale);
+                    helmetSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                    window.draw(helmetSprite);
+
+                    itemIndex++;
+                }
+                else {
+                    std::cerr << "Failed to load helmet texture." << std::endl;
+                }
+            }
+
+            if (itemName.find("Armor") != std::string::npos) {
+                sf::Texture armorTexture;
+                if (armorTexture.loadFromFile("./Images/armor_game_icon.png")) {
+                    sf::Sprite armorSprite(armorTexture);
+                    const float cellSize = 50.0f;
+                    const float scale = cellSize / armorTexture.getSize().x;
+
+                    armorSprite.setScale(scale, scale);
+                    armorSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                    window.draw(armorSprite);
+
+                    itemIndex++;
+                }
+                else {
+                    std::cerr << "Failed to load armor texture." << std::endl;
+                }
+            }
+
+            if (itemName.find("Shield") != std::string::npos) {
+                sf::Texture shieldTexture;
+                if (shieldTexture.loadFromFile("./Images/shield_game_icon.png")) {
+                    sf::Sprite shieldSprite(shieldTexture);
+                    const float cellSize = 50.0f;
+                    const float scale = cellSize / shieldTexture.getSize().x;
+
+                    shieldSprite.setScale(scale, scale);
+                    shieldSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                    window.draw(shieldSprite);
+
+                    itemIndex++;
+                }
+                else {
+                    std::cerr << "Failed to load shield texture." << std::endl;
+                }
+            }
+
+            if (itemName.find("Sword") != std::string::npos) {
+                sf::Texture swordTexture;
+                if (swordTexture.loadFromFile("./sword_game_icon.png")) {
+                    sf::Sprite swordSprite(swordTexture);
+                    const float cellSize = 50.0f;
+                    const float scale = cellSize / swordTexture.getSize().x;
+
+                    swordSprite.setScale(scale, scale);
+                    swordSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                    window.draw(swordSprite);
+
+                    itemIndex++;
+                }
+                else {
+                    std::cerr << "Failed to load sword texture." << std::endl;
+                }
+            }
+
+            if (itemName.find("Boots") != std::string::npos) {
+                sf::Texture bootsTexture;
+                if (bootsTexture.loadFromFile("./Images/boots_game_icon.png")) {
+                    sf::Sprite bootsSprite(bootsTexture);
+                    const float cellSize = 50.0f;
+                    const float scale = cellSize / bootsTexture.getSize().x;
+
+                    bootsSprite.setScale(scale, scale);
+                    bootsSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                    window.draw(bootsSprite);
+
+                    itemIndex++;
+                }
+                else {
+                    std::cerr << "Failed to load boots texture." << std::endl;
+                }
+            }
+
+            if (itemName.find("Ring") != std::string::npos) {
+                sf::Texture ringTexture;
+                if (ringTexture.loadFromFile("./Images/ring_game_icon.png")) {
+                    sf::Sprite ringSprite(ringTexture);
+                    const float cellSize = 50.0f;
+                    const float scale = cellSize / ringTexture.getSize().x;
+
+                    ringSprite.setScale(scale, scale);
+                    ringSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                    window.draw(ringSprite);
+
+                    itemIndex++;
+                }
+                else {
+                    std::cerr << "Failed to load ring texture." << std::endl;
+                }
+            }
+
+            if (itemName.find("Belt") != std::string::npos) {
+                sf::Texture beltTexture;
+                if (beltTexture.loadFromFile("./Images/belt_game_icon.png")) {
+                    sf::Sprite beltSprite(beltTexture);
+                    const float cellSize = 50.0f;
+                    const float scale = cellSize / beltTexture.getSize().x;
+
+                    beltSprite.setScale(scale, scale);
+                    beltSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                    window.draw(beltSprite);
+
+                    itemIndex++;
+                }
+                else {
+                    std::cerr << "Failed to load belt texture." << std::endl;
+                }
+            }
+        }
+    }
+}
+
+
+
 
 void PlayGame::drawGrid(sf::RenderWindow& window) {
     sf::Color gridColor = sf::Color::Black; // Change grid color to black
@@ -311,6 +604,8 @@ void PlayGame::drawMainMenu(sf::RenderWindow& window) {
 void PlayGame::drawPlayGame(string mapName, string campaignName) {
     mapNameLabel.setString(mapName);
     campaignNameLabel.setString(campaignName);
+    drawInventoryGrid(window);
+    window.draw(inventoryText);
 
     //window.draw(worldBackground);
     //window.draw(backButton);
@@ -322,6 +617,9 @@ void PlayGame::drawPlayGame(string mapName, string campaignName) {
 
     //drawSelectedMapGrid(mapName);
     drawSelectedMapGridStatic(mapName);
+    drawInventoryGrid(window);
+    window.draw(inventoryText);
+
 
 
     if (showSuccessfulAlert) {

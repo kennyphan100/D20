@@ -39,6 +39,11 @@ public:
 
     std::vector<Object> objects;
 
+
+    sf::Text inventoryText;
+    void drawInventoryGrid(sf::RenderWindow& window);
+    void drawInventoryTitle(sf::RenderWindow& window);
+
     int characterPositionX = 0;
     int characterPositionY = 0;
 

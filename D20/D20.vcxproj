@@ -228,13 +228,20 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\aggressor_icon.png" />
+    <Image Include="Images\armor_game_icon.png" />
     <Image Include="Images\background1.jpg" />
     <Image Include="Images\background2.jpg" />
+    <Image Include="Images\belt_game_icon.png" />
+    <Image Include="Images\boots_game_icon.png" />
     <Image Include="Images\d20.jpg" />
     <Image Include="Images\door_icon.png" />
     <Image Include="Images\friendly_icon.png" />
+    <Image Include="Images\helmet_game_icon.png" />
     <Image Include="Images\mapbackground.jpg" />
     <Image Include="Images\player_icon.png" />
+    <Image Include="Images\ring_game_icon.png" />
+    <Image Include="Images\shield_game_icon.png" />
+    <Image Include="Images\sword_game_icon.png" />
     <Image Include="Images\treasure_icon.png" />
     <Image Include="Images\wall_icon.png" />
   </ItemGroup>
