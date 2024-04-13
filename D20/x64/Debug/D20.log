@@ -1,24 +1,37 @@
-﻿  Character.cpp
-C:\devroot\D20\D20\Character\Character.cpp(450,33): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\devroot\D20\D20\Character\Character.cpp(707,14): warning C4101: 'comma': unreferenced local variable
+﻿  AggressorStrategy.cpp
+  FriendlyStrategy.cpp
   HumanPlayerStrategy.cpp
   PlayGame.cpp
-C:\devroot\D20\D20\GUI\PlayGame.cpp(93,81): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(279,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(278,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(298,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(297,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(317,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(316,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(336,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(335,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(355,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(354,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(374,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(373,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(393,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(392,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(415,81): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\devroot\D20\D20\GUI\PlayGame.cpp(101,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(423,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\devroot\D20\D20\GUI\PlayGame.cpp(295,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\devroot\D20\D20\GUI\PlayGame.cpp(295,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\devroot\D20\D20\GUI\PlayGame.cpp(328,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\devroot\D20\D20\GUI\PlayGame.cpp(328,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(804,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(804,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(848,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\GUI\PlayGame.cpp(848,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Gui.cpp
-C:\devroot\D20\D20\Gui.cpp(142,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(156,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -27,7 +40,7 @@ C:\devroot\D20\D20\Gui.cpp(142,95): warning C4244: 'argument': conversion from '
           [
               T=float
           ]
-C:\devroot\D20\D20\Gui.cpp(142,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(156,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -36,7 +49,7 @@ C:\devroot\D20\D20\Gui.cpp(142,83): warning C4244: 'argument': conversion from '
           [
               T=float
           ]
-C:\devroot\D20\D20\Gui.cpp(164,97): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(178,97): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -45,7 +58,7 @@ C:\devroot\D20\D20\Gui.cpp(164,97): warning C4244: 'argument': conversion from '
           [
               T=float
           ]
-C:\devroot\D20\D20\Gui.cpp(164,85): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\kenny\source\repos\D20\D20\Gui.cpp(178,85): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -54,8 +67,6 @@ C:\devroot\D20\D20\Gui.cpp(164,85): warning C4244: 'argument': conversion from '
           [
               T=float
           ]
-  Main.cpp
-C:\devroot\D20\D20\Main.cpp(214,29): warning C4804: '<': unsafe use of type 'bool' in operation
-C:\devroot\D20\D20\Main.cpp(56,16): warning C4101: 'myCharacter': unreferenced local variable
+  Map.cpp
   Generating Code...
-  D20.vcxproj -> C:\devroot\D20\x64\Debug\D20.exe
+  D20.vcxproj -> C:\Users\kenny\source\repos\D20\x64\Debug\D20.exe

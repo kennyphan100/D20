@@ -636,19 +636,23 @@ bool Character::loadFromFile(const string& filename) {
         if (key == "Name") {
             getline(iss, name);
             name = name.substr(1);
-        } else if (key == "Class") {
+        }
+        else if (key == "Class") {
             string classStr;
             getline(iss, classStr);
             classStr = classStr.substr(1);
             if (classStr == "BULLY") fighterType = FighterType::BULLY;
             else if (classStr == "NIMBLE") fighterType = FighterType::NIMBLE;
             else if (classStr == "TANK") fighterType = FighterType::TANK;
-        } else if (key == "Level") {
+        }
+        else if (key == "Level") {
             iss >> level;
-        } else if (key == "HP") {
+        }
+        else if (key == "HP") {
             char comma;
             iss >> hitPoints >> comma >> temp >> armorClass >> comma >> temp >> attackBonus >> comma >> temp >> damageBonus;
-        } else if (key.find("STR") != string::npos) {
+        }
+        else if (key.find("STR") != string::npos) {
             char comma, paren;
             iss >> abilityScores[0] >> paren >> abilityModifiers[0] >> paren >> comma;
             iss >> temp >> abilityScores[1] >> paren >> abilityModifiers[1] >> paren >> comma;
@@ -656,33 +660,59 @@ bool Character::loadFromFile(const string& filename) {
             iss >> temp >> abilityScores[3] >> paren >> abilityModifiers[3] >> paren >> comma;
             iss >> temp >> abilityScores[4] >> paren >> abilityModifiers[4] >> paren >> comma;
             iss >> temp >> abilityScores[5] >> paren >> abilityModifiers[5] >> paren;
-        } else if (key == "Equipped Armor") {
+        }
+        else if (key == "Equipped Armor") {
             getline(iss, equippedArmor);
-            equippedArmor = equippedArmor.substr(1);
-            equippedItems["Armor"] = equippedArmor;
-        } else if (key == "Equipped Shield") {
+            if (equippedArmor.substr(1, 4) != "None")
+            {
+                equippedArmor = equippedArmor.substr(1);
+                equippedItems["Armor"] = equippedArmor;
+            }
+        }
+        else if (key == "Equipped Shield") {
             getline(iss, equippedShield);
-            equippedShield = equippedShield.substr(1);
-            equippedItems["Shield"] = equippedShield;
-        } else if (key == "Equipped Weapon") {
+            if (equippedShield.substr(1, 4) != "None")
+            {
+                equippedShield = equippedShield.substr(1);
+                equippedItems["Shield"] = equippedShield;
+            }
+        }
+        else if (key == "Equipped Weapon") {
             getline(iss, equippedWeapon);
-            equippedWeapon = equippedWeapon.substr(1);
-            equippedItems["Weapon"] = equippedWeapon;
-        } else if (key == "Equipped Boots") {
+            if (equippedWeapon.substr(1, 4) != "None")
+            {
+                equippedWeapon = equippedWeapon.substr(1);
+                equippedItems["Weapon"] = equippedWeapon;
+            }
+        }
+        else if (key == "Equipped Boots") {
             getline(iss, equippedBoots);
-            equippedBoots = equippedBoots.substr(1);
-            equippedItems["Boots"] = equippedBoots;
-        } else if (key == "Equipped Ring") {
+            if (equippedBoots.substr(1,4) != "None")
+            {
+                equippedBoots = equippedBoots.substr(1);
+                equippedItems["Boots"] = equippedBoots;
+            }
+        }
+        else if (key == "Equipped Ring") {
             getline(iss, equippedRing);
-            equippedRing = equippedRing.substr(1);
-            equippedItems["Ring"] = equippedRing;
-        } else if (key == "Equipped Helmet") {
+            if (equippedRing.substr(1, 4) != "None")
+            {
+                equippedRing = equippedRing.substr(1);
+                equippedItems["Ring"] = equippedRing;
+            }
+        }
+        else if (key == "Equipped Helmet") {
             getline(iss, equippedHelmet);
-            equippedHelmet = equippedHelmet.substr(1);
-            equippedItems["Helmet"] = equippedHelmet;
-        } else if (key == "Inventory") {
+            if (equippedHelmet.substr(1, 4) != "None")
+            {
+                equippedHelmet = equippedHelmet.substr(1);
+                equippedItems["Helmet"] = equippedHelmet;
+            }
+        }
+        else if (key == "Inventory") {
             characterItemsInInventory = true;
-        } else if (characterItemsInInventory && !line.empty()) {
+        }
+        else if (characterItemsInInventory && !line.empty()) {
             backpackItems.push_back(line);
         }
     }
@@ -694,7 +724,6 @@ bool Character::loadFromFile(const string& filename) {
     this->armorClass = armorClass;
     this->attackBonus = attackBonus;
     this->damageBonus = damageBonus;
-    this->setStrategy(new HumanPlayerStrategy());
 
     for (int i = 0; i < 6; ++i) {
         this->abilityScores[i] = abilityScores[i];
@@ -715,7 +744,7 @@ bool Character::loadFromFile(const string& filename) {
             else if (item.first == "Shield") equipShield(static_cast<Shield*>(newItem));
             else if (item.first == "Weapon") equipWeapon(static_cast<Weapon*>(newItem));
             else if (item.first == "Boots") equipBoots(static_cast<Boots*>(newItem));
-           else if (item.first == "Ring") equipRing(static_cast<Ring*>(newItem));
+            else if (item.first == "Ring") equipRing(static_cast<Ring*>(newItem));
             else if (item.first == "Helmet") equipHelmet(static_cast<Helmet*>(newItem));
         }
     }
@@ -779,6 +808,177 @@ bool Character::loadFromFile(const string& filename) {
 
     return true;
 }
+
+//bool Character::loadFromFile(const string& filename) {
+//    ifstream file(filename);
+//    if (!file.is_open()) {
+//        cerr << "Failed to open file: " << filename << endl;
+//        return false;
+//    }
+//
+//    string line;
+//    string name, temp;
+//    FighterType fighterType = FighterType::TANK; // Default to TANK if unspecified
+//    int level, hitPoints, armorClass, attackBonus, damageBonus;
+//    array<int, 6> abilityScores;
+//    array<int, 6> abilityModifiers;
+//
+//    string equippedArmor, equippedShield, equippedWeapon, equippedBoots, equippedRing, equippedHelmet;
+//    map<string, string> equippedItems;
+//
+//    bool characterItemsInInventory = false;
+//    vector<string> backpackItems;
+//
+//    while (getline(file, line)) {
+//        istringstream iss(line);
+//        string key;
+//        getline(iss, key, ':');
+//        if (key == "Name") {
+//            getline(iss, name);
+//            name = name.substr(1);
+//        } else if (key == "Class") {
+//            string classStr;
+//            getline(iss, classStr);
+//            classStr = classStr.substr(1);
+//            if (classStr == "BULLY") fighterType = FighterType::BULLY;
+//            else if (classStr == "NIMBLE") fighterType = FighterType::NIMBLE;
+//            else if (classStr == "TANK") fighterType = FighterType::TANK;
+//        } else if (key == "Level") {
+//            iss >> level;
+//        } else if (key == "HP") {
+//            char comma;
+//            iss >> hitPoints >> comma >> temp >> armorClass >> comma >> temp >> attackBonus >> comma >> temp >> damageBonus;
+//        } else if (key.find("STR") != string::npos) {
+//            char comma, paren;
+//            iss >> abilityScores[0] >> paren >> abilityModifiers[0] >> paren >> comma;
+//            iss >> temp >> abilityScores[1] >> paren >> abilityModifiers[1] >> paren >> comma;
+//            iss >> temp >> abilityScores[2] >> paren >> abilityModifiers[2] >> paren >> comma;
+//            iss >> temp >> abilityScores[3] >> paren >> abilityModifiers[3] >> paren >> comma;
+//            iss >> temp >> abilityScores[4] >> paren >> abilityModifiers[4] >> paren >> comma;
+//            iss >> temp >> abilityScores[5] >> paren >> abilityModifiers[5] >> paren;
+//        } else if (key == "Equipped Armor") {
+//            getline(iss, equippedArmor);
+//            equippedArmor = equippedArmor.substr(1);
+//            equippedItems["Armor"] = equippedArmor;
+//        } else if (key == "Equipped Shield") {
+//            getline(iss, equippedShield);
+//            equippedShield = equippedShield.substr(1);
+//            equippedItems["Shield"] = equippedShield;
+//        } else if (key == "Equipped Weapon") {
+//            getline(iss, equippedWeapon);
+//            equippedWeapon = equippedWeapon.substr(1);
+//            equippedItems["Weapon"] = equippedWeapon;
+//        } else if (key == "Equipped Boots") {
+//            getline(iss, equippedBoots);
+//            equippedBoots = equippedBoots.substr(1);
+//            equippedItems["Boots"] = equippedBoots;
+//        } else if (key == "Equipped Ring") {
+//            getline(iss, equippedRing);
+//            equippedRing = equippedRing.substr(1);
+//            equippedItems["Ring"] = equippedRing;
+//        } else if (key == "Equipped Helmet") {
+//            getline(iss, equippedHelmet);
+//            equippedHelmet = equippedHelmet.substr(1);
+//            equippedItems["Helmet"] = equippedHelmet;
+//        } else if (key == "Inventory") {
+//            characterItemsInInventory = true;
+//        } else if (characterItemsInInventory && !line.empty()) {
+//            backpackItems.push_back(line);
+//        }
+//    }
+//
+//    setName(name);
+//    this->fighterType = fighterType;
+//    this->level = level;
+//    this->hitPoints = hitPoints;
+//    this->armorClass = armorClass;
+//    this->attackBonus = attackBonus;
+//    this->damageBonus = damageBonus;
+//    this->setStrategy(new HumanPlayerStrategy());
+//
+//    for (int i = 0; i < 6; ++i) {
+//        this->abilityScores[i] = abilityScores[i];
+//        this->abilityModifiers[i] = abilityModifiers[i];
+//    }
+//
+//    for (const auto& item : equippedItems) {
+//        Item* newItem = nullptr;
+//        if (item.first == "Armor") newItem = new Armor(item.second);
+//        else if (item.first == "Shield") newItem = new Shield(item.second);
+//        else if (item.first == "Weapon") newItem = new Weapon(item.second);
+//        else if (item.first == "Boots") newItem = new Boots(item.second);
+//        else if (item.first == "Ring") newItem = new Ring(item.second);
+//        else if (item.first == "Helmet") newItem = new Helmet(item.second);
+//
+//        if (newItem) {
+//            if (item.first == "Armor") equipArmor(static_cast<Armor*>(newItem));
+//            else if (item.first == "Shield") equipShield(static_cast<Shield*>(newItem));
+//            else if (item.first == "Weapon") equipWeapon(static_cast<Weapon*>(newItem));
+//            else if (item.first == "Boots") equipBoots(static_cast<Boots*>(newItem));
+//           else if (item.first == "Ring") equipRing(static_cast<Ring*>(newItem));
+//            else if (item.first == "Helmet") equipHelmet(static_cast<Helmet*>(newItem));
+//        }
+//    }
+//
+//    this->backpack = new Backpack("Character Backpack");
+//
+//    // Add items from backpackItems to character's backpack
+//    for (const auto& line : backpackItems) {
+//        string itemName, itemType, enhancementTypeString;
+//        EnhancementType enhancementType;
+//        int enhancementBonus;
+//        char comma;
+//
+//        // Finding and extracting Item Name
+//        size_t pos = line.find("Item Name: ");
+//        if (pos != std::string::npos) {
+//            pos += 11; // Length of "Item Name: "
+//            size_t endPos = line.find(",", pos);
+//            itemName = line.substr(pos, endPos - pos);
+//        }
+//
+//        // Finding and extracting Item Type
+//        pos = line.find("Item Type: ");
+//        if (pos != std::string::npos) {
+//            pos += 11; // Length of "Item Type: "
+//            size_t endPos = line.find(",", pos);
+//            itemType = line.substr(pos, endPos - pos);
+//        }
+//
+//        // Finding and extracting Enhancement Type
+//        pos = line.find("Enhancement Type: ");
+//        if (pos != std::string::npos) {
+//            pos += 18; // Length of "Enhancement Type: "
+//            size_t endPos = line.find(",", pos);
+//            enhancementTypeString = line.substr(pos, endPos - pos);
+//        }
+//
+//        enhancementType = stringToEnhancementType(enhancementTypeString);
+//
+//        // Finding and extracting Enhancement Bonus
+//        pos = line.find("Enhancement Bonus: ");
+//        if (pos != std::string::npos) {
+//            pos += 19; // Length of "Enhancement Bonus: "
+//            size_t endPos = line.find(",", pos);
+//            enhancementBonus = std::stoi(line.substr(pos, endPos - pos));
+//        }
+//
+//        Item* item = nullptr;
+//        if (itemType == "Armor") item = new Armor(itemName, enhancementType, enhancementBonus);
+//        else if (itemType == "Shield") item = new Shield(itemName, enhancementType, enhancementBonus);
+//        else if (itemType == "Weapon") item = new Weapon(itemName, enhancementType, enhancementBonus);
+//        else if (itemType == "Boots") item = new Boots(itemName, enhancementType, enhancementBonus);
+//        else if (itemType == "Ring") item = new Ring(itemName, enhancementType, enhancementBonus);
+//        else if (itemType == "Helmet") item = new Helmet(itemName, enhancementType, enhancementBonus);
+//        else if (itemType == "Belt") item = new Belt(itemName, enhancementType, enhancementBonus);
+//
+//        if (item) {
+//            backpack->addItem(item);
+//        }
+//    }
+//
+//    return true;
+//}
 
 void Character::addToInventory(Item* item) {
     //if (!backpack) {

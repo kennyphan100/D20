@@ -237,6 +237,7 @@ int main() {
                         // Fetch the Character object from the chosen character
                         characterToPlay = editor->selectCharacterGUI(PlayGameMenu.selectedCharacter);
                         //characterToPlay.loadFromFile("./data/characters/" + PlayGameMenu.selectedCharacter + ".txt");
+                        PlayGame.character = characterToPlay;
 
                         campaignToPlay = editor->selectCampaignGUI(PlayGameMenu.selectedCampaign);
 
@@ -267,7 +268,7 @@ int main() {
 
                         PlayGame.handlePlayGameClick(mousePos.x, mousePos.y, characterToPlay, campaignToPlay, mapToPlay, mapNameToPlay, listOfMaps, aggressorCharacter, friendlyCharacter, movingToNextMap);
 
-                        if (!movingToNextMap) {
+                        if (!movingToNextMap && !PlayGame.wonTheGame) {
                             // Friendly's turn
                             PlayGame.handleFriendlyTurn(friendlyCharacter, mapToPlay);
 

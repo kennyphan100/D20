@@ -358,7 +358,7 @@ void Item::setEnhancementBonus(int newEnhancementBonus)
 Item* Item::spawnRandomItem() {
     srand(static_cast<unsigned int>(time(nullptr)));
 
-    int itemType = rand() % 7;
+    int itemType = rand() % 6;
     EnhancementType enhancementType = static_cast<EnhancementType>(rand() % 9);
     int enhancementBonus = rand() % 5 + 1;
     string itemName;
@@ -368,7 +368,7 @@ Item* Item::spawnRandomItem() {
     std::vector<string> ringNames = { "Ring of Power", "Band of Insight", "Circle of Mystique" };
     std::vector<string> helmetNames = { "Helm of Wisdom", "Cap of the Fox", "Crown of Kings" };
     std::vector<string> shieldNames = { "Barrier Buckler", "Shield of the Guardian", "Defender's Wall" };
-    std::vector<string> beltNames = { "Belt of Vigor", "Girdle of Giants", "Waistband of Stamina" };
+    //std::vector<string> beltNames = { "Belt of Vigor", "Girdle of Giants", "Waistband of Stamina" };
     std::vector<string> bootsNames = { "Boots of Speed", "Greaves of Grounding", "Footwear of the Fleet" };
 
     switch (itemType) {
@@ -387,10 +387,10 @@ Item* Item::spawnRandomItem() {
     case 4:
         itemName = shieldNames[rand() % shieldNames.size()];
         return new Shield(itemName, enhancementType, enhancementBonus);
+    //case 5:
+    //    itemName = beltNames[rand() % beltNames.size()];
+    //    return new Belt(itemName, enhancementType, enhancementBonus);
     case 5:
-        itemName = beltNames[rand() % beltNames.size()];
-        return new Belt(itemName, enhancementType, enhancementBonus);
-    case 6:
         itemName = bootsNames[rand() % bootsNames.size()];
         return new Boots(itemName, enhancementType, enhancementBonus);
     }

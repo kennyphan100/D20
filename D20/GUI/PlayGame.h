@@ -39,6 +39,14 @@ public:
     void removeObject(std::vector<Object>& objects, int x, int y);
 
     std::vector<Object> objects;
+    //Backpack characterBackpack;
+    vector<Item*> characterBackpack;
+
+    Character* character;
+
+    sf::Text inventoryText;
+    void drawInventoryGrid(sf::RenderWindow& window);
+    void drawInventoryTitle(sf::RenderWindow& window);
 
     int characterPositionX = 0;
     int characterPositionY = 0;
@@ -71,6 +79,13 @@ public:
     sf::Text dropdownText;
     sf::Text alertText;
 
+    sf::RectangleShape unequipHelmetButton;
+    sf::RectangleShape unequipArmorButton;
+    sf::RectangleShape unequipShieldButton;
+    sf::RectangleShape unequipRingButton;
+    sf::RectangleShape unequipWeaponButton;
+    sf::RectangleShape unequipBootsButton;
+
     sf::Vector2f characterListStartPosition{ 200, 130 };
     float characterListItemSpacing = 30.0f;
     vector<string> characterFiles;
@@ -87,6 +102,7 @@ public:
 
     int GRID_WIDTH = 10;
     int GRID_HEIGHT = 10;
+    bool wonTheGame = false;
 
 private:
     sf::RenderWindow& window;
@@ -97,7 +113,7 @@ private:
 
     bool dropdownOpen;
     bool showSuccessfulAlert;
-    bool wonTheGame = false;
+
     int currentMapIndex = 0;
     int numberOfMapsInCampaign = 0;
 
