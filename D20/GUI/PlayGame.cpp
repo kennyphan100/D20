@@ -114,27 +114,32 @@ PlayGame::PlayGame(sf::RenderWindow& window) : window(window), dropdownOpen(fals
     inventoryText.setCharacterSize(24);
     inventoryText.setFillColor(sf::Color::Black);
     inventoryText.setPosition(INVENTORY_OFFSET_X, INVENTORY_OFFSET_Y - 40);
-    window.draw(inventoryText);
 }
 
 void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
+
+    window.draw(inventoryText);
+
+    characterBackpack = character->backpack->getItems();
+
     sf::Color gridColor = sf::Color::Black; // Change grid color to black
     float lineThickness = 2.0f; // Adjust thickness as desired
 
-    const int INVENTORY_GRID_WIDTH = 5;
-    const int INVENTORY_GRID_HEIGHT = 5;
-    const int INVENTORY_CELL_SIZE = 50;
-    const float INVENTORY_OFFSET_X = 900;
-    const float INVENTORY_OFFSET_Y = 150;
+    //const int INVENTORY_GRID_WIDTH = 5;
+    //const int INVENTORY_GRID_HEIGHT = 5;
+    //const int INVENTORY_CELL_SIZE = 50;
+    //const float INVENTORY_OFFSET_X = 900;
+    //const float INVENTORY_OFFSET_Y = 150;
 
-    const float UNEQUIP_BUTTON_OFFSET_X = 900; // Same X offset as the inventory
-    const float UNEQUIP_BUTTON_OFFSET_Y = INVENTORY_OFFSET_Y + (INVENTORY_GRID_HEIGHT * INVENTORY_CELL_SIZE) + 20; // Place it below the inventory
-    const float UNEQUIP_BUTTON_WIDTH = 170;
-    const float UNEQUIP_BUTTON_HEIGHT = 30;
+    //const float UNEQUIP_BUTTON_OFFSET_X = 900; // Same X offset as the inventory
+    //const float UNEQUIP_BUTTON_OFFSET_Y = INVENTORY_OFFSET_Y + (INVENTORY_GRID_HEIGHT * INVENTORY_CELL_SIZE) + 20; // Place it below the inventory
+    //const float UNEQUIP_BUTTON_WIDTH = 170;
+    //const float UNEQUIP_BUTTON_HEIGHT = 30;
 
 
     // Create the unequip helmet button
-    sf::RectangleShape unequipHelmetButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    //sf::RectangleShape unequipHelmetButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipHelmetButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipHelmetButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y);
     unequipHelmetButton.setFillColor(sf::Color::Black); // Adjust color as needed
 
@@ -147,7 +152,8 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     window.draw(unequipHelmetButton);
     window.draw(buttonText);
 
-    sf::RectangleShape unequipArmorButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    //sf::RectangleShape unequipArmorButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipArmorButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipArmorButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + UNEQUIP_BUTTON_HEIGHT + 5); // Place it below the helmet button
     unequipArmorButton.setFillColor(sf::Color::Black); // Adjust color as needed
 
@@ -160,7 +166,8 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     window.draw(unequipArmorButton);
     window.draw(armorButtonText);
 
-    sf::RectangleShape unequipShieldButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    //sf::RectangleShape unequipShieldButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipShieldButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipShieldButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 2); // Place it below the armor button
     unequipShieldButton.setFillColor(sf::Color::Black); // Adjust color as needed
 
@@ -173,7 +180,8 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     window.draw(unequipShieldButton);
     window.draw(shieldButtonText);
 
-    sf::RectangleShape unequipRingButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    //sf::RectangleShape unequipRingButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipRingButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipRingButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Place it below the shield button
     unequipRingButton.setFillColor(sf::Color::Black); // Adjust color as needed
 
@@ -186,20 +194,21 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     window.draw(unequipRingButton);
     window.draw(ringButtonText);
 
-    sf::RectangleShape unequipBeltButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
-    unequipBeltButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y); // Place it to the right of the helmet button
-    unequipBeltButton.setFillColor(sf::Color::Black); // Adjust color as needed
+    //sf::RectangleShape unequipBeltButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    //unequipBeltButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y); // Place it to the right of the helmet button
+    //unequipBeltButton.setFillColor(sf::Color::Black); // Adjust color as needed
 
-    // Text for the button
-    sf::Text beltButtonText("Unequip Belt", font, 18);
-    beltButtonText.setFillColor(sf::Color::White);
-    beltButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y); // Adjust text position within the button
+    //// Text for the button
+    //sf::Text beltButtonText("Unequip Belt", font, 18);
+    //beltButtonText.setFillColor(sf::Color::White);
+    //beltButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y); // Adjust text position within the button
 
-    // Draw the button and text
-    window.draw(unequipBeltButton);
-    window.draw(beltButtonText);
+    //// Draw the button and text
+    //window.draw(unequipBeltButton);
+    //window.draw(beltButtonText);
 
-    sf::RectangleShape unequipWeaponButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    //sf::RectangleShape unequipWeaponButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipWeaponButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipWeaponButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + UNEQUIP_BUTTON_HEIGHT + 5); // Place it under the belt button
     unequipWeaponButton.setFillColor(sf::Color::Black); // Adjust color as needed
 
@@ -212,7 +221,8 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     window.draw(unequipWeaponButton);
     window.draw(weaponButtonText);
 
-    sf::RectangleShape unequipBootsButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    //sf::RectangleShape unequipBootsButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    unequipBootsButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipBootsButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 2); // Place it under the weapon button
     unequipBootsButton.setFillColor(sf::Color::Black); // Adjust color as needed
 
@@ -225,18 +235,18 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     window.draw(unequipBootsButton);
     window.draw(bootsButtonText);
 
-    sf::RectangleShape equipButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
-    equipButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Place it under the boots button
-    equipButton.setFillColor(sf::Color::Green); // Adjust color as needed
+    //sf::RectangleShape equipButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
+    //equipButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Place it under the boots button
+    //equipButton.setFillColor(sf::Color::Green); // Adjust color as needed
 
-    // Text for the button
-    sf::Text equipButtonText("Equip", font, 18);
-    equipButtonText.setFillColor(sf::Color::White);
-    equipButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Adjust text position within the button
+    //// Text for the button
+    //sf::Text equipButtonText("Equip", font, 18);
+    //equipButtonText.setFillColor(sf::Color::White);
+    //equipButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Adjust text position within the button
 
-    // Draw the button and text
-    window.draw(equipButton);
-    window.draw(equipButtonText);
+    //// Draw the button and text
+    //window.draw(equipButton);
+    //window.draw(equipButtonText);
 
     // Draw vertical grid lines
     for (int i = 0; i <= INVENTORY_GRID_WIDTH; ++i) {
@@ -253,147 +263,143 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
         window.draw(horizontalLine);
     }
 
-
-    const std::string itemFolderPath = "./data/characters/";
     int itemIndex = 0;
 
-    for (const auto& entry : fs::directory_iterator(itemFolderPath)) {
-        if (entry.is_regular_file()) {
-            std::string itemName = entry.path().stem().string();
+    for (const auto& item : characterBackpack) {
+        
+        if (item->getItemType(item)._Equal("Helmet")) {
+            sf::Texture helmetTexture;
+            if (helmetTexture.loadFromFile("./Images/helmet_game_icon.png")) {
+                sf::Sprite helmetSprite(helmetTexture);
+                const float cellSize = 50.0f;
+                const float scale = cellSize / helmetTexture.getSize().x;
 
-            if (itemName.find("Helmet") != std::string::npos) {
-                sf::Texture helmetTexture;
-                if (helmetTexture.loadFromFile("./Images/helmet_game_icon.png")) {
-                    sf::Sprite helmetSprite(helmetTexture);
-                    const float cellSize = 50.0f;
-                    const float scale = cellSize / helmetTexture.getSize().x;
+                helmetSprite.setScale(scale, scale);
+                helmetSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                    INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                window.draw(helmetSprite);
 
-                    helmetSprite.setScale(scale, scale);
-                    helmetSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
-                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
-                    window.draw(helmetSprite);
-
-                    itemIndex++;
-                }
-                else {
-                    std::cerr << "Failed to load helmet texture." << std::endl;
-                }
+                itemIndex++;
             }
-
-            if (itemName.find("Armor") != std::string::npos) {
-                sf::Texture armorTexture;
-                if (armorTexture.loadFromFile("./Images/armor_game_icon.png")) {
-                    sf::Sprite armorSprite(armorTexture);
-                    const float cellSize = 50.0f;
-                    const float scale = cellSize / armorTexture.getSize().x;
-
-                    armorSprite.setScale(scale, scale);
-                    armorSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
-                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
-                    window.draw(armorSprite);
-
-                    itemIndex++;
-                }
-                else {
-                    std::cerr << "Failed to load armor texture." << std::endl;
-                }
-            }
-
-            if (itemName.find("Shield") != std::string::npos) {
-                sf::Texture shieldTexture;
-                if (shieldTexture.loadFromFile("./Images/shield_game_icon.png")) {
-                    sf::Sprite shieldSprite(shieldTexture);
-                    const float cellSize = 50.0f;
-                    const float scale = cellSize / shieldTexture.getSize().x;
-
-                    shieldSprite.setScale(scale, scale);
-                    shieldSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
-                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
-                    window.draw(shieldSprite);
-
-                    itemIndex++;
-                }
-                else {
-                    std::cerr << "Failed to load shield texture." << std::endl;
-                }
-            }
-
-            if (itemName.find("Sword") != std::string::npos) {
-                sf::Texture swordTexture;
-                if (swordTexture.loadFromFile("./sword_game_icon.png")) {
-                    sf::Sprite swordSprite(swordTexture);
-                    const float cellSize = 50.0f;
-                    const float scale = cellSize / swordTexture.getSize().x;
-
-                    swordSprite.setScale(scale, scale);
-                    swordSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
-                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
-                    window.draw(swordSprite);
-
-                    itemIndex++;
-                }
-                else {
-                    std::cerr << "Failed to load sword texture." << std::endl;
-                }
-            }
-
-            if (itemName.find("Boots") != std::string::npos) {
-                sf::Texture bootsTexture;
-                if (bootsTexture.loadFromFile("./Images/boots_game_icon.png")) {
-                    sf::Sprite bootsSprite(bootsTexture);
-                    const float cellSize = 50.0f;
-                    const float scale = cellSize / bootsTexture.getSize().x;
-
-                    bootsSprite.setScale(scale, scale);
-                    bootsSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
-                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
-                    window.draw(bootsSprite);
-
-                    itemIndex++;
-                }
-                else {
-                    std::cerr << "Failed to load boots texture." << std::endl;
-                }
-            }
-
-            if (itemName.find("Ring") != std::string::npos) {
-                sf::Texture ringTexture;
-                if (ringTexture.loadFromFile("./Images/ring_game_icon.png")) {
-                    sf::Sprite ringSprite(ringTexture);
-                    const float cellSize = 50.0f;
-                    const float scale = cellSize / ringTexture.getSize().x;
-
-                    ringSprite.setScale(scale, scale);
-                    ringSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
-                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
-                    window.draw(ringSprite);
-
-                    itemIndex++;
-                }
-                else {
-                    std::cerr << "Failed to load ring texture." << std::endl;
-                }
-            }
-
-            if (itemName.find("Belt") != std::string::npos) {
-                sf::Texture beltTexture;
-                if (beltTexture.loadFromFile("./Images/belt_game_icon.png")) {
-                    sf::Sprite beltSprite(beltTexture);
-                    const float cellSize = 50.0f;
-                    const float scale = cellSize / beltTexture.getSize().x;
-
-                    beltSprite.setScale(scale, scale);
-                    beltSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
-                        INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
-                    window.draw(beltSprite);
-
-                    itemIndex++;
-                }
-                else {
-                    std::cerr << "Failed to load belt texture." << std::endl;
-                }
+            else {
+                std::cerr << "Failed to load helmet texture." << std::endl;
             }
         }
+
+        if (item->getItemType(item)._Equal("Armor")) {
+            sf::Texture armorTexture;
+            if (armorTexture.loadFromFile("./Images/armor_game_icon.png")) {
+                sf::Sprite armorSprite(armorTexture);
+                const float cellSize = 50.0f;
+                const float scale = cellSize / armorTexture.getSize().x;
+
+                armorSprite.setScale(scale, scale);
+                armorSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                    INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                window.draw(armorSprite);
+
+                itemIndex++;
+            }
+            else {
+                std::cerr << "Failed to load armor texture." << std::endl;
+            }
+        }
+
+        if (item->getItemType(item)._Equal("Shield")) {
+            sf::Texture shieldTexture;
+            if (shieldTexture.loadFromFile("./Images/shield_game_icon.png")) {
+                sf::Sprite shieldSprite(shieldTexture);
+                const float cellSize = 50.0f;
+                const float scale = cellSize / shieldTexture.getSize().x;
+
+                shieldSprite.setScale(scale, scale);
+                shieldSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                    INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                window.draw(shieldSprite);
+
+                itemIndex++;
+            }
+            else {
+                std::cerr << "Failed to load shield texture." << std::endl;
+            }
+        }
+
+        if (item->getItemType(item)._Equal("Weapon")) {
+            sf::Texture swordTexture;
+            if (swordTexture.loadFromFile("./Images/sword_game_icon.png")) {
+                sf::Sprite swordSprite(swordTexture);
+                const float cellSize = 50.0f;
+                const float scale = cellSize / swordTexture.getSize().x;
+
+                swordSprite.setScale(scale, scale);
+                swordSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                    INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                window.draw(swordSprite);
+
+                itemIndex++;
+            }
+            else {
+                std::cerr << "Failed to load sword texture." << std::endl;
+            }
+        }
+
+        if (item->getItemType(item)._Equal("Boots")) {
+            sf::Texture bootsTexture;
+            if (bootsTexture.loadFromFile("./Images/boots_game_icon.png")) {
+                sf::Sprite bootsSprite(bootsTexture);
+                const float cellSize = 50.0f;
+                const float scale = cellSize / bootsTexture.getSize().x;
+
+                bootsSprite.setScale(scale, scale);
+                bootsSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                    INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                window.draw(bootsSprite);
+
+                itemIndex++;
+            }
+            else {
+                std::cerr << "Failed to load boots texture." << std::endl;
+            }
+        }
+
+        if (item->getItemType(item)._Equal("Ring")) {
+            sf::Texture ringTexture;
+            if (ringTexture.loadFromFile("./Images/ring_game_icon.png")) {
+                sf::Sprite ringSprite(ringTexture);
+                const float cellSize = 50.0f;
+                const float scale = cellSize / ringTexture.getSize().x;
+
+                ringSprite.setScale(scale, scale);
+                ringSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                    INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                window.draw(ringSprite);
+
+                itemIndex++;
+            }
+            else {
+                std::cerr << "Failed to load ring texture." << std::endl;
+            }
+        }
+
+        if (item->getItemType(item)._Equal("Belt")) {
+            sf::Texture beltTexture;
+            if (beltTexture.loadFromFile("./Images/belt_game_icon.png")) {
+                sf::Sprite beltSprite(beltTexture);
+                const float cellSize = 50.0f;
+                const float scale = cellSize / beltTexture.getSize().x;
+
+                beltSprite.setScale(scale, scale);
+                beltSprite.setPosition(INVENTORY_OFFSET_X + itemIndex % INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE,
+                    INVENTORY_OFFSET_Y + itemIndex / INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE);
+                window.draw(beltSprite);
+
+                itemIndex++;
+            }
+            else {
+                std::cerr << "Failed to load belt texture." << std::endl;
+            }
+        }
+        
     }
 }
 
@@ -553,9 +559,69 @@ void PlayGame::handleFriendlyTurn(Character* friendlyCharacter, Map*& map)
 
 void PlayGame::handlePlayGameClick(int mouseX, int mouseY, FighterCharacter*& character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps, FighterCharacter*& aggressorCharacter, FighterCharacter*& friendlyCharacter, bool& movingToNextMap) {
     // Handle clicks on cell
-    cout << "=== Your turn to make a move ===" << endl;
-    if (mouseX >= GRID_OFFSET_X && mouseX < GRID_OFFSET_X + GRID_WIDTH * CELL_SIZE && mouseY >= GRID_OFFSET_Y && mouseY < GRID_OFFSET_Y + GRID_HEIGHT * CELL_SIZE) {
+
+    if (mouseX >= INVENTORY_OFFSET_X && mouseX < INVENTORY_OFFSET_X + INVENTORY_GRID_WIDTH * INVENTORY_CELL_SIZE && mouseY >= INVENTORY_OFFSET_Y && mouseY < INVENTORY_OFFSET_Y + INVENTORY_GRID_HEIGHT * INVENTORY_CELL_SIZE) {
+        int gridX = (mouseX - INVENTORY_OFFSET_X) / INVENTORY_CELL_SIZE;
+        int gridY = (mouseY - INVENTORY_OFFSET_Y) / INVENTORY_CELL_SIZE;
+
+        int chosenItemIndex = (gridY * INVENTORY_GRID_WIDTH) + gridX;
+
+        // if cell empty then skip the below lines
+
+        if (chosenItemIndex >= character->backpack->items.size()) {
+            return;
+        }
+
+        Item* item = character->backpack->items[chosenItemIndex];
+
+        if (item->getItemType(item) == "Helmet") {
+            if (character->getHelmet()) {
+                character->backpack->items.push_back(character->getHelmet()); // put the character's currently equipped helmet into his inventory
+            }
+            character->equipHelmet(static_cast<Helmet*>(item)); // equip the new helmet
+        }
+        else if (item->getItemType(item) == "Armor") {
+            if (character->getArmor()) {
+                character->backpack->items.push_back(character->getArmor());
+            }
+            character->equipArmor(static_cast<Armor*>(item));
+        }
+        else if (item->getItemType(item) == "Shield") {
+            if (character->getShield()) {
+                character->backpack->items.push_back(character->getShield());
+            }
+            character->equipShield(static_cast<Shield*>(item));
+        }
+        else if (item->getItemType(item) == "Weapon") {
+            if (character->getWeapon()) {
+                character->backpack->items.push_back(character->getWeapon());
+            }
+            character->equipWeapon(static_cast<Weapon*>(item));
+        }
+        else if (item->getItemType(item) == "Boots") {
+            if (character->getBoots()) {
+                character->backpack->items.push_back(character->getBoots());
+            }
+            character->equipBoots(static_cast<Boots*>(item));
+        }
+        else if (item->getItemType(item) == "Ring") {
+            if (character->getRing()) {
+                character->backpack->items.push_back(character->getRing());
+            }
+            character->equipRing(static_cast<Ring*>(item));
+        }
+
+        characterBackpack.erase(characterBackpack.begin() + chosenItemIndex); // remove item from gui
+        character->backpack->items.erase(character->backpack->items.begin() + chosenItemIndex);
+
+        character->printCharacter();
+        
+
+    }
+    else if (mouseX >= GRID_OFFSET_X && mouseX < GRID_OFFSET_X + GRID_WIDTH * CELL_SIZE && mouseY >= GRID_OFFSET_Y && mouseY < GRID_OFFSET_Y + GRID_HEIGHT * CELL_SIZE) {
         // Inside the grid
+        cout << "=== Your turn to make a move ===" << endl;
+
         int gridX = (mouseX - GRID_OFFSET_X) / CELL_SIZE;
         int gridY = (mouseY - GRID_OFFSET_Y) / CELL_SIZE;
         movingToNextMap = false;
@@ -632,7 +698,54 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, FighterCharacter*& ch
 
             }
         }
+    }
+    else if (unequipHelmetButton.getGlobalBounds().contains(static_cast<float>(mouseX), static_cast<float>(mouseY))) {
+        characterBackpack.push_back(character->getHelmet());
+        character->backpack->items.push_back(character->getHelmet());
 
+        character->removeHelmet();
+        cout << "=== Unequipping helmet ===" << endl;
+        character->printCharacter();
+    }
+    else if (unequipArmorButton.getGlobalBounds().contains(static_cast<float>(mouseX), static_cast<float>(mouseY))) {
+        characterBackpack.push_back(character->getArmor());
+        character->backpack->items.push_back(character->getArmor());
+
+        character->removeArmor();
+        cout << "=== Unequipping armor ===" << endl;
+        character->printCharacter();
+    }
+    else if (unequipShieldButton.getGlobalBounds().contains(static_cast<float>(mouseX), static_cast<float>(mouseY))) {
+        characterBackpack.push_back(character->getShield());
+        character->backpack->items.push_back(character->getShield());
+
+        character->removeShield();
+        cout << "=== Unequipping shield ===" << endl;
+        character->printCharacter();
+        }
+    else if (unequipRingButton.getGlobalBounds().contains(static_cast<float>(mouseX), static_cast<float>(mouseY))) {
+        characterBackpack.push_back(character->getRing());
+        character->backpack->items.push_back(character->getRing());
+
+        character->removeRing();
+        cout << "=== Unequipping ring ===" << endl;
+        character->printCharacter();
+    }
+    else if (unequipWeaponButton.getGlobalBounds().contains(static_cast<float>(mouseX), static_cast<float>(mouseY))) {
+        characterBackpack.push_back(character->getWeapon());
+        character->backpack->items.push_back(character->getWeapon());
+
+        character->removeWeapon();
+        cout << "=== Unequipping weapon ===" << endl;
+        character->printCharacter();
+    }
+    else if (unequipBootsButton.getGlobalBounds().contains(static_cast<float>(mouseX), static_cast<float>(mouseY))) {
+        characterBackpack.push_back(character->getBoots());
+        character->backpack->items.push_back(character->getBoots());
+
+        character->removeBoots();
+        cout << "=== Unequipping boots ===" << endl;
+        character->printCharacter();
     }
 }
 
@@ -650,8 +763,6 @@ void PlayGame::drawMainMenu(sf::RenderWindow& window) {
 void PlayGame::drawPlayGame(string mapName, string campaignName) {
     mapNameLabel.setString(mapName);
     campaignNameLabel.setString(campaignName);
-    drawInventoryGrid(window);
-    window.draw(inventoryText);
 
     //window.draw(worldBackground);
     //window.draw(backButton);
@@ -665,7 +776,6 @@ void PlayGame::drawPlayGame(string mapName, string campaignName) {
     drawSelectedMapGridStatic(mapName);
     drawInventoryGrid(window);
     window.draw(inventoryText);
-
 
 
     if (showSuccessfulAlert) {
@@ -686,6 +796,8 @@ void PlayGame::drawObjects(std::vector<Object> objects2) {
     window.draw(campaignNameLabel);
     window.draw(mapNameLabel);
     drawGrid(window);
+
+    drawInventoryGrid(window);
 
     for (const auto& obj : objects2) {
         sf::Sprite objectSprite;

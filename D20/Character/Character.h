@@ -13,6 +13,7 @@
 #include <random>
 #include "../Observable.h"
 #include "CharacterStrategy.h"
+#include "../Map/Map.h"
 
 using namespace std;
 
