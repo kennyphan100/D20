@@ -78,6 +78,7 @@ public:
     void performMoveGUI(Map& map, PlayGame& playGame);
     void performAttack(Map& map);
     void performAttackGUI(Map& map, int targetX, int targetY, PlayGame& playGame);
+    void performAttackGUI(Map& map, PlayGame& playGame);
     void performFreeActions(Map& map);
     void interactWithChest(Map& map, int targetX, int targetY);
 

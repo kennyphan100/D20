@@ -120,7 +120,8 @@ int main() {
     FriendlyStrategy* fs = new FriendlyStrategy();
     AggressorStrategy* as = new AggressorStrategy();
 
-    FighterCharacter* characterToPlay = nullptr;
+    //FighterCharacter* characterToPlay = nullptr;
+    FighterCharacter* characterToPlay = new FighterCharacter(1, FighterType::BULLY, as);
 
     FighterCharacter* aggressorCharacter = new FighterCharacter(1, FighterType::BULLY, as);
     aggressorCharacter->setName("Hellfire");
