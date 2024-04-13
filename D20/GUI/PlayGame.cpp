@@ -88,11 +88,11 @@ PlayGame::PlayGame(sf::RenderWindow& window) : window(window), dropdownOpen(fals
     gameOverLabel.setCharacterSize(40);
     gameOverLabel.setFillColor(sf::Color::Red);
     gameOverLabel.setStyle(sf::Text::Bold);
-    gameOverLabel.setPosition((window.getSize().x / 2 - gameOverLabel.getLocalBounds().width / 2), 550);
+    gameOverLabel.setPosition((window.getSize().x / 2 - gameOverLabel.getLocalBounds().width / 2), 600);
 
     gameOverBackground.setSize(sf::Vector2f(850, 70));
     gameOverBackground.setFillColor(sf::Color::Black);
-    gameOverBackground.setPosition((window.getSize().x / 2 - gameOverLabel.getLocalBounds().width / 2) - 20, 540);
+    gameOverBackground.setPosition((window.getSize().x / 2 - gameOverLabel.getLocalBounds().width / 2) - 20, 590);
 
     alertText.setFont(font);
     alertText.setString("You must select a character and a campaign!");
@@ -106,10 +106,7 @@ PlayGame::PlayGame(sf::RenderWindow& window) : window(window), dropdownOpen(fals
     GRID_WIDTH = 10;
     GRID_HEIGHT = 10;
 
-    const float INVENTORY_OFFSET_X = 900;
-    const float INVENTORY_OFFSET_Y = 150;
-
-    inventoryText.setFont(font); // Assuming 'font' is the font loaded in your constructor
+    inventoryText.setFont(font);
     inventoryText.setString("Inventory Panel");
     inventoryText.setCharacterSize(24);
     inventoryText.setFillColor(sf::Color::Black);
@@ -118,6 +115,14 @@ PlayGame::PlayGame(sf::RenderWindow& window) : window(window), dropdownOpen(fals
 
 void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
 
+    characterName.setFont(font);
+    characterName.setString(character->getName());
+    characterName.setCharacterSize(24);
+    characterName.setStyle(sf::Text::Underlined);
+    characterName.setFillColor(sf::Color::Black);
+    characterName.setPosition(900, 100 - 40);
+
+    window.draw(characterName);
     window.draw(inventoryText);
 
     characterBackpack = character->backpack->getItems();
@@ -125,20 +130,7 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     sf::Color gridColor = sf::Color::Black; // Change grid color to black
     float lineThickness = 2.0f; // Adjust thickness as desired
 
-    //const int INVENTORY_GRID_WIDTH = 5;
-    //const int INVENTORY_GRID_HEIGHT = 5;
-    //const int INVENTORY_CELL_SIZE = 50;
-    //const float INVENTORY_OFFSET_X = 900;
-    //const float INVENTORY_OFFSET_Y = 150;
-
-    //const float UNEQUIP_BUTTON_OFFSET_X = 900; // Same X offset as the inventory
-    //const float UNEQUIP_BUTTON_OFFSET_Y = INVENTORY_OFFSET_Y + (INVENTORY_GRID_HEIGHT * INVENTORY_CELL_SIZE) + 20; // Place it below the inventory
-    //const float UNEQUIP_BUTTON_WIDTH = 170;
-    //const float UNEQUIP_BUTTON_HEIGHT = 30;
-
-
     // Create the unequip helmet button
-    //sf::RectangleShape unequipHelmetButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipHelmetButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipHelmetButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y);
     unequipHelmetButton.setFillColor(sf::Color::Black); // Adjust color as needed
@@ -152,7 +144,6 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     window.draw(unequipHelmetButton);
     window.draw(buttonText);
 
-    //sf::RectangleShape unequipArmorButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipArmorButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipArmorButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + UNEQUIP_BUTTON_HEIGHT + 5); // Place it below the helmet button
     unequipArmorButton.setFillColor(sf::Color::Black); // Adjust color as needed
@@ -166,7 +157,6 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     window.draw(unequipArmorButton);
     window.draw(armorButtonText);
 
-    //sf::RectangleShape unequipShieldButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipShieldButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipShieldButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 2); // Place it below the armor button
     unequipShieldButton.setFillColor(sf::Color::Black); // Adjust color as needed
@@ -180,7 +170,6 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     window.draw(unequipShieldButton);
     window.draw(shieldButtonText);
 
-    //sf::RectangleShape unequipRingButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipRingButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipRingButton.setPosition(UNEQUIP_BUTTON_OFFSET_X, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Place it below the shield button
     unequipRingButton.setFillColor(sf::Color::Black); // Adjust color as needed
@@ -194,20 +183,6 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     window.draw(unequipRingButton);
     window.draw(ringButtonText);
 
-    //sf::RectangleShape unequipBeltButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
-    //unequipBeltButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y); // Place it to the right of the helmet button
-    //unequipBeltButton.setFillColor(sf::Color::Black); // Adjust color as needed
-
-    //// Text for the button
-    //sf::Text beltButtonText("Unequip Belt", font, 18);
-    //beltButtonText.setFillColor(sf::Color::White);
-    //beltButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y); // Adjust text position within the button
-
-    //// Draw the button and text
-    //window.draw(unequipBeltButton);
-    //window.draw(beltButtonText);
-
-    //sf::RectangleShape unequipWeaponButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipWeaponButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipWeaponButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + UNEQUIP_BUTTON_HEIGHT + 5); // Place it under the belt button
     unequipWeaponButton.setFillColor(sf::Color::Black); // Adjust color as needed
@@ -221,7 +196,6 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     window.draw(unequipWeaponButton);
     window.draw(weaponButtonText);
 
-    //sf::RectangleShape unequipBootsButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipBootsButton.setSize(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
     unequipBootsButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 2); // Place it under the weapon button
     unequipBootsButton.setFillColor(sf::Color::Black); // Adjust color as needed
@@ -234,19 +208,6 @@ void PlayGame::drawInventoryGrid(sf::RenderWindow& window) {
     // Draw the button and text
     window.draw(unequipBootsButton);
     window.draw(bootsButtonText);
-
-    //sf::RectangleShape equipButton(sf::Vector2f(UNEQUIP_BUTTON_WIDTH, UNEQUIP_BUTTON_HEIGHT));
-    //equipButton.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Place it under the boots button
-    //equipButton.setFillColor(sf::Color::Green); // Adjust color as needed
-
-    //// Text for the button
-    //sf::Text equipButtonText("Equip", font, 18);
-    //equipButtonText.setFillColor(sf::Color::White);
-    //equipButtonText.setPosition(UNEQUIP_BUTTON_OFFSET_X + UNEQUIP_BUTTON_WIDTH + 5, UNEQUIP_BUTTON_OFFSET_Y + (UNEQUIP_BUTTON_HEIGHT + 5) * 3); // Adjust text position within the button
-
-    //// Draw the button and text
-    //window.draw(equipButton);
-    //window.draw(equipButtonText);
 
     // Draw vertical grid lines
     for (int i = 0; i <= INVENTORY_GRID_WIDTH; ++i) {
@@ -427,45 +388,12 @@ void PlayGame::drawGrid(sf::RenderWindow& window) {
     }
 }
 
-//void PlayGame::drawSelectedMapGrid(string selectedMap)
-//{
-//    objects.clear();
-//
-//    Editor* editor = new Editor();
-//    Map* loadedMap = editor->selectMapGUI(selectedMap);
-//
-//    GRID_WIDTH = loadedMap->getWidth();
-//    GRID_HEIGHT = loadedMap->getHeight();
-//
-//    objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
-//    objects.push_back({ aggressorPositionX, aggressorPositionY, ObjectType::Aggressor });
-//
-//    for (int y = 0; y < GRID_HEIGHT; ++y) {
-//        for (int x = 0; x < GRID_WIDTH; ++x) {
-//            switch (loadedMap->getGrid()[y][x]) {
-//            case Cell::WALL:
-//                objects.push_back({ x, y, ObjectType::Wall });
-//                break;
-//            case Cell::DOOR:
-//                objects.push_back({ x, y, ObjectType::Door });
-//                break;
-//            case Cell::CHEST:
-//                objects.push_back({ x, y, ObjectType::Chest });
-//                break;
-//            }
-//        }
-//    }
-//    drawObjects(objects);
-//}
-
 void PlayGame::drawSelectedMapGrid(Map* selectedMap)
 {
     objects.clear();
 
     GRID_WIDTH = selectedMap->getWidth();
     GRID_HEIGHT = selectedMap->getHeight();
-
-    //objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
 
     if (!iAmDead) {
         objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
@@ -749,34 +677,12 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, FighterCharacter*& ch
     }
 }
 
-void PlayGame::handleCharacterCreationClick(int mouseX, int mouseY) {
-    // Handle clicks on character creation screen
-}
-
-void PlayGame::handleTextInput(sf::Uint32 unicode) {
-}
-
-void PlayGame::drawMainMenu(sf::RenderWindow& window) {
-    // Draw main menu
-}
-
 void PlayGame::drawPlayGame(string mapName, string campaignName) {
     mapNameLabel.setString(mapName);
     campaignNameLabel.setString(campaignName);
 
-    //window.draw(worldBackground);
-    //window.draw(backButton);
-    //window.draw(campaignLabel);
-    //window.draw(campaignNameLabel);
-    //window.draw(mapNameLabel);
-
-    //drawGrid(window);
-
-    //drawSelectedMapGrid(mapName);
     drawSelectedMapGridStatic(mapName);
     drawInventoryGrid(window);
-    window.draw(inventoryText);
-
 
     if (showSuccessfulAlert) {
         window.draw(alertText);

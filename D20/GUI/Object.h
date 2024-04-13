@@ -21,8 +21,7 @@ const int WINDOW_HEIGHT = 600;
 const int CELL_SIZE = 40; // Adjust cell size as desired
 const int GRID_OFFSET_X = 400; // Adjust horizontal offset
 const int GRID_OFFSET_Y = 100; // Adjust vertical offset
-//const int INVENTORY_OFFSET_X = 800; // Adjust horizontal offset
-//const int INVENTORY_OFFSET_Y = 100; // Adjust vertical offset
+
 const int INVENTORY_OFFSET_X = 900;
 const int INVENTORY_OFFSET_Y = 150;
 const int INVENTORY_GRID_WIDTH = 5;

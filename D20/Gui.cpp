@@ -121,12 +121,12 @@ int main() {
     AggressorStrategy* as = new AggressorStrategy();
 
     //FighterCharacter* characterToPlay = nullptr;
-    FighterCharacter* characterToPlay = new FighterCharacter(1, FighterType::BULLY, as);
+    FighterCharacter* characterToPlay = new FighterCharacter(1, FighterType::TANK, as);
 
     FighterCharacter* aggressorCharacter = new FighterCharacter(1, FighterType::BULLY, as);
     aggressorCharacter->setName("Hellfire");
 
-    FighterCharacter* friendlyCharacter = new FighterCharacter(1, FighterType::NIMBLE, fs);
+    FighterCharacter* friendlyCharacter = new FighterCharacter(3, FighterType::NIMBLE, fs);
     friendlyCharacter->setName("Sage");
 
     Campaign* campaignToPlay = nullptr;
@@ -248,7 +248,6 @@ int main() {
                             mapNameToPlay = listOfMaps[0];
                             mapToPlay = editor->selectMapGUI(mapNameToPlay);
 
-                            //characterToPlay->setStrategy(&hps);
                             mapToPlay->placeCharacter(0, 0, characterToPlay);
                             mapToPlay->placeCharacter(8, 8, aggressorCharacter);
                             mapToPlay->placeCharacter(0, 2, friendlyCharacter);
@@ -259,12 +258,6 @@ int main() {
                         if (backButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
                             currentState = MAIN_MENU;
                         }
-
-                        //mapToPlay = editor->selectMapGUI(mapNameToPlay);
-                        
-                        // placeCharacter into the cell he is in the map
-                        // characterToPlay->setStrategy(&hps);
-                        // mapToPlay->placeCharacter(X, Y, characterToPlay);
 
                         PlayGame.handlePlayGameClick(mousePos.x, mousePos.y, characterToPlay, campaignToPlay, mapToPlay, mapNameToPlay, listOfMaps, aggressorCharacter, friendlyCharacter, movingToNextMap);
 

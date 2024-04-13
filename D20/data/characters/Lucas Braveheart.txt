@@ -3,10 +3,11 @@ Class: TANK
 Level: 1
 HP: 13, AC: 9, AttackBonus: 0, DamageBonus: -1
 STR: 10 (-1), DEX: 14 (-1), CON: 16 (3), INT: 9 (0), WIS: 7 (2), CHA: 8 (-2)
-Equipped Armor: None, Unknown Enhancement, -842150451
-Equipped Shield: None, Unknown Enhancement, -842150451
-Equipped Weapon: None, Unknown Enhancement, -842150451
-Equipped Boots: None, Unknown Enhancement, -842150451
-Equipped Ring: None, Unknown Enhancement, -842150451
-Equipped Helmet: None, Unknown Enhancement, -842150451
-Inventory: None
+Equipped Armor: None
+Equipped Shield: None
+Equipped Weapon: Axe of the Minotaur, Armor Class, 4
+Equipped Boots: None
+Equipped Ring: None
+Equipped Helmet: None
+Inventory:
+Item Name: Ring of Power, Item Type: Ring, Enhancement Type: Damage Bonus, Enhancement Bonus: 4

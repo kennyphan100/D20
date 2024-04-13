@@ -1,0 +1,16 @@
+Name: God
+Class: NIMBLE
+Level: 50
+HP: 832, AC: 9, AttackBonus: 48, DamageBonus: -2
+STR: 11 (-2), DEX: 17 (-1), CON: 16 (0), INT: 9 (2), WIS: 4 (1), CHA: 8 (-1)
+Equipped Armor: None
+Equipped Shield: None
+Equipped Weapon: Axe of the Minotaur, Dexterity, 4, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451
+Equipped Boots: Boots of Speed, Intelligence, 3, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451
+Equipped Ring: Band of Insight, Charisma, 2, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451
+Equipped Helmet: Crown of Kings, Constitution, 2, Unknown Enhancement, -842150451
+Inventory:
+Item Name: Band of Insight, Item Type: Ring, Enhancement Type: Charisma, Enhancement Bonus: 2
+Item Name: Crown of Kings, Item Type: Helmet, Enhancement Type: Constitution, Enhancement Bonus: 2
+Item Name: Crown of Kings, Item Type: Helmet, Enhancement Type: Strength, Enhancement Bonus: -842150451
+Item Name: Shield of the Guardian, Item Type: Shield, Enhancement Type: Wisdom, Enhancement Bonus: 5

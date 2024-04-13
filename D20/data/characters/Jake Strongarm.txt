@@ -3,12 +3,12 @@ Class: NIMBLE
 Level: 1
 HP: 4, AC: 7, AttackBonus: 2, DamageBonus: 1
 STR: 15 (1), DEX: 18 (-3), CON: 16 (0), INT: 14 (1), WIS: 3 (3), CHA: 13 (1)
-Equipped Armor: None
-Equipped Shield: None
+Equipped Armor: Chainmail of Fortitude, Attack Bonus, 4, Unknown Enhancement, -842150451
+Equipped Shield: Barrier Buckler, Dexterity, 3, Unknown Enhancement, -842150451
 Equipped Weapon: None
-Equipped Boots: None
-Equipped Ring: Band of Insight, Constitution, 3, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451
-Equipped Helmet: Crown of Kings, Wisdom, 1, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451
+Equipped Boots: Footwear of the Fleet, Intelligence, 2, Unknown Enhancement, -842150451
+Equipped Ring: Circle of Mystique, Constitution, 4, Unknown Enhancement, -842150451
+Equipped Helmet: Crown of Kings, Wisdom, 1, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451, Unknown Enhancement, -842150451
 Inventory:
-Item Name: Footwear of the Fleet, Item Type: Boots, Enhancement Type: Intelligence, Enhancement Bonus: 2
-Item Name: Circle of Mystique, Item Type: Ring, Enhancement Type: Constitution, Enhancement Bonus: 4
+Item Name: Band of Insight, Item Type: Ring, Enhancement Type: Strength, Enhancement Bonus: -842150451
+Item Name: Armor of Aegis, Item Type: Armor, Enhancement Type: Wisdom, Enhancement Bonus: 2

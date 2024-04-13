@@ -17,9 +17,6 @@ public:
     PlayGame(sf::RenderWindow& window);
 
     void handlePlayGameClick(int mouseX, int mouseY, FighterCharacter*& character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps, FighterCharacter*& aggresorCharacter, FighterCharacter*& friendlyCharacter, bool& movingToNextMap);
-    void handleCharacterCreationClick(int mouseX, int mouseY);
-    void handleTextInput(sf::Uint32 unicode);
-    void drawMainMenu(sf::RenderWindow& window);
     void drawPlayGame(string mapName, string campaignName);
     void drawObjects(std::vector<Object> objects2);
     void drawObjectsStatic(std::vector<Object> objects2);
@@ -44,9 +41,9 @@ public:
 
     Character* character;
 
+    sf::Text characterName;
     sf::Text inventoryText;
     void drawInventoryGrid(sf::RenderWindow& window);
-    void drawInventoryTitle(sf::RenderWindow& window);
 
     int characterPositionX = 0;
     int characterPositionY = 0;
