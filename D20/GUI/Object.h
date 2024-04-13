@@ -5,7 +5,8 @@ enum class ObjectType {
     Chest,
     Door,
     Character,
-    Aggressor
+    Aggressor,
+    Friendly,
 };
 
 struct Object {

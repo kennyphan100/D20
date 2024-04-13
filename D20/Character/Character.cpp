@@ -106,6 +106,10 @@ void Character::performAttackGUI(Map& map, int targetX, int targetY, PlayGame& p
     actionStrategy->attackGUI(*this, map, targetX, targetY, playGame);
 }
 
+void Character::performAttackGUI(Map& map, PlayGame& playGame) {
+    actionStrategy->attackGUI(*this, map, playGame);
+}
+
 void Character::performFreeActions(Map& map) {
     actionStrategy->freeAction(*this, map);
 }

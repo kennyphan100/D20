@@ -3,6 +3,7 @@
 #include "../Map/Editor.h"
 #include "../Character/HumanPlayerStrategy.h"
 #include "../Character/AggressorStrategy.h"
+#include "../Character/FriendlyStrategy.h"
 
 namespace fs = std::filesystem;
 
@@ -25,6 +26,11 @@ PlayGame::PlayGame(sf::RenderWindow& window) : window(window), dropdownOpen(fals
     }
 
     if (!aggressorTexture.loadFromFile("./Images/aggressor_icon.png")) {
+        // Handle error if texture loading fails
+        cout << "ERROR: Game could not load icon" << "\n";
+    }
+
+    if (!friendlyTexture.loadFromFile("./Images/friendly_icon.png")) {
         // Handle error if texture loading fails
         cout << "ERROR: Game could not load icon" << "\n";
     }
@@ -76,6 +82,17 @@ PlayGame::PlayGame(sf::RenderWindow& window) : window(window), dropdownOpen(fals
     winLabel.setFillColor(sf::Color(50, 200, 50));
     winLabel.setStyle(sf::Text::Bold);
     winLabel.setPosition((window.getSize().x / 2 - winLabel.getLocalBounds().width / 2), 600);
+
+    gameOverLabel.setFont(font);
+    gameOverLabel.setString("You have been defeated! GAME OVER!");
+    gameOverLabel.setCharacterSize(40);
+    gameOverLabel.setFillColor(sf::Color::Red);
+    gameOverLabel.setStyle(sf::Text::Bold);
+    gameOverLabel.setPosition((window.getSize().x / 2 - gameOverLabel.getLocalBounds().width / 2), 550);
+
+    gameOverBackground.setSize(sf::Vector2f(850, 70));
+    gameOverBackground.setFillColor(sf::Color::Black);
+    gameOverBackground.setPosition((window.getSize().x / 2 - gameOverLabel.getLocalBounds().width / 2) - 20, 540);
 
     alertText.setFont(font);
     alertText.setString("You must select a character and a campaign!");
@@ -442,10 +459,18 @@ void PlayGame::drawSelectedMapGrid(Map* selectedMap)
     GRID_WIDTH = selectedMap->getWidth();
     GRID_HEIGHT = selectedMap->getHeight();
 
-    objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+    //objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+
+    if (!iAmDead) {
+        objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+    }
 
     if (!isAggressorDead) {
         objects.push_back({ aggressorPositionX, aggressorPositionY, ObjectType::Aggressor });
+    }
+
+    if (!isFriendlyDead) {
+        objects.push_back({ friendlyPositionX, friendlyPositionY, ObjectType::Friendly });
     }
 
     for (int y = 0; y < GRID_HEIGHT; ++y) {
@@ -476,10 +501,18 @@ void PlayGame::drawSelectedMapGridStatic(string selectedMap)
     GRID_WIDTH = loadedMap->getWidth();
     GRID_HEIGHT = loadedMap->getHeight();
 
-    objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+    //objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+
+    if (!iAmDead) {
+        objects.push_back({ characterPositionX, characterPositionY, ObjectType::Character });
+    }
 
     if (!isAggressorDead) {
         objects.push_back({ aggressorPositionX, aggressorPositionY, ObjectType::Aggressor });
+    }
+
+    if (!isFriendlyDead) {
+        objects.push_back({ friendlyPositionX, friendlyPositionY, ObjectType::Friendly });
     }
 
     for (int y = 0; y < GRID_HEIGHT; ++y) {
@@ -503,19 +536,29 @@ void PlayGame::drawSelectedMapGridStatic(string selectedMap)
 void PlayGame::handleAggressorTurn(Character* aggressorCharacter, Map*& map)
 {
     cout << "\n === Enemy's turn to move === \n";
-    //AggressorStrategy* as = new AggressorStrategy();
-    //aggressorCharacter->setStrategy(as);
-    aggressorCharacter->performMoveGUI(*map, *this);
-    //aggressorCharacter->performAttack(*map);
-
+    if (!isAggressorDead) {
+        aggressorCharacter->performMoveGUI(*map, *this);
+        aggressorCharacter->performAttackGUI(*map, *this);
+    }
 }
 
-void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps, FighterCharacter*& aggressorCharacter) {
+void PlayGame::handleFriendlyTurn(Character* friendlyCharacter, Map*& map)
+{
+    cout << "\n === Friendly's turn to move === \n";
+    if (!isFriendlyDead) {
+        friendlyCharacter->performMoveGUI(*map, *this);
+        friendlyCharacter->performAttackGUI(*map, *this);
+    }
+}
+
+void PlayGame::handlePlayGameClick(int mouseX, int mouseY, FighterCharacter*& character, Campaign* campaign, Map*& map, string& mapName, vector<string>& listOfMaps, FighterCharacter*& aggressorCharacter, FighterCharacter*& friendlyCharacter, bool& movingToNextMap) {
     // Handle clicks on cell
+    cout << "=== Your turn to make a move ===" << endl;
     if (mouseX >= GRID_OFFSET_X && mouseX < GRID_OFFSET_X + GRID_WIDTH * CELL_SIZE && mouseY >= GRID_OFFSET_Y && mouseY < GRID_OFFSET_Y + GRID_HEIGHT * CELL_SIZE) {
         // Inside the grid
         int gridX = (mouseX - GRID_OFFSET_X) / CELL_SIZE;
         int gridY = (mouseY - GRID_OFFSET_Y) / CELL_SIZE;
+        movingToNextMap = false;
 
         // Check if targeted cell is occupied, if not move character to new position
         if (!isXYInObjects(gridX, gridY)) {
@@ -528,7 +571,7 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character,
 
         }
         else if (XYPositionIsAggressor(gridX, gridY)) {
-            cout << "\n=== Attacking aggressor ===" << endl;
+            cout << "\n=== YOUR TURN - Attacking aggressor ===" << endl;
 
             HumanPlayerStrategy hps;
             character->setStrategy(&hps);
@@ -556,30 +599,33 @@ void PlayGame::handlePlayGameClick(int mouseX, int mouseY, Character* character,
 
             // Moving to next map
             else {
+                movingToNextMap = true;
+
                 mapName = listOfMaps[currentMapIndex];
                 characterPositionX = 0;
                 characterPositionY = 0;
 
                 Editor* editor = new Editor();
                 map = editor->selectMapGUI(mapName);
-                character->setStrategy(&hps);
+
+                //character->setStrategy(&hps);
                 map->placeCharacter(0, 0, character);
 
                 AggressorStrategy* as = new AggressorStrategy();
-                //FighterCharacter* newAggressorCharacter = new FighterCharacter(2, FighterType::BULLY, as);
-
-                //FighterCharacter* newAggressorCharacter = nullptr;
-                //newAggressorCharacter = new FighterCharacter(2, FighterType::BULLY, &as);
-                //newAggressorCharacter->setName("Hellfire2");
-
                 aggressorCharacter = new FighterCharacter(2, FighterType::BULLY, as);
-                //aggressorCharacter->setName("Hellfire2");
-
+                aggressorCharacter->setName("Hellfire");
                 map->placeCharacter(8, 8, aggressorCharacter);
-
                 isAggressorDead = false;
                 aggressorPositionX = 8;
                 aggressorPositionY = 8;
+
+                FriendlyStrategy* fs = new FriendlyStrategy();
+                friendlyCharacter = new FighterCharacter(2, FighterType::NIMBLE, fs);
+                friendlyCharacter->setName("Sage");
+                map->placeCharacter(0, 2, friendlyCharacter);
+                isFriendlyDead = false;
+                friendlyPositionX = 0;
+                friendlyPositionY = 2;
 
                 drawSelectedMapGrid(map);
                 drawSelectedMapGridStatic(mapName);
@@ -661,6 +707,9 @@ void PlayGame::drawObjects(std::vector<Object> objects2) {
         case ObjectType::Aggressor:
             objectSprite.setTexture(aggressorTexture);
             break;
+        case ObjectType::Friendly:
+            objectSprite.setTexture(friendlyTexture);
+            break;
         default:
             break;
         }
@@ -676,6 +725,11 @@ void PlayGame::drawObjectsStatic(std::vector<Object> objects2) {
     window.draw(campaignNameLabel);
     window.draw(mapNameLabel);
     drawGrid(window);
+
+    if (iAmDead) {
+        window.draw(gameOverBackground);
+        window.draw(gameOverLabel);
+    }
 
     for (const auto& obj : objects2) {
         sf::Sprite objectSprite;
@@ -697,6 +751,9 @@ void PlayGame::drawObjectsStatic(std::vector<Object> objects2) {
         case ObjectType::Aggressor:
             objectSprite.setTexture(aggressorTexture);
             break;
+        case ObjectType::Friendly:
+            objectSprite.setTexture(friendlyTexture);
+            break;
         default:
             break;
         }
@@ -707,7 +764,7 @@ void PlayGame::drawObjectsStatic(std::vector<Object> objects2) {
 // Checks if a given cell (x,y) is occupied by a wall
 bool PlayGame::isXYInObjects(int x, int y) {
     for (const auto& obj : objects) {
-        if (obj.x == x && obj.y == y && (obj.type == ObjectType::Wall or obj.type == ObjectType::Chest or obj.type == ObjectType::Door or obj.type == ObjectType::Aggressor)) {
+        if (obj.x == x && obj.y == y && (obj.type == ObjectType::Wall or obj.type == ObjectType::Chest or obj.type == ObjectType::Door or obj.type == ObjectType::Aggressor or obj.type == ObjectType::Friendly)) {
             return true; // Found the coordinates in the list of objects
         }
     }

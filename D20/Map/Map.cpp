@@ -579,7 +579,8 @@ std::pair<int, int> Map::findClosestEnemyPosition(int charX, int charY) {
         const auto& position = entry.first;
         Character* character = entry.second;
 
-        if (character && character->getStrategyType() == StrategyType::Aggressor) {
+        //if (character && character->getStrategyType() == StrategyType::Aggressor) {
+        if (character->getName() == "Hellfire") {
             int distance = std::abs(charX - position.first) + std::abs(charY - position.second);
             if (distance < minDistance) {
                 minDistance = distance;
