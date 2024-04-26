@@ -1,7 +1,7 @@
 # D20
 
 # Description
-This project is about writing a C++ program that allows the user to play a simplistic version of a Dungeons and Dragons role-playing game. The game follows the d20 gaming rules.
+This project is about writing a C++ program that allows the user to play a simplistic version of a Dungeons and Dragons role-playing game. The game follows the various d20 gaming rules including grid map rendering, user-interactive map and campaign creation, character editor, inventory system, item management, movement and targeting limitations, turn-based combat mechanics following d20 rules, and a console window for game logs.
 
 # Technologies Used
 - C++
