@@ -27,3 +27,11 @@ This project is about writing a C++ program that allows the user to play a simpl
 - Zi Hao Tan
 - Tony Yang
 - Muhammad Ali Sheikh
+
+# Sneak peek of GUI
+![image](https://github.com/user-attachments/assets/34d6a23c-8eeb-4ad5-b91a-c1fd561ccdfb)
+![image](https://github.com/user-attachments/assets/6e9d7e49-93f2-4525-a470-328c4d74241c)
+![image](https://github.com/user-attachments/assets/9ae6c712-9ebd-41be-ba7b-aef75f24063c)
+![image](https://github.com/user-attachments/assets/2ce38966-e630-4000-9666-72648cd4530d)
+![image](https://github.com/user-attachments/assets/7d6ab34f-6049-4db8-a9c7-9aad445a2616)
+
